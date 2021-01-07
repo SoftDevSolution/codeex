@@ -28,7 +28,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
                             <h3 class="section-title">Assets
-                            <a href="<? echo base_url(); ?>member/add_asset"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Asset</button></a>
+                            <a href="<? echo base_url(); ?>member/assets/add_asset"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Asset</button></a>
                             </h3>
                         </div>
                         <div class="card">
@@ -62,9 +62,9 @@
                             <td>Otto</td>
                             <td>
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/assets/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                     &nbsp;
-                                    <a href="<? echo base_url(); ?>member/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/assets/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
                                 </center>
                             </td>
                             </tr>
@@ -80,9 +80,9 @@
                             <td>Otto</td>
                             <td>
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/assets/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                     &nbsp;
-                                    <a href="<? echo base_url(); ?>member/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/assets/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
                                 </center>
                             </td>
                             </tr>
@@ -98,9 +98,9 @@
                             <td>Otto</td>
                             <td>
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/assets/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                     &nbsp;
-                                    <a href="<? echo base_url(); ?>member/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/assets/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
                                 </center>
                             </td>
                             </tr>

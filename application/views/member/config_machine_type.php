@@ -70,9 +70,9 @@
                                             <th scope="row"><? echo $key+1; ?></th>
                                             <td><? echo $mach->machine_type_name; ?></td>
                                             <td>
-                                            <a href="<? echo base_url(); ?>member/edit_machine_type/<? echo $mach->machine_type_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                            <a href="<? echo base_url(); ?>member/config_machine_type/edit_machine_type/<? echo $mach->machine_type_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
                                             &nbsp;
-                                            <a href="<? echo base_url(); ?>member/delete_machine_type/<? echo $mach->machine_type_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                            <a href="<? echo base_url(); ?>member/config_machine_type/delete_machine_type/<? echo $mach->machine_type_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
                                             </td>
                                             </tr>
                                 <? } ?>
@@ -88,7 +88,7 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" id="machine_type">
                         <div class="card">
                             <div class="card-body">
-                                <form action="<? echo base_url(); ?>member/add_config_machine_type" method="POST">
+                                <form action="<? echo base_url(); ?>member/config_machine_type/add_config_machine_type" method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label for="machine_type_name">Machine Type</label>

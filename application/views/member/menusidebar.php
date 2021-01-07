@@ -18,45 +18,30 @@
                         <a class="nav-link <? if($activemenu=="dashboard"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/dashboard"><i class="fa fa-fw fa-home"></i> Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="company" or $activemenu=="add_company"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/company" href="<? echo base_url(); ?>member/company" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-building"></i> Company Management</a>
+                        <a class="nav-link <? if($activemenu=="company" or $activemenu=="add_company" or $activemenu=="company_supplier" or $activemenu=="add_company_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/company" href="<? echo base_url(); ?>member/company" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-building"></i> Company Management</a>
                         <div id="submenu-1" class="collapse submenu">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="company"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/company" href="<? echo base_url(); ?>member/company"><i class="fas fa-list-ul"></i> Company Data</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="add_company"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/add_company"><i class="fas fa-list-ul"></i> Add New Company</a>
+                                    <a class="nav-link <? if($activemenu=="company" or $activemenu=="add_company"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/company" href="<? echo base_url(); ?>member/company"><i class="fas fa-list-ul"></i> Company Data</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link <? if($activemenu=="company_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/company_supplier" href="<? echo base_url(); ?>member/company_supplier"><i class="fas fa-list-ul"></i> Company Supplier</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="add_company_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/add_company_supplier"><i class="fas fa-list-ul"></i> Add Company Supplier</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="company" or $activemenu=="add_company"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/company" href="<? echo base_url(); ?>member/company" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-building"></i> Machine Management</a>
+                        <a class="nav-link <? if($activemenu=="machine" or $activemenu=="machine_detail" or $activemenu=="machine_part" or $activemenu=="add_machine_detail" or $activemenu=="config_machine_type" or $activemenu=="config_machine_model" or $activemenu=="config_machine_brand"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/company" href="<? echo base_url(); ?>member/company" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-building"></i> Machine Management</a>
                         <div id="submenu-2" class="collapse submenu">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link <? if($activemenu=="machine"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/machine" href="<? echo base_url(); ?>member/machine"><i class="fas fa-list-ul"></i> Machine Data</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="add_machine"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/add_machine"><i class="fas fa-list-ul"></i> Add New Machine</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link <? if($activemenu=="machine_detail"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/machine_detail" href="<? echo base_url(); ?>member/machine_detail"><i class="fas fa-list-ul"></i> Machine Detail</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="add_machine_detail"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/add_machine_detail" href="<? echo base_url(); ?>member/add_machine_detail"><i class="fas fa-list-ul"></i> Add Machine Detail</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="machine_part"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/machine_part" href="<? echo base_url(); ?>member/machine"><i class="fas fa-list-ul"></i> Machine Part</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="add_machine_part"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/add_machine_part"><i class="fas fa-list-ul"></i> Add New Machine Part</a>
+                                    <a class="nav-link <? if($activemenu=="machine_part" or $activemenu=="add_machine_part"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/machine_part" href="<? echo base_url(); ?>member/machine"><i class="fas fa-list-ul"></i> Machine Part</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link <? if($activemenu=="config_machine_type"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/config_machine_type"><i class="fas fa-list-ul"></i> Config Machine Type</a>

@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "uncon";
+$route['default_controller'] = "welcome";
 $route['index'] = "welcome";
 $route['404_override'] = 'error404';
 $route['หน้าแรก'] = "welcome";

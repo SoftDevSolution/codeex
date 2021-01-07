@@ -38,7 +38,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
-        <form action="<? echo base_url(); ?>member/add_sub_requisition" method="POST">
+        <form action="<? echo base_url(); ?>member/service_outside/add_data_sub_requisition" method="POST">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="rqs_id">เบิก สินค้าหลักหรือ Part <span class="text-danger">*</span></label>

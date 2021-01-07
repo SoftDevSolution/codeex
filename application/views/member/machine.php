@@ -28,7 +28,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
                             <h3 class="section-title">Machine Data &nbsp;
-                            <a href="<? echo base_url(); ?>member/add_machine"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Machine</button></a>
+                            <a href="<? echo base_url(); ?>member/machine/add_machine"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Machine</button></a>
                             </h3>
                         </div>
                         <div class="card">
@@ -42,28 +42,38 @@
                             <th scope="col">Machine S/N</th>
                             <th scope="col">Brand</th>
                             <th scope="col">WFS (year)</th>
-                            <th scope="col"></th>
+                            <th scope="col"><center>Manage</center></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
                             <td>Jacob</td>
                             <td>Thornton</td>
                             <td>@fat</td>
+                            <td>@fat</td>
+                            <td>
+                                <center>
+                                    <a href="<? echo base_url(); ?>member/machine/edit_machine"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
+                                    &nbsp;
+                                    <a href="<? echo base_url(); ?>member/machine/remove_machine"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                </center>
+                            </td>
                             </tr>
                             <tr>
-                            <th scope="row">3</th>
+                            <th scope="row">2</th>
                             <td>Larry</td>
                             <td>the Bird</td>
                             <td>@twitter</td>
+                            <td>@twitter</td>
+                            <td>
+                                <center>
+                                    <a href="<? echo base_url(); ?>member/machine/edit_machine"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
+                                    &nbsp;
+                                    <a href="<? echo base_url(); ?>member/machine/remove_machine"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                </center>
+                            </td>
                             </tr>
+                            
                         </tbody>
                         </table>
                         </div>

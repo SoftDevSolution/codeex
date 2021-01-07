@@ -28,7 +28,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
                             <h3 class="section-title">Service Outside &nbsp;
-                            <a href="<? echo base_url(); ?>member/add_service_outside"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add Service Outside</button></a>
+                            <a href="<? echo base_url(); ?>member/service_outside/add_service_outside"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add Service Outside</button></a>
                             </h3>
                         </div>
                         <div class="card">
@@ -58,9 +58,9 @@
                             <td>คนรับงาน</td>
                             <td>
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/edit_company"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/service_outside/edit_company"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                     &nbsp;
-                                    <a href="<? echo base_url(); ?>member/remove_company"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/service_outside/remove_company"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
                                 </center>
                             </td>
                             </tr>
@@ -74,9 +74,9 @@
                             <td>คนรับงาน</td>
                             <td>
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/edit_company"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/service_outside/edit_company"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                     &nbsp;
-                                    <a href="<? echo base_url(); ?>member/remove_company"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/service_outside/remove_company"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
                                 </center>
                             </td>
                             </tr>
@@ -90,9 +90,9 @@
                             <td>คนรับงาน</td>
                             <td>
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/edit_company"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/service_outside/edit_company"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                     &nbsp;
-                                    <a href="<? echo base_url(); ?>member/remove_company"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/service_outside/remove_company"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
                                 </center>
                             </td>
                             </tr>

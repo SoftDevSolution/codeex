@@ -52,7 +52,7 @@
                                 
                             }
                         ?>
-                                <form action="<? echo base_url(); ?>member/edit_data_config_machine_type" method="POST">
+                                <form action="<? echo base_url(); ?>member/config_machine_type/edit_data_config_machine_type" method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-12">
                                             <label for="machine_type_name">Machine Type</label>
