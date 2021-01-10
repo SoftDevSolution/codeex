@@ -30,14 +30,14 @@ class Config_machine_type extends CI_Controller {
 		$data['setting_web'] = $this->me->_getall();
 
 		// Load Model Machine
-		$this->load->model('Machine_model','machine');
+		$this->load->model('Machine_type_model','machine');
 
 		// ดึงข้อมูล Machine Type มาใช้งาน
 		$data['data_machine_type'] = $this->machine->_get_machine_type_AllData();
 
 		$data['count_machine_type'] = $this->machine->_count_machine_type();
 
-		$this->load->view('member/config_machine_type',$data);
+		$this->load->view('member/view_config_machine_type',$data);
 	}
 
 	public function add_config_machine_type()
@@ -48,7 +48,7 @@ class Config_machine_type extends CI_Controller {
 		$this->checkMember_isvalidated();
 
 		// Load Model Machine
-		$this->load->model('Machine_model','machine');
+		$this->load->model('Machine_type_model','machine');
 
 		// รับข้อมูลมาใช้งาน
 		$machine_type_name = $this->input->post("machine_type_name");
@@ -96,7 +96,7 @@ class Config_machine_type extends CI_Controller {
 		$this->checkMember_isvalidated();
 
 		// Load Model Machine
-		$this->load->model('Machine_model','machine');
+		$this->load->model('Machine_type_model','machine');
 
 		// รับข้อมูลมาใช้งาน
 		$machine_type_id = $this->uri->segment(4);
@@ -143,7 +143,7 @@ class Config_machine_type extends CI_Controller {
 		$data['setting_web'] = $this->me->_getall();
 
 		// Load Model Machine
-		$this->load->model('Machine_model','machine');
+		$this->load->model('Machine_type_model','machine');
 
 		// รับข้อมูลมาใช้งาน
 		$machine_type_id = $this->uri->segment(4);
@@ -172,7 +172,7 @@ class Config_machine_type extends CI_Controller {
 		$this->checkMember_isvalidated();
 
 		// Load Model Machine
-		$this->load->model('Machine_model','machine');
+		$this->load->model('Machine_type_model','machine');
 
 		// รับข้อมูลมาใช้งาน
 		$machine_type_id = $this->input->post("machine_type_id");

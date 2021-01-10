@@ -106,70 +106,7 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-    <script>
-        new Vue({
-            el: "#app", //machine_type
-            data : {
-                machine_type_name : "",
-            },
-            methods: {
-                AddData: function () {
-                    var self = this;
-
-                    console.log(this.machine_type_name);
-                    
-                    $.ajax({
-                        type: 'post',
-                        url: '<? echo base_url(); ?>member/add_config_machine_type',
-                        data: {
-                            machine_type_name : this.machine_type_name
-                        },
-                        success: function (response) {
-
-                            if(response=="success"){
-                                
-                                Swal.fire({
-                                    position: 'top-end',
-                                    icon: 'success',
-                                    title: 'บันทึกข้อมูลสำเร็จ',
-                                    showConfirmButton: false,
-                                    timer: 1000
-                                    })
-
-
-                            } else if(response=="empty"){
-
-                                $("#results").html("<span class='text-danger'>กรุณากรอกข้อมูลให้ครบถ้วน " + response+"</span>");
-                                console.log(response);
-
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Empty Data',
-                                    text: 'ไม่พบข้อมูลที่คุณกรอก'
-                                    })
-
-                            } else {
-                                $("#results").html(" ไม่สามารถบันทึกข้อมูลได้ " + response);
-
-                            }
-                            
-                        }
-                        });
-
-
-                },
-                ResetData : function (){
-                    this.machine_type_name = "";
-                },
-                
-            },
-
-        })
-    </script>
-
-
+    
 
 </body>
  
