@@ -52,6 +52,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link <? if($activemenu=="config_machine_brand"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/config_machine_brand"><i class="fas fa-list-ul"></i> Config Machine Brand</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <? if($activemenu=="config_machine_position"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/config_machine_position"><i class="fas fa-list-ul"></i> Config Machine Position</a>
+                                </li>
                                 
                             </ul>
                         </div>

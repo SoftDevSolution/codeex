@@ -9,7 +9,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Config Machine Brand</title>
+    <title>Config Position</title>
 
        <!-- production version, optimized for size and speed -->
        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -37,11 +37,11 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add New Machine brand (<? echo number_format($count_machine_brand,0); ?> Types)</h3>
+                            <h3 class="section-title">Add New Position (<? echo number_format($count_machine_position,0); ?> Types)</h3>
                             <hr>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/machine" class="breadcrumb-link">Machine</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add New Machine Brand</li>
+                            <li class="breadcrumb-item active" aria-current="page">Add New Position</li>
                         </ol>
                         </div>
                     </div>
@@ -58,22 +58,22 @@
                                         <thead>
                                             <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Machine Brand</th>
+                                            <th scope="col">Position</th>
                                             <th scope="col">Process</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <? 
-                                            foreach ($data_machine_brand as $key => $mach) {
+                                            foreach ($data_machine_position as $key => $mach) {
                                                 
                                                 ?>
                                                             <tr>
                                                             <th scope="row"><? echo $key+1; ?></th>
-                                                            <td><? echo $mach->brand_name; ?></td>
+                                                            <td><? echo $mach->position_name; ?></td>
                                                             <td>
-                                                            <a href="<? echo base_url(); ?>member/config_machine_brand/edit_machine_brand/<? echo $mach->brand_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                                            <a href="<? echo base_url(); ?>member/config_machine_position/edit_machine_position/<? echo $mach->position_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
                                                             &nbsp;
-                                                            <a href="<? echo base_url(); ?>member/config_machine_brand/delete_machine_brand/<? echo $mach->brand_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                                            <a href="<? echo base_url(); ?>member/config_machine_position/delete_machine_position/<? echo $mach->position_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
                                                             </td>
                                                             </tr>
                                                 <? } ?>
@@ -89,11 +89,11 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="<? echo base_url(); ?>member/config_machine_brand/add_config_machine_brand" method="POST" enctype="multipart/form-data">
+                                <form action="<? echo base_url(); ?>member/config_machine_position/add_config_machine_position" method="POST" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-12">
-                                            <label for="brand_name">Machine Brand</label>
-                                            <input type="text" class="form-control" id="brand_name" name="brand_name" placeholder="Machine Brand" required>
+                                            <label for="position_name">Position</label>
+                                            <input type="text" class="form-control" id="position_name" name="position_name" placeholder="Position" required>
                                         </div>
                                     </div>
 
