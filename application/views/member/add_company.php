@@ -10,6 +10,14 @@
     <? $this->load->view("member/script_css"); ?>
 
     <title>Add Company Data</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+
 </head>
 
 <body>
@@ -29,18 +37,25 @@
                         <div class="section-block" id="basicform">
                             <h3 class="section-title">Add Company Data</h3>
                             <hr>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/company" class="breadcrumb-link">Company Data</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add Company Data</li>
-                        </ol>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/company" class="breadcrumb-link">Company Data</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Add Company Data</li>
+                            </ol>
                         </div>
+                        <div class="col-xl-12 col-12">
+                            <? $this->load->view("member/flashsweet"); ?>
+                        </div>
+
                         <div class="card">
                             <div
                                 div class="card-body">
-        <form action="<? echo base_url(); ?>member/add_new_company" method="POST">
+
+
+        <!-- <form action="<? echo base_url(); ?>member/add_new_company" method="POST"> -->
+        <form action="<? echo base_url(); ?>member/company/add_new_company" method="POST"  enctype="multipart/form-data">
             <div class="form-group">
                 <label for="company_name">Company Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="company_name" placeholder="Company Name" required>
+                <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Company Name" required>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
@@ -57,16 +72,27 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="company_city">City</label>
-                    <input type="email" class="form-control" id="company_city" name="company_city" placeholder="City">
+                    <input type="text" class="form-control" id="company_city" name="company_city" placeholder="City">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="company_zip_code">ZipCode</label>
-                    <input type="text" class="form-control" id="company_zip_code" name="company_zip_code" placeholder="ZipCode">
+                    <input type="number" min="0" value="0" class="form-control" id="company_zip_code" name="company_zip_code" placeholder="ZipCode">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="company_tel">Tel.</label>
-                    <input type="text" class="form-control" id="company_tel" name="company_tel" placeholder="Tel.">
+                    <label for="company_tel">Tel</label>
+                    <input type="text" class="form-control" id="company_tel" name="company_tel" placeholder="Tel">
                 </div>
+                 
+                <div class="form-group col-md-6">
+                    <label for="company_fax">Fax</label>
+                    <input type="text" class="form-control" id="company_fax" name="company_fax" placeholder="Fax">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="company_capital_investment">Capital Investment</label>
+                    <input type="text" class="form-control" id="company_capital_investment" name="company_capital_investment" placeholder="Capital Investment">
+                </div>
+
+
                 <div class="form-group col-md-6">
                     <label for="company_email">Email</label>
                     <input type="text" class="form-control" id="company_email" name="company_email" placeholder="Email">
@@ -112,7 +138,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_distance_office">Distance from Office</label>
-                    <input type="text" class="form-control" id="company_distance_office" name="company_distance_office" placeholder="Distance">
+                    <input type="number" min="0" value="0" class="form-control" id="company_distance_office" name="company_distance_office" placeholder="Distance">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_googlemap_link">Google Maps Link</label>
@@ -124,6 +150,7 @@
                 </div>
                 
             </div>
+
 
             <center>
             <hr>

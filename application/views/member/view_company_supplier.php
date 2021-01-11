@@ -10,6 +10,15 @@
     <? $this->load->view("member/script_css"); ?>
 
     <title>Company Supplier</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+
+
 </head>
 
 <body>
@@ -27,10 +36,15 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Company Supplier &nbsp;
+                            <h3 class="section-title">Company Supplier (<? echo number_format($count_company_supplier,0); ?> Company)&nbsp;
                             <a href="<? echo base_url(); ?>member/company_supplier/add_company_supplier"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Company Supplier</button></a>
                             </h3>
                         </div>
+
+                        <div class="col-xl-12 col-12">
+                            <? $this->load->view("member/flashsweet"); ?>
+                        </div>
+                        
                         <div class="card">
                             <div class="card-body">
                         <div class="table-responsive-lg">
@@ -47,52 +61,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>mdo</td>
-                            <td>Email</td>
-                            <td>Product Type</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/company_supplier/edit_company_supplier"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                    &nbsp;
-                                    <a href="<? echo base_url(); ?>member/company_supplier/remove_company_supplier"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                </center>
-                            </td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>fat</td>
-                            <td>Email</td>
-                            <td>Product Type</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/company_supplier/edit_company_supplier"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                    &nbsp;
-                                    <a href="<? echo base_url(); ?>member/company_supplier/remove_company_supplier"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                </center>
-                            </td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>twitter</td>
-                            <td>Email</td>
-                            <td>Product Type</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/company_supplier/edit_company_supplier"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                    &nbsp;
-                                    <a href="<? echo base_url(); ?>member/company_supplier/remove_company_supplier"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                </center>
-                            </td>
-                            </tr>
+                                        <? 
+                                            foreach ($data_company_supplier as $key => $mach) {
+                                                
+                                                ?>
+                                                            <tr>
+                                                            <th scope="row"><? echo $key+1; ?></th>
+                                                            <td><? echo $mach->com_sup_name; ?></td>
+                                                            <td><? echo $mach->com_sup_addr1; ?></td>
+                                                            <td><? echo $mach->com_sup_tel; ?></td>
+                                                            <td><? echo $mach->com_sup_email; ?></td>
+                                                            <td><? echo $mach->com_sup_product_type; ?></td>
+                                                            <td>
+                                                            <a href="<? echo base_url(); ?>member/company_supplier/edit_company_supplier/<? echo $mach->com_sup_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                                            &nbsp;
+                                                            <a href="<? echo base_url(); ?>member/company_supplier/delete_company_supplier/<? echo $mach->com_sup_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                                            </td>
+                                                            </tr>
+                                                <? } ?>
                         </tbody>
+
                         </table>
                         </div>
                             </div>

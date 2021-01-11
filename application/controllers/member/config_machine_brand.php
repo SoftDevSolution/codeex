@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Config_machine_position extends CI_Controller {
+class Config_machine_brand extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
@@ -51,7 +51,7 @@ class Config_machine_position extends CI_Controller {
 		$this->load->model('Machine_brand_model','machine');
 
 		// รับข้อมูลมาใช้งาน
-		$brand_name = $this->input->post("model_name");
+		$brand_name = $this->input->post("brand_name");
 
 		// ตรวจสอบข้อมูลว่ากรอกมาแล้วหรือยัง
 		if(empty($brand_name) or $brand_name==""){
