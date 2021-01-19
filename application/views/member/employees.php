@@ -9,6 +9,10 @@
 
     <? $this->load->view("member/script_css"); ?>
 
+    <!-- Sweet Alert -->
+    <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+
     <title>Employees</title>
 </head>
 
@@ -34,6 +38,9 @@
                         <div class="card">
                             <div class="card-body">
                         <div class="table-responsive-lg">
+
+                        <? $this->load->view("member/flashsweet"); ?>
+
                         <table class="table">
                         <thead>
                             <tr>

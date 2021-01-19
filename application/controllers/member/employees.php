@@ -63,6 +63,121 @@ class Employees extends CI_Controller {
 
 		$this->load->view('member/add_employee',$data);
 	}
+	
+	public function data_add_employee()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+		// Load Model Machine
+		$this->load->model('Employee_model','employee');
+
+		// รับข้อมูลมาใช้งาน
+		$emp_name = $this->input->post("emp_name");
+		$emp_username = $this->input->post("emp_username");
+		$emp_password = $this->input->post("emp_password");
+		$emp_address = $this->input->post("emp_address");
+		$position_id = $this->input->post("position_id");
+		$emp_tel = $this->input->post("emp_tel");
+		$emp_mobile_phone = $this->input->post("emp_mobile_phone");
+		$emp_personal_email = $this->input->post("emp_personal_email");
+		$emp_company_email = $this->input->post("emp_company_email");
+		$emp_birth_date = $this->input->post("emp_birth_date");
+		$emp_age = $this->input->post("emp_age");
+		$emp_work_start_date = $this->input->post("emp_work_start_date");
+		$emp_work_stop_date = $this->input->post("emp_work_stop_date");
+
+		if(empty($emp_work_stop_date)){
+			$emp_work_stop_date = "0000-00-00";
+		} else {
+			$emp_work_stop_date = $this->input->post("emp_work_stop_date");
+		}
+
+		$emp_sarary_start = $this->input->post("emp_sarary_start");
+		$emp_sarary_now = $this->input->post("emp_sarary_now");
+		$emp_pic_path = $this->input->post("emp_pic_path");
+		$emp_remark = $this->input->post("emp_remark");
+		$emp_status = $this->input->post("emp_status");
+		$emp_blood_group = $this->input->post("emp_blood_group");
+		$emp_gender = $this->input->post("emp_gender");
+		$emp_height = $this->input->post("emp_height");
+		$emp_weight = $this->input->post("emp_weight");
+
+		// ตรวจสอบว่า Upload ภาพมาหรือไม่
+    	if($_FILES['emp_pic_path']['tmp_name']!=""){
+			// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
+			$tempFile = $_FILES['emp_pic_path']['tmp_name'];
+			$tempFilename = $_FILES['emp_pic_path']['name'];
+			$extension_lastname = strrchr( $tempFilename , '.' );
+			$targetPath = 'theme/photo_employees/' . '/';  // แหล่งที่เก็บรูปภาพ
+			$namephoto = date("YmdHis").$extension_lastname;
+
+			$targetFile =  str_replace('//','/',$targetPath) . $namephoto;
+
+            // สร้างไฟล์ thumnail
+            $images = $_FILES['emp_pic_path']['tmp_name'];
+            $width=400; //*** Fix Width & Heigh (Autu caculate) ***//
+            $size=GetimageSize($images);
+			$height=round($width*$size[1]/$size[0]);
+			
+			// ค้นหาการสร้างไฟล์ภาพ
+			if($extension_lastname==".jpg" or $extension_lastname==".jpeg" or $extension_lastname==".JPG"){
+				$images_orig = ImageCreateFromJPEG($images);
+			} else if($extension_lastname==".png"){
+				$images_orig = ImageCreateFromPNG($images);
+			} else  if($extension_lastname==".gif"){
+				$images_orig = ImageCreateFromGIF($images);
+			}
+
+            $photoX = ImagesX($images_orig);
+            $photoY = ImagesY($images_orig);
+            $images_fin = ImageCreateTrueColor($width, $height);
+            ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+            ImageJPEG($images_fin,"theme/photo_employees_thumbnail/".$namephoto);
+            ImageDestroy($images_orig);
+            ImageDestroy($images_fin);
+
+			move_uploaded_file($tempFile,$targetFile);
+
+        } else {
+			// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
+			$namephoto = "";
+		}
+		
+		// ตรวจสอบข้อมูลว่ากรอกมาแล้วหรือยัง
+		if(empty($emp_name) or empty($emp_username) or empty($emp_password) or empty($emp_mobile_phone)){
+
+			$this->session->set_flashdata('msg_error',' กรุณากรอกข้อมูลให้ครบถ้วน');
+					redirect('member/employees');
+			
+		} else {
+			// ดำเนินการบันทึกข้อมูลได้
+			$update_data = $this->employee->_add_employees($emp_name,$emp_username,$emp_password,$emp_address,
+			$position_id,$emp_tel,$emp_mobile_phone,$emp_personal_email,$emp_company_email,$emp_birth_date,$emp_age,$emp_work_start_date,$emp_work_stop_date,$emp_sarary_start,$emp_sarary_now,$emp_pic_path,$emp_remark,$emp_status,$emp_blood_group,$emp_gender,$emp_height,$emp_weight);
+
+			// echo $update_data;
+			
+				if($update_data=="same") {
+					// ซ้ำ
+					$this->session->set_flashdata('msg_warning',' ข้อมูลซ้ำ กรุณาลองใหม่อีกครั้ง');
+						redirect('member/employees');
+
+				} else if($update_data=="success") {
+					// success
+					$this->session->set_flashdata('msg_ok',' บันทึกข้อมูลเรียบร้อย');
+						redirect('member/employees');
+
+				} else  if($update_data=="false") {
+					// false / error
+					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
+						redirect('member/employees');
+				}
+
+		}
+
+	}
 
 
 

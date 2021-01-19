@@ -83,11 +83,6 @@ class Company_supplier_model extends CI_Model {
         
     }
     
-
-
-    
-    
-
     public function _edit_company_supplier($company_id,$company_name,$company_addr1,$company_addr2,$company_addr3,
     $company_city,$company_zip_code,$company_tel,$company_fax,$company_capital_investment,$company_email,
     $company_bussiness_group,$product_type,$company_status,$company_area,

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 07, 2021 at 05:27 PM
+-- Generation Time: Jan 19, 2021 at 07:31 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `codeex`
+-- Database: `codeexcoth_machine`
 --
 
 -- --------------------------------------------------------
@@ -72,7 +72,8 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (29, 'admin', 'login', '0', '::1', '2021-01-07 15:17:01'),
 (30, 'admin', 'login', '0', '::1', '2021-01-07 15:21:04'),
 (31, 'admin', 'logout', 'admin', '::1', '2021-01-07 16:18:58'),
-(32, 'admin', 'login', '0', '::1', '2021-01-07 16:19:10');
+(32, 'admin', 'login', '0', '::1', '2021-01-07 16:19:10'),
+(33, 'admin', 'login', '0', '::1', '2021-01-19 04:35:01');
 
 -- --------------------------------------------------------
 
@@ -177,6 +178,13 @@ CREATE TABLE `tbl_brand` (
   `brand_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `tbl_brand`
+--
+
+INSERT INTO `tbl_brand` (`brand_id`, `brand_name`) VALUES
+(1, 'Brands');
+
 -- --------------------------------------------------------
 
 --
@@ -276,16 +284,27 @@ CREATE TABLE `tbl_employees` (
   `emp_age` int(3) NOT NULL,
   `emp_pic_path` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `emp_work_start_date` date NOT NULL,
-  `emp_work_stop_date` date NOT NULL,
+  `emp_work_stop_date` date DEFAULT NULL,
   `emp_sarary_start` int(10) NOT NULL,
   `emp_sarary_now` int(10) NOT NULL,
   `emp_remark` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `emp_status` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `emp_status` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `emp_blood_group` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `emp_gender` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `emp_height` int(3) NOT NULL,
   `emp_weight` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_employees`
+--
+
+INSERT INTO `tbl_employees` (`emp_id`, `emp_name`, `emp_username`, `emp_password`, `emp_password_md5`, `emp_address`, `position_id`, `emp_tel`, `emp_mobile_phone`, `emp_personal_email`, `emp_company_email`, `emp_birth_date`, `emp_age`, `emp_pic_path`, `emp_work_start_date`, `emp_work_stop_date`, `emp_sarary_start`, `emp_sarary_now`, `emp_remark`, `emp_status`, `emp_blood_group`, `emp_gender`, `emp_height`, `emp_weight`) VALUES
+(1, 'Arkhet Saepu', 'popup', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '0', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78),
+(2, 'Arkhet Saepu', 'phploso', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 3, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '0', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65),
+(3, 'Arkhet Saepu', 'sile', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '0', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Single', 'B', 'Women', 167, 65),
+(4, 'นายสมชัย   มหานาม', 'somchai', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '0', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89),
+(6, 'นาบเลิศพันธุ์   สมัครใจ', 'lertpan', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '0', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89);
 
 -- --------------------------------------------------------
 
@@ -416,6 +435,13 @@ CREATE TABLE `tbl_model` (
   `model_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `tbl_model`
+--
+
+INSERT INTO `tbl_model` (`model_id`, `model_name`) VALUES
+(2, 'bbbb');
+
 -- --------------------------------------------------------
 
 --
@@ -426,6 +452,13 @@ CREATE TABLE `tbl_position` (
   `position_id` int(11) NOT NULL,
   `position_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_position`
+--
+
+INSERT INTO `tbl_position` (`position_id`, `position_name`) VALUES
+(1, 'Position');
 
 -- --------------------------------------------------------
 
@@ -776,7 +809,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -806,7 +839,7 @@ ALTER TABLE `tbl_asset`
 -- AUTO_INCREMENT for table `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_company`
@@ -830,7 +863,7 @@ ALTER TABLE `tbl_customer`
 -- AUTO_INCREMENT for table `tbl_employees`
 --
 ALTER TABLE `tbl_employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_inventory`
@@ -860,13 +893,13 @@ ALTER TABLE `tbl_machine_type`
 -- AUTO_INCREMENT for table `tbl_model`
 --
 ALTER TABLE `tbl_model`
-  MODIFY `model_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `model_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_position`
 --
 ALTER TABLE `tbl_position`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_requisition`

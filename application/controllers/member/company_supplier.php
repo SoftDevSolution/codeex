@@ -77,7 +77,6 @@ class company_supplier extends CI_Controller {
 		// Load Model Machine
 		$this->load->model('Company_supplier_model','machine');
 
-		
 		// รับข้อมูลมาใช้งาน
 		$company_name = $this->input->post("company_name");
 		$company_addr1 = $this->input->post("company_addr1");
@@ -109,7 +108,7 @@ class company_supplier extends CI_Controller {
 					redirect('member/company_supplier/add_company_supplier');
 					//echo "BBB"."<BR>";
 		} else {
-			echo "CCCC"."<BR>";
+			// echo "CCCC"."<BR>";
 			// ดำเนินการบันทึกข้อมูลได้
 			$update_data = $this->machine->_add_machine_company_supplier($company_name,$company_addr1,$company_addr2,$company_addr3,
 			$company_city,$company_zip_code,$company_tel,$company_fax,$company_capital_investment,$company_email,
@@ -135,11 +134,6 @@ class company_supplier extends CI_Controller {
 
 		}
 
-		// ค่าทั่วไปของเว็บ
-		$this->load->model('Settingme','me');
-		$data['setting_web'] = $this->me->_getall();
-
-		
 	}
 
 

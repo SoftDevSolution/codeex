@@ -38,19 +38,19 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
-        <form action="<? echo base_url(); ?>member/add_employee" method="POST">
+        <form action="<? echo base_url(); ?>member/employees/data_add_employee" method="POST" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="emp_name">Fullname <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="emp_name" name="emp_name" placeholder="Machine Status" required>
+                    <input type="text" class="form-control" id="emp_name" name="emp_name" placeholder="Fullname" required>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="emp_username">Username <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="emp_username" name="emp_username" placeholder="Type">
+                    <input type="text" class="form-control" id="emp_username" name="emp_username" placeholder="Username" required>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="emp_password">Password <span class="text-danger">*</span></label>
-                    <input type="password" class="form-control" id="emp_password" name="emp_password" placeholder="Type">
+                    <input type="password" class="form-control" id="emp_password" name="emp_password" placeholder="Password" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="emp_address">Address</label>
@@ -60,8 +60,10 @@
                     <label for="position_id">Position</label>
                     <select class="form-control" name="position_id" id="position_id">
                         <option value="">-- Select --</option>
-                        <option value="position_id1">position_id1</option>
-                        <option value="position_id2">position_id2</option>
+                        <option value="1">position_id1</option>
+                        <option value="2">position_id2</option>
+                        <option value="3">position_id3</option>
+                        <option value="4">position_id4</option>
                     </select>
                 </div>
                 
@@ -70,8 +72,8 @@
                     <input type="text" class="form-control" id="emp_tel" name="emp_tel" placeholder="Tel">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="emp_mobile_phone">Mobile Phone</label>
-                    <input type="text" class="form-control" id="emp_mobile_phone" name="emp_mobile_phone" placeholder="Mobile Phone">
+                    <label for="emp_mobile_phone">Mobile Phone <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="emp_mobile_phone" name="emp_mobile_phone" placeholder="Mobile Phone" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="emp_personal_email">Personal Email</label>

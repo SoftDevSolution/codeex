@@ -52,7 +52,7 @@
 
 
         <!-- <form action="<? echo base_url(); ?>member/add_new_company" method="POST"> -->
-        <form action="<? echo base_url(); ?>member/company/add_new_company" method="POST"  enctype="multipart/form-data">
+        <form action="<? echo base_url(); ?>member/company/add_new_company" method="POST">
             <div class="form-group">
                 <label for="company_name">Company Name <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Company Name" required>
