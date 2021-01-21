@@ -10,6 +10,11 @@
     <? $this->load->view("member/script_css"); ?>
 
     <title>Customers</title>
+
+    <!-- Sweet Alert -->
+    <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+
 </head>
 
 <body>
@@ -26,6 +31,9 @@
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                    <? $this->load->view("member/flashsweet"); ?>
+                    
                         <div class="section-block" id="basicform">
                             <h3 class="section-title">Customers
                             <a href="<? echo base_url(); ?>member/customers/add_customer"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Customer</button></a>

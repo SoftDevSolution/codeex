@@ -65,12 +65,12 @@ class Config_machine_type extends CI_Controller {
 			
 				if($update_data=="same") {
 					// ซ้ำ
-					$this->session->set_flashdata('msg_warning',' ข้อมูลซ้ำ กรุณาลองใหม่อีกครั้ง');
+					$this->session->set_flashdata('msg_warning',' Data is exist. Please try again.');
 						redirect('member/config_machine_type');
 
 				} else if($update_data=="success") {
 					// success
-					$this->session->set_flashdata('msg_ok',' บันทึกข้อมูลเรียบร้อย');
+					$this->session->set_flashdata('msg_ok','Successfully. Saved data.');
 						redirect('member/config_machine_type');
 
 				} else  if($update_data=="false") {
@@ -103,7 +103,7 @@ class Config_machine_type extends CI_Controller {
 		
 		// Check Data
 		if($machine_type_id=="" or empty($machine_type_id)){
-			$this->session->set_flashdata('msg_warning',' ไม่พบข้อมูลที่คุณต้องการ');
+			$this->session->set_flashdata('msg_warning',' Not found data. Please try again.');
 					redirect('member/config_machine_type');
 		} else {
 			// ถ้ามีขอมูล ดำเนินการลบข้อมูล

@@ -38,7 +38,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
-        <form action="<? echo base_url(); ?>member/add_employee" method="POST">
+        <form action="<? echo base_url(); ?>member/customers/add_data_customer" method="POST" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="cus_name">Contact Name <span class="text-danger">*</span></label>

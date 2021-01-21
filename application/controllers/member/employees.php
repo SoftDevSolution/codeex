@@ -161,12 +161,12 @@ class Employees extends CI_Controller {
 			
 				if($update_data=="same") {
 					// ซ้ำ
-					$this->session->set_flashdata('msg_warning',' ข้อมูลซ้ำ กรุณาลองใหม่อีกครั้ง');
+					$this->session->set_flashdata('msg_warning','Data is exist. Please try again.');
 						redirect('member/employees');
 
 				} else if($update_data=="success") {
 					// success
-					$this->session->set_flashdata('msg_ok',' บันทึกข้อมูลเรียบร้อย');
+					$this->session->set_flashdata('msg_ok','Successfull. Data has been saved.');
 						redirect('member/employees');
 
 				} else  if($update_data=="false") {
