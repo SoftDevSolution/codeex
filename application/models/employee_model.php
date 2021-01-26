@@ -16,6 +16,14 @@ class Employee_model extends CI_Model {
 		return $get_employee;
 	}
 
+	public function _get_by_id($emp_id)
+	{
+		// ดึงข้อมูลสมาชิกส่งไปใช้
+		$get_employee = $this->db->where("emp_id",$emp_id)
+							->get('tbl_employees')->result();
+		return $get_employee;
+	}
+
 	public function _countAll()
 	{
 		// ดึงข้อมูลสมาชิกส่งไปใช้
@@ -66,6 +74,58 @@ class Employee_model extends CI_Model {
 							return "false";
 						}
 			}
+	}
+
+	public function _edit_employees($emp_id,$emp_name,$emp_username,$emp_password,$emp_address,
+			$position_id,$emp_tel,$emp_mobile_phone,$emp_personal_email,$emp_company_email,$emp_birth_date,$emp_age,$emp_work_start_date,$emp_work_stop_date,$emp_sarary_start,$emp_sarary_now,$emp_pic_path,$emp_remark,$emp_status,$emp_blood_group,$emp_gender,$emp_height,$emp_weight)
+	{
+				// บันทึกข้อมูล
+				$add_employee = $this->db->where("emp_id",$emp_id)
+							->set("emp_name",$emp_name)
+							->set("emp_username",$emp_username)
+							->set("emp_password",base64_encode($emp_password))
+							->set("emp_password_md5",md5($emp_password))
+							->set("emp_address",$emp_address)
+							->set("position_id",$position_id)
+							->set("emp_tel",$emp_tel)
+							->set("emp_mobile_phone",$emp_mobile_phone)
+							->set("emp_personal_email",$emp_personal_email)
+							->set("emp_company_email",$emp_company_email)
+							->set("emp_birth_date",$emp_birth_date)
+							->set("emp_age",$emp_age)
+							->set("emp_work_start_date",$emp_work_start_date)
+							->set("emp_work_stop_date",$emp_work_stop_date)
+							->set("emp_sarary_start",$emp_sarary_start)
+							->set("emp_sarary_now",$emp_sarary_now)
+							->set("emp_pic_path",$emp_pic_path)
+							->set("emp_remark",$emp_remark)
+							->set("emp_status",$emp_status)
+							->set("emp_blood_group",$emp_blood_group)
+							->set("emp_gender",$emp_gender)
+							->set("emp_height",$emp_height)
+							->set("emp_weight",$emp_weight)
+							->update('tbl_employees');
+			
+						if($add_employee){
+							return "success";
+						} else {
+							return "false";
+						}
+	}
+
+	public function _delete_employee($emp_id)
+	{
+		$query = $this->db->where("emp_id",$emp_id)
+					->get("tbl_employees")->result();
+			foreach ($query as $aaa) {
+				$delete_photo = $aaa->emp_pic_path;
+			}
+			unlink("theme/photo_employees/".$delete_photo);
+			unlink("theme/photo_employees_thumbnail/".$delete_photo);
+		
+			$delete = $this->db->where("emp_id",$emp_id)
+						->delete("tbl_employees");
+					return $delete;
 	}
 
 	

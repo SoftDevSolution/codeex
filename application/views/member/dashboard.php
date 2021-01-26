@@ -1,7 +1,8 @@
+<? 
+    foreach ($setting_web as $data) {  }
+?>
 <!doctype html>
 <html lang="en">
-
- 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,7 +10,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Welcome to Dashboard Notification</title>
+    <title>Welcome to Dashboard Notification | <? echo $data->nameweb; ?></title>
 </head>
 
 <body>

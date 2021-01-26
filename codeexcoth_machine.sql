@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 19, 2021 at 07:31 AM
+-- Generation Time: Jan 26, 2021 at 08:09 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -41,39 +41,9 @@ CREATE TABLE `log_login_logout` (
 --
 
 INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`, `ip_address`, `date_process`) VALUES
-(1, 'admin', 'logout', 'admin', '::1', '2020-12-20 14:14:57'),
-(2, 'admin', 'login', 'Codeex', '::1', '2020-12-20 14:15:14'),
-(3, 'admin', 'logout', 'admin', '::1', '2020-12-20 14:17:43'),
-(4, 'admin', 'login', 'Vision', '::1', '2020-12-20 14:18:19'),
-(5, 'admin', 'logout', 'admin', '::1', '2020-12-20 14:18:58'),
-(6, 'admin', 'login', 'Codeex', '::1', '2020-12-20 14:29:08'),
-(7, 'admin', 'logout', 'admin', '::1', '2020-12-20 15:26:11'),
-(8, 'admin', 'login', 'Vision', '::1', '2020-12-20 15:26:22'),
-(9, 'admin', 'login', 'Codeex', '::1', '2020-12-21 17:02:40'),
-(10, 'admin', 'login', 'Codeex', '::1', '2020-12-28 10:34:41'),
-(11, 'admin', 'logout', 'admin', '::1', '2020-12-28 11:14:50'),
-(12, 'admin', 'login', '0', '::1', '2020-12-28 11:14:55'),
-(13, 'admin', 'login', '0', '::1', '2020-12-29 05:23:05'),
-(14, 'admin', 'login', '0', '::1', '2020-12-30 04:18:58'),
-(15, 'admin', 'logout', 'admin', '::1', '2020-12-30 10:52:47'),
-(16, 'admin', 'login', '0', '::1', '2020-12-30 10:52:52'),
-(17, 'admin', 'logout', 'admin', '::1', '2020-12-30 10:53:34'),
-(18, 'admin', 'login', '0', '::1', '2020-12-30 10:53:38'),
-(19, 'admin', 'login', '0', '::1', '2020-12-30 16:03:05'),
-(20, 'admin', 'logout', 'admin', '::1', '2020-12-31 01:07:51'),
-(21, 'admin', 'login', '0', '::1', '2020-12-31 01:07:55'),
-(22, 'admin', 'logout', 'admin', '::1', '2020-12-31 03:37:04'),
-(23, 'admin', 'login', '0', '::1', '2020-12-31 03:37:16'),
-(24, 'admin', 'logout', 'admin', '::1', '2020-12-31 03:37:20'),
-(25, 'admin', 'login', '0', '::1', '2020-12-31 03:37:25'),
-(26, 'admin', 'login', '0', '::1', '2020-12-31 04:01:38'),
-(27, 'admin', 'login', '0', '::1', '2021-01-03 15:19:07'),
-(28, 'admin', 'login', '0', '::1', '2021-01-07 14:12:56'),
-(29, 'admin', 'login', '0', '::1', '2021-01-07 15:17:01'),
-(30, 'admin', 'login', '0', '::1', '2021-01-07 15:21:04'),
-(31, 'admin', 'logout', 'admin', '::1', '2021-01-07 16:18:58'),
-(32, 'admin', 'login', '0', '::1', '2021-01-07 16:19:10'),
-(33, 'admin', 'login', '0', '::1', '2021-01-19 04:35:01');
+(1, 'admin', 'logout', 'admin', '::1', '2021-01-26 15:11:56'),
+(2, 'admin', 'login', '0', '::1', '2021-01-26 15:12:45'),
+(3, 'admin', 'login', '0', '::1', '2021-01-26 16:42:24');
 
 -- --------------------------------------------------------
 
@@ -101,7 +71,7 @@ CREATE TABLE `setting_web` (
 --
 
 INSERT INTO `setting_web` (`id_setting`, `nameweb`, `emailweb`, `facebook`, `line_id`, `phone_number`, `address`, `open_web`, `titleweb`, `keywords`, `description`, `footer`) VALUES
-(1, 'Lottobonus', 'deto-official@gmail.com', 'https://web.facebook.com/lottobonus', '@lottobonus999', '', 'Lottobonus', '2020-11-05', 'LottoBonus.net เลือกที่ชอบ ได้ที่ใช่โอนไวจ่ายตรงต้อง lotto bonus', 'LottoBonus.net เลือกที่ชอบ ได้ที่ใช่โอนไวจ่ายตรงต้อง lotto bonus', 'LottoBonus.net เลือกที่ชอบ ได้ที่ใช่โอนไวจ่ายตรงต้อง lotto bonus', 'Copyright © 2020 All rights reserved by Lottobonus.net');
+(1, 'Codeex.co.th', 'admin@codeex.co.th', '', '', '', 'Codeex.co.th', '2021-01-25', 'Codeex.co.th', 'Codeex.co.th', 'Codeex.co.th', 'Copyright © 2020 All rights reserved by Codeex.co.th');
 
 -- --------------------------------------------------------
 
@@ -262,6 +232,15 @@ CREATE TABLE `tbl_customer` (
   `company_id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `tbl_customer`
+--
+
+INSERT INTO `tbl_customer` (`cus_id`, `cus_name`, `cus_mobile_phone`, `cus_email`, `cus_birth_date`, `cus_pic_path`, `cus_remark`, `company_id`) VALUES
+(1, 'นายอาเขต  แซ่ภู่', '+66864473731', 'phploso@hotmail.com', '2021-01-07', '20210126200801.jpg', '', 12),
+(2, 'Arkhet  Sape', '+66864473731', 'zzzzzzz@hotmail.com', '2020-07-30', '20210126200749.jpeg', '', 5),
+(3, 'Peter Copper', '+66864473731', 'phploso@hotmail.com', '2021-01-20', '20210126200740.jpg', 'wqeqe', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -300,11 +279,12 @@ CREATE TABLE `tbl_employees` (
 --
 
 INSERT INTO `tbl_employees` (`emp_id`, `emp_name`, `emp_username`, `emp_password`, `emp_password_md5`, `emp_address`, `position_id`, `emp_tel`, `emp_mobile_phone`, `emp_personal_email`, `emp_company_email`, `emp_birth_date`, `emp_age`, `emp_pic_path`, `emp_work_start_date`, `emp_work_stop_date`, `emp_sarary_start`, `emp_sarary_now`, `emp_remark`, `emp_status`, `emp_blood_group`, `emp_gender`, `emp_height`, `emp_weight`) VALUES
-(1, 'Arkhet Saepu', 'popup', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '0', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78),
-(2, 'Arkhet Saepu', 'phploso', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 3, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '0', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65),
-(3, 'Arkhet Saepu', 'sile', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '0', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Single', 'B', 'Women', 167, 65),
-(4, 'นายสมชัย   มหานาม', 'somchai', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '0', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89),
-(6, 'นาบเลิศพันธุ์   สมัครใจ', 'lertpan', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '0', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89);
+(1, 'Arkhet Saepu', 'popup', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210119050442.png', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78),
+(2, 'Arkhet Saepu', 'phploso', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210119050827.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65),
+(3, 'Arkhet Saepu', 'sile', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210119050931.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Single', 'B', 'Women', 167, 65),
+(4, 'นายสมชัย   มหานาม', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89),
+(6, 'นาบเลิศพันธุ์   สมัครใจ', 'lertpan', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210119051208.png', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89),
+(10, 'Arkhet Saepu', 'popupwqeqwe', 'NDMyNDIyMzQyMzQyMzQ=', 'd9e27f440bce91422089f5b53c04a423', '118/2 Moo 4 Tambon Huaysai', 1, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210126192913.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60);
 
 -- --------------------------------------------------------
 
@@ -458,7 +438,7 @@ CREATE TABLE `tbl_position` (
 --
 
 INSERT INTO `tbl_position` (`position_id`, `position_name`) VALUES
-(1, 'Position');
+(1, 'Position 1');
 
 -- --------------------------------------------------------
 
@@ -809,7 +789,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -857,13 +837,13 @@ ALTER TABLE `tbl_company_supplier`
 -- AUTO_INCREMENT for table `tbl_customer`
 --
 ALTER TABLE `tbl_customer`
-  MODIFY `cus_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_employees`
 --
 ALTER TABLE `tbl_employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_inventory`

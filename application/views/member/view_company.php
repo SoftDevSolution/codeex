@@ -1,3 +1,6 @@
+<? 
+    foreach ($setting_web as $data) {  }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Company Data</title>
+    <title>Company Data | <? echo $data->nameweb; ?></title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -35,7 +38,8 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Company Data (<? echo number_format($count_company,0); ?> Company)  &nbsp;
+                            <h3 class="section-title">Company Data (<? echo number_format($count_company,0); ?> Companys)
+                              &nbsp;
                             <a href="<? echo base_url(); ?>member/company/add_company"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Company</button></a>
                             </h3>
                         </div>
@@ -48,6 +52,12 @@
                         <div class="card">
                             <div class="card-body">
                         <div class="table-responsive-lg">
+
+                        <? if($count_company==0){ ?>
+                            <div align="center" class="empty_data">
+                                Empty Data.
+                            </div>
+                        <? } else { ?>
                         <table class="table">
                         <thead>
                             <tr>
@@ -61,26 +71,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                                        <? 
-                                            foreach ($data_company as $key => $mach) {
-                                                
-                                                ?>
-                                                            <tr>
-                                                            <th scope="row"><? echo $key+1; ?></th>
-                                                            <td><? echo $mach->company_name; ?></td>
-                                                            <td><? echo $mach->company_addr1; ?></td>
-                                                            <td><? echo $mach->company_tel; ?></td>
-                                                            <td><? echo $mach->company_email; ?></td>
-                                                            <td><? echo $mach->company_product_type; ?></td>
-                                                            <td>
-                                                            <a href="<? echo base_url(); ?>member/company/edit_company/<? echo $mach->company_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
-                                                            &nbsp;
-                                                            <a href="<? echo base_url(); ?>member/company/delete_company/<? echo $mach->company_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
-                                                            </td>
-                                                            </tr>
-                                                <? } ?>
+                            <? 
+                                foreach ($data_company as $key => $mach) { ?>
+                                    <tr>
+                                    <th scope="row"><? echo $key+1; ?></th>
+                                    <td><? echo $mach->company_name; ?></td>
+                                    <td><? echo $mach->company_addr1; ?></td>
+                                    <td><? echo $mach->company_tel; ?></td>
+                                    <td><? echo $mach->company_email; ?></td>
+                                    <td><? echo $mach->company_product_type; ?></td>
+                                    <td>
+                                    <a href="<? echo base_url(); ?>member/company/edit_company/<? echo $mach->company_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                    &nbsp;
+                                    <a href="<? echo base_url(); ?>member/company/delete_company/<? echo $mach->company_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                    </td>
+                                    </tr>
+                                    <? } ?>
                                         </tbody>
                         </table>
+                        <? } ?>
                         </div>
                             </div>
                             

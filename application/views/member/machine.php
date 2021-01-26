@@ -1,3 +1,6 @@
+<? 
+    foreach ($setting_web as $data) {  }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Machine Data</title>
+    <title>Machine Data | <? echo $data->nameweb; ?></title>
 </head>
 
 <body>

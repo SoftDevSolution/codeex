@@ -1,3 +1,6 @@
+<? 
+    foreach ($setting_web as $data) {  }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -13,7 +16,7 @@
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
 
-    <title>Employees</title>
+    <title>Employees | <? echo $data->nameweb; ?></title>
 </head>
 
 <body>
@@ -41,13 +44,20 @@
 
                         <? $this->load->view("member/flashsweet"); ?>
 
+                        <?  if($count_employee==0){  ?>
+
+                            <div align="center" style="padding: 50px 10px;">
+                                Empty Data.
+                            </div>
+
+                        <? } else { ?>
+
                         <table class="table">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
                             <th scope="col">Employee Name</th>
                             <th scope="col">Position</th>
-                            <th scope="col">Tel.</th>
                             <th scope="col">Mobile Phone</th>
                             <th scope="col">Company Email</th>
                             <th scope="col">Age</th>
@@ -58,65 +68,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
+                        <?  foreach ($query_employee as $key => $emp) { ?>
+                            <tr id="row_<? echo $emp->emp_id; ?>">
+                            <th scope="row"><? echo $key+1; ?>.</th>
+                            <td><? echo $emp->emp_name; ?>
+                            <br>(<? echo $emp->emp_username; ?>)
+                            </td>
+                            <td><? 
+                            $query_position = $this->db->where("position_id",$emp->position_id)
+                                        ->get("tbl_position")->result();
+                                    foreach ($query_position as $ppp) {
+                                        echo $ppp->position_name;
+                                    } ?></td>
+                            <td><? echo $emp->emp_mobile_phone; ?></td>
+                            <td><? echo $emp->emp_company_email; ?></td>
+                            <td><? echo $emp->emp_age; ?></td>
+                            <td><? echo $emp->emp_gender; ?></td>
+                            <td><? echo $emp->emp_status; ?></td>
+                            <td><? echo $emp->emp_blood_group; ?></td>
                             <td>
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/employees/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/employees/edit_employee/<? echo $emp->emp_id; ?>"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                     &nbsp;
-                                    <a href="<? echo base_url(); ?>member/employees/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                    <span class="text-danger" onclick="DeleteEmployee('<? echo $emp->emp_id; ?>');" style="cursor:pointer;"><i class="fas fa-trash"></i></span>
                                 </center>
                             </td>
                             </tr>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/employees/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                    &nbsp;
-                                    <a href="<? echo base_url(); ?>member/employees/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                </center>
-                            </td>
-                            </tr>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/employees/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                    &nbsp;
-                                    <a href="<? echo base_url(); ?>member/employees/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                </center>
-                            </td>
-                            </tr>
+                        <? } ?>
                         </tbody>
                         </table>
+
+                        <? } ?>
+
                         </div>
                             </div>
                         </div>
@@ -141,6 +124,74 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
+
+<script>
+    function DeleteEmployee(emp_id) { 
+            const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "Do you want to delete this employee data?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+            }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                'Deleted!',
+                'Your data has been deleted.',
+                'success'
+                )
+                
+                    $.ajax({
+                        type: 'post',
+                        url: '<? echo base_url(); ?>member/employees/data_delete_employee',
+                        data: {
+                            emp_id : emp_id
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            if(response=="success"){ 
+                                $("#row_"+emp_id).fadeOut();
+                            } else if(response=="empty"){
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Empty Data.',
+                                    text: 'Please try again!'
+                                })
+                            } else if(response=="error"){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error...',
+                                    text: 'Something went wrong!'
+                                })
+                            }
+                            
+                        }
+                        });
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Thank! we keeped your data.',
+                'warning'
+                )
+                console.log("Cancle");
+            }
+            })
+     }
+</script>
 
 </body>
  

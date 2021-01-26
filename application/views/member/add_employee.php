@@ -27,11 +27,11 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add New Employees</h3>
+                            <h3 class="section-title">Add New Employee</h3>
                             <hr>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/employees" class="breadcrumb-link">Employees</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add New Employees</li>
+                            <li class="breadcrumb-item active" aria-current="page">Add New Employee</li>
                         </ol>
                         </div>
                     </div>
@@ -77,11 +77,11 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="emp_personal_email">Personal Email</label>
-                    <input type="text" class="form-control" id="emp_personal_email" name="emp_personal_email" placeholder="Mobile Phone">
+                    <input type="text" class="form-control" id="emp_personal_email" name="emp_personal_email" placeholder="Personal Email">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="emp_company_email">Company Email</label>
-                    <input type="text" class="form-control" id="emp_company_email" name="emp_company_email" placeholder="Mobile Phone">
+                    <input type="text" class="form-control" id="emp_company_email" name="emp_company_email" placeholder="Company Email">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="emp_birth_date">BirthDay</label>

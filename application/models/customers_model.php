@@ -50,11 +50,45 @@ class Customers_model extends CI_Model {
 						return $member_info;
 	}
 
-	public function _getmember_by_id($id_member)
+	public function _getmember_by_id($cus_id)
 	{
-		$member_info = $this->db->where('id_member',$id_member)
+		$member_info = $this->db->where('cus_id',$cus_id)
 							->get('tbl_customer')->result();
 						return $member_info;
+	}
+
+	public function _editCustomer($cus_id,$cus_name,$cus_mobile_phone,$cus_email,$cus_birth_date,$namephoto,$company_id,$cus_remark)
+	{
+		// ดึงข้อมูลสมาชิกส่งไปใช้
+		$update_customer = $this->db->where('cus_id',$cus_id)
+							->set('cus_name',$cus_name)
+							->set('cus_mobile_phone',$cus_mobile_phone)
+							->set('cus_email',$cus_email)
+							->set('cus_birth_date',$cus_birth_date)
+							->set('cus_pic_path',$namephoto)
+							->set('company_id',$company_id)
+							->set('cus_remark',$cus_remark)
+							->update('tbl_customer');
+				if($update_customer){
+					return "success";
+				} else {
+					return "false";
+				}
+	}
+
+	public function _delete_customer($cus_id)
+	{
+		$query = $this->db->where("cus_id",$cus_id)
+					->get("tbl_customer")->result();
+			foreach ($query as $aaa) {
+				$delete_photo = $aaa->cus_pic_path;
+			}
+			unlink("theme/photocustomer/".$delete_photo);
+			unlink("theme/photocustomerthumbnail/".$delete_photo);
+		
+			$delete = $this->db->where("cus_id",$cus_id)
+						->delete("tbl_customer");
+					return $delete;
 	}
 
 	

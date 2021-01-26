@@ -1,3 +1,6 @@
+<? 
+    foreach ($setting_web as $data) {  }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Add New Customers</title>
+    <title>Add New Customers | <? echo $data->nameweb; ?></title>
 </head>
 
 <body>
@@ -65,8 +68,8 @@
                     <input type="text" class="form-control" id="company_id" name="company_id" placeholder="Factory ID">
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="mch_detail_remark">Note/Remark</label>
-                    <textarea class="form-control" name="mch_part_remark" id="mch_part_remark" placeholder="Note/Remark"></textarea>
+                    <label for="cus_remark">Note/Remark</label>
+                    <textarea class="form-control" name="cus_remark" id="cus_remark" placeholder="Note/Remark"></textarea>
                 </div>
             </div>
 

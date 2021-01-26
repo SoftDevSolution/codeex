@@ -1,3 +1,6 @@
+<? 
+    foreach ($setting_web as $data) {  }
+?>
 <!doctype html>
 <html lang="en">
  
@@ -5,7 +8,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Login</title>
+    <title>Login | <? echo $data->nameweb; ?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/vendor/bootstrap/css/bootstrap.min.css">
     <link href="<? echo base_url(); ?>theme/vendor/fonts/circular-std/style.css" rel="stylesheet">
@@ -46,7 +49,8 @@
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card ">
-            <div class="card-header text-center"><span class="splash-description">User Login</span></div>
+            <div class="card-header text-center"><span class="splash-description"><? echo $data->nameweb; ?>
+            </span></div>
             <div class="card-body">
 
             <? $this->load->view("flashdata"); ?>
@@ -57,17 +61,6 @@
                     </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" name="password_member" id="password" type="password" placeholder="Password" required>
-                    </div>
-                    <!-- <div class="form-group">
-                        <select class="form-control" name="type_user" id="type_user" required>
-                            <option value="Codeex" selected>Codeex</option>
-                            <option value="Vision">Vision</option>
-                        </select>
-                    </div> -->
-                    <div class="form-group">
-                        <label class="custom-control custom-checkbox">
-                            <input class="custom-control-input" name="rememberme" type="checkbox"><span class="custom-control-label">Remember Me</span>
-                        </label>
                     </div>
 
                     <!-- <div class="form-group">

@@ -86,7 +86,7 @@ class Customers extends CI_Controller {
 		$cus_email = $this->input->post("cus_email");
 		$cus_birth_date = $this->input->post("cus_birth_date");
 		$company_id = $this->input->post("company_id");
-		$mch_detail_remark = $this->input->post("mch_detail_remark");
+		$cus_remark = $this->input->post("cus_remark");
 
 		// ตรสจสอบว่า Upload ภาพมาหรือไม่
 			if(!empty($_FILES['cus_pic_path']['tmp_name'])){
@@ -124,7 +124,7 @@ class Customers extends CI_Controller {
 						redirect('member/customers/add_customer');
 		} else {
 			// ดำเนินการบันทึกข้อมูล
-			$add_customer = $this->customers->_addCustomer($cus_name,$cus_mobile_phone,$cus_email,$cus_birth_date,$namephoto,$company_id,$mch_detail_remark);
+			$add_customer = $this->customers->_addCustomer($cus_name,$cus_mobile_phone,$cus_email,$cus_birth_date,$namephoto,$company_id,$cus_remark);
 				if($add_customer=="same"){
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning','Data is exist. Please try again.');
@@ -144,6 +144,138 @@ class Customers extends CI_Controller {
 		}
 
 
+	}
+
+	public function edit_customer()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+ 		// Agent_Data
+		$username_member = $this->session->userdata('username_member');
+		$data['username_member'] = $this->user->_getmember($username_member);
+
+		// ค่าทั่วไปของเว็บ
+		$this->load->model('Settingme','me');
+		$data['setting_web'] = $this->me->_getall();
+		
+		// รับค่ามา
+		$cus_id = $this->uri->segment(4);
+
+		// ดึงค่ามาใช้งาน
+		// Load Customers_model
+		$this->load->model('Customers_model','customers');
+		$data['query_customer'] = $this->customers->_getmember_by_id($cus_id);
+
+		$this->load->view('member/edit_customer',$data);
+	}
+
+	public function edit_data_customer()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+		
+		// Load Customers_model
+		$this->load->model('Customers_model','customers');
+
+		// รับข้อมูลมา
+		$cus_id = $this->input->post("cus_id");
+		$cus_name = $this->input->post("cus_name");
+		$cus_mobile_phone = $this->input->post("cus_mobile_phone");
+		$cus_email = $this->input->post("cus_email");
+		$cus_birth_date = $this->input->post("cus_birth_date");
+		$company_id = $this->input->post("company_id");
+		$cus_remark = $this->input->post("cus_remark");
+
+		// ตรสจสอบว่า Upload ภาพมาหรือไม่
+			if(!empty($_FILES['cus_pic_path']['tmp_name'])){
+				// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
+				$tempFile = $_FILES['cus_pic_path']['tmp_name'];
+				$tempFilename = $_FILES['cus_pic_path']['name'];
+				$extension_lastname = strrchr( $tempFilename , '.' );
+				$targetPath = 'theme/photocustomer/' . '/';  // แหล่งที่เก็บรูปภาพ
+				$namephoto = date("YmdHis").$extension_lastname;
+
+				$targetFile =  str_replace('//','/',$targetPath).$namephoto;
+
+					// สร้างไฟล์ thumnail
+					$images = $_FILES['cus_pic_path']['tmp_name'];
+					$width = 500; //*** Fix Width & Heigh (Autu caculate) ***//
+					$size=GetimageSize($images);
+					$height=round($width*$size[1]/$size[0]);
+					$images_orig = ImageCreateFromJPEG($images);
+					$photoX = ImagesX($images_orig);
+					$photoY = ImagesY($images_orig);
+					$images_fin = ImageCreateTrueColor($width, $height);
+					ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+					ImageJPEG($images_fin,"theme/photocustomerthumbnail/".$namephoto);
+					ImageDestroy($images_orig);
+					ImageDestroy($images_fin);
+
+					move_uploaded_file($tempFile,$targetFile);
+			} else {
+				// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
+				$namephoto = "";
+			}
+
+		if(empty($cus_name)){
+			$this->session->set_flashdata('msg_warning',' Not found data. Please try again.');
+						redirect('member/customers/add_customer');
+		} else {
+			// ดำเนินการบันทึกข้อมูล
+			$edit_customer = $this->customers->_editCustomer($cus_id,$cus_name,$cus_mobile_phone,$cus_email,$cus_birth_date,$namephoto,$company_id,$cus_remark);
+				if($edit_customer=="same"){
+					// ซ้ำ
+					$this->session->set_flashdata('msg_warning','Data is exist. Please try again.');
+						redirect('member/customers');
+
+				} else if($edit_customer=="success") {
+					// success
+					$this->session->set_flashdata('msg_ok','Successfull. Data has been saved.');
+						redirect('member/customers');
+
+				} else  if($edit_customer=="false") {
+					// false / error
+					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
+						redirect('member/customers');
+				}
+
+		}
+
+
+	}
+
+	public function data_delete_customer()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+		// Load Customers_model
+		$this->load->model('Customers_model','customers');
+
+		// รับข้อมูลมา
+		$cus_id = $this->input->post("cus_id");
+
+		// เช็คว่ามีข้อมูลมาหรือไม่
+		if(empty($cus_id) or $cus_id==""){
+			echo "empty";
+		} else {
+			// มีข้อมูล ดำเนินการลบ Customers
+			$delete_customer = $this->customers->_delete_customer($cus_id);
+				if($delete_customer){
+					echo "success";
+				} else {
+					echo "error";
+				}
+		}
+
+		
 	}
 
 
