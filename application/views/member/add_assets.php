@@ -10,6 +10,14 @@
     <? $this->load->view("member/script_css"); ?>
 
     <title>Add New Assets</title>
+    
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    
 </head>
 
 <body>
@@ -38,7 +46,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
-        <form action="<? echo base_url(); ?>member/add_data_asset" method="POST" enctype="multipart/form-data">
+        <form action="<? echo base_url(); ?>member/assets/add_data_assets" method="POST" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="asset_desc">Description <span class="text-danger">*</span></label>

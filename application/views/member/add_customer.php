@@ -64,8 +64,8 @@
                     <input type="file" class="form-control" id="cus_pic_path" name="cus_pic_path">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="company_id">Factory</label>
-                    <input type="text" class="form-control" id="company_id" name="company_id" placeholder="Factory ID">
+                    <label for="company_id">Company</label>
+                    <input type="text" class="form-control" id="company_id" name="company_id" placeholder="Company">
                 </div>
                 <div class="form-group col-md-12">
                     <label for="cus_remark">Note/Remark</label>

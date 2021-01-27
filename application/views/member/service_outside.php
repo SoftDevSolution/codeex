@@ -10,6 +10,12 @@
     <? $this->load->view("member/script_css"); ?>
 
     <title>Service Outside</title>
+
+    <!-- Sweet Alert -->
+    <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+
+
 </head>
 
 <body>
@@ -48,54 +54,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Date</td>
-                            <td>Company</td>
-                            <td>Machine</td>
-                            <td>Technician</td>
-                            <td>คนรับงาน</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/service_outside/edit_company"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                    &nbsp;
-                                    <a href="<? echo base_url(); ?>member/service_outside/remove_company"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                </center>
-                            </td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>Date</td>
-                            <td>Company</td>
-                            <td>Machine</td>
-                            <td>Technician</td>
-                            <td>คนรับงาน</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/service_outside/edit_company"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                    &nbsp;
-                                    <a href="<? echo base_url(); ?>member/service_outside/remove_company"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                </center>
-                            </td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>Date</td>
-                            <td>Company</td>
-                            <td>Machine</td>
-                            <td>Technician</td>
-                            <td>คนรับงาน</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/service_outside/edit_company"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                    &nbsp;
-                                    <a href="<? echo base_url(); ?>member/service_outside/remove_company"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                </center>
-                            </td>
-                            </tr>
+                            <?
+                                    foreach ($query_service_outside as $key => $cus) {
+                                ?>
+                                    <tr id="row_<? echo $cus->svo_id; ?>">
+                                    <th scope="row"><? echo $cus->svo_id; ?></th>                                    
+                                    <td><? echo $cus->svo_revision_no; ?></td>
+                                    <td><? echo $cus->svo_date; ?></td>
+                                    <td><? echo $cus->svo_machine_sn; ?></td>
+                                    <td><? echo $cus->svo_company_name; ?></td>
+                                    <td><? echo $cus->svo_technician_name; ?></td>
+                                    <td><? echo $cus->svo_emp_receive; ?></td>
+                                    <td>
+                                        <center>
+                                            <a href="<? echo base_url(); ?>member/service_outside/edit_service_outside/<? echo $cus->svo_id; ?>"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
+                                            &nbsp;
+                                            <span class="text-danger" onclick="DeleteServiceOutside('<? echo $cus->svo_id; ?>');" style="cursor:pointer;"><i class="fas fa-trash"></i></span>
+                                        </center>
+                                        
+                                    </td>
+                                    </tr>
+                                    <? } ?>
                         </tbody>
                         </table>
                         </div>
@@ -123,6 +102,75 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
+
+    <script>
+    function DeleteServiceOutside(svo_id) { 
+        
+            const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "Do you want to delete this Service Outside data?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+            }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                'Deleted!',
+                'Your data has been deleted.',
+                'success'
+                )
+                
+                    $.ajax({
+                        type: 'post',
+                        url: '<? echo base_url(); ?>member/service_outside/data_delete_service_outside',
+                        data: {
+                            svo_id : svo_id
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            if(response=="success"){ 
+                                $("#row_"+svo_id).fadeOut();
+                            } else if(response=="empty"){
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Empty Data.',
+                                    text: 'Please try again!'
+                                })
+                            } else if(response=="error"){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error...',
+                                    text: 'Something went wrong!'
+                                })
+                            }
+                            
+                        }
+                        });
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Thank! we keeped your data.',
+                'warning'
+                )
+                console.log("Cancle");
+            }
+            })
+     }
+</script>
 
 </body>
  

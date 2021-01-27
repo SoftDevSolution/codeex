@@ -54,7 +54,7 @@
                             <th scope="col">Mobile Phone</th>
                             <th scope="col">Email</th>
                             <th scope="col">BirthDay</th>
-                            <th scope="col">Factory</th>
+                            <th scope="col">Company</th>
                             <th scope="col"><center>Manage</center></th>
                             </tr>
                         </thead>
@@ -119,7 +119,7 @@
 
             swalWithBootstrapButtons.fire({
             title: 'Are you sure?',
-            text: "Do you want to delete this employee data?",
+            text: "Do you want to delete this Customer data?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'Yes, delete it!',

@@ -11,7 +11,12 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		if(!$this->session->userdata('username_member')){
-			$this->load->view('welcome');
+
+		// ค่าทั่วไปของเว็บ
+		$this->load->model('Settingme','me');
+		$data['setting_web'] = $this->me->_getall();
+			
+			$this->load->view('welcome',$data);
 		} else {
 			redirect('member/dashboard');
 		}

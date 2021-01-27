@@ -41,7 +41,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
-        <form action="<? echo base_url(); ?>member/add_supplier" method="POST" enctype="multipart/form-data">
+            <form action="<? echo base_url(); ?>member/supplier/add_data_supplier" method="POST" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="supplier_name">Contact Name <span class="text-danger">*</span></label>
@@ -55,18 +55,23 @@
                     <label for="supplier_email">Email</label>
                     <input type="text" class="form-control" id="supplier_email" name="supplier_email" placeholder="Email">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="supplier_birth_date">BirthDay</label>
                     <input type="date" class="form-control" id="supplier_birth_date" name="supplier_birth_date">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="supplier_pic_path">Picture</label>
                     <input type="file" class="form-control" id="supplier_pic_path" name="supplier_pic_path">
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="com_sup_id">Supplier</label>
+                <div class="form-group col-md-6">
+                    <label for="supplier_posion">Supplier Position</label>
+                    <input type="text" class="form-control" id="supplier_posion" name="supplier_posion" placeholder="Supplier Position">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="com_sup_id">Supplier Company</label>
                     <input type="text" class="form-control" id="com_sup_id" name="com_sup_id" placeholder="Supplier ID">
                 </div>
+
                 <div class="form-group col-md-12">
                     <label for="supplier_remark">Note/Remark</label>
                     <textarea class="form-control" name="supplier_remark" id="supplier_remark" placeholder="Note/Remark"></textarea>

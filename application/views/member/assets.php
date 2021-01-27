@@ -10,6 +10,10 @@
     <? $this->load->view("member/script_css"); ?>
 
     <title>Assets</title>
+    <!-- Sweet Alert -->
+    <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+
 </head>
 
 <body>
@@ -50,60 +54,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
+                            <?
+                            foreach ($query_assets as $key => $cus) {
+                        ?>
+                            <tr id="row_<? echo $cus->asset_id; ?>">
+                            <th scope="row"><? echo $cus->asset_id; ?></th>
+                            <td><? echo $cus->asset_desc; ?></td>
+                            <td><? echo $cus->asset_condition; ?></td>
+                            <td><? echo $cus->asset_storage_location; ?></td>
+                            <td><? echo $cus->asset_amount; ?></td>
+                            <td><? echo $cus->asset_doc_no; ?></td>
+                            <td><? echo $cus->asset_balance; ?></td>
+                            <td><? echo $cus->asset_real_stock; ?></td>
+                            <td><? echo $cus->asset_councilor; ?></td>
                             <td>
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/assets/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
+                                    <a href="<? echo base_url(); ?>member/assets/edit_assets/<? echo $cus->asset_id; ?>"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                     &nbsp;
-                                    <a href="<? echo base_url(); ?>member/assets/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
+                                    <span class="text-danger" onclick="DeleteAssets('<? echo $cus->asset_id; ?>');" style="cursor:pointer;"><i class="fas fa-trash"></i></span>
                                 </center>
+                                
                             </td>
                             </tr>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/assets/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                    &nbsp;
-                                    <a href="<? echo base_url(); ?>member/assets/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                </center>
-                            </td>
-                            </tr>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/assets/edit_employee"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                    &nbsp;
-                                    <a href="<? echo base_url(); ?>member/assets/remove_employee"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                </center>
-                            </td>
-                            </tr>
+                            <? } ?>
+
+
+                            
                         </tbody>
                         </table>
                         </div>
@@ -130,6 +106,75 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
+
+    <script>
+    function DeleteAssets(asset_id) { 
+            const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "Do you want to delete this Assets data?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+            }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                'Deleted!',
+                'Your data has been deleted.',
+                'success'
+                )
+                
+                    $.ajax({
+                        type: 'post',
+                        url: '<? echo base_url(); ?>member/assets/data_delete_assets',
+                        data: {
+                            cus_id : cus_id
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            if(response=="success"){ 
+                                $("#row_"+cus_id).fadeOut();
+                            } else if(response=="empty"){
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Empty Data.',
+                                    text: 'Please try again!'
+                                })
+                            } else if(response=="error"){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error...',
+                                    text: 'Something went wrong!'
+                                })
+                            }
+                            
+                        }
+                        });
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Thank! we keeped your data.',
+                'warning'
+                )
+                console.log("Cancle");
+            }
+            })
+     }
+</script>
+
 
 </body>
  
