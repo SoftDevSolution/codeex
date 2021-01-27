@@ -87,6 +87,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link <? if($activemenu=="autocomplete" or $activemenu=="autocomplete"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/autocomplete"><i class="fas fa-box-open"></i> Autocomplete</a>
+                    </li>
+
+
+
+                    <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="requisition" or $activemenu=="add_requisition" or $activemenu=="add_sub_requisition"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/requisition"><i class="fas fa-sticky-note"></i> Requisition</a>
                     </li>
                     <li class="nav-item">

@@ -65,7 +65,7 @@
 
                 <div class="form-group col-md-3">
                     <label for="supplier_pic_path">Old Picture</label>
-                    <center><img class="img_thumnail" src="<? echo base_url(); ?>theme/photosupplierthumbnail/<? echo $cus->supplier_pic_path; ?>" alt="<? echo $cus->supplier_name; ?>"></center>
+                    <center><img class="img_thumnail" src="<? echo base_url(); ?>theme/photosuplierthumbnail/<? echo $cus->supplier_pic_path; ?>" alt="<? echo $cus->supplier_pic_path; ?>"></center>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="supplier_pic_path">Picture</label>
@@ -74,12 +74,12 @@
                
                 <div class="form-group col-md-6">
                     <label for="supplier_posion">Supplier Position</label>
-                    <input type="number" class="form-control" id="supplier_posion" name="supplier_posion" placeholder="Company" value="<? echo $cus->supplier_posion; ?>">
+                    <input type="number" class="form-control" id="supplier_posion" name="supplier_posion" placeholder="Supplier Position" value="<? echo $cus->supplier_posion; ?>">
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="com_sup_id">Supplier Company</label>
-                    <input type="number" class="form-control" id="com_sup_id" name="com_sup_id" placeholder="Company" value="<? echo $cus->com_sup_id; ?>">
+                    <input type="number" class="form-control" id="com_sup_id" name="com_sup_id" placeholder="Supplier Company" value="<? echo $cus->com_sup_id; ?>">
                 </div>
 
 

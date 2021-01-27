@@ -64,7 +64,7 @@
                                 ?>
                                     <tr id="row_<? echo $cus->supplier_id; ?>">
                                     <th scope="row"><? echo $cus->supplier_id; ?></th>                                    
-                                    <td><img class="img_thumnail" src="<? echo base_url(); ?>theme/photosupplierthumbnail/<? echo $cus->supplier_pic_path; ?>" alt="<? echo $cus->supplier_name; ?>"></td>
+                                    <td><img class="img_thumnail" src="<? echo base_url(); ?>theme/photosuplierthumbnail/<? echo $cus->supplier_pic_path; ?>" alt="<? echo $cus->supplier_name; ?>"></td>
                                     <td><? echo $cus->supplier_name; ?></td>
                                     <td><? echo $cus->supplier_mobile_phone; ?></td>
                                     <td><? echo $cus->supplier_email; ?></td>
