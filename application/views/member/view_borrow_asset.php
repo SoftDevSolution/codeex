@@ -40,7 +40,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add New Borrow Asset (<? echo number_format($count_machine_position,0); ?> Types)</h3>
+                            <h3 class="section-title">Add New Borrow Asset (<? echo number_format($count_borrow_asset,0); ?> Types)</h3>
                             <hr>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/machine" class="breadcrumb-link">Machine</a></li>
@@ -57,69 +57,45 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="<? echo base_url(); ?>member/config_machine_position/add_config_machine_position" method="POST" enctype="multipart/form-data">
+                                <form action="<? echo base_url(); ?>member/borrow_asset/add_borrow_asset" method="POST" enctype="multipart/form-data">
                                     <div class="form-row">
+                                                <div class="form-group col-12">
+                                                    <label for="asset_id">Asset ID</label>
+                                                    <input type="text" class="form-control" id="asset_id" name="asset_id" placeholder="Asset ID" required>
+                                                </div>
+                                                <div class="form-group col-12">
+                                                    <label for="br_cause">สาเหตุที่ยืม</label>
+                                                    <input type="text" class="form-control" id="br_cause" name="br_cause" placeholder="สาเหตุที่ยืม" >
+                                                </div>
+                                                <div class="form-group col-12">
+                                                    <label for="br_work">ยืมเพื่องาน</label>
+                                                    <input type="text" class="form-control" id="br_work" name="br_work" placeholder="ยืมเพื่องาน" >
+                                                </div>
 
-                                    <!--ยืมเพื่อ
-                                            เพื่องาน 
-                                            รายละเอียดการยืม
-                                            เลขใบสั่งซื้อ
-                                            วันที่จะคืน
-                                            ผู้เบิก
-                                            ผู้อนุมัติ/ปล่อยของ
-                                            วันที่ปล่อยของ
-                                                
-                                                name
-                                                address
-                                                com_sup_name
-                                                position_name
-                                                branch_name
-                                                tel_1
-                                                tel_2
-                                                tel_main
-                                                mobile_phone
-                                                email_com
-                                                email_personal
-
-                                                -->
-
-                                        <div class="form-group col-12">
-                                            <label for="name">Asset ID</label>
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Asset ID" required>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label for="address">สาเหตุที่ยืม</label>
-                                            <input type="text" class="form-control" id="address" name="address" placeholder="สาเหตุที่ยืม" required>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label for="com_sup_name">ยืมเพื่องาน</label>
-                                            <input type="text" class="form-control" id="com_sup_name" name="com_sup_name" placeholder="ยืมเพื่องาน" required>
-                                        </div>
-
-                                        <div class="form-group col-12">
-                                            <label for="position_name">รายละเอียดการยืม</label>
-                                            <input type="text" class="form-control" id="position_name" name="position_name" placeholder="รายละเอียดการยืม" required>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label for="branch_name">เลขใบสั่งซื้อ</label>
-                                            <input type="text" class="form-control" id="branch_name" name="branch_name" placeholder="เลขใบสั่งซื้อ" required>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label for="tel_1">วันที่จะคืน</label>
-                                            <input type="text" class="form-control" id="tel_1" name="tel_1" placeholder="วันที่จะคืน" required>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label for="tel_2">ผู้เบิก</label>
-                                            <input type="text" class="form-control" id="tel_2" name="tel_2" placeholder="ผู้เบิก" required>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label for="tel_main">ผู้อนุมัติ/ปล่อยของ</label>
-                                            <input type="text" class="form-control" id="tel_main" name="tel_main" placeholder="ผู้อนุมัติ/ปล่อยของ" required>
-                                        </div>
-                                        <div class="form-group col-12">
-                                            <label for="mobile_phone">วันที่ปล่อยของ</label>
-                                            <input type="text" class="form-control" id="mobile_phone" name="mobile_phone" placeholder="วันที่ปล่อยของ" required>
-                                        </div>
+                                                <div class="form-group col-12">
+                                                    <label for="br_detail">รายละเอียดการยืม</label>
+                                                    <input type="text" class="form-control" id="br_detail" name="br_detail" placeholder="รายละเอียดการยืม" >
+                                                </div>
+                                                <div class="form-group col-12">
+                                                    <label for="br_no">เลขใบสั่งซื้อ</label>
+                                                    <input type="text" class="form-control" id="br_no" name="br_no" placeholder="เลขใบสั่งซื้อ" >
+                                                </div>
+                                                <div class="form-group col-12">
+                                                    <label for="br_return_date">วันที่จะคืน</label>
+                                                    <input type="date" class="form-control" id="br_return_date" name="br_return_date" placeholder="วันที่จะคืน" >
+                                                </div>
+                                                <div class="form-group col-12">
+                                                    <label for="br_user">ผู้เบิก</label>
+                                                    <input type="text" class="form-control" id="br_user" name="br_user" placeholder="ผู้เบิก" >
+                                                </div>
+                                                <div class="form-group col-12">
+                                                    <label for="br_accept">ผู้อนุมัติ/ปล่อยของ</label>
+                                                    <input type="text" class="form-control" id="br_accept" name="br_accept" placeholder="ผู้อนุมัติ/ปล่อยของ" >
+                                                </div>
+                                                <div class="form-group col-12">
+                                                    <label for="br_date">วันที่ปล่อยของ</label>
+                                                    <input type="date" class="form-control" id="br_date" name="br_date" placeholder="วันที่ปล่อยของ" >
+                                                </div>
 
                                     </div>
 
@@ -153,20 +129,20 @@
                                         </thead>
                                         <tbody>
                                         <? 
-                                            foreach ($data_machine_position as $key => $mach) {
+                                            foreach ($data_borrow_asset as $key => $mach) {
                                                 
                                                 ?>
                                                             <tr>
                                                             <th scope="row"><? echo $key+1; ?></th>
-                                                            <td><? echo $mach->position_name; ?></td>
-                                                            <td><? echo $mach->position_name; ?></td>
-                                                            <td><? echo $mach->position_name; ?></td>
-                                                            <td><? echo $mach->position_name; ?></td>
-                                                            <td><? echo $mach->position_name; ?></td>
+                                                            <td><? echo $mach->asset_id; ?></td>
+                                                            <td><? echo $mach->br_cause; ?></td>
+                                                            <td><? echo $mach->br_work; ?></td>
+                                                            <td><? echo $mach->br_date; ?></td>
+                                                            <td><? echo $mach->br_return_date; ?></td>
                                                             <td>
-                                                            <a href="<? echo base_url(); ?>member/config_machine_position/edit_machine_position/<? echo $mach->position_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                                            <a href="<? echo base_url(); ?>member/borrow_asset/edit_borrow_asset/<? echo $mach->br_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
                                                             &nbsp;
-                                                            <a href="<? echo base_url(); ?>member/config_machine_position/delete_machine_position/<? echo $mach->position_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                                            <a href="<? echo base_url(); ?>member/borrow_asset/delete_borrow_asset/<? echo $mach->br_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
                                                             </td>
                                                             </tr>
                                                 <? } ?>

@@ -9,109 +9,121 @@ class Visitor_model extends CI_Model {
 
     }
     
-    public function _count_machine_position()
+    public function _count_visitor()
     {
-        $count = $this->db->count_all("tbl_position");
+        $count = $this->db->count_all("tbl_visitor");
                     return $count;
     }
 
-	public function _add_machine_position($position_name)
+	public function _add_visitor($vs_name,
+                                    $vs_address,
+                                    $vs_company,
+                                    $vs_position,
+                                    $vs_branch,
+                                    $vs_tel_1,
+                                    $vs_tel_2,
+                                    $vs_tel_main,
+                                    $vs_mobile_phone,
+                                    $vs_email,
+                                    $vs_email_personal)
 	{
-        // Check
-        $checking = $this->db->where("position_name",$position_name)
-                        ->count_all_results("tbl_position");
-
-            if($checking==0){
+        
                 // ไม่มีข้อมูล บันทึกข้อมูลได้
-                $query = $this->db->set("position_name",$position_name)
-                        ->insert("tbl_position");
+                $query = $this->db->set("vs_name",$vs_name)
+                                    ->set("vs_address",$vs_address)
+                                    ->set("vs_company",$vs_company)
+                                    ->set("vs_position",$vs_position)
+                                    ->set("vs_branch",$vs_branch)
+                                    ->set("vs_tel_1",$vs_tel_1)
+                                    ->set("vs_tel_2",$vs_tel_2)
+                                    ->set("vs_tel_main",$vs_tel_main)
+                                    ->set("vs_mobile_phone",$vs_mobile_phone)
+                                    ->set("vs_email",$vs_email)
+                                    ->set("vs_email_personal",$vs_email_personal)
+                        ->insert("tbl_visitor");
                     if($query){
                         return "success";
                     } else {
                         return "false";
                     }
-            } else {
-                // ซ้ำ แจ้งกลับไป
-                return "same";
-                
-            }
+          
 
         
     }
     
-    public function _get_machine_position_AllData()
+    public function _get_visitor_AllData()
     {
          
         // ดึงข้อมูลทั้งหมด ไปใช้งาน
-        $query = $this->db->order_by("position_id","DESC")
-                        ->get("tbl_position")
+        $query = $this->db->order_by("vs_id","DESC")
+                        ->get("tbl_visitor")
                         ->result();
                     return $query;
     }
 
-    public function _delete_machine_position($position_id)
+    public function _delete_visitor($vs_id)
     {
-        // ตรวจสอบว่ามีข้อมูลหรือไม่
-        $checking = $this->db->where("position_id",$position_id)
-                        ->count_all_results("tbl_position");
-                if($checking==0){
-                    // ไม่พบข้อมูล
-                    return "empty";
-                } else {
+       
                     // มีข้อมูล ลบได้
-                    $query_delete = $this->db->where("position_id",$position_id)
-                                        ->delete("tbl_position");
+                    $query_delete = $this->db->where("vs_id",$vs_id)
+                                        ->delete("tbl_visitor");
                                 if($query_delete){
                                     return "true";
                                 } else {
                                     return "false";
                                 }
-                }
+                
     }
 
-    public function _query_machine_position($position_id)
+    public function _query_visitor($vs_id)
     {
-        $query = $this->db->where("position_id",$position_id)
-                        ->get("tbl_position")
+        $query = $this->db->where("vs_id",$vs_id)
+                        ->get("tbl_visitor")
                         ->result();
                     return $query;
     }
 
-	public function _edit_machine_position($position_id,$position_name)
+	public function _edit_visitor($vs_id,
+                                $vs_name,
+                                $vs_address,
+                                $vs_company,
+                                $vs_position,
+                                $vs_branch,
+                                $vs_tel_1,
+                                $vs_tel_2,
+                                $vs_tel_main,
+                                $vs_mobile_phone,
+                                $vs_email,
+                                $vs_email_personal)
 	{
-        // Check
-        $checking = $this->db->where("position_id",$position_id)
-                        ->count_all_results("tbl_position");
-
-            if($checking>0){
-                // ไม่มีข้อมูล บันทึกข้อมูลได้
-
-                // เช็คว่าข้อมูลซ้ำเดิมหรือไม่
-                $check_same = $this->db->where("position_name",$position_name)
-                                ->count_all_results("tbl_position");
-                    if($check_same>0){
-                        // ซ้ำ
-                        return "same";
-                    } else {
+      
+           
                         // แก้ไขได้
-                        $query = $this->db->where("position_id",$position_id)
-                                ->set("position_name",$position_name)
-                                ->update("tbl_position");
+                        $query = $this->db->where("vs_id",$vs_id)
+                                ->set("vs_name",$vs_name)
+                                ->set("vs_address",$vs_address)
+                                ->set("vs_company",$vs_company)
+                                ->set("vs_position",$vs_position)
+                                ->set("vs_branch",$vs_branch)
+                                ->set("vs_tel_1",$vs_tel_1)
+                                ->set("vs_tel_2",$vs_tel_2)
+                                ->set("vs_tel_main",$vs_tel_main)
+                                ->set("vs_mobile_phone",$vs_mobile_phone)
+                                ->set("vs_email",$vs_email)
+                                ->set("vs_email_personal",$vs_email_personal)
+                                ->update("tbl_visitor");
+                            
 
                             if($query){
+                                //return $query ;
                                 return "success";
                             } else {
                                 return "false";
                             }
 
-                    }
+                 
 
-            } else {
-                // Error
-                return "error";
-                
-            }
-
+           
         
     }
 

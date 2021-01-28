@@ -116,6 +116,8 @@ class Assets extends CI_Controller {
 		$asset_pic_path_10 = $this->input->post("asset_pic_path_10");*/
 		$company_id = $this->input->post("company_id");
 
+		
+		
 		// วนลูปเก็บรูป
 		for ($x = 1; $x <= 10; $x++) {
 			$str_img_path="asset_pic_path_".$x ;
@@ -156,10 +158,10 @@ class Assets extends CI_Controller {
 
 		
 
-		if(empty($asset_id)){
+		/*if(empty($asset_id)){
 			$this->session->set_flashdata('msg_warning',' Not found data. Please try again.');
 						redirect('member/assets/add_assets');
-		} else {
+		} else {*/
 			// ดำเนินการบันทึกข้อมูล
 			$add_assets = $this->assets->_addAssets($asset_desc,
 													$asset_guarantee,
@@ -206,7 +208,7 @@ class Assets extends CI_Controller {
 						redirect('member/assets');
 				}
 
-		}
+		//}
 
 
 	}
@@ -350,10 +352,10 @@ class Assets extends CI_Controller {
 			}
 
 
-		if(empty($asset_id)){
+		/*if(empty($asset_id)){
 			$this->session->set_flashdata('msg_warning',' Not found data. Please try again.');
 						redirect('member/assets/add_assets');
-		} else {
+		} else {*/
 			// ดำเนินการบันทึกข้อมูล
 			$edit_assets = $this->assets->_editAssets($asset_id ,
 														$asset_desc,
@@ -401,7 +403,7 @@ class Assets extends CI_Controller {
 						redirect('member/assets');
 				}
 
-		}
+		//}
 
 
 	}
@@ -420,9 +422,9 @@ class Assets extends CI_Controller {
 		$asset_id = $this->input->post("asset_id");
 
 		// เช็คว่ามีข้อมูลมาหรือไม่
-		if(empty($asset_id) or $asset_id==""){
+		/*if(empty($asset_id) or $asset_id==""){
 			echo "empty";
-		} else {
+		} else {*/
 			// มีข้อมูล ดำเนินการลบ Customers
 			$delete_assets = $this->assets->_delete_assets($asset_id);
 				if($delete_assets){
@@ -430,7 +432,7 @@ class Assets extends CI_Controller {
 				} else {
 					echo "error";
 				}
-		}
+		//}
 
 		
 	}

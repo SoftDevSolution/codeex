@@ -46,11 +46,11 @@ class Service_outside_model extends CI_Model {
                                         $svo_pic_path_5)
 	{
 		// เช็คก่อนว่า ชื่อซ้ำไหม?
-		$checking = $this->db->where("svo_id",$svo_id)
+		/*$checking = $this->db->where("svo_id",$svo_id)
 						->count_all_results("tbl_service_outside");
 			if($checking>0){
 				return "same";
-			} else {
+			} else {*/
 				// ไม่ซ้ำ ดำเนินการบันทึกข้อมูล
 				// ดึงข้อมูลสมาชิกส่งไปใช้
 				$add_customer = $this->db->set('svo_revision_no',$svo_revision_no)
@@ -87,7 +87,7 @@ class Service_outside_model extends CI_Model {
 						} else {
 							return "false";
 						}
-			}
+			//}
 
 	}
 

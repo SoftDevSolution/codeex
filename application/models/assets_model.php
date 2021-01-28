@@ -46,12 +46,14 @@ class Assets_model extends CI_Model {
                             $asset_pic_path_10,
                             $company_id)
 	{
+
+        
 		// เช็คก่อนว่า ชื่อซ้ำไหม?
-		$checking = $this->db->where("asset_id",$asset_id)
+		/*$checking = $this->db->where("asset_id",$asset_id)
 						->count_all_results("tbl_asset");
 			if($checking>0){
 				return "same";
-			} else {
+			} else {*/
 				// ไม่ซ้ำ ดำเนินการบันทึกข้อมูล
 				// ดึงข้อมูลสมาชิกส่งไปใช้
 				$add_customer = $this->db->set('asset_desc',$asset_desc)
@@ -89,7 +91,7 @@ class Assets_model extends CI_Model {
 						} else {
 							return "false";
 						}
-			}
+			//}
 
 	}
 

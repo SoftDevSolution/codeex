@@ -86,9 +86,9 @@
                         <a class="nav-link <? if($activemenu=="notification" or $activemenu=="notification"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/notification"><i class="fas fa-box-open"></i> Notification</a>
                     </li>
 
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a class="nav-link <? if($activemenu=="autocomplete" or $activemenu=="autocomplete"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/autocomplete"><i class="fas fa-box-open"></i> Autocomplete</a>
-                    </li>
+                    </li>-->
 
 
 

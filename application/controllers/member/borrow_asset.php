@@ -33,14 +33,14 @@ class borrow_asset extends CI_Controller {
 		$this->load->model('Borrow_asset_model','machine');
 
 		// ดึงข้อมูล Machine Type มาใช้งาน
-		$data['data_machine_position'] = $this->machine->_get_machine_position_AllData();
+		$data['data_borrow_asset'] = $this->machine->_get_borrow_asset_AllData();
 
-		$data['count_machine_position'] = $this->machine->_count_machine_position();
+		$data['count_borrow_asset'] = $this->machine->_count_borrow_asset();
 
 		$this->load->view('member/view_borrow_asset',$data);
 	}
 
-	public function add_config_machine_position()
+	public function add_borrow_asset()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -51,32 +51,48 @@ class borrow_asset extends CI_Controller {
 		$this->load->model('Borrow_asset_model','machine');
 
 		// รับข้อมูลมาใช้งาน
-		$position_name = $this->input->post("position_name");
+		$asset_id = $this->input->post('asset_id');
+		$br_cause = $this->input->post('br_cause');
+		$br_work = $this->input->post('br_work');
+		$br_detail = $this->input->post('br_detail');
+		$br_no = $this->input->post('br_no');
+		$br_return_date = $this->input->post('br_return_date');
+		$br_user = $this->input->post('br_user');
+		$br_accept = $this->input->post('br_accept');
+		$br_date = $this->input->post('br_date');
 
 		// ตรวจสอบข้อมูลว่ากรอกมาแล้วหรือยัง
-		if(empty($position_name) or $position_name==""){
+		if(empty($asset_id) or $asset_id==""){
 
 			$this->session->set_flashdata('msg_error',' กรุณากรอกข้อมูลให้ครบถ้วน');
-					redirect('member/config_machine_position');
+					redirect('member/borrow_asset');
 			
 		} else {
 			// ดำเนินการบันทึกข้อมูลได้
-			$update_data = $this->machine->_add_machine_position($position_name);
+			$update_data = $this->machine->_add_borrow_asset($asset_id,
+																$br_cause,
+																$br_work,
+																$br_detail,
+																$br_no,
+																$br_return_date,
+																$br_user,
+																$br_accept,
+																$br_date);
 			
 				if($update_data=="same") {
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning',' ข้อมูลซ้ำ กรุณาลองใหม่อีกครั้ง');
-						redirect('member/config_machine_position');
+						redirect('member/borrow_asset');
 
 				} else if($update_data=="success") {
 					// success
 					$this->session->set_flashdata('msg_ok',' บันทึกข้อมูลเรียบร้อย');
-						redirect('member/config_machine_position');
+						redirect('member/borrow_asset');
 
 				} else  if($update_data=="false") {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
-						redirect('member/config_machine_position');
+						redirect('member/borrow_asset');
 				}
 
 		}
@@ -88,7 +104,7 @@ class borrow_asset extends CI_Controller {
 		
 	}
 
-	public function delete_machine_position()
+	public function delete_borrow_asset()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -99,35 +115,35 @@ class borrow_asset extends CI_Controller {
 		$this->load->model('Borrow_asset_model','machine');
 
 		// รับข้อมูลมาใช้งาน
-		$position_id = $this->uri->segment(4);
+		$br_id = $this->uri->segment(4);
 		
 		// Check Data
-		if($position_id=="" or empty($position_id)){
+		if($br_id=="" or empty($br_id)){
 			$this->session->set_flashdata('msg_warning',' ไม่พบข้อมูลที่คุณต้องการ');
-					redirect('member/config_machine_position');
+					redirect('member/borrow_asset');
 		} else {
 			// ถ้ามีขอมูล ดำเนินการลบข้อมูล
-			$query = $this->machine->_delete_machine_position($position_id);
+			$query = $this->machine->_delete_borrow_asset($br_id);
 			
 				if($query=="empty") {
 					// ซ้ำ same
 					$this->session->set_flashdata('msg_warning',' Empty data. Please try again.');
-						redirect('member/config_machine_position');
+						redirect('member/borrow_asset');
 
 				} else if($query=="true") {
 					// success
 					$this->session->set_flashdata('msg_ok',' Delete Success.');
-						redirect('member/config_machine_position');
+						redirect('member/borrow_asset');
 
 				} else  if($query=="false") {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
-						redirect('member/config_machine_position');
+						redirect('member/borrow_asset');
 				}
 		}
 	}
 
-	public function edit_machine_position()
+	public function edit_borrow_asset()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -146,25 +162,25 @@ class borrow_asset extends CI_Controller {
 		$this->load->model('Borrow_asset_model','machine');
 
 		// รับข้อมูลมาใช้งาน
-		$position_id = $this->uri->segment(4);
+		$asset_id = $this->uri->segment(4);
 
 		// Check Data
-		if($position_id=="" or empty($position_id)){
+		if($asset_id=="" or empty($asset_id)){
 			$this->session->set_flashdata('msg_warning',' ไม่พบข้อมูลที่คุณต้องการ');
-					redirect('member/config_machine_position');
+					redirect('member/borrow_asset');
 		} else {
 			// แสดงข้อมูลเพื่อแก้ไข
 
 			// ดึงข้อมูล Machine Type มาใช้งาน
-			$data['get_data_machine_position'] = $this->machine->_query_machine_position($position_id);
+			$data['get_data_borrow_asset'] = $this->machine->_query_borrow_asset($asset_id);
 			
-			$this->load->view('member/edit_config_machine_position',$data);
+			$this->load->view('member/edit_borrow_asset',$data);
 
 		}
 
 	}
 
-	public function edit_data_config_machine_position()
+	public function edit_data_borrow_asset()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -175,39 +191,59 @@ class borrow_asset extends CI_Controller {
 		$this->load->model('Borrow_asset_model','machine');
 
 		// รับข้อมูลมาใช้งาน
-		$position_id = $this->input->post("position_id");
-		$position_name = $this->input->post("position_name");
+		$br_id = $this->input->post("br_id");
+		$asset_id = $this->input->post("asset_id");
+		$br_cause = $this->input->post("br_cause");
+		$br_work = $this->input->post("br_work");
+		$br_detail = $this->input->post("br_detail");
+		$br_no = $this->input->post("br_no");
+		$br_return_date = $this->input->post("br_return_date");
+		$br_user = $this->input->post("br_user");
+		$br_accept = $this->input->post("br_accept");
+		$br_date = $this->input->post("br_date");
 
+
+		//echo $br_id."</BR>";
+		//echo $asset_id."</BR>";
 		// ตรวจสอบข้อมูลว่ากรอกมาแล้วหรือยัง
-		if(empty($position_id) or $position_name==""){
+		if(empty($br_id) or $br_id==""){
 
 			$this->session->set_flashdata('msg_error',' กรุณากรอกข้อมูลให้ครบถ้วน');
-					redirect('member/config_machine_position');
+					redirect('member/borrow_asset');
 
 		} else {
 			// ดำเนินการบันทึกข้อมูลได้
-			$update_data = $this->machine->_edit_machine_position($position_id,$position_name);
+			$update_data = $this->machine->_edit_borrow_asset($br_id,
+													$asset_id,
+													$br_cause,
+													$br_work,
+													$br_detail,
+													$br_no,
+													$br_return_date,
+													$br_user,
+													$br_accept,
+													$br_date);
 			// return -> success , false , same , error
 			
 			//echo $update_data;
 				if($update_data=="same") {
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning',' Same Data. Please try again.');
-						redirect('member/config_machine_position');
+						redirect('member/borrow_asset');
 
 				} else if($update_data=="success") {
 					// success
 					$this->session->set_flashdata('msg_ok',' Edit Data Success.');
-						redirect('member/config_machine_position');
+						redirect('member/borrow_asset');
 
 				} else  if($update_data=="false") {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
-						redirect('member/config_machine_position');
+						redirect('member/borrow_asset');
 				} else {
 					// Error
 					$this->session->set_flashdata('msg_error',' Error! Please try again.');
-						redirect('member/config_machine_position');
+						redirect('member/borrow_asset');
 				}
 
 		}

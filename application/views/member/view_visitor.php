@@ -40,7 +40,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add New Visitor (<? echo number_format($count_machine_position,0); ?> Types)</h3>
+                            <h3 class="section-title">Add New Visitor (<? echo number_format($count_visitor,0); ?> Types)</h3>
                             <hr>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/machine" class="breadcrumb-link">Machine</a></li>
@@ -57,23 +57,9 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="<? echo base_url(); ?>member/config_machine_position/add_config_machine_position" method="POST" enctype="multipart/form-data">
+                                <form action="<? echo base_url(); ?>member/visitor/add_data_visitor" method="POST" enctype="multipart/form-data">
                                     <div class="form-row">
-                                    <form action="<? echo base_url(); ?>member/config_machine_position/add_config_machine_position" method="POST" enctype="multipart/form-data">
-                                    <div class="form-row">
-                                    <!--    vs_id 
-                                            vs_name
-                                            vs_address
-                                            vs_company
-                                            vs_position
-                                            vs_branch
-                                            vs_tel_1
-                                            vs_tel_2
-                                            vs_tel_main
-                                            vs_mobile_phone
-                                            vs_email
-                                            vs_email_personal
-                                    -->
+                              
 
                                         <div class="form-group col-12">
                                             <label for="vs_name">ชื่อ นามสกุล</label>
@@ -81,47 +67,47 @@
                                         </div>
                                         <div class="form-group col-12">
                                             <label for="vs_address">ที่อยู่ปัจจุบัน</label>
-                                            <input type="text" class="form-control" id="vs_address" name="vs_address" placeholder="ที่อยู่ปัจจุบัน" required>
+                                            <input type="text" class="form-control" id="vs_address" name="vs_address" placeholder="ที่อยู่ปัจจุบัน" >
                                         </div>
                                         <div class="form-group col-12">
                                             <label for="vs_company">ชื่อบริษัทลูกค้า</label>
-                                            <input type="text" class="form-control" id="vs_company" name="vs_company" placeholder="ชื่อบริษัทลูกค้า" required>
+                                            <input type="text" class="form-control" id="vs_company" name="vs_company" placeholder="ชื่อบริษัทลูกค้า" >
                                         </div>
 
                                         <div class="form-group col-12">
                                             <label for="vs_position">ตำแหน่ง</label>
-                                            <input type="text" class="form-control" id="vs_position" name="vs_position" placeholder="ตำแหน่ง" required>
+                                            <input type="text" class="form-control" id="vs_position" name="vs_position" placeholder="ตำแหน่ง" >
                                         </div>
                                         <div class="form-group col-12">
                                             <label for="vs_branch">แผนก</label>
-                                            <input type="text" class="form-control" id="vs_branch" name="vs_branch" placeholder="แผนก" required>
+                                            <input type="text" class="form-control" id="vs_branch" name="vs_branch" placeholder="แผนก" >
                                         </div>
                                         <div class="form-group col-12">
                                             <label for="vs_tel_1">Tel.1</label>
-                                            <input type="text" class="form-control" id="vs_tel_1" name="vs_tel_1" placeholder="Tel.1" required>
+                                            <input type="text" class="form-control" id="vs_tel_1" name="vs_tel_1" placeholder="Tel.1" >
                                         </div>
                                         <div class="form-group col-12">
                                             <label for="vs_tel_2">Tel.2</label>
-                                            <input type="text" class="form-control" id="vs_tel_2" name="vs_tel_2" placeholder="Tel.2" required>
+                                            <input type="text" class="form-control" id="vs_tel_2" name="vs_tel_2" placeholder="Tel.2" >
                                         </div>
                                         <div class="form-group col-12">
                                             <label for="vs_tel_main">เบอร์ติดต่อหลัก</label>
-                                            <input type="text" class="form-control" id="vs_tel_main" name="vs_tel_main" placeholder="เบอร์ติดต่อหลัก" required>
+                                            <input type="text" class="form-control" id="vs_tel_main" name="vs_tel_main" placeholder="เบอร์ติดต่อหลัก" >
                                         </div>
                                         <div class="form-group col-12">
                                             <label for="vs_mobile_phone">Mobile Phone</label>
-                                            <input type="text" class="form-control" id="vs_mobile_phone" name="vs_mobile_phone" placeholder="Mobile Phone" required>
+                                            <input type="text" class="form-control" id="vs_mobile_phone" name="vs_mobile_phone" placeholder="Mobile Phone" >
                                         </div>
                                         <div class="form-group col-12">
                                             <label for="vs_email">Email</label>
-                                            <input type="text" class="form-control" id="vs_email" name="vs_email" placeholder="Email" required>
+                                            <input type="text" class="form-control" id="vs_email" name="vs_email" placeholder="Email" >
                                         </div>
                                         <div class="form-group col-12">
                                             <label for="vs_email_personal">Personel Email</label>
-                                            <input type="text" class="form-control" id="vs_email_personal" name="vs_email_personal" placeholder="Personel Email" required>
+                                            <input type="text" class="form-control" id="vs_email_personal" name="vs_email_personal" placeholder="Personel Email" >
                                         </div>
 
-                                    </div>
+                                   
                                     </div>
 
                                     <center>
@@ -153,19 +139,19 @@
                                         </thead>
                                         <tbody>
                                         <? 
-                                            foreach ($data_machine_position as $key => $mach) {
+                                            foreach ($data_visitor as $key => $mach) {
                                                 
                                                 ?>
                                                             <tr>
-                                                            <th scope="row"><? echo $key+1; ?></th>
-                                                            <td><? echo $mach->position_name; ?></td>
-                                                            <td><? echo $mach->position_name; ?></td>
-                                                            <td><? echo $mach->position_name; ?></td>
-                                                            <td><? echo $mach->position_name; ?></td>
+                                                            <th scope="row"><? echo $mach->vs_id;; ?></th>
+                                                            <td><? echo $mach->vs_name; ?></td>
+                                                            <td><? echo $mach->vs_company; ?></td>
+                                                            <td><? echo $mach->vs_tel_main; ?></td>
+                                                            <td><? echo $mach->vs_email; ?></td>
                                                             <td>
-                                                            <a href="<? echo base_url(); ?>member/config_machine_position/edit_machine_position/<? echo $mach->position_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                                            <a href="<? echo base_url(); ?>member/visitor/edit_visitor/<? echo $mach->vs_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
                                                             &nbsp;
-                                                            <a href="<? echo base_url(); ?>member/config_machine_position/delete_machine_position/<? echo $mach->position_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                                            <a href="<? echo base_url(); ?>member/visitor/delete_data_visitor/<? echo $mach->vs_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
                                                             </td>
                                                             </tr>
                                                 <? } ?>

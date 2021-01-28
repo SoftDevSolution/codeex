@@ -153,10 +153,10 @@ class Service_outside extends CI_Controller {
 
 		
 
-		if(empty($asset_id)){
+		/*if(empty($asset_id)){
 			$this->session->set_flashdata('msg_warning',' Not found data. Please try again.');
 						redirect('member/service_outside/add_service_outside');
-		} else {
+		} else {*/
 			// ดำเนินการบันทึกข้อมูล
 			$add_service_outside = $this->service_outside->_addServiceOutside($svo_revision_no,
 																				$svo_date,
@@ -202,7 +202,7 @@ class Service_outside extends CI_Controller {
 						redirect('member/service_outside');
 				}
 
-		}
+		//}
 
 
 	}
@@ -346,10 +346,10 @@ class Service_outside extends CI_Controller {
 			}
 
 
-		if(empty($asset_id)){
+		/*if(empty($asset_id)){
 			$this->session->set_flashdata('msg_warning',' Not found data. Please try again.');
 						redirect('member/service_outside/edit_service_outside');
-		} else {
+		} else {*/
 			// ดำเนินการบันทึกข้อมูล
 			$edit_service_outside = $this->service_outside->_editServiceOutside($svo_id ,
 																		$svo_revision_no,
@@ -396,7 +396,7 @@ class Service_outside extends CI_Controller {
 						redirect('member/service_outside');
 				}
 
-		}
+		//}
 
 
 	}
@@ -415,9 +415,9 @@ class Service_outside extends CI_Controller {
 		$asset_id = $this->input->post("asset_id");
 
 		// เช็คว่ามีข้อมูลมาหรือไม่
-		if(empty($asset_id) or $asset_id==""){
+		/*if(empty($asset_id) or $asset_id==""){
 			echo "empty";
-		} else {
+		} else {*/
 			// มีข้อมูล ดำเนินการลบ Customers
 			$delete_service_outside = $this->service_outside->_delete_ServiceOutside($asset_id);
 				if($delete_service_outside){
@@ -425,7 +425,7 @@ class Service_outside extends CI_Controller {
 				} else {
 					echo "error";
 				}
-		}
+		//}
 
 		
 	}

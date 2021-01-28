@@ -169,8 +169,8 @@
                     <input type="file" class="form-control" id="picture_10" name="picture_10">
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="mch_detail_remark">Note/Remark</label>
-                    <textarea class="form-control" name="mch_part_remark" id="mch_part_remark"  placeholder="Note/Remark"><? echo $cus->mch_part_remark; ?></textarea>
+                    <label for="asset_remark">Note/Remark</label>
+                    <textarea class="form-control" name="asset_remark" id="asset_remark"  placeholder="Note/Remark"><? echo $cus->asset_remark; ?></textarea>
                 </div>
 
             </div>

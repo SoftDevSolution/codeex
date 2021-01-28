@@ -64,16 +64,21 @@
                                             <input type="text" class="form-control" id="name" name="name" placeholder="Machine ID" required>
                                         </div>
                                         <div class="form-group col-12">
-                                            <label for="com_sup_name">Frequency/Day</label>
+                                            <label for="com_sup_name">Arelt/Day(จำนวนวันในการแจ้งเตือน 1 ครั้ง)</label>
+                                            <input type="text" class="form-control" id="com_sup_name" name="com_sup_name" placeholder="Arelt/Date" required>
+                                        </div>
+
+                                        <div class="form-group col-12">
+                                            <label for="com_sup_name">Frequency/Day(ความถี่ในการแจ้งเตือน)</label>
                                             <input type="text" class="form-control" id="com_sup_name" name="com_sup_name" placeholder="Frequency/Date" required>
                                         </div>
 
                                         <div class="form-group col-12">
-                                            <label for="position_name">Number of times</label>
+                                            <label for="position_name">Number of times(จำนวนครั้งที่แจ้งเตือน)</label>
                                             <input type="text" class="form-control" id="position_name" name="position_name" placeholder="Number of times" required>
                                         </div>
                                         <div class="form-group col-12">
-                                            <label for="branch_name">Date Start Alert</label>
+                                            <label for="branch_name">Date Start Alert(วันที่เริ่มแจ้งเตือน)</label>
                                             <input type="text" class="form-control" id="branch_name" name="branch_name" placeholder="Date Start Alert" required>
                                         </div>
                                         <div class="form-group col-12">
