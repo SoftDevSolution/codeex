@@ -109,7 +109,7 @@ class Assets_model extends CI_Model {
 						return $member_info;
 	}
 
-	public function _editAssets($asset_id ,
+	public function _editAssets($asset_id,
     $asset_desc,
     $asset_guarantee,
     $asset_condition,

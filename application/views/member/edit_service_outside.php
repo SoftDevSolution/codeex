@@ -183,7 +183,7 @@
 
             <center>
             <hr>
-            <input type="hidden" name="svo_id" value="<? echo $cus->svo_id; ?>">
+            <input type="text" name="svo_id" value="<? echo $cus->svo_id; ?>">
             <button type="submit" class="btn btn-primary">Save</button> &nbsp;&nbsp;
             <button type="reset" class="btn btn-warning">Reset</button>
             </center>

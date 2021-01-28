@@ -104,16 +104,6 @@ class Assets extends CI_Controller {
 		$asset_councilor = $this->input->post("asset_councilor");
 		$asset_cause_difference = $this->input->post("asset_cause_difference");
 		$asset_remark = $this->input->post("asset_remark");
-		/*$asset_pic_path_1 = $this->input->post("asset_pic_path_1");
-		$asset_pic_path_2 = $this->input->post("asset_pic_path_2");
-		$asset_pic_path_3 = $this->input->post("asset_pic_path_3");
-		$asset_pic_path_4 = $this->input->post("asset_pic_path_4");
-		$asset_pic_path_5 = $this->input->post("asset_pic_path_5");
-		$asset_pic_path_6 = $this->input->post("asset_pic_path_6");
-		$asset_pic_path_7 = $this->input->post("asset_pic_path_7");
-		$asset_pic_path_8 = $this->input->post("asset_pic_path_8");
-		$asset_pic_path_9 = $this->input->post("asset_pic_path_9");
-		$asset_pic_path_10 = $this->input->post("asset_pic_path_10");*/
 		$company_id = $this->input->post("company_id");
 
 		
@@ -270,49 +260,9 @@ class Assets extends CI_Controller {
 		$asset_councilor = $this->input->post("asset_councilor");
 		$asset_cause_difference = $this->input->post("asset_cause_difference");
 		$asset_remark = $this->input->post("asset_remark");
-		/*$asset_pic_path_1 = $this->input->post("asset_pic_path_1");
-		$asset_pic_path_2 = $this->input->post("asset_pic_path_2");
-		$asset_pic_path_3 = $this->input->post("asset_pic_path_3");
-		$asset_pic_path_4 = $this->input->post("asset_pic_path_4");
-		$asset_pic_path_5 = $this->input->post("asset_pic_path_5");
-		$asset_pic_path_6 = $this->input->post("asset_pic_path_6");
-		$asset_pic_path_7 = $this->input->post("asset_pic_path_7");
-		$asset_pic_path_8 = $this->input->post("asset_pic_path_8");
-		$asset_pic_path_9 = $this->input->post("asset_pic_path_9");
-		$asset_pic_path_10 = $this->input->post("asset_pic_path_10");*/
 		$company_id = $this->input->post("company_id");
 
-		// ตรสจสอบว่า Upload ภาพมาหรือไม่
-			/*if(!empty($_FILES['cus_pic_path']['tmp_name'])){
-				// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
-				$tempFile = $_FILES['cus_pic_path']['tmp_name'];
-				$tempFilename = $_FILES['cus_pic_path']['name'];
-				$extension_lastname = strrchr( $tempFilename , '.' );
-				$targetPath = 'theme/photocustomer/' . '/';  // แหล่งที่เก็บรูปภาพ
-				$namephoto = date("YmdHis").$extension_lastname;
-
-				$targetFile =  str_replace('//','/',$targetPath).$namephoto;
-
-					// สร้างไฟล์ thumnail
-					$images = $_FILES['cus_pic_path']['tmp_name'];
-					$width = 500; 
-					$size=GetimageSize($images);
-					$height=round($width*$size[1]/$size[0]);
-					$images_orig = ImageCreateFromJPEG($images);
-					$photoX = ImagesX($images_orig);
-					$photoY = ImagesY($images_orig);
-					$images_fin = ImageCreateTrueColor($width, $height);
-					ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
-					ImageJPEG($images_fin,"theme/photocustomerthumbnail/".$namephoto);
-					ImageDestroy($images_orig);
-					ImageDestroy($images_fin);
-
-					move_uploaded_file($tempFile,$targetFile);
-			} else {
-				// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
-				$namephoto = "";
-			}*/
-
+		
 			// วนลูปเก็บรูป
 			for ($x = 1; $x <= 10; $x++) {
 				$str_img_path="asset_pic_path_".$x ;
@@ -357,7 +307,7 @@ class Assets extends CI_Controller {
 						redirect('member/assets/add_assets');
 		} else {*/
 			// ดำเนินการบันทึกข้อมูล
-			$edit_assets = $this->assets->_editAssets($asset_id ,
+			$edit_assets = $this->assets->_editAssets($asset_id,
 														$asset_desc,
 														$asset_guarantee,
 														$asset_condition,

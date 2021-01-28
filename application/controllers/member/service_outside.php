@@ -107,48 +107,50 @@ class Service_outside extends CI_Controller {
 		$svo_detail = $this->input->post("svo_detail");
 		$svo_remark = $this->input->post("svo_remark");
 		$company_id = $this->input->post("company_id");
-		/*$svo_pic_path_1 = $this->input->post("svo_pic_path_1");
-		$svo_pic_path_2 = $this->input->post("svo_pic_path_2");
-		$svo_pic_path_3 = $this->input->post("svo_pic_path_3");
-		$svo_pic_path_4 = $this->input->post("svo_pic_path_4");
-		$svo_pic_path_5 = $this->input->post("svo_pic_path_5");*/
 
-		// วนลูปเก็บรูป
-		for ($x = 1; $x <= 10; $x++) {
-			$str_img_path="svo_pic_path_".$x ;
+		//echo $svo_company_name."</BR>";
+		//echo $svo_revision_no."</BR>";
 
-			// ตรสจสอบว่า Upload ภาพมาหรือไม่
-			if(!empty($_FILES[$str_img_path]['tmp_name'])){
-				// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
-				$tempFile = $_FILES[$str_img_path]['tmp_name'];
-				$tempFilename = $_FILES[$str_img_path]['name'];
-				$extension_lastname = strrchr( $tempFilename , '.' );
-				$targetPath = 'theme/photoserviceoutside/' . '/';  // แหล่งที่เก็บรูปภาพ
-				$namephoto[$x] = date("YmdHis").$extension_lastname;
+			// วนลูปเก็บรูป
+			for ($x = 1; $x <= 5; $x++) {
+				$str_img_path="svo_pic_path_".$x ;
+				//echo $str_img_path."</BR>";
 
-				$targetFile =  str_replace('//','/',$targetPath).$namephoto[$x];
+				// ตรสจสอบว่า Upload ภาพมาหรือไม่
+				if(!empty($_FILES[$str_img_path]['tmp_name'])){
+					// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
+					$tempFile = $_FILES[$str_img_path]['tmp_name'];
+					$tempFilename = $_FILES[$str_img_path]['name'];
+					$extension_lastname = strrchr( $tempFilename , '.' );
+					$targetPath = 'theme/photoserviceoutside/' . '/';  // แหล่งที่เก็บรูปภาพ
+					$namephoto[$x] = date("YmdHis").$extension_lastname;
+					//$data[$key] = $value;
 
-					// สร้างไฟล์ thumnail
-					$images = $_FILES[$str_img_path]['tmp_name'];
-					$width = 500; //*** Fix Width & Heigh (Autu caculate) ***//
-					$size=GetimageSize($images);
-					$height=round($width*$size[1]/$size[0]);
-					$images_orig = ImageCreateFromJPEG($images);
-					$photoX = ImagesX($images_orig);
-					$photoY = ImagesY($images_orig);
-					$images_fin = ImageCreateTrueColor($width, $height);
-					ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
-					ImageJPEG($images_fin,"theme/photoserviceoutsidethumbnail/".$namephoto[$x]);
-					ImageDestroy($images_orig);
-					ImageDestroy($images_fin);
+					$targetFile =  str_replace('//','/',$targetPath).$namephoto[$x];
 
-					move_uploaded_file($tempFile,$targetFile);
-			} else {
-				// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
-				$namephoto[$x] = "";
+						// สร้างไฟล์ thumnail
+						$images = $_FILES[$str_img_path]['tmp_name'];
+						$width = 500; //*** Fix Width & Heigh (Autu caculate) ***//
+						$size=GetimageSize($images);
+						$height=round($width*$size[1]/$size[0]);
+						$images_orig = ImageCreateFromJPEG($images);
+						$photoX = ImagesX($images_orig);
+						$photoY = ImagesY($images_orig);
+						$images_fin = ImageCreateTrueColor($width, $height);
+						ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+						ImageJPEG($images_fin,"theme/photoserviceoutsidethumbnail/".$namephoto[$x]);
+						ImageDestroy($images_orig);
+						ImageDestroy($images_fin);
+
+						//echo $namephoto[$x]."</BR>";
+
+						move_uploaded_file($tempFile,$targetFile);
+				} else {
+					// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
+					$namephoto[$x] = "";
+				}
+
 			}
-
-		}
 
 
 		
@@ -269,47 +271,15 @@ class Service_outside extends CI_Controller {
 		$svo_detail = $this->input->post("svo_detail");
 		$svo_remark = $this->input->post("svo_remark");
 		$company_id = $this->input->post("company_id");
-		/*$svo_pic_path_1 = $this->input->post("svo_pic_path_1");
-		$svo_pic_path_2 = $this->input->post("svo_pic_path_2");
-		$svo_pic_path_3 = $this->input->post("svo_pic_path_3");
-		$svo_pic_path_4 = $this->input->post("svo_pic_path_4");
-		$svo_pic_path_5 = $this->input->post("svo_pic_path_5");*/
+		
 
-
-		// ตรสจสอบว่า Upload ภาพมาหรือไม่
-			/*if(!empty($_FILES['cus_pic_path']['tmp_name'])){
-				// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
-				$tempFile = $_FILES['cus_pic_path']['tmp_name'];
-				$tempFilename = $_FILES['cus_pic_path']['name'];
-				$extension_lastname = strrchr( $tempFilename , '.' );
-				$targetPath = 'theme/photocustomer/' . '/';  // แหล่งที่เก็บรูปภาพ
-				$namephoto = date("YmdHis").$extension_lastname;
-
-				$targetFile =  str_replace('//','/',$targetPath).$namephoto;
-
-					// สร้างไฟล์ thumnail
-					$images = $_FILES['cus_pic_path']['tmp_name'];
-					$width = 500; 
-					$size=GetimageSize($images);
-					$height=round($width*$size[1]/$size[0]);
-					$images_orig = ImageCreateFromJPEG($images);
-					$photoX = ImagesX($images_orig);
-					$photoY = ImagesY($images_orig);
-					$images_fin = ImageCreateTrueColor($width, $height);
-					ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
-					ImageJPEG($images_fin,"theme/photocustomerthumbnail/".$namephoto);
-					ImageDestroy($images_orig);
-					ImageDestroy($images_fin);
-
-					move_uploaded_file($tempFile,$targetFile);
-			} else {
-				// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
-				$namephoto = "";
-			}*/
+		//echo $svo_id."</BR>";
+		//echo $svo_revision_no."</BR>";
 
 			// วนลูปเก็บรูป
 			for ($x = 1; $x <= 5; $x++) {
 				$str_img_path="svo_pic_path_".$x ;
+				//echo $str_img_path."</BR>";
 
 				// ตรสจสอบว่า Upload ภาพมาหรือไม่
 				if(!empty($_FILES[$str_img_path]['tmp_name'])){
@@ -337,6 +307,8 @@ class Service_outside extends CI_Controller {
 						ImageDestroy($images_orig);
 						ImageDestroy($images_fin);
 
+						//echo $namephoto[$x]."</BR>";
+
 						move_uploaded_file($tempFile,$targetFile);
 				} else {
 					// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
@@ -351,7 +323,7 @@ class Service_outside extends CI_Controller {
 						redirect('member/service_outside/edit_service_outside');
 		} else {*/
 			// ดำเนินการบันทึกข้อมูล
-			$edit_service_outside = $this->service_outside->_editServiceOutside($svo_id ,
+			$edit_service_outside = $this->service_outside->_editServiceOutside($svo_id,
 																		$svo_revision_no,
 																		$svo_date,
 																		$svo_company_name,

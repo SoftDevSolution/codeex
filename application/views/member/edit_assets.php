@@ -178,7 +178,7 @@
             <center>
             <hr>
             <input type="hidden" name="asset_id" value="<? echo $cus->asset_id; ?>">
-            <button type="submit" class="btn btn-primary">Save</button> &nbsp;&nbsp;
+            <button type="submit" class="btn btn-primary">Edit</button> &nbsp;&nbsp;
             <button type="reset" class="btn btn-warning">Reset</button>
             </center>
         </form>

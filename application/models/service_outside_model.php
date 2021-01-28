@@ -105,7 +105,7 @@ class Service_outside_model extends CI_Model {
 						return $member_info;
 	}
 
-	public function _editServiceOutside($svo_id ,
+	public function _editServiceOutside($svo_id,
                                 $svo_revision_no,
                                 $svo_date,
                                 $svo_company_name,

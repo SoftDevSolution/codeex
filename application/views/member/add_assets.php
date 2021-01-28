@@ -70,7 +70,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="asset_amount">จำนวน</label>
-                    <input type="number" min="0" class="form-control" id="asset_amount" name="asset_amount" placeholder="จำนวน">
+                    <input type="number" min="0" value="0" class="form-control" id="asset_amount" name="asset_amount" placeholder="จำนวน">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="asset_unit">หน่วยเป็น</label>
@@ -103,15 +103,15 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="asset_balance">จำนวนคงเหลือในระบบ</label>
-                    <input type="number" min="0" class="form-control" id="asset_balance" name="asset_balance" placeholder="จำนวนคงเหลือในระบบ">
+                    <input type="number" min="0" value="0" class="form-control" id="asset_balance" name="asset_balance" placeholder="จำนวนคงเหลือในระบบ">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="asset_real_stock">ตรวจนับสต็อคจริง</label>
-                    <input type="number" min="0" class="form-control" id="asset_real_stock" name="asset_real_stock" placeholder="ตรวจนับสต็อคจริง">
+                    <input type="number" min="0" value="0"  class="form-control" id="asset_real_stock" name="asset_real_stock" placeholder="ตรวจนับสต็อคจริง">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="asset_difference">ผลต่าง</label>
-                    <input type="number" min="0" class="form-control" id="asset_difference" name="asset_difference" placeholder="ผลต่าง">
+                    <input type="number" min="0" value="0"  class="form-control" id="asset_difference" name="asset_difference" placeholder="ผลต่าง">
                 </div>
                 <div class="form-group col-md-12">
                     <label for="asset_councilor">ผู้ตรวจนับ</label>
