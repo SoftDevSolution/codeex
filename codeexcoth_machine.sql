@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 28, 2021 at 03:26 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Generation Time: Jan 30, 2021 at 05:33 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,7 +45,9 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (2, 'admin', 'login', '0', '::1', '2021-01-26 15:12:45'),
 (3, 'admin', 'login', '0', '::1', '2021-01-26 16:42:24'),
 (4, 'admin', 'login', '0', '::1', '2021-01-27 02:38:39'),
-(5, 'admin', 'login', '0', '::1', '2021-01-27 15:28:32');
+(5, 'admin', 'login', '0', '::1', '2021-01-27 15:28:32'),
+(6, 'admin', 'logout', 'admin', '::1', '2021-01-30 14:23:53'),
+(7, 'admin', 'login', '0', '::1', '2021-01-30 14:23:57');
 
 -- --------------------------------------------------------
 
@@ -146,7 +148,12 @@ CREATE TABLE `tbl_asset` (
 INSERT INTO `tbl_asset` (`asset_id`, `asset_desc`, `asset_guarantee`, `asset_condition`, `asset_destroy`, `asset_storage_location`, `asset_amount`, `asset_unit`, `asset_doc_no`, `asset_movement`, `asset_borrow`, `asset_schedule_borrow`, `asset_pending_sale`, `asset_balance`, `asset_real_stock`, `asset_difference`, `asset_councilor`, `asset_cause_difference`, `asset_remark`, `asset_pic_path_1`, `asset_pic_path_2`, `asset_pic_path_3`, `asset_pic_path_4`, `asset_pic_path_5`, `asset_pic_path_6`, `asset_pic_path_7`, `asset_pic_path_8`, `asset_pic_path_9`, `asset_pic_path_10`, `company_id`) VALUES
 (1, 'value-2', 'value-3', 'value-4', 'value-5', 'value-6', 1, 'value-8', 'value-9', 'value-10', 'value-11', 'value-12', 'value-13', 1, 'value-15', 'value-16', 'value-17', 'value-18', 'value-19', 'value-20', 'value-21', 'value-22', 'value-23', 'value-24', 'value-25', 'value-26', 'value-27', 'value-28', 'value-29', '1'),
 (2, '11', '1', '1', '1', '1', 0, '1', '', '', '', '', '', 1, '1', '1', '1', '', '0', '', '', '', '', '', '', '', '', '', '', '1'),
-(3, '11', '1', '1', '1', '1', 0, '1', '', '', '', '', '', 1, '1', '1', '1', '', '0', '', '', '', '', '', '', '', '', '', '', 'no');
+(3, '11', '1', '1', '1', '1', 0, '1', '', '', '', '', '', 1, '1', '1', '1', '', '0', '', '', '', '', '', '', '', '', '', '', 'no'),
+(4, 'ทดสอบๆทดสอบๆ', '', '', '', '', 0, '', '', '', '', '', '', 0, '0', '0', '', '', '0', '', '', '', '', '', '', '', '', '', '', ''),
+(9, 'ok ok test', 'ok ok test', 'ok ok test', 'ok ok test', 'ok ok test', 0, '', '', '', '', '', '', 100, '20', '80', '', '', '0', '', '', '', '', '', '', '', '', '', '', ''),
+(10, 'ok ok test', 'ok ok test', 'ok ok test', 'ok ok test', 'ok ok test', 0, '', '', '', '', '', '', 100, '20', '80', '', '', '0', '', '', '', '', '', '', '', '', '', '', ''),
+(11, 'Add New AssetAdd New Asset', 'Add New Asset', 'ok ok test', 'ok ok test', 'ok ok test', 100, '20', '20', 'ตัดออก', '', '', '', 100, '80', '20', '', '', '0', '20210130164241.jpg', '20210130164241.jpg', '', '20210130164241.png', '', '', '20210130164241.jpg', '', '', '', ''),
+(12, 'Add New AssetAdd', 'Add New Asset', 'ok ok test', 'ok ok test', 'ok ok test', 100, '20', '20', '', '', '', '', 100, '80', '20', '', '', '0', '20210130172751.jpg', '20210130172753.jpg', NULL, NULL, '20210130172755.png', NULL, '20210130172815.jpg', '20210130172817.jpg', '20210130172832.jpg', '20210130172845.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -212,7 +219,7 @@ CREATE TABLE `tbl_company` (
   `company_capital_investment` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `company_bussiness_group` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `company_product_type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `company_status` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `company_status` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `company_remark` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `company_area` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `company_indust` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -221,6 +228,13 @@ CREATE TABLE `tbl_company` (
   `company_distance_office` int(3) NOT NULL,
   `company_googlemap_link` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_company`
+--
+
+INSERT INTO `tbl_company` (`company_id`, `company_name`, `company_addr1`, `company_addr2`, `company_addr3`, `company_city`, `company_zip_code`, `company_tel`, `company_fax`, `company_email`, `company_capital_investment`, `company_bussiness_group`, `company_product_type`, `company_status`, `company_remark`, `company_area`, `company_indust`, `company_www`, `company_facebook`, `company_distance_office`, `company_googlemap_link`) VALUES
+(1, 'phploso.com', '118/2 Moo 4 Tambon Huaysai', '118/2 Moo 4 Tambon Huaysai', '', 'Sankamphaeng', 50130, '09984435435', '0976575', 'phploso@hotmail.com', '10000000', 'phploso.com', '2', 'Customer', '', 'North', 'Chiangmai', 'https://github.com/', 'https://github.com/', 3, 'https://github.com/');
 
 -- --------------------------------------------------------
 
@@ -242,7 +256,7 @@ CREATE TABLE `tbl_company_supplier` (
   `com_sup_cap_invest` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `com_sup_group_bussiness` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `com_sup_product_type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_status` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
+  `com_sup_status` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `com_sup_remark` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `com_sup_area` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `com_sup_indust` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -251,6 +265,13 @@ CREATE TABLE `tbl_company_supplier` (
   `com_sup_distance_office` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `com_sup_googlemap_link` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_company_supplier`
+--
+
+INSERT INTO `tbl_company_supplier` (`com_sup_id`, `com_sup_name`, `com_sup_addr1`, `com_sup_addr2`, `com_sup_addr3`, `com_sup_city`, `com_sup_zipcode`, `com_sup_tel`, `com_sup_fax`, `com_sup_email`, `com_sup_cap_invest`, `com_sup_group_bussiness`, `com_sup_product_type`, `com_sup_status`, `com_sup_remark`, `com_sup_area`, `com_sup_indust`, `com_sup_www`, `com_sup_facebook`, `com_sup_distance_office`, `com_sup_googlemap_link`) VALUES
+(1, 'นายอาเขต  แซ่ภู่', '556 หฟดฟหวสดดาฟหสวด', '377 Moo 8 Tambon MaeSong', '', 'Tasongyang', 0, '0989956879', '', 'ppp@z.com', 'aaaa', 'ccccccc', '2', '', '', '', 'gggg', 'https://google.com', 'https://facebook.com', '0', 'https://google.com');
 
 -- --------------------------------------------------------
 
@@ -274,10 +295,10 @@ CREATE TABLE `tbl_customer` (
 --
 
 INSERT INTO `tbl_customer` (`cus_id`, `cus_name`, `cus_mobile_phone`, `cus_email`, `cus_birth_date`, `cus_pic_path`, `cus_remark`, `company_id`) VALUES
-(1, 'นายอาเขต  แซ่ภู่', '+66864473731', 'phploso@hotmail.com', '2021-01-07', '20210126200801.jpg', '', 12),
-(2, 'Arkhet  Sape', '+66864473731', 'zzzzzzz@hotmail.com', '2020-07-30', '20210126200749.jpeg', '', 5),
-(3, 'Peter Copper', '+66864473731', 'phploso@hotmail.com', '2021-01-20', '20210127051648.jpg', 'wqeqe', 2),
-(5, 'test1', '0651636553', 'csxman69@gmail.com', '2021-01-01', '20210127051709.jpg', 'test', 1);
+(1, 'นายอาเขต  แซ่ภู่', '+66864473731', 'phploso@hotmail.com', '2021-01-07', '20210130161404.png', '', 12),
+(2, 'Arkhet  Sape', '+66864473731', 'zzzzzzz@hotmail.com', '2020-07-30', '20210130161359.jpg', '', 5),
+(3, 'Peter Copper', '+66864473731', 'phploso@hotmail.com', '2021-01-20', '20210130161353.jpg', 'wqeqe', 2),
+(5, 'test1', '0651636553', 'csxman69@gmail.com', '2021-01-01', '20210130161411.jpg', 'test', 1);
 
 -- --------------------------------------------------------
 
@@ -320,9 +341,9 @@ INSERT INTO `tbl_employees` (`emp_id`, `emp_name`, `emp_username`, `emp_password
 (1, 'Arkhet Saepu', 'popup', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210119050442.png', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78),
 (2, 'Arkhet Saepu', 'phploso', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210119050827.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65),
 (3, 'Arkhet Saepu', 'sile', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210119050931.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Single', 'B', 'Women', 167, 65),
-(4, 'นายสมชัย   มหานาม', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89),
+(4, 'นายสมชัย   มหานาม', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', '       118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210130161203.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89),
 (6, 'นาบเลิศพันธุ์   สมัครใจ', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89),
-(10, 'Arkhet Saepu', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 1, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210127114919.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60);
+(10, 'Arkhet Saepu', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '      118/2 Moo 4 Tambon Huaysai', 1, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210130160919.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60);
 
 -- --------------------------------------------------------
 
@@ -646,7 +667,7 @@ CREATE TABLE `tbl_supplier` (
 --
 
 INSERT INTO `tbl_supplier` (`supplier_id`, `supplier_name`, `supplier_posion`, `supplier_mobile_phone`, `supplier_email`, `supplier_birth_date`, `supplier_pic_path`, `supplier_remark`, `com_sup_id`) VALUES
-(1, 'qqq22', '22', '0651636553', 'csxman69@gmail.com', '2021-01-27', '20210127132939.jpg', '22', 2);
+(1, 'qqq22', '22', '0651636553', 'csxman69@gmail.com', '2021-01-27', '20210130162042.jpg', '22', 2);
 
 -- --------------------------------------------------------
 
@@ -887,7 +908,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -911,7 +932,7 @@ ALTER TABLE `stat_today`
 -- AUTO_INCREMENT for table `tbl_asset`
 --
 ALTER TABLE `tbl_asset`
-  MODIFY `asset_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `asset_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_borrow_asset`
@@ -929,13 +950,13 @@ ALTER TABLE `tbl_brand`
 -- AUTO_INCREMENT for table `tbl_company`
 --
 ALTER TABLE `tbl_company`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_company_supplier`
 --
 ALTER TABLE `tbl_company_supplier`
-  MODIFY `com_sup_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `com_sup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_customer`

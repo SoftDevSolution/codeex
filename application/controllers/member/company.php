@@ -157,7 +157,7 @@ class company extends CI_Controller {
 		$data['setting_web'] = $this->me->_getall();
 
 		// Load Model Machine
-		$this->load->model('Company_model','machine');
+		$this->load->model('Company_model','company');
 
 		// รับข้อมูลมาใช้งาน
 		$company_id = $this->uri->segment(4);
@@ -169,8 +169,8 @@ class company extends CI_Controller {
 		} else {
 			// แสดงข้อมูลเพื่อแก้ไข
 
-			// ดึงข้อมูล Machine Type มาใช้งาน
-			$data['get_data_company'] = $this->machine->_query_company($company_id);
+			// ดึงข้อมูล Company Type มาใช้งาน
+			$data['get_data_company'] = $this->company->_query_company($company_id);
 			
 			$this->load->view('member/edit_company',$data);
 
@@ -187,7 +187,7 @@ class company extends CI_Controller {
 		$this->checkMember_isvalidated();
 
 		// Load Model Machine
-		$this->load->model('Company_model','machine');
+		$this->load->model('Company_model','company');
 
 		// รับข้อมูลมาใช้งาน
 		$company_id = $this->input->post("company_id");
@@ -224,7 +224,7 @@ class company extends CI_Controller {
 			
 			
 			// ดำเนินการบันทึกข้อมูลได้
-			$update_data = $this->machine->_edit_company($company_id,$company_name,$company_addr1,$company_addr2,$company_addr3,
+			$update_data = $this->company->_edit_company($company_id,$company_name,$company_addr1,$company_addr2,$company_addr3,
 			$company_city,$company_zip_code,$company_tel,$company_fax,$company_capital_investment,$company_email,
 			$company_bussiness_group,$product_type,$company_status,$company_area,
 			$company_indust,$company_www,$company_facebook,$company_distance_office,
@@ -237,12 +237,10 @@ class company extends CI_Controller {
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning',' Same Data. Please try again.');
 						redirect('member/company');
-
 				} else if($update_data=="success") {
 					// success
 					$this->session->set_flashdata('msg_ok',' Edit Data Success.');
 						redirect('member/company');
-
 				} else  if($update_data=="false") {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
@@ -265,7 +263,7 @@ class company extends CI_Controller {
 		$this->checkMember_isvalidated();
 
 		// Load Model Machine
-		$this->load->model('Company_model','machine');
+		$this->load->model('Company_model','company');
 
 		// รับข้อมูลมาใช้งาน
 		$company_id = $this->uri->segment(4);
@@ -276,7 +274,7 @@ class company extends CI_Controller {
 					redirect('member/company');
 		} else {
 			// ถ้ามีขอมูล ดำเนินการลบข้อมูล
-			$query = $this->machine->_delete_company($company_id);
+			$query = $this->company->_delete_company($company_id);
 			
 				if($query=="empty") {
 					// ซ้ำ same

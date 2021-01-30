@@ -16,6 +16,12 @@ class Employee_model extends CI_Model {
 		return $get_employee;
 	}
 
+    public function _count_employee()
+    {
+        $count = $this->db->count_all("tbl_employees");
+                    return $count;
+    }
+
 	public function _get_by_id($emp_id)
 	{
 		// ดึงข้อมูลสมาชิกส่งไปใช้

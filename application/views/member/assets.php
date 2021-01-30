@@ -137,12 +137,14 @@
                         type: 'post',
                         url: '<? echo base_url(); ?>member/assets/data_delete_assets',
                         data: {
-                            cus_id : cus_id
+                            asset_id : asset_id
                         },
                         success: function (response) {
                             console.log(response);
                             if(response=="success"){ 
-                                $("#row_"+cus_id).fadeOut();
+
+                                $("#row_"+asset_id).fadeOut();
+
                             } else if(response=="empty"){
                                 Swal.fire({
                                     icon: 'warning',

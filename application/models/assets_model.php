@@ -128,16 +128,6 @@ class Assets_model extends CI_Model {
     $asset_councilor,
     $asset_cause_difference,
     $asset_remark,
-    $asset_pic_path_1,
-    $asset_pic_path_2,
-    $asset_pic_path_3,
-    $asset_pic_path_4,
-    $asset_pic_path_5,
-    $asset_pic_path_6,
-    $asset_pic_path_7,
-    $asset_pic_path_8,
-    $asset_pic_path_9,
-    $asset_pic_path_10,
     $company_id)
 	{
 		// ดึงข้อมูลสมาชิกส่งไปใช้
@@ -160,16 +150,6 @@ class Assets_model extends CI_Model {
                             ->set('asset_councilor',$asset_councilor)
                             ->set('asset_cause_difference',$asset_cause_difference)
                             ->set('asset_remark',$asset_remark)
-                            ->set('asset_pic_path_1',$asset_pic_path_1)
-                            ->set('asset_pic_path_2',$asset_pic_path_2)
-                            ->set('asset_pic_path_3',$asset_pic_path_3)
-                            ->set('asset_pic_path_4',$asset_pic_path_4)
-                            ->set('asset_pic_path_5',$asset_pic_path_5)
-                            ->set('asset_pic_path_6',$asset_pic_path_6)
-                            ->set('asset_pic_path_7',$asset_pic_path_7)
-                            ->set('asset_pic_path_8',$asset_pic_path_8)
-                            ->set('asset_pic_path_9',$asset_pic_path_9)
-                            ->set('asset_pic_path_10',$asset_pic_path_10)
                             ->set('company_id',$company_id)
 							->update('tbl_asset');
 				if($update_customer){
@@ -177,18 +157,65 @@ class Assets_model extends CI_Model {
 				} else {
 					return "false";
 				}
-	}
+    }
+    
+	public function _updatephoto($asset_id,$namephoto,$aaa)
+	{
+        $update = $this->db->where("asset_id" , $asset_id)
+                    ->set("asset_pic_path_".$aaa , $namephoto)
+                    ->update("tbl_asset");
+    }
 
 	public function _delete_Assets($asset_id)
 	{
+        // ลบภาพเดิมออก
 		$query = $this->db->where("asset_id",$asset_id)
 					->get("tbl_asset")->result();
 			foreach ($query as $aaa) {
-				$delete_photo = $aaa->cus_pic_path;
-			}
-			unlink("theme/photoassets/".$delete_photo);
-			unlink("theme/photoassetsthumbnail/".$delete_photo);
-		
+				$asset_pic_path_1 = $aaa->asset_pic_path_1;
+				$asset_pic_path_2 = $aaa->asset_pic_path_2;
+				$asset_pic_path_3 = $aaa->asset_pic_path_3;
+				$asset_pic_path_4 = $aaa->asset_pic_path_4;
+				$asset_pic_path_5 = $aaa->asset_pic_path_5;
+				$asset_pic_path_6 = $aaa->asset_pic_path_6;
+				$asset_pic_path_7 = $aaa->asset_pic_path_7;
+				$asset_pic_path_8 = $aaa->asset_pic_path_8;
+				$asset_pic_path_9 = $aaa->asset_pic_path_9;
+				$asset_pic_path_10 = $aaa->asset_pic_path_10;
+            }
+
+            if(!empty($asset_pic_path_1)){
+                unlink("./theme/photoassets/".$asset_pic_path_1);
+                unlink("./theme/photoassetsthumbnail/".$asset_pic_path_1);
+            } else if(!empty($asset_pic_path_2)){
+                unlink("./theme/photoassets/".$asset_pic_path_2);
+                unlink("./theme/photoassetsthumbnail/".$asset_pic_path_2);
+            } else if(!empty($asset_pic_path_3)){
+                unlink("./theme/photoassets/".$asset_pic_path_3);
+                unlink("./theme/photoassetsthumbnail/".$asset_pic_path_3);
+            } else if(!empty($asset_pic_path_4)){
+                unlink("./theme/photoassets/".$asset_pic_path_4);
+                unlink("./theme/photoassetsthumbnail/".$asset_pic_path_4);
+            } else if(!empty($asset_pic_path_5)){
+                unlink("./theme/photoassets/".$asset_pic_path_5);
+                unlink("./theme/photoassetsthumbnail/".$asset_pic_path_5);
+            } else if(!empty($asset_pic_path_6)){
+                unlink("./theme/photoassets/".$asset_pic_path_6);
+                unlink("./theme/photoassetsthumbnail/".$asset_pic_path_6);
+            } else if(!empty($asset_pic_path_7)){
+                unlink("./theme/photoassets/".$asset_pic_path_7);
+                unlink("./theme/photoassetsthumbnail/".$asset_pic_path_7);
+            } else if(!empty($asset_pic_path_8)){
+                unlink("./theme/photoassets/".$asset_pic_path_8);
+                unlink("./theme/photoassetsthumbnail/".$asset_pic_path_8);
+            } else if(!empty($asset_pic_path_9)){
+                unlink("./theme/photoassets/".$asset_pic_path_9);
+                unlink("./theme/photoassetsthumbnail/".$asset_pic_path_9);
+            } else if(!empty($asset_pic_path_10)){
+                unlink("./theme/photoassets/".$asset_pic_path_10);
+                unlink("./theme/photoassetsthumbnail/".$asset_pic_path_10);
+            } else { }
+
 			$delete = $this->db->where("asset_id",$asset_id)
 						->delete("tbl_asset");
 					return $delete;

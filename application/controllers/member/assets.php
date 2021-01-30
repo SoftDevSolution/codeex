@@ -105,12 +105,10 @@ class Assets extends CI_Controller {
 		$asset_cause_difference = $this->input->post("asset_cause_difference");
 		$asset_remark = $this->input->post("asset_remark");
 		$company_id = $this->input->post("company_id");
-
-		
 		
 		// วนลูปเก็บรูป
 		for ($x = 1; $x <= 10; $x++) {
-			$str_img_path="asset_pic_path_".$x ;
+			$str_img_path = "asset_pic_path_".$x ;
 
 			// ตรสจสอบว่า Upload ภาพมาหรือไม่
 			if(!empty($_FILES[$str_img_path]['tmp_name'])){
@@ -128,16 +126,29 @@ class Assets extends CI_Controller {
 					$width = 500; //*** Fix Width & Heigh (Autu caculate) ***//
 					$size=GetimageSize($images);
 					$height=round($width*$size[1]/$size[0]);
-					$images_orig = ImageCreateFromJPEG($images);
+
+			// ค้นหาการสร้างไฟล์ภาพ
+			if($extension_lastname==".jpg" or $extension_lastname==".jpeg" or $extension_lastname==".JPG"){
+				$images_orig = ImageCreateFromJPEG($images);
+			} else if($extension_lastname==".png"){
+				$images_orig = ImageCreateFromPNG($images);
+			} else  if($extension_lastname==".gif"){
+				$images_orig = ImageCreateFromGIF($images);
+			}
+
 					$photoX = ImagesX($images_orig);
 					$photoY = ImagesY($images_orig);
 					$images_fin = ImageCreateTrueColor($width, $height);
+					$whiteBackground = imagecolorallocate($images_fin, 255, 255, 255); 
+					imagefill($images_fin,0,0,$whiteBackground); // fill the background with white
 					ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+
 					ImageJPEG($images_fin,"theme/photoassetsthumbnail/".$namephoto[$x]);
 					ImageDestroy($images_orig);
 					ImageDestroy($images_fin);
 
 					move_uploaded_file($tempFile,$targetFile);
+					sleep(2);
 			} else {
 				// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
 				$namephoto[$x] = "";
@@ -284,19 +295,37 @@ class Assets extends CI_Controller {
 						$width = 500; //*** Fix Width & Heigh (Autu caculate) ***//
 						$size=GetimageSize($images);
 						$height=round($width*$size[1]/$size[0]);
-						$images_orig = ImageCreateFromJPEG($images);
-						$photoX = ImagesX($images_orig);
-						$photoY = ImagesY($images_orig);
-						$images_fin = ImageCreateTrueColor($width, $height);
-						ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+
+			// ค้นหาการสร้างไฟล์ภาพ
+			if($extension_lastname==".jpg" or $extension_lastname==".jpeg" or $extension_lastname==".JPG"){
+				$images_orig = ImageCreateFromJPEG($images);
+			} else if($extension_lastname==".png"){
+				$images_orig = ImageCreateFromPNG($images);
+			} else  if($extension_lastname==".gif"){
+				$images_orig = ImageCreateFromGIF($images);
+			}
+
+					$photoX = ImagesX($images_orig);
+					$photoY = ImagesY($images_orig);
+					$images_fin = ImageCreateTrueColor($width, $height);
+					$whiteBackground = imagecolorallocate($images_fin, 255, 255, 255); 
+					imagefill($images_fin,0,0,$whiteBackground); // fill the background with white
+					ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+
 						ImageJPEG($images_fin,"theme/photoassetsthumbnail/".$namephoto[$x]);
 						ImageDestroy($images_orig);
 						ImageDestroy($images_fin);
 
 						move_uploaded_file($tempFile,$targetFile);
+						
+						if($tempFile=="" or $tempFile==null or empty($tempFile)){  } else {
+							$query_update = $this->assets->_updatephoto($asset_id,$namephoto[$x],$x);
+						}
+						sleep(2);
+
 				} else {
 					// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
-					$namephoto[$x] = "";
+					
 				}
 
 			}
@@ -326,16 +355,6 @@ class Assets extends CI_Controller {
 														$asset_councilor,
 														$asset_cause_difference,
 														$asset_remark,
-														$namephoto[1],
-														$namephoto[2],
-														$namephoto[3],
-														$namephoto[4],
-														$namephoto[5],
-														$namephoto[6],
-														$namephoto[7],
-														$namephoto[8],
-														$namephoto[9],
-														$namephoto[10],
 														$company_id);
 				if($edit_assets=="same"){
 					// ซ้ำ
@@ -370,21 +389,14 @@ class Assets extends CI_Controller {
 
 		// รับข้อมูลมา
 		$asset_id = $this->input->post("asset_id");
-
-		// เช็คว่ามีข้อมูลมาหรือไม่
-		/*if(empty($asset_id) or $asset_id==""){
-			echo "empty";
-		} else {*/
-			// มีข้อมูล ดำเนินการลบ Customers
-			$delete_assets = $this->assets->_delete_assets($asset_id);
-				if($delete_assets){
-					echo "success";
-				} else {
-					echo "error";
-				}
-		//}
-
 		
+		$delete_assets = $this->assets->_delete_assets($asset_id);
+			if($delete_assets){
+				echo "success";
+			} else {
+				echo "error";
+			}
+
 	}
 
 

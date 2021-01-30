@@ -192,7 +192,16 @@ class Customers extends CI_Controller {
 		$cus_remark = $this->input->post("cus_remark");
 
 		// ตรสจสอบว่า Upload ภาพมาหรือไม่
-			if(!empty($_FILES['cus_pic_path']['tmp_name'])){
+			if(!empty($_FILES['cus_pic_path']['tmp_name']) or !empty($_FILES['cus_pic_path']['tmp_name'])){
+
+			// ลบภาพเดิมออก
+			$get_data_photo = $this->db->where("cus_id",$cus_id)
+						->get("tbl_customer")->result();
+						foreach ($get_data_photo as $bbb) {
+							unlink("./theme/photocustomer/".$bbb->cus_pic_path);
+							unlink("./theme/photocustomerthumbnail/".$bbb->cus_pic_path);
+						}
+
 				// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
 				$tempFile = $_FILES['cus_pic_path']['tmp_name'];
 				$tempFilename = $_FILES['cus_pic_path']['name'];
@@ -207,10 +216,21 @@ class Customers extends CI_Controller {
 					$width = 500; //*** Fix Width & Heigh (Autu caculate) ***//
 					$size=GetimageSize($images);
 					$height=round($width*$size[1]/$size[0]);
-					$images_orig = ImageCreateFromJPEG($images);
+
+			// ค้นหาการสร้างไฟล์ภาพ
+			if($extension_lastname==".jpg" or $extension_lastname==".jpeg" or $extension_lastname==".JPG"){
+				$images_orig = ImageCreateFromJPEG($images);
+			} else if($extension_lastname==".png"){
+				$images_orig = ImageCreateFromPNG($images);
+			} else  if($extension_lastname==".gif"){
+				$images_orig = ImageCreateFromGIF($images);
+			}
+
 					$photoX = ImagesX($images_orig);
 					$photoY = ImagesY($images_orig);
 					$images_fin = ImageCreateTrueColor($width, $height);
+					$whiteBackground = imagecolorallocate($images_fin, 255, 255, 255); 
+					imagefill($images_fin,0,0,$whiteBackground); // fill the background with white
 					ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
 					ImageJPEG($images_fin,"theme/photocustomerthumbnail/".$namephoto);
 					ImageDestroy($images_orig);

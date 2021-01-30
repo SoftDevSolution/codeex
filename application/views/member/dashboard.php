@@ -32,7 +32,7 @@
                                 <h3 class="text-muted">Total Company</h3>
                                 <div class="metric-value d-inline-block">
                                     <center>
-                                        <h1 class="mb-1">899</h1>
+                                        <h1 class="mb-1"><? echo number_format($count_company,0); ?></h1>
                                     </center>
                                 </div>
                                 <div class="metric-label d-inline-block float-right font-weight-bold">
@@ -47,7 +47,7 @@
                                 <h3 class="text-muted">Total Company Suplier</h3>
                                 <div class="metric-value d-inline-block">
                                     <center>
-                                        <h1 class="mb-1">783</h1>
+                                        <h1 class="mb-1"><? echo number_format($count_company_supplier,0); ?></h1>
                                     </center>
                                 </div>
                                 <div class="metric-label d-inline-block float-right font-weight-bold">
@@ -59,10 +59,10 @@
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="card border-3 border-top border-top-primary">
                             <div class="card-body">
-                                <h3 class="text-muted">Total Machine</h3>
+                                <h3 class="text-muted">Total Customers</h3>
                                 <div class="metric-value d-inline-block">
                                     <center>
-                                        <h1 class="mb-1">2,099</h1>
+                                        <h1 class="mb-1"><? echo number_format($count_customer,0); ?></h1>
                                     </center>
                                 </div>
                                 <div class="metric-label d-inline-block float-right font-weight-bold">
@@ -77,7 +77,7 @@
                                 <h3 class="text-muted">Total Employees</h3>
                                 <div class="metric-value d-inline-block">
                                     <center>
-                                        <h1 class="mb-1">159</h1>
+                                        <h1 class="mb-1"><? echo number_format($count_employee,0); ?></h1>
                                     </center>
                                 </div>
                                 <div class="metric-label d-inline-block float-right font-weight-bold">
@@ -92,7 +92,7 @@
                                 <h3 class="text-muted">Total Supplier</h3>
                                 <div class="metric-value d-inline-block">
                                     <center>
-                                        <h1 class="mb-1">245</h1>
+                                        <h1 class="mb-1"><? echo number_format($count_company,0); ?></h1>
                                     </center>
                                 </div>
                                 <div class="metric-label d-inline-block float-right font-weight-bold">
@@ -107,7 +107,7 @@
                                 <h3 class="text-muted">Total Assets</h3>
                                 <div class="metric-value d-inline-block">
                                     <center>
-                                        <h1 class="mb-1">874</h1>
+                                        <h1 class="mb-1"><? echo number_format($count_company,0); ?></h1>
                                     </center>
                                 </div>
                                 <div class="metric-label d-inline-block float-right font-weight-bold">

@@ -48,14 +48,9 @@
 
                         <div class="card">
                             <div class="card-body">
-
-                            <?
-                                    foreach ($get_data_company as $mach) {
-                                        
-                                    }
+                                <?
+                                    foreach ($get_data_company as $mach) {  }
                                 ?>
-
-        <!-- <form action="<? echo base_url(); ?>member/add_new_company" method="POST"> -->
         <form action="<? echo base_url(); ?>member/company/edit_data_company" method="POST"  enctype="multipart/form-data">
             <div class="form-group">
                 <label for="company_name">Company Name <span class="text-danger">*</span></label>
@@ -80,13 +75,12 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="company_zip_code">ZipCode</label>
-                    <input type="number" min="0" value="0" class="form-control" id="company_zip_code" name="company_zip_code" placeholder="ZipCode" value="<? echo $mach->company_zip_code; ?>">
+                    <input type="text" class="form-control" id="company_zip_code" name="company_zip_code" placeholder="ZipCode" value="<? echo $mach->company_zip_code; ?>">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="company_tel">Tel.</label>
                     <input type="text" class="form-control" id="company_tel" name="company_tel" placeholder="Tel" value="<? echo $mach->company_tel; ?>">
                 </div>
-                 
                 <div class="form-group col-md-6">
                     <label for="company_fax">Fax</label>
                     <input type="text" class="form-control" id="company_fax" name="company_fax" placeholder="Fax" value="<? echo $mach->company_fax; ?>">
@@ -113,19 +107,19 @@
                     <label for="company_status">Status</label>
                     <select class="form-control" name="company_status" id="company_status">
                         <option value="">-- Select --</option>
-                        <option value="Customer">Customer</option>
-                        <option value="Suspect">Suspect</option>
-                        <option value="Propect">Propect</option>
+                        <option value="Customer" <? if($mach->company_status=="Customer"){ echo "selected"; } else {  } ?>>Customer</option>
+                        <option value="Suspect" <? if($mach->company_status=="Suspect"){ echo "selected"; } else {  } ?>>Suspect</option>
+                        <option value="Propect" <? if($mach->company_status=="Propect"){ echo "selected"; } else {  } ?>>Propect</option>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_area">Area</label>
                     <select class="form-control" name="company_area" id="company_area">
                         <option value="">-- Select --</option>
-                        <option value="North">North</option>
-                        <option value="East">East</option>
-                        <option value="West">West</option>
-                        <option value="South">South</option>
+                        <option value="North" <? if($mach->company_area=="North"){ echo "selected"; } else {  } ?>>North</option>
+                        <option value="East" <? if($mach->company_area=="East"){ echo "selected"; } else {  } ?>>East</option>
+                        <option value="West" <? if($mach->company_area=="West"){ echo "selected"; } else {  } ?>>West</option>
+                        <option value="South" <? if($mach->company_area=="South"){ echo "selected"; } else {  } ?>>South</option>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
@@ -142,7 +136,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_distance_office">Distance from Office</label>
-                    <input type="number" min="0" value="0" class="form-control" id="company_distance_office" name="company_distance_office" placeholder="Distance" value="<? echo $mach->company_distance_office; ?>">
+                    <input type="number" min=0 class="form-control" id="company_distance_office" name="company_distance_office" placeholder="Distance" value="<? echo $mach->company_distance_office; ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_googlemap_link">Google Maps Link</label>

@@ -126,7 +126,6 @@ class Employees extends CI_Controller {
             $width=400; //*** Fix Width & Heigh (Autu caculate) ***//
             $size=GetimageSize($images);
 			$height=round($width*$size[1]/$size[0]);
-			
 			// ค้นหาการสร้างไฟล์ภาพ
 			if($extension_lastname==".jpg" or $extension_lastname==".jpeg" or $extension_lastname==".JPG"){
 				$images_orig = ImageCreateFromJPEG($images);
@@ -136,10 +135,12 @@ class Employees extends CI_Controller {
 				$images_orig = ImageCreateFromGIF($images);
 			}
 
-            $photoX = ImagesX($images_orig);
-            $photoY = ImagesY($images_orig);
-            $images_fin = ImageCreateTrueColor($width, $height);
-            ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+			$photoX = ImagesX($images_orig);
+			$photoY = ImagesY($images_orig);
+			$images_fin = ImageCreateTrueColor($width, $height);
+			$whiteBackground = imagecolorallocate($images_fin, 255, 255, 255); 
+			imagefill($images_fin,0,0,$whiteBackground); // fill the background with white
+			ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
             ImageJPEG($images_fin,"theme/photo_employees_thumbnail/".$namephoto);
             ImageDestroy($images_orig);
             ImageDestroy($images_fin);
@@ -258,7 +259,16 @@ class Employees extends CI_Controller {
 		$emp_weight = $this->input->post("emp_weight");
 
 		// ตรวจสอบว่า Upload ภาพมาหรือไม่
-    	if($_FILES['emp_pic_path']['tmp_name']!=""){
+    	if($_FILES['emp_pic_path']['tmp_name']!="" or !empty($_FILES['emp_pic_path']['tmp_name'])){
+
+			// ลบภาพเดิมออก
+			$get_data_photo = $this->db->where("emp_id",$emp_id)
+						->get("tbl_employees")->result();
+						foreach ($get_data_photo as $bbb) {
+							unlink("./theme/photo_employees/".$bbb->emp_pic_path);
+							unlink("./theme/photo_employees_thumbnail/".$bbb->emp_pic_path);
+						}
+			
 			// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
 			$tempFile = $_FILES['emp_pic_path']['tmp_name'];
 			$tempFilename = $_FILES['emp_pic_path']['name'];
@@ -283,10 +293,12 @@ class Employees extends CI_Controller {
 				$images_orig = ImageCreateFromGIF($images);
 			}
 
-            $photoX = ImagesX($images_orig);
-            $photoY = ImagesY($images_orig);
-            $images_fin = ImageCreateTrueColor($width, $height);
-            ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+			$photoX = ImagesX($images_orig);
+			$photoY = ImagesY($images_orig);
+			$images_fin = ImageCreateTrueColor($width, $height);
+			$whiteBackground = imagecolorallocate($images_fin, 255, 255, 255); 
+			imagefill($images_fin,0,0,$whiteBackground); // fill the background with white
+			ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
             ImageJPEG($images_fin,"theme/photo_employees_thumbnail/".$namephoto);
             ImageDestroy($images_orig);
             ImageDestroy($images_fin);

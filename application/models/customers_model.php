@@ -16,6 +16,12 @@ class Customers_model extends CI_Model {
 		return $query;
 	}	
 
+    public function _count_customer()
+    {
+        $count = $this->db->count_all("tbl_customer");
+                    return $count;
+    }
+
 	public function _addCustomer($cus_name,$cus_mobile_phone,$cus_email,$cus_birth_date,$namephoto,$company_id,$cus_remark)
 	{
 		// เช็คก่อนว่า ชื่อซ้ำไหม?
@@ -59,16 +65,21 @@ class Customers_model extends CI_Model {
 
 	public function _editCustomer($cus_id,$cus_name,$cus_mobile_phone,$cus_email,$cus_birth_date,$namephoto,$company_id,$cus_remark)
 	{
-		// ดึงข้อมูลสมาชิกส่งไปใช้
-		$update_customer = $this->db->where('cus_id',$cus_id)
-							->set('cus_name',$cus_name)
-							->set('cus_mobile_phone',$cus_mobile_phone)
-							->set('cus_email',$cus_email)
-							->set('cus_birth_date',$cus_birth_date)
-							->set('cus_pic_path',$namephoto)
-							->set('company_id',$company_id)
-							->set('cus_remark',$cus_remark)
-							->update('tbl_customer');
+			// ดึงข้อมูลสมาชิกส่งไปใช้
+			$this->db->where('cus_id',$cus_id);
+			$this->db->set('cus_name',$cus_name);
+			$this->db->set('cus_mobile_phone',$cus_mobile_phone);
+			$this->db->set('cus_email',$cus_email);
+			$this->db->set('cus_birth_date',$cus_birth_date);
+			if(empty($namephoto) or $namephoto==""){
+
+			} else {
+			$this->db->set('cus_pic_path',$namephoto);
+			}
+			$this->db->set('company_id',$company_id);
+			$this->db->set('cus_remark',$cus_remark);
+
+			$update_customer = $this->db->update('tbl_customer');
 				if($update_customer){
 					return "success";
 				} else {

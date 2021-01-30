@@ -94,45 +94,33 @@ class Company_supplier_model extends CI_Model {
                         ->count_all_results("tbl_company_supplier");
 
             if($checking>0){
-                // ไม่มีข้อมูล บันทึกข้อมูลได้
+                $query = $this->db->where("com_sup_id",$company_id)
+                        ->set("com_sup_name",$company_name)
+                        ->set("com_sup_addr1",$company_addr1)
+                        ->set("com_sup_addr2",$company_addr2)
+                        ->set("com_sup_addr3",$company_addr3)
+                        ->set("com_sup_city",$company_city)
+                        ->set("com_sup_zipcode",$company_zip_code)
+                        ->set("com_sup_tel",$company_tel)
+                        ->set("com_sup_fax",$company_fax)
+                        ->set("com_sup_cap_invest",$company_capital_investment)
+                        ->set("com_sup_email",$company_email)
+                        ->set("com_sup_group_bussiness",$company_bussiness_group)
+                        ->set("com_sup_product_type",$product_type)
+                        ->set("com_sup_status",$company_status)
+                        ->set("com_sup_area",$company_area)
+                        ->set("com_sup_indust",$company_indust)
+                        ->set("com_sup_www",$company_www)
+                        ->set("com_sup_facebook",$company_facebook)
+                        ->set("com_sup_distance_office",$company_distance_office)
+                        ->set("com_sup_googlemap_link",$company_googlemap_link)
+                        ->set("com_sup_remark",$company_remark)   
+                        ->update("tbl_company_supplier");                     
 
-                // เช็คว่าข้อมูลซ้ำเดิมหรือไม่
-                $check_same = $this->db->where("com_sup_name",$company_name)
-                                ->count_all_results("tbl_company_supplier");
-                    if($check_same>0){
-                        // ซ้ำ
-                        return "same";
+                    if($query){
+                        return "success";
                     } else {
-                        // แก้ไขได้
-                        $query = $this->db->where("com_sup_id",$company_id)
-                                ->set("com_sup_name",$company_name)
-                                ->set("com_sup_addr1",$company_addr1)
-                                ->set("com_sup_addr2",$company_addr2)
-                                ->set("com_sup_addr3",$company_addr3)
-                                ->set("com_sup_city",$company_city)
-                                ->set("com_sup_zipcode",$company_zip_code)
-                                ->set("com_sup_tel",$company_tel)
-                                ->set("com_sup_fax",$company_fax)
-                                ->set("com_sup_cap_invest",$company_capital_investment)
-                                ->set("com_sup_email",$company_email)
-                                ->set("com_sup_group_bussiness",$company_bussiness_group)
-                                ->set("com_sup_product_type",$product_type)
-                                ->set("com_sup_status",$company_status)
-                                ->set("com_sup_area",$company_area)
-                                ->set("com_sup_indust",$company_indust)
-                                ->set("com_sup_www",$company_www)
-                                ->set("com_sup_facebook",$company_facebook)
-                                ->set("com_sup_distance_office",$company_distance_office)
-                                ->set("com_sup_googlemap_link",$company_googlemap_link)
-                                ->set("com_sup_remark",$company_remark)   
-                                ->update("tbl_company_supplier");                     
-
-                            if($query){
-                                return "success";
-                            } else {
-                                return "false";
-                            }
-
+                        return "false";
                     }
 
             } else {
@@ -143,7 +131,6 @@ class Company_supplier_model extends CI_Model {
 
         
     }
-
 
     public function _delete_company_supplier($company_id)
     {

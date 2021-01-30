@@ -131,43 +131,43 @@
                 </div>
                 <div class="form-group col-md-3">
                     <label for="picture_1">Picture 1</label>
-                    <input type="file" class="form-control" id="picture_1" name="picture_1">
+                    <input type="file" class="form-control" id="picture_1" name="asset_pic_path_1">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="picture_2">Picture 2</label>
-                    <input type="file" class="form-control" id="picture_2" name="picture_2">
+                    <input type="file" class="form-control" id="picture_2" name="asset_pic_path_2">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="picture_3">Picture 3</label>
-                    <input type="file" class="form-control" id="picture_3" name="picture_3">
+                    <input type="file" class="form-control" id="picture_3" name="asset_pic_path_3">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="picture_4">Picture 4</label>
-                    <input type="file" class="form-control" id="picture_4" name="picture_4">
+                    <input type="file" class="form-control" id="picture_4" name="asset_pic_path_4">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="picture_5">Picture 5</label>
-                    <input type="file" class="form-control" id="picture_5" name="picture_5">
+                    <input type="file" class="form-control" id="picture_5" name="asset_pic_path_5">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="picture_6">Picture 6</label>
-                    <input type="file" class="form-control" id="picture_6" name="picture_6">
+                    <input type="file" class="form-control" id="picture_6" name="asset_pic_path_6">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="picture_7">Picture 7</label>
-                    <input type="file" class="form-control" id="picture_7" name="picture_7">
+                    <input type="file" class="form-control" id="picture_7" name="asset_pic_path_7">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="picture_8">Picture 8</label>
-                    <input type="file" class="form-control" id="picture_8" name="picture_8">
+                    <input type="file" class="form-control" id="picture_8" name="asset_pic_path_8">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="picture_9">Picture 9</label>
-                    <input type="file" class="form-control" id="picture_9" name="picture_9">
+                    <input type="file" class="form-control" id="picture_9" name="asset_pic_path_9">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="picture_10">Picture 10</label>
-                    <input type="file" class="form-control" id="picture_10" name="picture_10">
+                    <input type="file" class="form-control" id="picture_10" name="asset_pic_path_10">
                 </div>
                 <div class="form-group col-md-12">
                     <label for="mch_detail_remark">Note/Remark</label>
