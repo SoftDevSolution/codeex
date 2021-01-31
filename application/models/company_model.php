@@ -158,5 +158,98 @@ class Company_model extends CI_Model {
     }
 
 
+    public function _get_factory_group()
+    {
+         
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $query = $this->db->order_by("id_factory_group","DESC")
+                        ->get("tbl_factory_group")
+                        ->result();
+                    return $query;
+    }
+
+    public function _count_factory_group()
+    {
+        $count = $this->db->count_all("tbl_factory_group");
+                    return $count;
+    }
+
+    public function _query_factory_group($id_factory_group)
+    {
+        $query = $this->db->where("id_factory_group",$id_factory_group)
+                        ->get("tbl_factory_group")
+                        ->result();
+                    return $query;
+    }
+
+    public function _add_factory_group($name_factory_group)
+	{
+        // Check
+        $checking = $this->db->where("name_factory_group",$name_factory_group)
+                        ->count_all_results("tbl_factory_group");
+
+            if($checking==0){
+                // ไม่มีข้อมูล บันทึกข้อมูลได้
+                $query = $this->db->set("name_factory_group",$name_factory_group)
+                        ->insert("tbl_factory_group");
+                    if($query){
+                        return "success";
+                    } else {
+                        return "false";
+                    }
+            } else {
+                // ซ้ำ แจ้งกลับไป
+                return "same";
+                
+            }
+
+    }
+
+    public function _edit_factory_group($id_factory_group,$name_factory_group)
+	{
+        // Check
+        $checking = $this->db->where("id_factory_group",$id_factory_group)
+                        ->count_all_results("tbl_factory_group");
+
+            if($checking>0){
+                // ไม่มีข้อมูล บันทึกข้อมูลได้
+                $query = $this->db->where("id_factory_group",$id_factory_group)
+                        ->set("name_factory_group",$name_factory_group) 
+                        ->update("tbl_factory_group");
+
+                    if($query){
+                        return "success";
+                    } else {
+                        return "false";
+                    }
+            } else {
+                // Error
+                return "error";
+            }
+
+        
+    }
+
+    public function _delete_factory_group($id_factory_group)
+    {
+        // ตรวจสอบว่ามีข้อมูลหรือไม่
+        $checking = $this->db->where("id_factory_group",$id_factory_group)
+                        ->count_all_results("tbl_factory_group");
+                if($checking==0){
+                    // ไม่พบข้อมูล
+                    return "empty";
+                } else {
+                    // มีข้อมูล ลบได้
+                    $query_delete = $this->db->where("id_factory_group",$id_factory_group)
+                                        ->delete("tbl_factory_group");
+                                if($query_delete){
+                                    return "true";
+                                } else {
+                                    return "false";
+                                }
+                }
+    }
+
+
 
 }

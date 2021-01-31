@@ -40,7 +40,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add New Machine Model (<? echo number_format($count_machine_model,0); ?> Types)</h3>
+                            <h3 class="section-title">Machine Model (<? echo number_format($count_machine_model,0); ?> types)</h3>
                             <hr>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/machine" class="breadcrumb-link">Machine</a></li>
@@ -57,6 +57,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive-lg">
+                                <? 
+                                    if(empty($count_machine_model) or $count_machine_model==0){
+                                ?>
+                                    <div align="center" style="padding: 65px 20px;"> No Data. </div>
+                                <? } else { ?>
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
@@ -82,6 +87,7 @@
                                                 <? } ?>
                                         </tbody>
                                     </table>
+                                <? } ?>
                                 </div>
                             </div>
 
@@ -94,7 +100,7 @@
                                 <form action="<? echo base_url(); ?>member/config_machine_model/add_config_machine_model" method="POST" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-12">
-                                            <label for="model_name">Machine Model</label>
+                                            <label for="model_name">Add New Machine Model</label>
                                             <input type="text" class="form-control" id="model_name" name="model_name" placeholder="Machine Model" required>
                                         </div>
                                     </div>

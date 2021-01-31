@@ -1,5 +1,6 @@
 <? 
     foreach ($setting_web as $data) {  }
+    foreach ($query_factory_group as $fact) {  }
 ?>
 <!doctype html>
 <html lang="en">
@@ -12,7 +13,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Config Machine Model | <? echo $data->nameweb; ?></title>
+    <title>Edit Factory Group | <? echo $data->nameweb; ?></title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -20,7 +21,7 @@
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
-
+    
 </head>
 
 <body>
@@ -38,31 +39,30 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Edit Machine Model</h3>
+                            <h3 class="section-title">Edit Factory Group</h3>
                             <hr>
                         </div>
                     </div>
 
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" id="machine_model">
+                    <div class="col-xl-12 col-12">
+                        <? $this->load->view("member/flashsweet"); ?>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" id="user_type">
                         <div class="card">
                             <div class="card-body">
-                        <?
-                            foreach ($get_data_machine_model as $mach) {
-                                
-                            }
-                        ?>
-                                <form action="<? echo base_url(); ?>member/config_machine_model/edit_data_config_machine_model" method="POST">
+                                <form action="<? echo base_url(); ?>member/config_factory_group/edit_data_factory_group" method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-12">
-                                            <label for="model_name">Edit Machine Model</label>
-                                            <input type="text" class="form-control" id="model_name" name="model_name" placeholder="Machine Model" value="<? echo $mach->model_name; ?>">
+                                            <label for="name_factory_group">Factory Group</label>
+                                            <input type="text" class="form-control" id="name_factory_group" name="name_factory_group" placeholder="user Type" value="<? echo $fact->name_factory_group; ?>">
                                         </div>
                                     </div>
                                     <center>
                                     <hr>
-                                    <input type="hidden" name="model_id" value="<? echo $mach->model_id; ?>">
+                                    <input type="hidden" name="id_factory_group" value="<? echo $fact->id_factory_group; ?>">
                                     <button type="submit" class="btn btn-primary">Edit</button> &nbsp;&nbsp;
-                                    <a href="<? echo base_url(); ?>member/config_machine_model"><button type="button" class="btn btn-warning">Back</button></a>
+                                    <a href="<? echo base_url(); ?>member/config_factory_group"><button type="button" class="btn btn-warning">Back</button></a>
                                     </center>
                                 </form>
                             </div>
@@ -70,8 +70,8 @@
                             <!-- <div class="card-body">
                                     <div class="form-row">
                                         <div class="form-group col-12">
-                                            <label for="model_name">Machine Type</label>
-                                            <input type="text" class="form-control" id="model_name" v-model="model_name" placeholder="Machine Type" required>
+                                            <label for="user_type_name">user Type</label>
+                                            <input type="text" class="form-control" id="user_type_name" v-model="user_type_name" placeholder="user Type" required>
                                         </div>
                                     </div>
                                     <center>
@@ -85,7 +85,6 @@
 
                         </div>
                     </div>
-
                 </div>
 
             </div>

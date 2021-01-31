@@ -1,11 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class company extends CI_Controller {
+class Factory extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('session','database');
+		$this->load->model('Company_model','company');
 	}
 
 	private function checkMember_isvalidated(){  // Check Login status
@@ -30,19 +31,15 @@ class company extends CI_Controller {
 		$this->load->model('Settingme','me');
 		$data['setting_web'] = $this->me->_getall();
 
-		// Load Model Machine
-		$this->load->model('Company_model','machine');
+		// ดึงข้อมูล Company มาใช้งาน
+		$data['data_company'] = $this->company->_get_company_AllData();
+		$data['count_company'] = $this->company->_count_company();
 
-		// ดึงข้อมูล Machine Type มาใช้งาน
-		$data['data_company'] = $this->machine->_get_company_AllData();
-
-		$data['count_company'] = $this->machine->_count_company();
-
-		$this->load->view('member/view_company',$data);
+		$this->load->view('member/view_factory',$data);
 	}
 
 
-	public function add_company()
+	public function add_factory()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -64,10 +61,25 @@ class company extends CI_Controller {
 		$this->load->model('Settingme','me');
 		$data['setting_web'] = $this->me->_getall();
 
-		$this->load->view('member/add_company',$data);
+		// ดึงข้อมูล Factory Group มาใช้งาน
+		$data['query_factory_group'] = $this->company->_get_factory_group();
+
+		// ดึงข้อมูล Product Type มาใช้งาน
+		$this->load->model('Product_type_model','products');
+		$data['query_product_type'] = $this->products->_get_product_type();
+
+		// ดึงข้อมูล Area มาใช้งาน
+		$this->load->model('Area_model','area');
+		$data['query_area'] = $this->area->_getAll();
+
+		// ดึงข้อมูล Industrial Estate มาใช้งาน
+		$this->load->model('Industrial_estate_model','estate');
+		$data['query_industrial_estate'] = $this->estate->_getAll();
+
+		$this->load->view('member/add_factory',$data);
 	}
 
-	public function add_new_company()
+	public function add_new_factory()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -105,7 +117,7 @@ class company extends CI_Controller {
 		if(empty($company_name) or $company_name==""){
 
 			$this->session->set_flashdata('msg_error',' กรุณากรอกข้อมูลให้ครบถ้วน');
-					redirect('member/company/add_company');
+					redirect('member/factory/add_new_factory');
 			
 		} else {
 			// ดำเนินการบันทึกข้อมูลได้
@@ -118,17 +130,17 @@ class company extends CI_Controller {
 				if($update_data=="same") {
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning',' ข้อมูลซ้ำ กรุณาลองใหม่อีกครั้ง');
-						redirect('member/company');
+						redirect('member/factory');
 
 				} else if($update_data=="success") {
 					// success
 					$this->session->set_flashdata('msg_ok',' บันทึกข้อมูลเรียบร้อย');
-						redirect('member/company');
+						redirect('member/factory');
 
 				} else  if($update_data=="false") {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
-						redirect('member/company');
+						redirect('member/factory');
 				}
 
 		}
@@ -141,7 +153,7 @@ class company extends CI_Controller {
 	}
 
 
-	public function edit_company()
+	public function edit_factory()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -165,21 +177,36 @@ class company extends CI_Controller {
 		// Check Data
 		if($company_id=="" or empty($company_id)){
 			$this->session->set_flashdata('msg_warning',' ไม่พบข้อมูลที่คุณต้องการ');
-					redirect('member/company');
+					redirect('member/factory');
 		} else {
 			// แสดงข้อมูลเพื่อแก้ไข
 
 			// ดึงข้อมูล Company Type มาใช้งาน
 			$data['get_data_company'] = $this->company->_query_company($company_id);
+
+			// ดึงข้อมูล Factory Group มาใช้งาน
+			$data['query_factory_group'] = $this->company->_get_factory_group();
+
+			// ดึงข้อมูล Product Type มาใช้งาน
+			$this->load->model('Product_type_model','products');
+			$data['query_product_type'] = $this->products->_get_product_type();
+
+			// ดึงข้อมูล Area มาใช้งาน
+			$this->load->model('Area_model','area');
+			$data['query_area'] = $this->area->_getAll();
+
+			// ดึงข้อมูล Industrial Estate มาใช้งาน
+			$this->load->model('Industrial_estate_model','estate');
+			$data['query_industrial_estate'] = $this->estate->_getAll();
 			
-			$this->load->view('member/edit_company',$data);
+			$this->load->view('member/edit_factory',$data);
 
 		}
 
 	}
 
 
-	public function edit_data_company()
+	public function edit_data_factory()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -218,11 +245,9 @@ class company extends CI_Controller {
 		if(empty($company_name) or $company_name==""){
 
 			$this->session->set_flashdata('msg_error',' กรุณากรอกข้อมูลให้ครบถ้วน');
-					redirect('member/edit_company');
+					redirect('member/factory');
 					//echo "msg_error";
 		} else {
-			
-			
 			// ดำเนินการบันทึกข้อมูลได้
 			$update_data = $this->company->_edit_company($company_id,$company_name,$company_addr1,$company_addr2,$company_addr3,
 			$company_city,$company_zip_code,$company_tel,$company_fax,$company_capital_investment,$company_email,
@@ -236,26 +261,26 @@ class company extends CI_Controller {
 				if($update_data=="same") {
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning',' Same Data. Please try again.');
-						redirect('member/company');
+						redirect('member/factory');
 				} else if($update_data=="success") {
 					// success
 					$this->session->set_flashdata('msg_ok',' Edit Data Success.');
-						redirect('member/company');
+						redirect('member/factory');
 				} else  if($update_data=="false") {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
-						redirect('member/company');
+						redirect('member/factory');
 				} else {
 					// Error
 					$this->session->set_flashdata('msg_error',' Error! Please try again.');
-						redirect('member/company');
+						redirect('member/factory');
 				}
 
 		}
 	}
 
 
-	public function delete_company()
+	public function delete_factory()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -271,7 +296,7 @@ class company extends CI_Controller {
 		// Check Data
 		if($company_id=="" or empty($company_id)){
 			$this->session->set_flashdata('msg_warning',' ไม่พบข้อมูลที่คุณต้องการ');
-					redirect('member/company');
+					redirect('member/factory');
 		} else {
 			// ถ้ามีขอมูล ดำเนินการลบข้อมูล
 			$query = $this->company->_delete_company($company_id);
@@ -279,17 +304,17 @@ class company extends CI_Controller {
 				if($query=="empty") {
 					// ซ้ำ same
 					$this->session->set_flashdata('msg_warning',' Empty data. Please try again.');
-						redirect('member/company');
+						redirect('member/factory');
 
 				} else if($query=="true") {
 					// success
 					$this->session->set_flashdata('msg_ok',' Delete Success.');
-						redirect('member/company');
+						redirect('member/factory');
 
 				} else  if($query=="false") {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
-						redirect('member/company');
+						redirect('member/factory');
 				}
 		}
 	}

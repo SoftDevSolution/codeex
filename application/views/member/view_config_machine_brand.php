@@ -40,11 +40,11 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add New Machine brand (<? echo number_format($count_machine_brand,0); ?> Types)</h3>
+                            <h3 class="section-title">Add New Machine brand (<? echo number_format($count_machine_brand,0); ?> types)</h3>
                             <hr>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/machine" class="breadcrumb-link">Machine</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add New Machine Brand</li>
+                            <li class="breadcrumb-item active" aria-current="page">Machine Brand</li>
                         </ol>
                         </div>
                     </div>
@@ -57,6 +57,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive-lg">
+                                <? 
+                                    if(empty($count_machine_brand) or $count_machine_brand==0){
+                                ?>
+                                    <div align="center" style="padding: 65px 20px;"> No Data. </div>
+                                <? } else { ?>
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
@@ -82,6 +87,7 @@
                                                 <? } ?>
                                         </tbody>
                                     </table>
+                                    <? } ?>
                                 </div>
                             </div>
 
@@ -95,7 +101,7 @@
                                 <form action="<? echo base_url(); ?>member/config_machine_brand/add_config_machine_brand" method="POST" enctype="multipart/form-data">
                                     <div class="form-row">
                                         <div class="form-group col-12">
-                                            <label for="brand_name">Machine Brand</label>
+                                            <label for="brand_name">Add New Machine Brand</label>
                                             <input type="text" class="form-control" id="brand_name" name="brand_name" placeholder="Machine Brand" required>
                                         </div>
                                     </div>

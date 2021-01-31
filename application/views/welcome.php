@@ -57,10 +57,10 @@
 
                 <form method="POST" action="<? echo base_url(); ?>member/dologin">
                     <div class="form-group">
-                        <input class="form-control form-control-lg" name="username_member" id="username" type="text" placeholder="Username" autocomplete="off" required>
+                        <input class="form-control form-control-lg" name="username" id="username" type="text" placeholder="Username" autocomplete="off" required>
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" name="password_member" id="password" type="password" placeholder="Password" required>
+                        <input class="form-control form-control-lg" name="password" id="password" type="password" placeholder="Password" required>
                     </div>
 
                     <!-- <div class="form-group">

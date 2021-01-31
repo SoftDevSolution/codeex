@@ -1,3 +1,6 @@
+<? 
+    foreach ($setting_web as $data) {  }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Edit Machine Type</title>
+    <title>Edit Machine Type | <? echo $data->nameweb; ?></title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -35,7 +38,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Edit New Machine Type</h3>
+                            <h3 class="section-title">Edit Machine Type</h3>
                             <hr>
                         </div>
                     </div>
@@ -55,7 +58,7 @@
                                 <form action="<? echo base_url(); ?>member/config_machine_type/edit_data_config_machine_type" method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-12">
-                                            <label for="machine_type_name">Machine Type</label>
+                                            <label for="machine_type_name">Edit Machine Type</label>
                                             <input type="text" class="form-control" id="machine_type_name" name="machine_type_name" placeholder="Machine Type" value="<? echo $mach->machine_type_name; ?>">
                                         </div>
                                     </div>

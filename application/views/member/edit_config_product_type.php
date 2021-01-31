@@ -12,15 +12,12 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Config Machine Model | <? echo $data->nameweb; ?></title>
-
-    <!-- production version, optimized for size and speed -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Edit Product Type | <? echo $data->nameweb; ?></title>
 
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
-
+    
 </head>
 
 <body>
@@ -38,54 +35,41 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Edit Machine Model</h3>
+                            <h3 class="section-title">Edit Product Type</h3>
                             <hr>
                         </div>
                     </div>
 
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" id="machine_model">
+                    <div class="col-xl-12 col-12">
+                        <? $this->load->view("member/flashsweet"); ?>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
                         <?
-                            foreach ($get_data_machine_model as $mach) {
+                            foreach ($query_product_type as $product) {
                                 
                             }
                         ?>
-                                <form action="<? echo base_url(); ?>member/config_machine_model/edit_data_config_machine_model" method="POST">
+                                <form action="<? echo base_url(); ?>member/config_product_type/data_edit_product_type" method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-12">
-                                            <label for="model_name">Edit Machine Model</label>
-                                            <input type="text" class="form-control" id="model_name" name="model_name" placeholder="Machine Model" value="<? echo $mach->model_name; ?>">
+                                            <label for="product_type_name">Edit Product Type</label>
+                                            <input type="text" class="form-control" id="product_type_name" name="product_type_name" placeholder="Product Type" value="<? echo $product->product_type_name; ?>">
                                         </div>
                                     </div>
                                     <center>
                                     <hr>
-                                    <input type="hidden" name="model_id" value="<? echo $mach->model_id; ?>">
+                                    <input type="hidden" name="product_type_id" value="<? echo $product->product_type_id; ?>">
                                     <button type="submit" class="btn btn-primary">Edit</button> &nbsp;&nbsp;
-                                    <a href="<? echo base_url(); ?>member/config_machine_model"><button type="button" class="btn btn-warning">Back</button></a>
+                                    <a href="<? echo base_url(); ?>member/config_product_type"><button type="button" class="btn btn-warning">Back</button></a>
                                     </center>
                                 </form>
                             </div>
 
-                            <!-- <div class="card-body">
-                                    <div class="form-row">
-                                        <div class="form-group col-12">
-                                            <label for="model_name">Machine Type</label>
-                                            <input type="text" class="form-control" id="model_name" v-model="model_name" placeholder="Machine Type" required>
-                                        </div>
-                                    </div>
-                                    <center>
-                                    <hr>
-                                    <div id="results"></div>
-                                    <br>
-                                    <button type="button" class="btn btn-primary" @click="AddData();">Save</button> &nbsp;&nbsp;
-                                    <button type="reset" class="btn btn-warning" @click="ResetData();">Reset</button>
-                                    </center>
-                            </div> -->
-
                         </div>
                     </div>
-
                 </div>
 
             </div>

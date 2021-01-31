@@ -1,6 +1,5 @@
 <? 
     foreach ($setting_web as $data) {  }
-    //foreach ($get_data_borrow_asset as $cus) {  }
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Config Position</title>
+    <title>Config Position | <? echo $data->nameweb; ?></title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

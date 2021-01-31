@@ -1,5 +1,6 @@
 <? 
     foreach ($setting_web as $data) {  }
+    foreach ($query_data as $ppp) {  }
 ?>
 <!doctype html>
 <html lang="en">
@@ -12,7 +13,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Config Machine Model | <? echo $data->nameweb; ?></title>
+    <title>Edit Area | <? echo $data->nameweb; ?></title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -21,6 +22,7 @@
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
 
+    
 </head>
 
 <body>
@@ -38,54 +40,35 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Edit Machine Model</h3>
-                            <hr>
+                            <h3 class="section-title">Edit Area</h3>
                         </div>
                     </div>
 
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" id="machine_model">
+                    <div class="col-xl-12 col-12">
+                        <? $this->load->view("member/flashsweet"); ?>
+                    </div>
+
+                    
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" id="machine_type">
                         <div class="card">
                             <div class="card-body">
-                        <?
-                            foreach ($get_data_machine_model as $mach) {
-                                
-                            }
-                        ?>
-                                <form action="<? echo base_url(); ?>member/config_machine_model/edit_data_config_machine_model" method="POST">
+                                <form action="<? echo base_url(); ?>member/config_area/data_edit_area" method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-12">
-                                            <label for="model_name">Edit Machine Model</label>
-                                            <input type="text" class="form-control" id="model_name" name="model_name" placeholder="Machine Model" value="<? echo $mach->model_name; ?>">
+                                            <label for="area_name">Area</label>
+                                            <input type="text" class="form-control" id="area_name" name="area_name" placeholder="Area Name" value="<? echo $ppp->area_name; ?>" required>
                                         </div>
                                     </div>
                                     <center>
                                     <hr>
-                                    <input type="hidden" name="model_id" value="<? echo $mach->model_id; ?>">
-                                    <button type="submit" class="btn btn-primary">Edit</button> &nbsp;&nbsp;
-                                    <a href="<? echo base_url(); ?>member/config_machine_model"><button type="button" class="btn btn-warning">Back</button></a>
+                                    <input type="hidden" name="id_area" value="<? echo $ppp->id_area; ?>">
+                                    <button type="submit" class="btn btn-primary">Save</button> &nbsp;&nbsp;
+                                    <a href="<? echo base_url(); ?>member/config_area"><button type="button" class="btn btn-warning">Back</button></a>
                                     </center>
                                 </form>
                             </div>
-
-                            <!-- <div class="card-body">
-                                    <div class="form-row">
-                                        <div class="form-group col-12">
-                                            <label for="model_name">Machine Type</label>
-                                            <input type="text" class="form-control" id="model_name" v-model="model_name" placeholder="Machine Type" required>
-                                        </div>
-                                    </div>
-                                    <center>
-                                    <hr>
-                                    <div id="results"></div>
-                                    <br>
-                                    <button type="button" class="btn btn-primary" @click="AddData();">Save</button> &nbsp;&nbsp;
-                                    <button type="reset" class="btn btn-warning" @click="ResetData();">Reset</button>
-                                    </center>
-                            </div> -->
-
                         </div>
                     </div>
-
                 </div>
 
             </div>
@@ -101,12 +84,12 @@
         <!-- end wrapper  -->
         <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- end main wrapper  -->
-    <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
-    <? $this->load->view("member/script_js"); ?>
     
+    <? $this->load->view("member/script_js"); ?>
+
+
+    
+
 
 </body>
  

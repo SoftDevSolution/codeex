@@ -12,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Company Data | <? echo $data->nameweb; ?></title>
+    <title>Factory Data | <? echo $data->nameweb; ?></title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -38,9 +38,9 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Company Data (<? echo number_format($count_company,0); ?> Companys)
+                            <h3 class="section-title">Factory Data (<? echo number_format($count_company,0); ?>)
                               &nbsp;
-                            <a href="<? echo base_url(); ?>member/company/add_company"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Company</button></a>
+                            <a href="<? echo base_url(); ?>member/factory/add_factory"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Factorty</button></a>
                             </h3>
                         </div>
 
@@ -62,11 +62,12 @@
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Company Name</th>
-                            <th scope="col">Address 1</th>
+                            <th scope="col">Factories Name</th>
                             <th scope="col">Phone </th>
                             <th scope="col">Email </th>
+                            <th scope="col">Address 1</th>
                             <th scope="col">Product Type </th>
+                            <th scope="col">Status </th>
                             <th scope="col"><center>Manage</center> </th>
                             </tr>
                         </thead>
@@ -76,14 +77,22 @@
                                     <tr>
                                     <th scope="row"><? echo $key+1; ?></th>
                                     <td><? echo $mach->company_name; ?></td>
+                                    <td><a href="tel:<? echo $mach->company_tel; ?>"><? echo $mach->company_tel; ?></a></td>
+                                    <td><a href="mailto:<? echo $mach->company_email; ?>"><? echo $mach->company_email; ?></a></td>
                                     <td><? echo $mach->company_addr1; ?></td>
-                                    <td><? echo $mach->company_tel; ?></td>
-                                    <td><? echo $mach->company_email; ?></td>
-                                    <td><? echo $mach->company_product_type; ?></td>
                                     <td>
-                                    <a href="<? echo base_url(); ?>member/company/edit_company/<? echo $mach->company_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                        <? 
+                                        $query_product_type = $this->db->where("product_type_id",$mach->company_product_type)
+                                                    ->get("tbl_product_type")->result();
+                                        foreach ($query_product_type as $products) {
+                                            echo $products->product_type_name;
+                                        } ?>    
+                                    </td>
+                                    <td><? echo $mach->company_status; ?></td>
+                                    <td>
+                                    <a href="<? echo base_url(); ?>member/factory/edit_factory/<? echo $mach->company_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
                                     &nbsp;
-                                    <a href="<? echo base_url(); ?>member/company/delete_company/<? echo $mach->company_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                    <a href="<? echo base_url(); ?>member/factory/delete_factory/<? echo $mach->company_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
                                     </td>
                                     </tr>
                                     <? } ?>

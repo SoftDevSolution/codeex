@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 30, 2021 at 05:33 PM
+-- Generation Time: Jan 31, 2021 at 05:07 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -47,7 +47,11 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (4, 'admin', 'login', '0', '::1', '2021-01-27 02:38:39'),
 (5, 'admin', 'login', '0', '::1', '2021-01-27 15:28:32'),
 (6, 'admin', 'logout', 'admin', '::1', '2021-01-30 14:23:53'),
-(7, 'admin', 'login', '0', '::1', '2021-01-30 14:23:57');
+(7, 'admin', 'login', '0', '::1', '2021-01-30 14:23:57'),
+(8, 'admin', 'login', '0', '::1', '2021-01-31 04:09:32'),
+(9, 'admin', 'logout', 'admin', '::1', '2021-01-31 11:03:39'),
+(10, 'admin', 'login', '', '::1', '2021-01-31 11:18:05'),
+(11, 'admin', 'login', '', '::1', '2021-01-31 16:10:18');
 
 -- --------------------------------------------------------
 
@@ -101,6 +105,27 @@ CREATE TABLE `stat_today` (
   `ip_user` varchar(100) NOT NULL,
   `visit_date` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_area`
+--
+
+CREATE TABLE `tbl_area` (
+  `id_area` int(11) NOT NULL,
+  `area_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_area`
+--
+
+INSERT INTO `tbl_area` (`id_area`, `area_name`) VALUES
+(1, 'North'),
+(2, 'East'),
+(3, 'West'),
+(4, 'South');
 
 -- --------------------------------------------------------
 
@@ -197,7 +222,12 @@ CREATE TABLE `tbl_brand` (
 --
 
 INSERT INTO `tbl_brand` (`brand_id`, `brand_name`) VALUES
-(1, 'Brands');
+(1, 'LASER HANS'),
+(2, 'FUME'),
+(3, 'VISION'),
+(4, 'LASER FOBA'),
+(5, 'LASER HG'),
+(6, 'LASER VIDEOJET');
 
 -- --------------------------------------------------------
 
@@ -234,7 +264,8 @@ CREATE TABLE `tbl_company` (
 --
 
 INSERT INTO `tbl_company` (`company_id`, `company_name`, `company_addr1`, `company_addr2`, `company_addr3`, `company_city`, `company_zip_code`, `company_tel`, `company_fax`, `company_email`, `company_capital_investment`, `company_bussiness_group`, `company_product_type`, `company_status`, `company_remark`, `company_area`, `company_indust`, `company_www`, `company_facebook`, `company_distance_office`, `company_googlemap_link`) VALUES
-(1, 'phploso.com', '118/2 Moo 4 Tambon Huaysai', '118/2 Moo 4 Tambon Huaysai', '', 'Sankamphaeng', 50130, '09984435435', '0976575', 'phploso@hotmail.com', '10000000', 'phploso.com', '2', 'Customer', '', 'North', 'Chiangmai', 'https://github.com/', 'https://github.com/', 3, 'https://github.com/');
+(1, 'phploso.com', '118/2 Moo 4 Tambon Huaysai', '118/2 Moo 4 Tambon Huaysai', '', 'Sankamphaeng', 50130, '09984435435', '0976575', 'phploso@hotmail.com', '10000000', 'phploso.com', '2', 'Customer', '', 'North', 'Chiangmai', 'https://github.com/', 'https://github.com/', 3, 'https://github.com/'),
+(3, 'Test Factory Me', 'เชียงใหม่ นะครับ', 'นครสวรรค์', '', 'Cati', 67900, '0983334400', '', '', '', '2', '3', 'Customer', '', '1', '3', '', '', 45, '');
 
 -- --------------------------------------------------------
 
@@ -271,7 +302,8 @@ CREATE TABLE `tbl_company_supplier` (
 --
 
 INSERT INTO `tbl_company_supplier` (`com_sup_id`, `com_sup_name`, `com_sup_addr1`, `com_sup_addr2`, `com_sup_addr3`, `com_sup_city`, `com_sup_zipcode`, `com_sup_tel`, `com_sup_fax`, `com_sup_email`, `com_sup_cap_invest`, `com_sup_group_bussiness`, `com_sup_product_type`, `com_sup_status`, `com_sup_remark`, `com_sup_area`, `com_sup_indust`, `com_sup_www`, `com_sup_facebook`, `com_sup_distance_office`, `com_sup_googlemap_link`) VALUES
-(1, 'นายอาเขต  แซ่ภู่', '556 หฟดฟหวสดดาฟหสวด', '377 Moo 8 Tambon MaeSong', '', 'Tasongyang', 0, '0989956879', '', 'ppp@z.com', 'aaaa', 'ccccccc', '2', '', '', '', 'gggg', 'https://google.com', 'https://facebook.com', '0', 'https://google.com');
+(1, 'นายอาเขต  แซ่ภู่', 'Chiangmai', '377 Moo 8 Tambon MaeSong', '', 'Tasongyang', 0, '0989956879', '', 'ppp@z.com', 'aaaa', '', '2', '', '', '', '2', 'https://google.com', 'https://facebook.com', '0', 'https://google.com'),
+(2, 'Test', 'Phuget', '', '', '', 0, '0998887761', '0978889900', 'saha@z.com', '30000000', '3', '6', 'Propect', '', '3', '2', '', '', '0', '');
 
 -- --------------------------------------------------------
 
@@ -309,6 +341,7 @@ INSERT INTO `tbl_customer` (`cus_id`, `cus_name`, `cus_mobile_phone`, `cus_email
 CREATE TABLE `tbl_employees` (
   `emp_id` int(11) NOT NULL,
   `emp_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `emp_type_user` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `emp_username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `emp_password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `emp_password_md5` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -337,13 +370,53 @@ CREATE TABLE `tbl_employees` (
 -- Dumping data for table `tbl_employees`
 --
 
-INSERT INTO `tbl_employees` (`emp_id`, `emp_name`, `emp_username`, `emp_password`, `emp_password_md5`, `emp_address`, `position_id`, `emp_tel`, `emp_mobile_phone`, `emp_personal_email`, `emp_company_email`, `emp_birth_date`, `emp_age`, `emp_pic_path`, `emp_work_start_date`, `emp_work_stop_date`, `emp_sarary_start`, `emp_sarary_now`, `emp_remark`, `emp_status`, `emp_blood_group`, `emp_gender`, `emp_height`, `emp_weight`) VALUES
-(1, 'Arkhet Saepu', 'popup', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210119050442.png', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78),
-(2, 'Arkhet Saepu', 'phploso', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210119050827.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65),
-(3, 'Arkhet Saepu', 'sile', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210119050931.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Single', 'B', 'Women', 167, 65),
-(4, 'นายสมชัย   มหานาม', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', '       118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210130161203.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89),
-(6, 'นาบเลิศพันธุ์   สมัครใจ', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89),
-(10, 'Arkhet Saepu', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '      118/2 Moo 4 Tambon Huaysai', 1, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210130160919.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60);
+INSERT INTO `tbl_employees` (`emp_id`, `emp_name`, `emp_type_user`, `emp_username`, `emp_password`, `emp_password_md5`, `emp_address`, `position_id`, `emp_tel`, `emp_mobile_phone`, `emp_personal_email`, `emp_company_email`, `emp_birth_date`, `emp_age`, `emp_pic_path`, `emp_work_start_date`, `emp_work_stop_date`, `emp_sarary_start`, `emp_sarary_now`, `emp_remark`, `emp_status`, `emp_blood_group`, `emp_gender`, `emp_height`, `emp_weight`) VALUES
+(1, 'Arkhet Saepu', '', 'admin', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210119050442.png', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78),
+(2, 'Arkhet Saepu', '', 'phploso', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210119050827.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65),
+(4, 'นายสมชัย   มหานาม', '', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', '       118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210130161203.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89),
+(6, 'นาบเลิศพันธุ์   สมัครใจ', '', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89),
+(10, 'Arkhet Saepu', '', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '      118/2 Moo 4 Tambon Huaysai', 1, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210130160919.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_factory_group`
+--
+
+CREATE TABLE `tbl_factory_group` (
+  `id_factory_group` int(11) NOT NULL,
+  `name_factory_group` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_factory_group`
+--
+
+INSERT INTO `tbl_factory_group` (`id_factory_group`, `name_factory_group`) VALUES
+(1, 'THAIBEV'),
+(2, 'NESTLE'),
+(3, 'BOONRAWD');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_industrial_estate`
+--
+
+CREATE TABLE `tbl_industrial_estate` (
+  `id_industrial_estate` int(11) NOT NULL,
+  `name_industrial_estate` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_industrial_estate`
+--
+
+INSERT INTO `tbl_industrial_estate` (`id_industrial_estate`, `name_industrial_estate`) VALUES
+(1, 'GateWay City'),
+(2, 'WHA ชลบุรี (โครงการ 2)'),
+(3, 'WHA  ตะวันออก (มาบตาพุด)'),
+(4, 'WHA Eastern C-board');
 
 -- --------------------------------------------------------
 
@@ -459,9 +532,9 @@ CREATE TABLE `tbl_machine_type` (
 --
 
 INSERT INTO `tbl_machine_type` (`machine_type_id`, `machine_type_name`) VALUES
-(1, 'TV 32 inch'),
-(2, 'PHPLOSO'),
-(5, 'TV 24 inch');
+(1, 'Food-Scaming'),
+(2, 'Food-Frozen'),
+(3, 'Food-Candy and GUM');
 
 -- --------------------------------------------------------
 
@@ -479,7 +552,16 @@ CREATE TABLE `tbl_model` (
 --
 
 INSERT INTO `tbl_model` (`model_id`, `model_name`) VALUES
-(2, 'bbbb');
+(3, 'CM100'),
+(4, 'CM200'),
+(5, 'CM750'),
+(6, 'HG LASER FLYING 15U'),
+(7, 'HG LASER FLYING 5U'),
+(8, 'HG LASER FLYING 8U'),
+(9, 'IFUME 400 1'),
+(10, 'IFUME 8001'),
+(11, 'ET 2 NEO S'),
+(12, 'LASER MARKING FOBA Y.0500');
 
 -- --------------------------------------------------------
 
@@ -497,7 +579,34 @@ CREATE TABLE `tbl_position` (
 --
 
 INSERT INTO `tbl_position` (`position_id`, `position_name`) VALUES
-(1, 'Position 1');
+(2, 'Purchase'),
+(3, 'Production'),
+(4, 'Engineer'),
+(5, 'Manager');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_product_type`
+--
+
+CREATE TABLE `tbl_product_type` (
+  `product_type_id` int(11) NOT NULL,
+  `product_type_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_product_type`
+--
+
+INSERT INTO `tbl_product_type` (`product_type_id`, `product_type_name`) VALUES
+(1, 'Beverage-Alcohol'),
+(2, 'Beverage-Coffee'),
+(3, 'Beverage-Non Alcohol'),
+(4, 'Cable and Electrical'),
+(5, 'Cosmetic'),
+(6, 'Car Industry'),
+(7, 'Cap Maker');
 
 -- --------------------------------------------------------
 
@@ -672,6 +781,25 @@ INSERT INTO `tbl_supplier` (`supplier_id`, `supplier_name`, `supplier_posion`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_user_type`
+--
+
+CREATE TABLE `tbl_user_type` (
+  `user_type_id` int(11) NOT NULL,
+  `user_type_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_user_type`
+--
+
+INSERT INTO `tbl_user_type` (`user_type_id`, `user_type_name`) VALUES
+(1, 'admin'),
+(2, 'user');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_visitor`
 --
 
@@ -763,6 +891,12 @@ ALTER TABLE `stat_today`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tbl_area`
+--
+ALTER TABLE `tbl_area`
+  ADD PRIMARY KEY (`id_area`);
+
+--
 -- Indexes for table `tbl_asset`
 --
 ALTER TABLE `tbl_asset`
@@ -805,6 +939,18 @@ ALTER TABLE `tbl_employees`
   ADD PRIMARY KEY (`emp_id`);
 
 --
+-- Indexes for table `tbl_factory_group`
+--
+ALTER TABLE `tbl_factory_group`
+  ADD PRIMARY KEY (`id_factory_group`);
+
+--
+-- Indexes for table `tbl_industrial_estate`
+--
+ALTER TABLE `tbl_industrial_estate`
+  ADD PRIMARY KEY (`id_industrial_estate`);
+
+--
 -- Indexes for table `tbl_inventory`
 --
 ALTER TABLE `tbl_inventory`
@@ -839,6 +985,12 @@ ALTER TABLE `tbl_model`
 --
 ALTER TABLE `tbl_position`
   ADD PRIMARY KEY (`position_id`);
+
+--
+-- Indexes for table `tbl_product_type`
+--
+ALTER TABLE `tbl_product_type`
+  ADD PRIMARY KEY (`product_type_id`);
 
 --
 -- Indexes for table `tbl_requisition`
@@ -883,6 +1035,12 @@ ALTER TABLE `tbl_supplier`
   ADD PRIMARY KEY (`supplier_id`);
 
 --
+-- Indexes for table `tbl_user_type`
+--
+ALTER TABLE `tbl_user_type`
+  ADD PRIMARY KEY (`user_type_id`);
+
+--
 -- Indexes for table `tbl_visitor`
 --
 ALTER TABLE `tbl_visitor`
@@ -908,7 +1066,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -929,6 +1087,12 @@ ALTER TABLE `stat_today`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=535;
 
 --
+-- AUTO_INCREMENT for table `tbl_area`
+--
+ALTER TABLE `tbl_area`
+  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `tbl_asset`
 --
 ALTER TABLE `tbl_asset`
@@ -944,19 +1108,19 @@ ALTER TABLE `tbl_borrow_asset`
 -- AUTO_INCREMENT for table `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_company`
 --
 ALTER TABLE `tbl_company`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_company_supplier`
 --
 ALTER TABLE `tbl_company_supplier`
-  MODIFY `com_sup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `com_sup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_customer`
@@ -969,6 +1133,18 @@ ALTER TABLE `tbl_customer`
 --
 ALTER TABLE `tbl_employees`
   MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `tbl_factory_group`
+--
+ALTER TABLE `tbl_factory_group`
+  MODIFY `id_factory_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_industrial_estate`
+--
+ALTER TABLE `tbl_industrial_estate`
+  MODIFY `id_industrial_estate` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_inventory`
@@ -992,19 +1168,25 @@ ALTER TABLE `tbl_machine_part`
 -- AUTO_INCREMENT for table `tbl_machine_type`
 --
 ALTER TABLE `tbl_machine_type`
-  MODIFY `machine_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `machine_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_model`
 --
 ALTER TABLE `tbl_model`
-  MODIFY `model_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `model_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_position`
 --
 ALTER TABLE `tbl_position`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tbl_product_type`
+--
+ALTER TABLE `tbl_product_type`
+  MODIFY `product_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_requisition`
@@ -1047,6 +1229,12 @@ ALTER TABLE `tbl_sub_return_certificate`
 --
 ALTER TABLE `tbl_supplier`
   MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tbl_user_type`
+--
+ALTER TABLE `tbl_user_type`
+  MODIFY `user_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_visitor`

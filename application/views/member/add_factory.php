@@ -9,7 +9,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Add Company Data</title>
+    <title>Add Factory Data</title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -35,11 +35,11 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add Company Data</h3>
+                            <h3 class="section-title">Add Factory Data</h3>
                             <hr>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/company" class="breadcrumb-link">Company Data</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Add Company Data</li>
+                                <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/factory" class="breadcrumb-link">Factory Data</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Add Factory Data</li>
                             </ol>
                         </div>
                         <div class="col-xl-12 col-12">
@@ -51,11 +51,11 @@
                                 div class="card-body">
 
 
-        <!-- <form action="<? echo base_url(); ?>member/add_new_company" method="POST"> -->
-        <form action="<? echo base_url(); ?>member/company/add_new_company" method="POST">
+        <!-- <form action="<? echo base_url(); ?>member/add_new_factory" method="POST"> -->
+        <form action="<? echo base_url(); ?>member/factory/add_new_factory" method="POST">
             <div class="form-group">
-                <label for="company_name">Company Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Company Name" required>
+                <label for="company_name">Factory Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Factory Name" required>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-12">
@@ -76,34 +76,50 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label for="company_zip_code">ZipCode</label>
-                    <input type="number" min="0" value="0" class="form-control" id="company_zip_code" name="company_zip_code" placeholder="ZipCode">
+                    <input type="text" class="form-control" id="company_zip_code" name="company_zip_code" placeholder="ZipCode" onkeypress="return IsNumeric(event,'zipcode');">
+                    <span id="zipcode" style="color: Red; display: none">* Please enter number (0 - 9)</span>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="company_tel">Tel</label>
-                    <input type="text" class="form-control" id="company_tel" name="company_tel" placeholder="Tel">
+                    <input type="text" class="form-control" id="company_tel" name="company_tel" placeholder="Tel" onkeypress="return IsNumeric(event,'myTel');">
+                    <span id="myTel" style="color: Red; display: none">* Please enter number (0 - 9)</span>
                 </div>
                  
                 <div class="form-group col-md-6">
                     <label for="company_fax">Fax</label>
-                    <input type="text" class="form-control" id="company_fax" name="company_fax" placeholder="Fax">
+                    <input type="text" class="form-control" id="company_fax" name="company_fax" placeholder="Fax" onkeypress="return IsNumeric(event,'myFax');">
+                    <span id="myFax" style="color: Red; display: none">* Please enter number (0 - 9)</span>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_capital_investment">Capital Investment</label>
-                    <input type="text" class="form-control" id="company_capital_investment" name="company_capital_investment" placeholder="Capital Investment">
+                    <input type="text" class="form-control" id="company_capital_investment" name="company_capital_investment" placeholder="Capital Investment" onkeypress="return IsNumeric(event,'investment');">
+                    <span id="investment" style="color: Red; display: none">* Please enter number (0 - 9)</span>
                 </div>
-
 
                 <div class="form-group col-md-6">
                     <label for="company_email">Email</label>
                     <input type="text" class="form-control" id="company_email" name="company_email" placeholder="Email">
                 </div>
+
                 <div class="form-group col-md-6">
-                    <label for="company_bussiness_group">Bussiness Group</label>
-                    <input type="text" class="form-control" id="company_bussiness_group" name="company_bussiness_group" placeholder="Bussiness Group">
+                        <label for="company_bussiness_group">Bussiness Group</label>
+                        <select class="form-control" name="company_bussiness_group" id="company_bussiness_group">
+                                <option value="">--Select--</option>
+                                <? foreach ($query_factory_group as $factory) { ?>
+                                <option value="<? echo $factory->id_factory_group; ?>"><? echo $factory->name_factory_group; ?></option>
+                                <? } ?>
+                        </select>
+                    
                 </div>
                 <div class="form-group col-md-6">
                     <label for="product_type">Product Type</label>
-                    <input type="text" class="form-control" id="product_type" name="product_type" placeholder="Product Type">
+                    
+                    <select class="form-control" name="product_type" id="product_type">
+                            <option value="">--Select--</option>
+                            <? foreach ($query_product_type as $products) { ?>
+                            <option value="<? echo $products->product_type_id; ?>"><? echo $products->product_type_name; ?></option>
+                            <? } ?>
+                    </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_status">Status</label>
@@ -118,15 +134,19 @@
                     <label for="company_area">Area</label>
                     <select class="form-control" name="company_area" id="company_area">
                         <option value="">-- Select --</option>
-                        <option value="North">North</option>
-                        <option value="East">East</option>
-                        <option value="West">West</option>
-                        <option value="South">South</option>
+                        <? foreach ($query_area as $area) { ?>
+                        <option value="<? echo $area->id_area; ?>"><? echo $area->area_name; ?></option>
+                        <? } ?>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_indust">Industrial Estate</label>
-                    <input type="text" class="form-control" id="company_indust" name="company_indust" placeholder="Industrial Estate">
+                    <select class="form-control" name="company_indust" id="company_indust">
+                        <option value="">-- Select --</option>
+                        <? foreach ($query_industrial_estate as $estate) { ?>
+                        <option value="<? echo $estate->id_industrial_estate; ?>"><? echo $estate->name_industrial_estate; ?></option>
+                        <? } ?>
+                    </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_www">Website</label>
@@ -137,8 +157,9 @@
                     <input type="text" class="form-control" id="company_facebook" name="company_facebook" placeholder="URL Facebook">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="company_distance_office">Distance from Office</label>
-                    <input type="number" min="0" value="0" class="form-control" id="company_distance_office" name="company_distance_office" placeholder="Distance">
+                    <label for="company_distance_office">Distance from Office (km)</label>
+                    <input type="number" min="0" value="0" class="form-control" id="company_distance_office" name="company_distance_office" placeholder="Distance" onkeypress="return IsNumeric(event,'myDistance');">
+                    <span id="myDistance" style="color: Red; display: none">* Please enter number (0 - 9)</span>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_googlemap_link">Google Maps Link</label>
@@ -182,6 +203,16 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
+
+<script>
+    function IsNumeric(e,display) {
+            var specialKeys = new Array();
+            var keyCode = e.which ? e.which : e.keyCode
+            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            document.getElementById(display).style.display = ret ? "none" : "inline";
+            return ret;
+        }
+</script>
 
 </body>
  

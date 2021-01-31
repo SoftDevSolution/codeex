@@ -1,3 +1,6 @@
+<? 
+    foreach ($setting_web as $data) {  }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Config Machine Brand</title>
+    <title>Config Machine Brand | <? echo $data->nameweb; ?></title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -35,7 +38,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Edit New Machine Brand</h3>
+                            <h3 class="section-title">Edit Machine Brand</h3>
                             <hr>
                         </div>
                     </div>
@@ -51,7 +54,7 @@
                                 <form action="<? echo base_url(); ?>member/config_machine_brand/edit_data_config_machine_brand" method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-12">
-                                            <label for="brand_name">Machine Brand</label>
+                                            <label for="brand_name">Edit Machine Brand</label>
                                             <input type="text" class="form-control" id="brand_name" name="brand_name" placeholder="Machine Brand" value="<? echo $mach->brand_name; ?>">
                                         </div>
                                     </div>

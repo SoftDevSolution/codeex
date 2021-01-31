@@ -12,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Company Supplier | <? echo $data->nameweb; ?></title>
+    <title>Factory Supplier | <? echo $data->nameweb; ?></title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -39,8 +39,8 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Company Supplier (<? echo number_format($count_company_supplier,0); ?> Company)&nbsp;
-                            <a href="<? echo base_url(); ?>member/company_supplier/add_company_supplier"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Company Supplier</button></a>
+                            <h3 class="section-title">Factory Supplier (<? echo number_format($count_factory_supplier,0); ?> Factory)&nbsp;
+                            <a href="<? echo base_url(); ?>member/factory_supplier/add_factory_supplier"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Factory Supplier</button></a>
                             </h3>
                         </div>
 
@@ -55,33 +55,40 @@
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Company Supplier</th>
-                            <th scope="col">Address 1</th>
+                            <th scope="col">Factory Supplier</th>
                             <th scope="col">Phone </th>
                             <th scope="col">Email </th>
+                            <th scope="col">Address 1</th>
                             <th scope="col">Product Type </th>
                             <th scope="col"><center>Manage</center> </th>
                             </tr>
                         </thead>
                         <tbody>
-                                        <? 
-                                            foreach ($data_company_supplier as $key => $mach) {
-                                                
-                                                ?>
-                                                            <tr>
-                                                            <th scope="row"><? echo $key+1; ?></th>
-                                                            <td><? echo $mach->com_sup_name; ?></td>
-                                                            <td><? echo $mach->com_sup_addr1; ?></td>
-                                                            <td><? echo $mach->com_sup_tel; ?></td>
-                                                            <td><? echo $mach->com_sup_email; ?></td>
-                                                            <td><? echo $mach->com_sup_product_type; ?></td>
-                                                            <td>
-                                                            <a href="<? echo base_url(); ?>member/company_supplier/edit_company_supplier/<? echo $mach->com_sup_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
-                                                            &nbsp;
-                                                            <a href="<? echo base_url(); ?>member/company_supplier/delete_company_supplier/<? echo $mach->com_sup_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
-                                                            </td>
-                                                            </tr>
-                                                <? } ?>
+                            <? 
+                                foreach ($data_factory_supplier as $key => $factsub) {
+                                    
+                            ?>
+                                <tr>
+                                <th scope="row"><? echo $key+1; ?></th>
+                                <td><? echo $factsub->com_sup_name; ?></td>
+                                <td><? echo $factsub->com_sup_tel; ?></td>
+                                <td><? echo $factsub->com_sup_email; ?></td>
+                                <td><? echo $factsub->com_sup_addr1; ?></td>
+                                <td>
+                                    <? 
+                                    $query_sup_product_type = $this->db->where("product_type_id",$factsub->com_sup_product_type)
+                                                ->get("tbl_product_type")->result();
+                                    foreach ($query_sup_product_type as $products) {
+                                        echo $products->product_type_name;
+                                    } ?> 
+                                </td>
+                                <td>
+                                <a href="<? echo base_url(); ?>member/factory_supplier/edit_factory_supplier/<? echo $factsub->com_sup_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                &nbsp;
+                                <a href="<? echo base_url(); ?>member/factory_supplier/delete_factory_supplier/<? echo $factsub->com_sup_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                </td>
+                                </tr>
+                            <? } ?>
                         </tbody>
 
                         </table>
