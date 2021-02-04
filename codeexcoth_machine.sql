@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 31, 2021 at 05:07 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.30
+-- Generation Time: Feb 04, 2021 at 09:25 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,7 +51,8 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (8, 'admin', 'login', '0', '::1', '2021-01-31 04:09:32'),
 (9, 'admin', 'logout', 'admin', '::1', '2021-01-31 11:03:39'),
 (10, 'admin', 'login', '', '::1', '2021-01-31 11:18:05'),
-(11, 'admin', 'login', '', '::1', '2021-01-31 16:10:18');
+(11, 'admin', 'login', '', '::1', '2021-01-31 16:10:18'),
+(12, 'admin', 'login', '', '::1', '2021-02-04 04:59:58');
 
 -- --------------------------------------------------------
 
@@ -264,8 +265,46 @@ CREATE TABLE `tbl_company` (
 --
 
 INSERT INTO `tbl_company` (`company_id`, `company_name`, `company_addr1`, `company_addr2`, `company_addr3`, `company_city`, `company_zip_code`, `company_tel`, `company_fax`, `company_email`, `company_capital_investment`, `company_bussiness_group`, `company_product_type`, `company_status`, `company_remark`, `company_area`, `company_indust`, `company_www`, `company_facebook`, `company_distance_office`, `company_googlemap_link`) VALUES
-(1, 'phploso.com', '118/2 Moo 4 Tambon Huaysai', '118/2 Moo 4 Tambon Huaysai', '', 'Sankamphaeng', 50130, '09984435435', '0976575', 'phploso@hotmail.com', '10000000', 'phploso.com', '2', 'Customer', '', 'North', 'Chiangmai', 'https://github.com/', 'https://github.com/', 3, 'https://github.com/'),
-(3, 'Test Factory Me', 'เชียงใหม่ นะครับ', 'นครสวรรค์', '', 'Cati', 67900, '0983334400', '', '', '', '2', '3', 'Customer', '', '1', '3', '', '', 45, '');
+(3, 'CodeEx', 'CodeEx', 'CodeEx', 'CodeEx', 'Cati', 67900, '0983334400', '', 'CodeEx', '', '2', '1', 'Customer', '', '1', '3', '', '', 45, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_company_customer`
+--
+
+CREATE TABLE `tbl_company_customer` (
+  `com_cus_id` int(11) NOT NULL,
+  `com_cus_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_addr1` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_addr2` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_addr3` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_city` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_zipcode` int(5) DEFAULT 0,
+  `com_cus_tel` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_fax` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_cap_invest` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_group_bussiness` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_product_type` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_status` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_remark` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_area` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_indust` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_www` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_facebook` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_distance_office` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_cus_googlemap_link` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_company_customer`
+--
+
+INSERT INTO `tbl_company_customer` (`com_cus_id`, `com_cus_name`, `com_cus_addr1`, `com_cus_addr2`, `com_cus_addr3`, `com_cus_city`, `com_cus_zipcode`, `com_cus_tel`, `com_cus_fax`, `com_cus_email`, `com_cus_cap_invest`, `com_cus_group_bussiness`, `com_cus_product_type`, `com_cus_status`, `com_cus_remark`, `com_cus_area`, `com_cus_indust`, `com_cus_www`, `com_cus_facebook`, `com_cus_distance_office`, `com_cus_googlemap_link`) VALUES
+(1, 'Beverage-Coffee', 'Chiangmai', '377 Moo 8 Tambon MaeSong', '', 'Tasongyang', 0, '0989956879', '', 'ppp@z.com', 'aaaa', '', '2', '', '', '', '2', 'https://google.com', 'https://facebook.com', '0', 'https://google.com'),
+(2, 'Car Industry', 'Phuget', '', '', '', 0, '0998887761', '0978889900', 'saha@z.com', '30000000', '3', '6', 'Propect', '', '3', '2', '', '', '0', ''),
+(3, 'Customer Factory', '150 ม.4 ต.บ้านเป้า', '150 ม.4 ต.บ้านเป้า', 'ประตูฝั่งตาชั่งอ้อย', 'อ.เกษตรสมบูรณ์', 0, '123456', 'CodeEx', 'csxman69@gmail.com', 'CodeEx', '2', '6', 'Suspect', '', '4', '4', '', '', '0', '');
 
 -- --------------------------------------------------------
 
@@ -275,26 +314,26 @@ INSERT INTO `tbl_company` (`company_id`, `company_name`, `company_addr1`, `compa
 
 CREATE TABLE `tbl_company_supplier` (
   `com_sup_id` int(11) NOT NULL,
-  `com_sup_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_addr1` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_addr2` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_addr3` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_city` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_zipcode` int(5) NOT NULL,
-  `com_sup_tel` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_fax` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_cap_invest` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_group_bussiness` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_product_type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_status` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_remark` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_area` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_indust` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_www` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_facebook` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_distance_office` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `com_sup_googlemap_link` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+  `com_sup_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_addr1` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_addr2` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_addr3` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_city` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_zipcode` int(5) DEFAULT 0,
+  `com_sup_tel` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_fax` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_cap_invest` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_group_bussiness` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_product_type` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_status` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_remark` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_area` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_indust` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_www` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_facebook` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_distance_office` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `com_sup_googlemap_link` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -302,8 +341,8 @@ CREATE TABLE `tbl_company_supplier` (
 --
 
 INSERT INTO `tbl_company_supplier` (`com_sup_id`, `com_sup_name`, `com_sup_addr1`, `com_sup_addr2`, `com_sup_addr3`, `com_sup_city`, `com_sup_zipcode`, `com_sup_tel`, `com_sup_fax`, `com_sup_email`, `com_sup_cap_invest`, `com_sup_group_bussiness`, `com_sup_product_type`, `com_sup_status`, `com_sup_remark`, `com_sup_area`, `com_sup_indust`, `com_sup_www`, `com_sup_facebook`, `com_sup_distance_office`, `com_sup_googlemap_link`) VALUES
-(1, 'นายอาเขต  แซ่ภู่', 'Chiangmai', '377 Moo 8 Tambon MaeSong', '', 'Tasongyang', 0, '0989956879', '', 'ppp@z.com', 'aaaa', '', '2', '', '', '', '2', 'https://google.com', 'https://facebook.com', '0', 'https://google.com'),
-(2, 'Test', 'Phuget', '', '', '', 0, '0998887761', '0978889900', 'saha@z.com', '30000000', '3', '6', 'Propect', '', '3', '2', '', '', '0', '');
+(1, 'Beverage-Coffee', 'Chiangmai', '377 Moo 8 Tambon MaeSong', '', 'Tasongyang', 0, '0989956879', '', 'ppp@z.com', 'aaaa', '', '2', '', '', '', '2', 'https://google.com', 'https://facebook.com', '0', 'https://google.com'),
+(2, 'Car Industry', 'Phuget', '', '', '', 0, '0998887761', '0978889900', 'saha@z.com', '30000000', '3', '6', 'Propect', '', '3', '2', '', '', '0', '');
 
 -- --------------------------------------------------------
 
@@ -363,19 +402,20 @@ CREATE TABLE `tbl_employees` (
   `emp_blood_group` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `emp_gender` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `emp_height` int(3) NOT NULL,
-  `emp_weight` int(3) NOT NULL
+  `emp_weight` int(3) NOT NULL,
+  `company_id` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tbl_employees`
 --
 
-INSERT INTO `tbl_employees` (`emp_id`, `emp_name`, `emp_type_user`, `emp_username`, `emp_password`, `emp_password_md5`, `emp_address`, `position_id`, `emp_tel`, `emp_mobile_phone`, `emp_personal_email`, `emp_company_email`, `emp_birth_date`, `emp_age`, `emp_pic_path`, `emp_work_start_date`, `emp_work_stop_date`, `emp_sarary_start`, `emp_sarary_now`, `emp_remark`, `emp_status`, `emp_blood_group`, `emp_gender`, `emp_height`, `emp_weight`) VALUES
-(1, 'Arkhet Saepu', '', 'admin', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210119050442.png', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78),
-(2, 'Arkhet Saepu', '', 'phploso', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210119050827.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65),
-(4, 'นายสมชัย   มหานาม', '', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', '       118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210130161203.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89),
-(6, 'นาบเลิศพันธุ์   สมัครใจ', '', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89),
-(10, 'Arkhet Saepu', '', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '      118/2 Moo 4 Tambon Huaysai', 1, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210130160919.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60);
+INSERT INTO `tbl_employees` (`emp_id`, `emp_name`, `emp_type_user`, `emp_username`, `emp_password`, `emp_password_md5`, `emp_address`, `position_id`, `emp_tel`, `emp_mobile_phone`, `emp_personal_email`, `emp_company_email`, `emp_birth_date`, `emp_age`, `emp_pic_path`, `emp_work_start_date`, `emp_work_stop_date`, `emp_sarary_start`, `emp_sarary_now`, `emp_remark`, `emp_status`, `emp_blood_group`, `emp_gender`, `emp_height`, `emp_weight`, `company_id`) VALUES
+(1, 'Arkhet Saepu', '', 'admin', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210119050442.png', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78, 1),
+(2, 'Arkhet Saepu', '', 'phploso', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210119050827.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65, 1),
+(4, 'นายสมชัย   มหานาม', '', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', '       118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210130161203.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89, 1),
+(6, 'นาบเลิศพันธุ์   สมัครใจ', '', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89, 1),
+(10, 'Arkhet Saepu', '', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '      118/2 Moo 4 Tambon Huaysai', 1, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210130160919.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60, 1);
 
 -- --------------------------------------------------------
 
@@ -800,10 +840,10 @@ INSERT INTO `tbl_user_type` (`user_type_id`, `user_type_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_visitor`
+-- Table structure for table `tbl_visitor_customer`
 --
 
-CREATE TABLE `tbl_visitor` (
+CREATE TABLE `tbl_visitor_customer` (
   `vs_id` int(11) NOT NULL,
   `vs_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `vs_address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -815,15 +855,47 @@ CREATE TABLE `tbl_visitor` (
   `vs_tel_main` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `vs_mobile_phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `vs_email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `vs_email_personal` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+  `vs_email_personal` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `com_cus_id` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `tbl_visitor`
+-- Dumping data for table `tbl_visitor_customer`
 --
 
-INSERT INTO `tbl_visitor` (`vs_id`, `vs_name`, `vs_address`, `vs_company`, `vs_position`, `vs_branch`, `vs_tel_1`, `vs_tel_2`, `vs_tel_main`, `vs_mobile_phone`, `vs_email`, `vs_email_personal`) VALUES
-(1, '444', '44', '44', '44', '44', '44', '44', '44', '44', '44', '44');
+INSERT INTO `tbl_visitor_customer` (`vs_id`, `vs_name`, `vs_address`, `vs_company`, `vs_position`, `vs_branch`, `vs_tel_1`, `vs_tel_2`, `vs_tel_main`, `vs_mobile_phone`, `vs_email`, `vs_email_personal`, `com_cus_id`) VALUES
+(1, '444', '44', '44', '44', '44', '44', '44', '44', '44', '44', '44', 3),
+(2, 'นายคัสสสสส', 'cus', 'cus', 'cus', 'cus', '44', '13124', '44', '0651636553', 'csxman69@gmail.com', 'csxman69@gmail.com', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_visitor_supplier`
+--
+
+CREATE TABLE `tbl_visitor_supplier` (
+  `vs_id` int(11) NOT NULL,
+  `vs_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `vs_address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `vs_company` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `vs_position` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `vs_branch` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `vs_tel_1` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `vs_tel_2` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `vs_tel_main` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `vs_mobile_phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `vs_email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `vs_email_personal` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `com_sup_id` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_visitor_supplier`
+--
+
+INSERT INTO `tbl_visitor_supplier` (`vs_id`, `vs_name`, `vs_address`, `vs_company`, `vs_position`, `vs_branch`, `vs_tel_1`, `vs_tel_2`, `vs_tel_main`, `vs_mobile_phone`, `vs_email`, `vs_email_personal`, `com_sup_id`) VALUES
+(1, 'Supplier01', 'Supplier01', 'Supplier01', 'Supplier01', 'Supplier01', '12341234', '123412', '341234', '44', '44', '44', 2),
+(2, 'Supplier02', 'Supplier02', 'Supplier02', 'Supplier02', 'Supplier02', '22222', '22222', '44', '0448811114', 'csxman69@gmail.com', 'csxman69@gmail.com', 2);
 
 -- --------------------------------------------------------
 
@@ -919,6 +991,12 @@ ALTER TABLE `tbl_brand`
 --
 ALTER TABLE `tbl_company`
   ADD PRIMARY KEY (`company_id`);
+
+--
+-- Indexes for table `tbl_company_customer`
+--
+ALTER TABLE `tbl_company_customer`
+  ADD PRIMARY KEY (`com_cus_id`);
 
 --
 -- Indexes for table `tbl_company_supplier`
@@ -1041,9 +1119,15 @@ ALTER TABLE `tbl_user_type`
   ADD PRIMARY KEY (`user_type_id`);
 
 --
--- Indexes for table `tbl_visitor`
+-- Indexes for table `tbl_visitor_customer`
 --
-ALTER TABLE `tbl_visitor`
+ALTER TABLE `tbl_visitor_customer`
+  ADD PRIMARY KEY (`vs_id`);
+
+--
+-- Indexes for table `tbl_visitor_supplier`
+--
+ALTER TABLE `tbl_visitor_supplier`
   ADD PRIMARY KEY (`vs_id`);
 
 --
@@ -1066,7 +1150,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -1115,6 +1199,12 @@ ALTER TABLE `tbl_brand`
 --
 ALTER TABLE `tbl_company`
   MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tbl_company_customer`
+--
+ALTER TABLE `tbl_company_customer`
+  MODIFY `com_cus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_company_supplier`
@@ -1234,13 +1324,19 @@ ALTER TABLE `tbl_supplier`
 -- AUTO_INCREMENT for table `tbl_user_type`
 --
 ALTER TABLE `tbl_user_type`
-  MODIFY `user_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `tbl_visitor`
+-- AUTO_INCREMENT for table `tbl_visitor_customer`
 --
-ALTER TABLE `tbl_visitor`
-  MODIFY `vs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `tbl_visitor_customer`
+  MODIFY `vs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_visitor_supplier`
+--
+ALTER TABLE `tbl_visitor_supplier`
+  MODIFY `vs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
