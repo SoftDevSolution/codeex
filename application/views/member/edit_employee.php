@@ -67,7 +67,6 @@
                 <div class="form-group col-md-4">
                     <label for="position_id">Position</label>
                     <select class="form-control" name="position_id" id="position_id">
-                        <option value="">-- Select --</option>
                     <?
                         // ดึงข้อมูล Position ID มาใช้งาน
                         $query_position_id = $this->db->order_by("position_id","desc")

@@ -129,12 +129,12 @@ class Factory extends CI_Controller {
 			
 				if($update_data=="same") {
 					// ซ้ำ
-					$this->session->set_flashdata('msg_warning',' ข้อมูลซ้ำ กรุณาลองใหม่อีกครั้ง');
+					$this->session->set_flashdata('msg_warning',' Data is exist. Please try again.');
 						redirect('member/factory');
 
 				} else if($update_data=="success") {
 					// success
-					$this->session->set_flashdata('msg_ok',' บันทึกข้อมูลเรียบร้อย');
+					$this->session->set_flashdata('msg_ok',' Successfully.');
 						redirect('member/factory');
 
 				} else  if($update_data=="false") {
@@ -144,10 +144,6 @@ class Factory extends CI_Controller {
 				}
 
 		}
-
-		// ค่าทั่วไปของเว็บ
-		$this->load->model('Settingme','me');
-		$data['setting_web'] = $this->me->_getall();
 
 		
 	}
@@ -176,7 +172,7 @@ class Factory extends CI_Controller {
 
 		// Check Data
 		if($company_id=="" or empty($company_id)){
-			$this->session->set_flashdata('msg_warning',' ไม่พบข้อมูลที่คุณต้องการ');
+			$this->session->set_flashdata('msg_warning',' Not found data. Please try again.');
 					redirect('member/factory');
 		} else {
 			// แสดงข้อมูลเพื่อแก้ไข
@@ -244,7 +240,7 @@ class Factory extends CI_Controller {
 		// ตรวจสอบข้อมูลว่ากรอกมาแล้วหรือยัง
 		if(empty($company_name) or $company_name==""){
 
-			$this->session->set_flashdata('msg_error',' กรุณากรอกข้อมูลให้ครบถ้วน');
+			$this->session->set_flashdata('msg_error',' Empty data. Please try again.');
 					redirect('member/factory');
 					//echo "msg_error";
 		} else {
@@ -295,7 +291,7 @@ class Factory extends CI_Controller {
 		
 		// Check Data
 		if($company_id=="" or empty($company_id)){
-			$this->session->set_flashdata('msg_warning',' ไม่พบข้อมูลที่คุณต้องการ');
+			$this->session->set_flashdata('msg_warning',' Not found data. Please try again.');
 					redirect('member/factory');
 		} else {
 			// ถ้ามีขอมูล ดำเนินการลบข้อมูล

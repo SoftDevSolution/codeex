@@ -117,12 +117,12 @@ class company extends CI_Controller {
 			
 				if($update_data=="same") {
 					// ซ้ำ
-					$this->session->set_flashdata('msg_warning',' ข้อมูลซ้ำ กรุณาลองใหม่อีกครั้ง');
+					$this->session->set_flashdata('msg_warning',' Data is exist. Please try again.');
 						redirect('member/company');
 
 				} else if($update_data=="success") {
 					// success
-					$this->session->set_flashdata('msg_ok',' บันทึกข้อมูลเรียบร้อย');
+					$this->session->set_flashdata('msg_ok',' Successfully.');
 						redirect('member/company');
 
 				} else  if($update_data=="false") {
@@ -272,7 +272,7 @@ class company extends CI_Controller {
 		
 		// Check Data
 		if($company_id=="" or empty($company_id)){
-			$this->session->set_flashdata('msg_warning',' ไม่พบข้อมูลที่คุณต้องการ');
+			$this->session->set_flashdata('msg_warning',' Not found data. Please try again.');
 					redirect('member/company');
 		} else {
 			// ถ้ามีขอมูล ดำเนินการลบข้อมูล

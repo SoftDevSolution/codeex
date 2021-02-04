@@ -106,7 +106,7 @@
                                     <hr>
                                     <input type="hidden" id="vs_id" name="vs_id" value="<? echo $mach->vs_id; ?>">
                                     <button type="submit" class="btn btn-primary">Edit</button> &nbsp;&nbsp;
-                                    <a href="<? echo base_url(); ?>member/borrow_asset"><button type="button" class="btn btn-warning">Back</button></a>
+                                    <a href="<? echo base_url(); ?>member/visitor"><button type="button" class="btn btn-warning">Back</button></a>
                                     </center>
                                 </form>
                             </div>

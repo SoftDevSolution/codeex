@@ -186,7 +186,7 @@ class Config_user_type extends CI_Controller {
 			
 				if($update_data=="same") {
 					// ซ้ำ
-					$this->session->set_flashdata('msg_warning',' Same Data. Please try again.');
+					$this->session->set_flashdata('msg_warning',' Data is exist. Please try again.');
 						redirect('member/config_user_type');
 
 				} else if($update_data=="success") {

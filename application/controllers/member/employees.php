@@ -309,8 +309,7 @@ class Employees extends CI_Controller {
 			// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
 			$namephoto = "";
 		}
-		
-		// ตรวจสอบข้อมูลว่ากรอกมาแล้วหรือยัง
+		//ตรวจสอบข้อมูลว่ากรอกมาแล้วหรือยัง
 		if(empty($emp_name) or empty($emp_id) or empty($emp_mobile_phone)){
 
 			$this->session->set_flashdata('msg_error',' กรุณากรอกข้อมูลให้ครบถ้วน');

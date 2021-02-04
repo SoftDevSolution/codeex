@@ -67,6 +67,7 @@
                                     <td><? echo $cus->svo_emp_receive; ?></td>
                                     <td>
                                         <center>
+                                            <button class="btn btn-sm btn-warning">จบงาน</button>
                                             <a href="<? echo base_url(); ?>member/service_outside/edit_service_outside/<? echo $cus->svo_id; ?>"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                             &nbsp;
                                             <span class="text-danger" onclick="DeleteServiceOutside('<? echo $cus->svo_id; ?>');" style="cursor:pointer;"><i class="fas fa-trash"></i></span>

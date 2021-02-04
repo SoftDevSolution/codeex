@@ -265,8 +265,13 @@ class Supplier extends CI_Controller {
 			$this->session->set_flashdata('msg_warning',' Not found data. Please try again.');
 						redirect('member/supplier/add_supplier');
 		} else {
-			// ดำเนินการบันทึกข้อมูล
-			$edit_supplier = $this->supplier->_editSupplier($supplier_id,$supplier_name,$supplier_mobile_phone,$supplier_email,$supplier_birth_date,$namephoto,$com_sup_id,$supplier_remark,$supplier_posion);
+			if(empty($namephoto) or $namephoto==""){ 
+				// No Photo
+				$edit_supplier = $this->supplier->_editSupplier_nophoto($supplier_id,$supplier_name,$supplier_mobile_phone,$supplier_email,$supplier_birth_date,$com_sup_id,$supplier_remark,$supplier_posion);
+			} else {
+				// Change Photo
+				$edit_supplier = $this->supplier->_editSupplier($supplier_id,$supplier_name,$supplier_mobile_phone,$supplier_email,$supplier_birth_date,$namephoto,$com_sup_id,$supplier_remark,$supplier_posion);
+			}
 				if($edit_supplier=="same"){
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning','Data is exist. Please try again.');

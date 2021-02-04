@@ -59,23 +59,26 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory"><i class="fas fa-cog"></i> Factory Data</a>
+                        <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory"><i class="fas fa-cog"></i> Factory Owner</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="factory_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory_supplier" href="<? echo base_url(); ?>member/factory_supplier"><i class="fas fa-list-ul"></i> Factory Supplier</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="machine"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/machine" href="<? echo base_url(); ?>member/machine"><i class="fas fa-cog"></i> Machine Data</a>
+                        <a class="nav-link <? if($activemenu=="factory_customer"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory_customer" href="<? echo base_url(); ?>member/factory_customer"><i class="fas fa-list-ul"></i> Factory Customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <? if($activemenu=="machine"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/machine" href="<? echo base_url(); ?>member/machine"><i class="fas fa-cog"></i> Inventory</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="employees" or $activemenu=="add_employee"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/employees"><i class="fas fa-users"></i> Employees</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="customers" or $activemenu=="add_customer"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/customers"><i class="fas fa-users"></i> Customers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="supplier" or $activemenu=="add_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/supplier"><i class="fas fa-users"></i> Supplier</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="assets" or $activemenu=="add_asset"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/assets"><i class="fas fa-box-open"></i> Assets</a>
                     </li>

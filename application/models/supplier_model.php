@@ -78,6 +78,25 @@ class Supplier_model extends CI_Model {
 				}
 	}
 
+	public function _editSupplier_nophoto($supplier_id,$supplier_name,$supplier_mobile_phone,$supplier_email	,$supplier_birth_date,$com_sup_id,$supplier_remark,$supplier_posion)
+	{
+		// ดึงข้อมูลสมาชิกส่งไปใช้
+		$update_customer = $this->db->where('supplier_id',$supplier_id)
+							->set('supplier_name',$supplier_name)
+							->set('supplier_mobile_phone',$supplier_mobile_phone)
+							->set('supplier_email',$supplier_email	)
+							->set('supplier_birth_date',$supplier_birth_date)
+							->set('com_sup_id',$com_sup_id)
+                            ->set('supplier_remark',$supplier_remark)
+                            ->set('supplier_posion',$supplier_posion)
+							->update('tbl_supplier');
+				if($update_customer){
+					return "success";
+				} else {
+					return "false";
+				}
+	}
+
 	public function _delete_supliier($supplier_id)
 	{
 		$query = $this->db->where("supplier_id",$supplier_id)

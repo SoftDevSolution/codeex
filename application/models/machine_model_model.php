@@ -8,6 +8,16 @@ class Machine_model_model extends CI_Model {
 
 
     }
+
+    public function _get_machine_model_AllData()
+    {
+         
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $query = $this->db->order_by("model_id","DESC")
+                        ->get("tbl_model")
+                        ->result();
+                    return $query;
+    }
     
     public function _count_machine_model()
     {
@@ -35,18 +45,6 @@ class Machine_model_model extends CI_Model {
                 return "same";
                 
             }
-
-        
-    }
-    
-    public function _get_machine_model_AllData()
-    {
-         
-        // ดึงข้อมูลทั้งหมด ไปใช้งาน
-        $query = $this->db->order_by("model_id","DESC")
-                        ->get("tbl_model")
-                        ->result();
-                    return $query;
     }
 
     public function _delete_machine_model($model_id)
