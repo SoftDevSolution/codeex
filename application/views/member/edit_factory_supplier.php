@@ -60,11 +60,12 @@
 
         <!-- <form action="<? echo base_url(); ?>member/add_new_company" method="POST"> -->
         <form action="<? echo base_url(); ?>member/factory_supplier/data_edit_factory_supplier" method="POST"  enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="company_name">Factory Supplier Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Factory Name" value="<? echo $mach->com_sup_name; ?>" required>
-            </div>
-            <div class="form-row">
+        <div class="row">     
+            <div class="form-row  col-md-6">
+                <div class="form-group col-md-12">
+                    <label for="company_name">Factory Supplier Name <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Factory Name" value="<? echo $mach->com_sup_name; ?>" required>
+                </div>
                 <div class="form-group col-md-12">
                     <label for="company_addr1">Address 1</label>
                     <textarea class="form-control" name="company_addr1" id="company_addr1" placeholder="Address 1" ><? echo htmlspecialchars($mach->com_sup_addr1); ?></textarea>
@@ -178,7 +179,109 @@
                 
             </div>
 
+            <div class="form-row col-md-6">
+            
 
+               
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <label for="company_remark">Supplier</label>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive-lg">
+                                <? 
+                                    if(empty($count_supplier) or $count_supplier==0){
+                                ?>
+                                    <div align="center" style="padding: 65px 20px;"> No Data. </div>
+                                <? } else { ?>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Supplier Name</th>
+                                            <th scope="col">Mobile Phone</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="showmydata">
+                                <? 
+                                    foreach ($query_supplier as $key => $area) {
+                                        
+                                ?>
+                                            <tr>
+                                            <th scope="row"><? echo $area->vs_id; ?></th>
+                                            <td><? echo $area->vs_name; ?></td>
+                                            <td><? echo $area->vs_mobile_phone; ?></td>
+                                            </tr>
+                                <? } ?>
+
+                                        </tbody>
+                                    </table>
+                                <? } ?>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <center>    
+                                <button type="button" class="btn btn-primary"><a href="<? echo base_url(); ?>member/visitor_supplier" class="text-white">Add Supplier</a></button> 
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <label for="company_remark">ใบนำส่ง</label>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive-lg">
+                                <? 
+                                    if(empty($count_area) or $count_area==0){
+                                ?>
+                                    <div align="center" style="padding: 65px 20px;"> No Data. </div>
+                                <? } else { ?>
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Machine Type</th>
+                                            <th scope="col">Process</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="showmydata">
+                                <? 
+                                    foreach ($data_area as $key => $area) {
+                                        
+                                ?>
+                                            <tr>
+                                            <th scope="row"><? echo $key+1; ?></th>
+                                            <td><? echo $area->area_name; ?></td>
+                                            <td>
+                                            <a href="<? echo base_url(); ?>member/config_area/edit_area/<? echo $area->id_area; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                            &nbsp;
+                                            <a href="<? echo base_url(); ?>member/config_area/delete_area/<? echo $area->id_area; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                            </td>
+                                            </tr>
+                                <? } ?>
+
+                                        </tbody>
+                                    </table>
+                                <? } ?>
+                                </div>
+                            </div>
+                            
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <center>    
+                                <button type="button" class="btn btn-primary"><a href="<? echo base_url(); ?>member/inventory" class="text-white">Add ใบนำส่ง</a></button> 
+                            </center>
+                        </div>
+                    </div>
+            
+                
+                </div> 
+
+        </div>
             <center>
             <hr>
             <input type="hidden" name="company_id" value="<? echo $mach->com_sup_id; ?>">

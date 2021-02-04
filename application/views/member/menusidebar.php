@@ -58,15 +58,27 @@
                             </ul>
                         </div>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory"><i class="fas fa-cog"></i> Factory Owner</a>
+                        <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory" or $activemenu=="factory_supplier" or $activemenu=="factory_customer" ){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-building"></i> Factory Setup</a>
+                        <div id="submenu-2" class="collapse submenu">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory"><i class="fas fa-list-ul"></i> Factory Owner</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <? if($activemenu=="factory_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory_supplier" href="<? echo base_url(); ?>member/factory_supplier"><i class="fas fa-list-ul"></i> Factory Supplier</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <? if($activemenu=="factory_customer"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory_customer" href="<? echo base_url(); ?>member/factory_customer"><i class="fas fa-list-ul"></i> Factory Customer</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="factory_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory_supplier" href="<? echo base_url(); ?>member/factory_supplier"><i class="fas fa-list-ul"></i> Factory Supplier</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="factory_customer"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory_customer" href="<? echo base_url(); ?>member/factory_customer"><i class="fas fa-list-ul"></i> Factory Customer</a>
-                    </li>
+
+
+                    
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="machine"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/machine" href="<? echo base_url(); ?>member/machine"><i class="fas fa-cog"></i> Inventory</a>
                     </li>

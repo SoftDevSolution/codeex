@@ -12,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Factory Owner | <? echo $data->nameweb; ?></title>
+    <title>Factory Customer | <? echo $data->nameweb; ?></title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -20,6 +20,7 @@
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+
 
 </head>
 
@@ -38,67 +39,59 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Factory Owner (<? echo number_format($count_company,0); ?>)
-                              &nbsp;
-                            <a href="<? echo base_url(); ?>member/factory/add_factory"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Factorty</button></a>
+                            <h3 class="section-title">Factory Customer (<? echo number_format($count_factory_customer,0); ?> Factory)&nbsp;
+                            <a href="<? echo base_url(); ?>member/factory_customer/add_factory_customer"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Factory Customer</button></a>
                             </h3>
                         </div>
 
                         <div class="col-xl-12 col-12">
                             <? $this->load->view("member/flashsweet"); ?>
                         </div>
-
-
+                        
                         <div class="card">
                             <div class="card-body">
                         <div class="table-responsive-lg">
-
-                        <? if($count_company==0){ ?>
-                            <div align="center" class="empty_data">
-                                Empty Data.
-                            </div>
-                        <? } else { ?>
                         <table class="table">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Factories Name</th>
+                            <th scope="col">Factory Customer</th>
                             <th scope="col">Phone </th>
                             <th scope="col">Email </th>
                             <th scope="col">Address 1</th>
                             <th scope="col">Product Type </th>
-                            <th scope="col">Status </th>
                             <th scope="col"><center>Manage</center> </th>
                             </tr>
                         </thead>
                         <tbody>
                             <? 
-                                foreach ($data_company as $key => $mach) { ?>
-                                    <tr>
-                                    <th scope="row"><? echo $key+1; ?></th>
-                                    <td><? echo $mach->company_name; ?></td>
-                                    <td><a href="tel:<? echo $mach->company_tel; ?>"><? echo $mach->company_tel; ?></a></td>
-                                    <td><a href="mailto:<? echo $mach->company_email; ?>"><? echo $mach->company_email; ?></a></td>
-                                    <td><? echo $mach->company_addr1; ?></td>
-                                    <td>
-                                        <? 
-                                        $query_product_type = $this->db->where("product_type_id",$mach->company_product_type)
-                                                    ->get("tbl_product_type")->result();
-                                        foreach ($query_product_type as $products) {
-                                            echo $products->product_type_name;
-                                        } ?>    
-                                    </td>
-                                    <td><? echo $mach->company_status; ?></td>
-                                    <td>
-                                    <a href="<? echo base_url(); ?>member/factory/edit_factory/<? echo $mach->company_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
-                                    &nbsp;
-                                    <a href="<? echo base_url(); ?>member/factory/delete_factory/<? echo $mach->company_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
-                                    </td>
-                                    </tr>
-                                    <? } ?>
-                                        </tbody>
+                                foreach ($data_factory_customer as $key => $factsub) {
+                                    
+                            ?>
+                                <tr>
+                                <th scope="row"><? echo $key+1; ?></th>
+                                <td><? echo $factsub->com_cus_name; ?></td>
+                                <td><? echo $factsub->com_cus_tel; ?></td>
+                                <td><? echo $factsub->com_cus_email; ?></td>
+                                <td><? echo $factsub->com_cus_addr1; ?></td>
+                                <td>
+                                    <? 
+                                    $query_sup_product_type = $this->db->where("product_type_id",$factsub->com_cus_product_type)
+                                                ->get("tbl_product_type")->result();
+                                    foreach ($query_sup_product_type as $products) {
+                                        echo $products->product_type_name;
+                                    } ?> 
+                                </td>
+                                <td>
+                                <a href="<? echo base_url(); ?>member/factory_customer/edit_factory_customer/<? echo $factsub->com_cus_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                &nbsp;
+                                <a href="<? echo base_url(); ?>member/factory_customer/delete_factory_customer/<? echo $factsub->com_cus_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                </td>
+                                </tr>
+                            <? } ?>
+                        </tbody>
+
                         </table>
-                        <? } ?>
                         </div>
                             </div>
                             

@@ -1,6 +1,6 @@
 <? 
     foreach ($setting_web as $data) {  }
-    //foreach ($get_data_visitor as $cus) {  }
+    //foreach ($get_data_visitor_supplier as $cus) {  }
 ?>
 <!doctype html>
 <html lang="en">
@@ -13,7 +13,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Config Visitor</title>
+    <title>Config Visitor Supplier</title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Edit New Visitor</h3>
+                            <h3 class="section-title">Edit New Visitor Supplier</h3>
                             <hr>
                         </div>
                     </div>
@@ -48,11 +48,11 @@
                         <div class="card">
                             <div class="card-body">
                         <?
-                            foreach ($get_data_visitor as $mach) {
+                            foreach ($get_data_visitor_supplier as $mach) {
                                 
                             }
                         ?>
-                                <form action="<? echo base_url(); ?>member/visitor/edit_data_visitor" method="POST">
+                                <form action="<? echo base_url(); ?>member/visitor_supplier/edit_data_visitor_supplier" method="POST">
                                     <div class="form-row">
 
                                     <div class="form-group col-12">
@@ -100,13 +100,24 @@
                                             <label for="vs_email_personal">Personel Email</label>
                                             <input type="text" class="form-control" id="vs_email_personal" name="vs_email_personal" value="<? echo $mach->vs_email_personal; ?>"  placeholder="Personel Email" >
                                         </div>
+                                        <div class="form-group col-md-12">
+                                                <label for="com_sup_id">Company Supplier</label>
+                                                <select class="form-control" name="com_sup_id" id="com_sup_id">
+                                                        <option value="">--Select--</option>
+                                                        <? foreach ($data_factory_supplier as $factory) { ?>
+                                                        <option value="<? echo $factory->com_sup_id; ?>"><? echo $factory->com_sup_name; ?></option>
+                                                        <? } ?>
+                                                </select>
+                                            
+                                        </div>
+                                   
 
                                             </div>
                                     <center>
                                     <hr>
                                     <input type="hidden" id="vs_id" name="vs_id" value="<? echo $mach->vs_id; ?>">
                                     <button type="submit" class="btn btn-primary">Edit</button> &nbsp;&nbsp;
-                                    <a href="<? echo base_url(); ?>member/visitor"><button type="button" class="btn btn-warning">Back</button></a>
+                                    <a href="<? echo base_url(); ?>member/visitor_supplier"><button type="button" class="btn btn-warning">Back</button></a>
                                     </center>
                                 </form>
                             </div>

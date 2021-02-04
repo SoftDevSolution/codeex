@@ -40,11 +40,11 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add New Visitor (<? echo number_format($count_visitor,0); ?> Types)</h3>
+                            <h3 class="section-title">Add New Visitor Supplier (<? echo number_format($count_visitor_supplier,0); ?> Types)</h3>
                             <hr>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/machine" class="breadcrumb-link">Machine</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add New Visitor</li>
+                            <li class="breadcrumb-item active" aria-current="page">Add New Visitor Supplier</li>
                         </ol>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="<? echo base_url(); ?>member/visitor/add_data_visitor" method="POST" enctype="multipart/form-data">
+                                <form action="<? echo base_url(); ?>member/visitor_supplier/add_data_visitor_supplier" method="POST" enctype="multipart/form-data">
                                     <div class="form-row">
                               
 
@@ -107,6 +107,16 @@
                                             <input type="text" class="form-control" id="vs_email_personal" name="vs_email_personal" placeholder="Personel Email" >
                                         </div>
 
+                                        <div class="form-group col-md-12">
+                                                <label for="com_sup_id">Company Supplier</label>
+                                                <select class="form-control" name="com_sup_id" id="com_sup_id">
+                                                        <option value="">--Select--</option>
+                                                        <? foreach ($data_factory_supplier as $factory) { ?>
+                                                        <option value="<? echo $factory->com_sup_id; ?>"><? echo $factory->com_sup_name; ?></option>
+                                                        <? } ?>
+                                                </select>
+                                            
+                                        </div>
                                    
                                     </div>
 
@@ -139,7 +149,7 @@
                                         </thead>
                                         <tbody>
                                         <? 
-                                            foreach ($data_visitor as $key => $mach) {
+                                            foreach ($data_visitor_supplier as $key => $mach) {
                                                 
                                                 ?>
                                                             <tr>
@@ -149,9 +159,9 @@
                                                             <td><? echo $mach->vs_tel_main; ?></td>
                                                             <td><? echo $mach->vs_email; ?></td>
                                                             <td>
-                                                            <a href="<? echo base_url(); ?>member/visitor/edit_visitor/<? echo $mach->vs_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                                            <a href="<? echo base_url(); ?>member/visitor_supplier/edit_visitor_supplier/<? echo $mach->vs_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
                                                             &nbsp;
-                                                            <a href="<? echo base_url(); ?>member/visitor/delete_data_visitor/<? echo $mach->vs_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                                            <a href="<? echo base_url(); ?>member/visitor_supplier/delete_data_visitor_supplier/<? echo $mach->vs_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
                                                             </td>
                                                             </tr>
                                                 <? } ?>

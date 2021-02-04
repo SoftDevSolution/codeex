@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class visitor extends CI_Controller {
+class visitor_supplier extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
@@ -30,17 +30,24 @@ class visitor extends CI_Controller {
 		$data['setting_web'] = $this->me->_getall();
 
 		// Load Model Machine
-		$this->load->model('Visitor_model','machine');
+		$this->load->model('Visitor_supplier_model','machine');
 
 		// ดึงข้อมูล Machine Type มาใช้งาน
-		$data['data_visitor'] = $this->machine->_get_visitor_AllData();
+		$data['data_visitor_supplier'] = $this->machine->_get_visitor_supplier_AllData();
 
-		$data['count_visitor'] = $this->machine->_count_visitor();
+		$data['count_visitor_supplier'] = $this->machine->_count_visitor_supplier();
 
-		$this->load->view('member/view_visitor',$data);
+		$this->load->model('Company_supplier_model','comcus');
+		// ดึงข้อมูล Machine Type มาใช้งาน
+		$data['data_factory_supplier'] = $this->comcus->_get_company_supplier_AllData();
+
+		$data['count_factory_supplier'] = $this->comcus->_count_company_supplier();
+
+
+		$this->load->view('member/view_visitor_supplier',$data);
 	}
 
-	public function add_data_visitor()
+	public function add_data_visitor_supplier()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -48,7 +55,7 @@ class visitor extends CI_Controller {
 		$this->checkMember_isvalidated();
 
 		// Load Model Machine
-		$this->load->model('Visitor_model','machine');
+		$this->load->model('Visitor_supplier_model','machine');
 
 		// รับข้อมูลมาใช้งาน
 		//$vs_id  = $this->input->post("vs_id ");
@@ -63,17 +70,18 @@ class visitor extends CI_Controller {
 		$vs_mobile_phone = $this->input->post("vs_mobile_phone");
 		$vs_email = $this->input->post("vs_email");
 		$vs_email_personal = $this->input->post("vs_email_personal");
+		$com_sup_id = $this->input->post("com_sup_id");
 
 
 		// ตรวจสอบข้อมูลว่ากรอกมาแล้วหรือยัง
 		if(empty($vs_name) or $vs_name==""){
 
 			$this->session->set_flashdata('msg_error',' กรุณากรอกข้อมูลให้ครบถ้วน');
-					redirect('member/visitor');
+					redirect('member/visitor_supplier');
 			
 		} else {
 			// ดำเนินการบันทึกข้อมูลได้
-			$update_data = $this->machine->_add_visitor($vs_name,
+			$update_data = $this->machine->_add_visitor_supplier($vs_name,
 														$vs_address,
 														$vs_company,
 														$vs_position,
@@ -83,22 +91,23 @@ class visitor extends CI_Controller {
 														$vs_tel_main,
 														$vs_mobile_phone,
 														$vs_email,
-														$vs_email_personal);
+														$vs_email_personal,
+														$com_sup_id);
 			
 				if($update_data=="same") {
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning',' ข้อมูลซ้ำ กรุณาลองใหม่อีกครั้ง');
-						redirect('member/visitor');
+						redirect('member/visitor_supplier');
 
 				} else if($update_data=="success") {
 					// success
 					$this->session->set_flashdata('msg_ok',' บันทึกข้อมูลเรียบร้อย');
-						redirect('member/visitor');
+						redirect('member/visitor_supplier');
 
 				} else  if($update_data=="false") {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
-						redirect('member/visitor');
+						redirect('member/visitor_supplier');
 				}
 
 		}
@@ -110,7 +119,7 @@ class visitor extends CI_Controller {
 		
 	}
 
-	public function delete_data_visitor()
+	public function delete_data_visitor_supplier()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -118,7 +127,7 @@ class visitor extends CI_Controller {
 		$this->checkMember_isvalidated();
 
 		// Load Model Machine
-		$this->load->model('Visitor_model','machine');
+		$this->load->model('Visitor_supplier_model','machine');
 
 		// รับข้อมูลมาใช้งาน
 		$vs_id = $this->uri->segment(4);
@@ -127,30 +136,30 @@ class visitor extends CI_Controller {
 		// Check Data
 		if($vs_id =="" or empty($vs_id)){
 			$this->session->set_flashdata('msg_warning',' ไม่พบข้อมูลที่คุณต้องการ');
-					redirect('member/visitor');
+					redirect('member/visitor_supplier');
 		} else {
 			// ถ้ามีขอมูล ดำเนินการลบข้อมูล
-			$query = $this->machine->_delete_visitor($vs_id);
+			$query = $this->machine->_delete_visitor_supplier($vs_id);
 			
 				if($query=="empty") {
 					// ซ้ำ same
 					$this->session->set_flashdata('msg_warning',' Empty data. Please try again.');
-						redirect('member/visitor');
+						redirect('member/visitor_supplier');
 
 				} else if($query=="true") {
 					// success
 					$this->session->set_flashdata('msg_ok',' Delete Success.');
-						redirect('member/visitor');
+						redirect('member/visitor_supplier');
 
 				} else  if($query=="false") {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
-						redirect('member/visitor');
+						redirect('member/visitor_supplier');
 				}
 		}
 	}
 
-	public function edit_visitor()
+	public function edit_visitor_supplier()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -166,7 +175,7 @@ class visitor extends CI_Controller {
 		$data['setting_web'] = $this->me->_getall();
 
 		// Load Model Machine
-		$this->load->model('Visitor_model','machine');
+		$this->load->model('Visitor_supplier_model','machine');
 
 		// รับข้อมูลมาใช้งาน
 		$vs_id = $this->uri->segment(4);
@@ -174,20 +183,26 @@ class visitor extends CI_Controller {
 		// Check Data
 		if($vs_id=="" or empty($vs_id)){
 			$this->session->set_flashdata('msg_warning',' ไม่พบข้อมูลที่คุณต้องการ');
-					redirect('member/visitor');
+					redirect('member/visitor_supplier');
 		} else {
 			// แสดงข้อมูลเพื่อแก้ไข
 
 			// ดึงข้อมูล Machine Type มาใช้งาน
-			$data['get_data_visitor'] = $this->machine->_query_visitor($vs_id);
+			$data['get_data_visitor_supplier'] = $this->machine->_query_visitor_supplier($vs_id);
+
+			$this->load->model('Company_supplier_model','comcus');
+			// ดึงข้อมูล Machine Type มาใช้งาน
+			$data['data_factory_supplier'] = $this->comcus->_get_company_supplier_AllData();
+
+			$data['count_factory_supplier'] = $this->comcus->_count_company_supplier();
 			
-			$this->load->view('member/edit_visitor',$data);
+			$this->load->view('member/edit_visitor_supplier',$data);
 
 		}
 
 	}
 
-	public function edit_data_visitor()
+	public function edit_data_visitor_supplier()
 	{
 		// Load All
 		$this->load->library('session','database');
@@ -195,7 +210,7 @@ class visitor extends CI_Controller {
 		$this->checkMember_isvalidated();
 
 		// Load Model Machine
-		$this->load->model('Visitor_model','machine');
+		$this->load->model('Visitor_supplier_model','machine');
 
 		// รับข้อมูลมาใช้งาน
 		$vs_id = $this->input->post('vs_id');
@@ -210,8 +225,9 @@ class visitor extends CI_Controller {
 		$vs_mobile_phone = $this->input->post('vs_mobile_phone');
 		$vs_email = $this->input->post('vs_email');
 		$vs_email_personal = $this->input->post('vs_email_personal');
+		$com_sup_id = $this->input->post("com_sup_id");
 
-		//echo $vs_id;
+		echo $vs_id;
 
 		//echo $vs_name;
 
@@ -219,11 +235,11 @@ class visitor extends CI_Controller {
 		/*if(empty($vs_id) or $vs_name==""){
 
 			$this->session->set_flashdata('msg_error',' กรุณากรอกข้อมูลให้ครบถ้วน');
-					redirect('member/visitor');
+					redirect('member/visitor_supplier');
 
 		} else {*/
 			// ดำเนินการบันทึกข้อมูลได้
-			$update_data = $this->machine->_edit_visitor($vs_id,
+			$update_data = $this->machine->_edit_visitor_supplier($vs_id,
 														$vs_name,
 														$vs_address,
 														$vs_company,
@@ -234,28 +250,29 @@ class visitor extends CI_Controller {
 														$vs_tel_main,
 														$vs_mobile_phone,
 														$vs_email,
-														$vs_email_personal);
+														$vs_email_personal,
+														$com_sup_id);
 			// return -> success , false , same , error
 			
 			//echo $update_data;
 				if($update_data=="same") {
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning',' Same Data. Please try again.');
-						redirect('member/visitor');
+						redirect('member/visitor_supplier');
 
 				} else if($update_data=="success") {
 					// success
 					$this->session->set_flashdata('msg_ok',' Edit Data Success.');
-						redirect('member/visitor');
+						redirect('member/visitor_supplier');
 
 				} else  if($update_data=="false") {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
-						redirect('member/visitor');
+						redirect('member/visitor_supplier');
 				} else {
 					// Error
 					$this->session->set_flashdata('msg_error',' Error! Please try again.');
-						redirect('member/visitor');
+						redirect('member/visitor_supplier');
 				}
 
 		//}

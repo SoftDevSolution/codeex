@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Visitor_model extends CI_Model {
+class Visitor_customer_model extends CI_Model {
 
 	function __construct(){
 
@@ -9,13 +9,20 @@ class Visitor_model extends CI_Model {
 
     }
     
-    public function _count_visitor()
+    public function _count_visitor_customer()
     {
-        $count = $this->db->count_all("tbl_visitor");
+        $count = $this->db->count_all("tbl_visitor_customer");
                     return $count;
     }
 
-	public function _add_visitor($vs_name,
+    public function _count_visitor_customer_ById($vs_id)
+    {
+        $count = $this->db->where("vs_id",$vs_id)
+                            ->count_all("tbl_visitor_customer");
+                    return $count;
+    }
+
+	public function _add_visitor_customer($vs_name,
                                     $vs_address,
                                     $vs_company,
                                     $vs_position,
@@ -25,7 +32,8 @@ class Visitor_model extends CI_Model {
                                     $vs_tel_main,
                                     $vs_mobile_phone,
                                     $vs_email,
-                                    $vs_email_personal)
+                                    $vs_email_personal,
+                                    $com_cus_id)
 	{
         
                 // ไม่มีข้อมูล บันทึกข้อมูลได้
@@ -40,7 +48,8 @@ class Visitor_model extends CI_Model {
                                     ->set("vs_mobile_phone",$vs_mobile_phone)
                                     ->set("vs_email",$vs_email)
                                     ->set("vs_email_personal",$vs_email_personal)
-                        ->insert("tbl_visitor");
+                                    ->set("com_cus_id",$com_cus_id)
+                        ->insert("tbl_visitor_customer");
                     if($query){
                         return "success";
                     } else {
@@ -51,22 +60,33 @@ class Visitor_model extends CI_Model {
         
     }
     
-    public function _get_visitor_AllData()
+    public function _get_visitor_customer_AllData_ByCompanyID($company_id)
     {
          
         // ดึงข้อมูลทั้งหมด ไปใช้งาน
-        $query = $this->db->order_by("vs_id","DESC")
-                        ->get("tbl_visitor")
+        $query = $this->db->where("com_cus_id",$company_id)
+                        ->order_by("vs_id","DESC")
+                        ->get("tbl_visitor_customer")
                         ->result();
                     return $query;
     }
 
-    public function _delete_visitor($vs_id)
+    public function _get_visitor_customer_AllData()
+    {
+         
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $query = $this->db->order_by("vs_id","DESC")
+                        ->get("tbl_visitor_customer")
+                        ->result();
+                    return $query;
+    }
+
+    public function _delete_visitor_customer($vs_id)
     {
        
                     // มีข้อมูล ลบได้
                     $query_delete = $this->db->where("vs_id",$vs_id)
-                                        ->delete("tbl_visitor");
+                                        ->delete("tbl_visitor_customer");
                                 if($query_delete){
                                     return "true";
                                 } else {
@@ -75,15 +95,15 @@ class Visitor_model extends CI_Model {
                 
     }
 
-    public function _query_visitor($vs_id)
+    public function _query_visitor_customer($vs_id)
     {
         $query = $this->db->where("vs_id",$vs_id)
-                        ->get("tbl_visitor")
+                        ->get("tbl_visitor_customer")
                         ->result();
                     return $query;
     }
 
-	public function _edit_visitor($vs_id,
+	public function _edit_visitor_customer($vs_id,
                                 $vs_name,
                                 $vs_address,
                                 $vs_company,
@@ -94,7 +114,8 @@ class Visitor_model extends CI_Model {
                                 $vs_tel_main,
                                 $vs_mobile_phone,
                                 $vs_email,
-                                $vs_email_personal)
+                                $vs_email_personal,
+                                $com_cus_id)
 	{
       
            
@@ -111,7 +132,8 @@ class Visitor_model extends CI_Model {
                                 ->set("vs_mobile_phone",$vs_mobile_phone)
                                 ->set("vs_email",$vs_email)
                                 ->set("vs_email_personal",$vs_email_personal)
-                                ->update("tbl_visitor");
+                                ->set("com_cus_id",$com_cus_id)
+                                ->update("tbl_visitor_customer");
                             
 
                             if($query){

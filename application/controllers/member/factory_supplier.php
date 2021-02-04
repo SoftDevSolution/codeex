@@ -185,6 +185,15 @@ class Factory_supplier extends CI_Controller {
 			// ดึงข้อมูล Industrial Estate มาใช้งาน
 			$this->load->model('Industrial_estate_model','estate');
 			$data['query_industrial_estate'] = $this->estate->_getAll();
+
+			$this->load->model('Visitor_supplier_model','employee');
+			$data['query_supplier'] = $this->employee->_get_visitor_supplier_AllData_ByCompanyID($company_id);
+			$data['count_supplier'] = $this->employee->_count_visitor_supplier_ById($company_id);
+			
+			//echo $data['query_supplier']."</BR>";	
+			//echo $data['count_supplier']."</BR>";	
+			//print_r($data['query_supplier'])."</BR>";	
+			//print_r($data['count_supplier'])."</BR>";
 						
 			$this->load->view('member/edit_factory_supplier',$data);
 
