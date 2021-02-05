@@ -59,6 +59,13 @@
                         </div>
                     </li>
 
+
+
+
+
+
+                    
+
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory" or $activemenu=="factory_supplier" or $activemenu=="factory_customer" ){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-building"></i> Factory Setup</a>
                         <div id="submenu-2" class="collapse submenu">
@@ -78,14 +85,36 @@
                     </li>
 
 
+
+
+                    <li class="nav-item">
+                        <a class="nav-link <? if($activemenu=="employees" or $activemenu=="add_employees" 
+                        or $activemenu=="visitor_supplier" or $activemenu=="visitor_customer" ){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/employees"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-building"></i> Personal Setup</a>
+                        <div id="submenu-3" class="collapse submenu">
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link <? if($activemenu=="employees" or $activemenu=="add_employees"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/employees" ><i class="fas fa-list-ul"></i> Employees</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <? if($activemenu=="visitor_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/visitor_supplier" ><i class="fas fa-list-ul"></i> Visitor Supplier</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <? if($activemenu=="visitor_customer"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/visitor_customer" ><i class="fas fa-list-ul"></i> Visitor Customer</a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </li>
+
+
                     
                     <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="machine"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/machine" href="<? echo base_url(); ?>member/machine"><i class="fas fa-cog"></i> Inventory</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="employees" or $activemenu=="add_employee"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/employees"><i class="fas fa-users"></i> Employees</a>
+                        <a class="nav-link <? if($activemenu=="machine"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/machine" ><i class="fas fa-cog"></i> Inventory</a>
                     </li>
                     <!-- <li class="nav-item">
+                        <a class="nav-link <? if($activemenu=="employees" or $activemenu=="add_employee"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/employees"><i class="fas fa-users"></i> Employees</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="customers" or $activemenu=="add_customer"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/customers"><i class="fas fa-users"></i> Customers</a>
                     </li>
                     <li class="nav-item">
@@ -98,16 +127,20 @@
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="borrow_asset" or $activemenu=="borrow_asset"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/borrow_asset"><i class="fas fa-box-open"></i> Borrow Asset</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="visitor" or $activemenu=="visitor"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/visitor"><i class="fas fa-box-open"></i> Visitor</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="notification" or $activemenu=="notification"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/notification"><i class="fas fa-box-open"></i> Notification</a>
                     </li>
 
-                    <!--<li class="nav-item">
+                    <!--
+                    <li class="nav-item">
+                        <a class="nav-link <? if($activemenu=="visitor" or $activemenu=="visitor"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/visitor"><i class="fas fa-box-open"></i> Visitor</a>
+                    </li>    
+                        
+                    <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="autocomplete" or $activemenu=="autocomplete"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/autocomplete"><i class="fas fa-box-open"></i> Autocomplete</a>
-                    </li>-->
+                    </li>
+                    -->
 
 
 
