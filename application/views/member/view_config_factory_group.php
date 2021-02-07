@@ -14,12 +14,10 @@
 
     <title>Config Factory Group | <? echo $data->nameweb; ?></title>
 
-    <!-- production version, optimized for size and speed -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
     
 </head>
@@ -47,7 +45,7 @@
                         <? $this->load->view("member/flashsweet"); ?>
                     </div>
 
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive-lg">
@@ -56,7 +54,7 @@
                                 ?>
                                     <div align="center" style="padding: 65px 20px;"> No Data. </div>
                                 <? } else { ?>
-                                    <table class="table table-striped">
+                                    <table class="table table-striped" id="dataTable">
                                         <thead>
                                             <tr>
                                             <th scope="col">#</th>
@@ -89,7 +87,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12" id="machine_type">
+                    <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12" id="machine_type">
                         <div class="card">
                             <div class="card-body">
                                 <form action="<? echo base_url(); ?>member/config_factory_group/data_add_factory_group" method="POST">
@@ -130,9 +128,15 @@
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
 
+    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
-    
-
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+    </script>
 
 </body>
  

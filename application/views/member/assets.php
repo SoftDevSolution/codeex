@@ -13,6 +13,7 @@
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 </head>
 
@@ -22,6 +23,7 @@
         <? $this->load->view("member/navbar"); ?>
         
         <? $this->load->view("member/menusidebar"); ?>
+        <? $this->load->view("member/flashsweet"); ?>
         
         <div class="dashboard-wrapper">
             <div class="container-fluid  dashboard-content">
@@ -38,7 +40,7 @@
                         <div class="card">
                             <div class="card-body">
                         <div class="table-responsive-lg">
-                        <table class="table">
+                        <table class="table table-striped" id="dataTableAssets">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
@@ -176,6 +178,16 @@
             })
      }
 </script>
+
+    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTableAssets').DataTable();
+        });
+    </script>
 
 
 </body>

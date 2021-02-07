@@ -53,10 +53,6 @@
                     <input type="text" class="form-control" id="rtc_name" name="rtc_name" placeholder="Name">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="rtc_qty">Quantity</label>
-                    <input type="number" min="0" class="form-control" id="rtc_qty" name="rtc_qty" placeholder="Quantity">
-                </div>
-                <div class="form-group col-md-6">
                     <label for="rtc_sup_name">Supplier Name</label>
                     <input type="text" class="form-control" id="rtc_sup_name" name="rtc_sup_name" placeholder="Supplier Name">
                 </div>

@@ -14,12 +14,10 @@
 
     <title>Visitor | <? echo $data->nameweb; ?></title>
 
-       <!-- production version, optimized for size and speed -->
-       <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-        <!-- Sweet Alert -->
-        <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
-        <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    <!-- Sweet Alert -->
+    <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
 
@@ -59,8 +57,6 @@
 
                                 <form action="<? echo base_url(); ?>member/visitor_supplier/add_data_visitor_supplier" method="POST" enctype="multipart/form-data">
                                     <div class="form-row">
-                              
-
                                         <div class="form-group col-12">
                                             <label for="vs_name">ชื่อ นามสกุล</label>
                                             <input type="text" class="form-control" id="vs_name" name="vs_name" placeholder="ชื่อ นามสกุล" required>
@@ -108,7 +104,7 @@
                                         </div>
 
                                         <div class="form-group col-md-12">
-                                                <label for="com_sup_id">Company Supplier</label>
+                                                <label for="com_sup_id">Factory Supplier</label>
                                                 <select class="form-control" name="com_sup_id" id="com_sup_id">
                                                         <option value="">--Select--</option>
                                                         <? foreach ($data_factory_supplier as $factory) { ?>
@@ -136,7 +132,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive-lg">
-                                    <table class="table table-striped">
+                                    <table class="table table-striped" id="dataTable">
                                         <thead>
                                             <tr>
                                             <th scope="col">#</th>
@@ -192,6 +188,16 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
+
+    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+    </script>
 
 </body>
  

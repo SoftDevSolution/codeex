@@ -10,6 +10,12 @@
     <? $this->load->view("member/script_css"); ?>
 
     <title>Requisition</title>
+
+    <!-- Sweet Alert -->
+    <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 </head>
 
 <body>
@@ -34,7 +40,7 @@
                         <div class="card">
                             <div class="card-body">
                         <div class="table-responsive-lg">
-                        <table class="table">
+                        <table class="table table-striped" id="dataTableRequisition">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
@@ -42,6 +48,7 @@
                             <th scope="col">Serial number</th>
                             <th scope="col">สถานที่จัดเก็บ</th>
                             <th scope="col">ประเภทของสินค้าทางบัญชี</th>
+                            <th scope="col">Status</th>
                             <th scope="col"><center>Manage</center> </th>
                             </tr>
                         </thead>
@@ -51,11 +58,10 @@
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>mdo</td>
+                            <td>Status</td>
                             <td>Email</td>
                             <td>
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/requisition/add_sub_requisition/ID"><button class="btn btn-sm btn-success">Add Sub</button></a> 
-                                    &nbsp;
                                     <a href="<? echo base_url(); ?>member/requisition/edit_requisition"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                     &nbsp;
                                     <a href="<? echo base_url(); ?>member/requisition/remove_requisition"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
@@ -68,10 +74,9 @@
                             <td>Thornton</td>
                             <td>fat</td>
                             <td>Email</td>
+                            <td>Status</td>
                             <td>
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/requisition/add_sub_requisition/ID"><button class="btn btn-sm btn-success">Add Sub</button></a>
-                                    &nbsp;
                                     <a href="<? echo base_url(); ?>member/requisition/edit_requisition"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                     &nbsp;
                                     <a href="<? echo base_url(); ?>member/requisition/remove_requisition"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
@@ -84,10 +89,9 @@
                             <td>the Bird</td>
                             <td>twitter</td>
                             <td>Email</td>
+                            <td>Status</td>
                             <td>
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/requisition/add_sub_requisition/ID"><button class="btn btn-sm btn-success">Add Sub</button></a>
-                                    &nbsp;
                                     <a href="<? echo base_url(); ?>member/requisition/edit_requisition"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                     &nbsp;
                                     <a href="<? echo base_url(); ?>member/requisition/remove_requisition"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
@@ -121,6 +125,16 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
+
+    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTableRequisition').DataTable();
+        });
+    </script>
 
 </body>
  

@@ -92,7 +92,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_capital_investment">Capital Investment</label>
-                    <input type="text" class="form-control" id="company_capital_investment" name="company_capital_investment" placeholder="Capital Investment" onkeypress="return IsNumeric(event,'investment');">
+                    <input type="number" class="form-control" id="company_capital_investment" name="company_capital_investment" placeholder="Capital Investment" onkeypress="return IsNumeric(event,'investment');">
                     <span id="investment" style="color: Red; display: none">* Please enter number (0 - 9)</span>
                 </div>
 

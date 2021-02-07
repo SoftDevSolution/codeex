@@ -82,11 +82,6 @@ class Company_model extends CI_Model {
 
         
     }
-    
-
-
-    
-    
 
     public function _edit_company($company_id,$company_name,$company_addr1,$company_addr2,$company_addr3,
     $company_city,$company_zip_code,$company_tel,$company_fax,$company_capital_investment,$company_email,
@@ -247,6 +242,107 @@ class Company_model extends CI_Model {
                                 } else {
                                     return "false";
                                 }
+                }
+    }
+
+    public function _query_machine($machine_id)
+    {
+        $query = $this->db->where("machine_id",$machine_id)
+                    ->get("tbl_machine")->result();
+                        return $query;
+    }
+
+    public function _add_new_machine($machine_type_id,$model_id,$machine_status,$machine_serial_no,$brand_id,$machine_price,$machine_stock,$machine_sup_inv_no,$machine_sup_inv_date,$machine_warranty_year,$machine_warranty_start_date,$machine_warranty_stop_date,$machine_company_inv_no,$machine_company_inv_date,$machine_warranty_comp_year,$machine_warranty_comp_start_date,$machine_warranty_comp_stop_date)
+	{
+        // Check
+        $checking = $this->db->where("machine_serial_no",$machine_serial_no)
+                        ->count_all_results("tbl_machine");
+
+            if($checking==0){
+                // ไม่มีข้อมูล บันทึกข้อมูลได้
+                $query = $this->db->set("machine_type_id",$machine_type_id)
+                        ->set("model_id",$model_id)
+                        ->set("machine_status",$machine_status)
+                        ->set("machine_serial_no",$machine_serial_no)
+                        ->set("brand_id",$brand_id)
+                        ->set("machine_price",$machine_price)
+                        ->set("machine_stock",$machine_stock)
+                        ->set("machine_sup_inv_no",$machine_sup_inv_no)
+                        ->set("machine_sup_inv_date",$machine_sup_inv_date)
+                        ->set("machine_warranty_year",$machine_warranty_year)                      
+                        ->set("machine_warranty_start_date",$machine_warranty_start_date)                      
+                        ->set("machine_warranty_stop_date",$machine_warranty_stop_date)                      
+                        ->set("machine_company_inv_no",$machine_company_inv_no)                      
+                        ->set("machine_company_inv_date",$machine_company_inv_date)                      
+                        ->set("machine_warranty_comp_year",$machine_warranty_comp_year)                      
+                        ->set("machine_warranty_comp_start_date",$machine_warranty_comp_start_date)                      
+                        ->set("machine_warranty_comp_stop_date",$machine_warranty_comp_stop_date)    
+                        ->set("status_machine","active")          
+                        ->insert("tbl_machine");
+                    if($query){
+                        return "success";
+                    } else {
+                        return "false";
+                    }
+            } else {
+                // ซ้ำ แจ้งกลับไป
+                return "same";
+                
+            }
+
+        
+    }
+
+    public function _edit_machine($machine_id,$machine_type_id,$model_id,$machine_status,$machine_serial_no,$brand_id,$machine_price,$machine_stock,$machine_sup_inv_no,$machine_sup_inv_date,$machine_warranty_year,$machine_warranty_start_date,$machine_warranty_stop_date,$machine_company_inv_no,$machine_company_inv_date,$machine_warranty_comp_year,$machine_warranty_comp_start_date,$machine_warranty_comp_stop_date)
+	{
+        // Check
+        $checking = $this->db->where("machine_id",$machine_id)
+                        ->count_all_results("tbl_machine");
+
+            if($checking>0){
+                // มีข้อมูล บันทึกข้อมูลได้
+                $query = $this->db->where("machine_id",$machine_id)
+                        ->set("machine_type_id",$machine_type_id)
+                        ->set("model_id",$model_id)
+                        ->set("machine_status",$machine_status)
+                        ->set("machine_serial_no",$machine_serial_no)
+                        ->set("brand_id",$brand_id)
+                        ->set("machine_price",$machine_price)
+                        ->set("machine_stock",$machine_stock)
+                        ->set("machine_sup_inv_no",$machine_sup_inv_no)
+                        ->set("machine_sup_inv_date",$machine_sup_inv_date)
+                        ->set("machine_warranty_year",$machine_warranty_year)                      
+                        ->set("machine_warranty_start_date",$machine_warranty_start_date)                      
+                        ->set("machine_warranty_stop_date",$machine_warranty_stop_date)                      
+                        ->set("machine_company_inv_no",$machine_company_inv_no)                      
+                        ->set("machine_company_inv_date",$machine_company_inv_date)                      
+                        ->set("machine_warranty_comp_year",$machine_warranty_comp_year)                      
+                        ->set("machine_warranty_comp_start_date",$machine_warranty_comp_start_date)                      
+                        ->set("machine_warranty_comp_stop_date",$machine_warranty_comp_stop_date)      
+                        ->update("tbl_machine");
+                        return $query;
+
+            } else {
+                // ไม่มีข้อมูล ไม่สามารถบันทึกข้อมูลได้
+                return false;
+            }
+
+        
+    }
+
+    public function _delete_inventory($machine_id)
+    {
+        // ตรวจสอบว่ามีข้อมูลหรือไม่
+        $checking = $this->db->where("machine_id",$machine_id)
+                        ->count_all_results("tbl_machine");
+                if($checking==0){
+                    // ไม่พบข้อมูล
+                    return false;
+                } else {
+                    // มีข้อมูล ลบได้
+                    $query_delete = $this->db->where("machine_id",$machine_id)
+                                        ->delete("tbl_machine");
+                                    return $query_delete;
                 }
     }
 

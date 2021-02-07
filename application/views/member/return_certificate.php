@@ -10,6 +10,12 @@
     <? $this->load->view("member/script_css"); ?>
 
     <title>Return Certificate</title>
+
+    <!-- Sweet Alert -->
+    <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 </head>
 
 <body>
@@ -34,7 +40,7 @@
                         <div class="card">
                             <div class="card-body">
                         <div class="table-responsive-lg">
-                        <table class="table">
+                        <table class="table table-striped" id="dataTableReturnCertificate">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
@@ -125,6 +131,16 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
+
+    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTableReturnCertificate').DataTable();
+        });
+    </script>
 
 </body>
  

@@ -271,11 +271,6 @@
                             
 
                         </div>
-                        <div class="form-group col-md-12">
-                            <center>    
-                                <button type="button" class="btn btn-primary"><a href="<? echo base_url(); ?>member/inventory" class="text-white">Add Inventory</a></button> 
-                            </center>
-                        </div>
                     </div>
             
                 

@@ -307,12 +307,16 @@ class Employees extends CI_Controller {
 
         } else {
 			// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
-			$namephoto = "";
+			$query_emp = $this->db->where("emp_id",$emp_id)->get("tbl_employees")->result();
+					foreach ($query_emp as $eee) {
+						$namephoto = $eee->emp_pic_path;
+					}
+			
 		}
 		//ตรวจสอบข้อมูลว่ากรอกมาแล้วหรือยัง
 		if(empty($emp_name) or empty($emp_id) or empty($emp_mobile_phone)){
 
-			$this->session->set_flashdata('msg_error',' กรุณากรอกข้อมูลให้ครบถ้วน');
+			$this->session->set_flashdata('msg_error',' Empty data. Please try again.');
 					redirect('member/employees');
 			
 		} else {

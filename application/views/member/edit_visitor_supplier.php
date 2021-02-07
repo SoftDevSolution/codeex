@@ -105,7 +105,7 @@
                                                 <select class="form-control" name="com_sup_id" id="com_sup_id">
                                                         <option value="">--Select--</option>
                                                         <? foreach ($data_factory_supplier as $factory) { ?>
-                                                        <option value="<? echo $factory->com_sup_id; ?>"><? echo $factory->com_sup_name; ?></option>
+                                                        <option value="<? echo $factory->com_sup_id; ?>" <? if($factory->com_sup_id==$mach->com_sup_id){ echo "selected"; } else {  } ?>><? echo $factory->com_sup_name; ?></option>
                                                         <? } ?>
                                                 </select>
                                             

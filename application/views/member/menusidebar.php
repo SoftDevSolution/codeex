@@ -58,17 +58,9 @@
                             </ul>
                         </div>
                     </li>
-
-
-
-
-
-
-                    
-
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory" or $activemenu=="factory_supplier" or $activemenu=="factory_customer" ){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-building"></i> Factory Setup</a>
-                        <div id="submenu-2" class="collapse submenu">
+                        <div id="submenu-2" class="collapse submenu <? if($activemenu=="factory" or $activemenu=="add_factory" or $activemenu=="factory_supplier" or $activemenu=="factory_customer" ){ ?> show <? } else { } ?>">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory"><i class="fas fa-list-ul"></i> Factory Owner</a>
@@ -83,14 +75,11 @@
                             </ul>
                         </div>
                     </li>
-
-
-
-
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="employees" or $activemenu=="add_employees" 
                         or $activemenu=="visitor_supplier" or $activemenu=="visitor_customer" ){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/employees"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-building"></i> Personal Setup</a>
-                        <div id="submenu-3" class="collapse submenu">
+                        <div id="submenu-3" class="collapse submenu <? if($activemenu=="employees" or $activemenu=="add_employees" 
+                        or $activemenu=="visitor_supplier" or $activemenu=="visitor_customer" ){ ?> show <? } else { } ?>">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link <? if($activemenu=="employees" or $activemenu=="add_employees"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/employees" ><i class="fas fa-list-ul"></i> Employees</a>

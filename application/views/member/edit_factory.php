@@ -202,10 +202,9 @@
                                         <tbody id="showmydata">
                                 <? 
                                     foreach ($query_employee as $key => $area) {
-                                        
                                 ?>
                                             <tr>
-                                            <th scope="row"><? echo $area->emp_id; ?></th>
+                                            <th scope="row"><? echo $key+1; ?>.</th>
                                             <td><? echo $area->emp_name; ?></td>
                                             <td><? echo $area->emp_mobile_phone; ?></td>
                                             </tr>
@@ -225,56 +224,6 @@
                             </center>
                         </div>
                     </div>
-
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <label for="company_remark">Inventory</label>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="table-responsive-lg">
-                                <? 
-                                    if(empty($count_area) or $count_area==0){
-                                ?>
-                                    <div align="center" style="padding: 65px 20px;"> No Data. </div>
-                                <? } else { ?>
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Machine Type</th>
-                                            <th scope="col">Process</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="showmydata">
-                                <? 
-                                    foreach ($data_area as $key => $area) {
-                                        
-                                ?>
-                                            <tr>
-                                            <th scope="row"><? echo $key+1; ?></th>
-                                            <td><? echo $area->area_name; ?></td>
-                                            <td>
-                                            <a href="<? echo base_url(); ?>member/config_area/edit_area/<? echo $area->id_area; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
-                                            &nbsp;
-                                            <a href="<? echo base_url(); ?>member/config_area/delete_area/<? echo $area->id_area; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
-                                            </td>
-                                            </tr>
-                                <? } ?>
-
-                                        </tbody>
-                                    </table>
-                                <? } ?>
-                                </div>
-                            </div>
-                            
-
-                        </div>
-                        <div class="form-group col-md-12">
-                            <center>    
-                                <button type="button" class="btn btn-primary"><a href="<? echo base_url(); ?>member/inventory" class="text-white">Add Inventory</a></button> 
-                            </center>
-                        </div>
-                    </div>
-            
                 
                 </div>   
             </div>

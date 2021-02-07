@@ -15,6 +15,7 @@
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
     <title>Employees | <? echo $data->nameweb; ?></title>
 </head>
@@ -52,7 +53,7 @@
 
                         <? } else { ?>
 
-                        <table class="table">
+                        <table class="table table-striped" id="dataTable">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
@@ -192,6 +193,16 @@
             })
      }
 </script>
+
+    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+    </script>
 
 </body>
  

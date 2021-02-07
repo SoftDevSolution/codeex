@@ -1,5 +1,6 @@
 <? 
     foreach ($setting_web as $data) {  }
+    foreach ($query_inventory as $invent) {  }
 ?>
 <!doctype html>
 <html lang="en">
@@ -12,7 +13,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Add New Inventory | <? echo $data->nameweb; ?></title>
+    <title>Edit Machine | <? echo $data->nameweb; ?></title>
 </head>
 
 <body>
@@ -30,48 +31,23 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add New Inventory</h3>
+                            <h3 class="section-title">Edit Machine</h3>
                             <hr>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/machine" class="breadcrumb-link">Inventory</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add New Inventory</li>
+                            <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/machine" class="breadcrumb-link">Machine</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Machine</li>
                         </ol>
                         </div>
                         <div class="card">
                             <div class="card-body">
-        <form action="<? echo base_url(); ?>member/machine/data_add_machine" method="POST">
-<div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="rqs_id">Reference ID <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="rqs_id" name="rqs_id" placeholder="Reference ID">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="rtc_pn">P/N <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="rtc_pn" name="rtc_pn" placeholder="P/N">
-                    
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="rtc_pn">ดึงข้อมูลมาแสดง Visitor Supplier <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="rtc_pn" name="rtc_pn" placeholder="P/N">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="rtc_pn">ดึงข้อมูลมาแสดง Factory Supplier <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="rtc_pn" name="rtc_pn" placeholder="P/N">
-                </div>
-                
-                
-                <div class="form-group col-12">&nbsp; <hr></div>
-                
-</div>
-
-        
+        <form action="<? echo base_url(); ?>member/machine/data_edit_machine" method="POST">
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="machine_type_id">Machine Type <span class="text-danger">*</span></label>
                     <select class="form-control" name="machine_type_id" id="machine_type_id" required>
                         <option value="">-- Select --</option>
                         <? foreach ($query_machine_type as $mtype) { ?>
-                        <option value="<? echo $mtype->machine_type_id; ?>"><? echo $mtype->machine_type_name; ?></option>
+                        <option value="<? echo $mtype->machine_type_id; ?>" <? if($invent->machine_type_id==$mtype->machine_type_id){ echo "selected"; } else {  } ?>><? echo $mtype->machine_type_name; ?></option>
                         <? } ?>
                     </select>
                 </div>
@@ -80,83 +56,90 @@
                     <select class="form-control" name="model_id" id="model_id">
                         <option value="">-- Select --</option>
                         <? foreach ($query_machine_model as $machine) { ?>
-                        <option value="<? echo $machine->model_id; ?>"><? echo $machine->model_name; ?></option>
+                        <option value="<? echo $machine->model_id; ?>" <? if($invent->model_id==$machine->model_id){ echo "selected"; } else {  } ?>><? echo $machine->model_name; ?></option>
                         <? } ?>
                     </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="machine_status">Machine Status</label>
-                    <input type="text" class="form-control" id="machine_status" name="machine_status" placeholder="Machine Status">
+                    <input type="text" class="form-control" id="machine_status" name="machine_status" placeholder="Machine Status" value="<? echo $invent->machine_status; ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="machine_serial_no">Machine S/N</label>
-                    <input type="text" class="form-control" id="machine_serial_no" name="machine_serial_no" placeholder="Machine S/N">
+                    <input type="text" class="form-control" id="machine_serial_no" name="machine_serial_no" placeholder="Machine S/N" value="<? echo $invent->machine_serial_no; ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="brand_id">Brand</label>
                     <select class="form-control" name="brand_id" id="brand_id">
                         <option value="">-- Select --</option>
                         <? foreach ($query_machine_brand as $brand) { ?>
-                        <option value="<? echo $brand->brand_id; ?>"><? echo $brand->brand_name; ?></option>
+                        <option value="<? echo $brand->brand_id; ?>" <? if($invent->brand_id==$brand->brand_id){ echo "selected"; } else {  } ?>><? echo $brand->brand_name; ?></option>
                         <? } ?>
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="machine_price">Price</label>
-                    <input type="number" class="form-control" id="machine_price" name="machine_price" placeholder="Price" value="0" onkeypress="return IsNumeric(event,'price');">
+                    <label for="machine_price">Machine Price</label>
+                    <input type="number" class="form-control" id="machine_price" name="machine_price" placeholder="Machine Price" value="<? echo $invent->machine_price; ?>" onkeypress="return IsNumeric(event,'price');">
                     <span id="price" style="color: Red; display: none">* Please enter number (0 - 9)</span>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="machine_stock">Quantity</label>
-                    <input type="number" class="form-control" id="machine_stock" name="machine_stock" placeholder="Quantity" value="0" onkeypress="return IsNumeric(event,'stock');">
+                    <label for="machine_stock">Machine Stock</label>
+                    <input type="number" class="form-control" id="machine_stock" name="machine_stock" placeholder="Machine Stock" value="<? echo $invent->machine_stock; ?>" onkeypress="return IsNumeric(event,'stock');">
                     <span id="stock" style="color: Red; display: none">* Please enter number (0 - 9)</span>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="machine_sup_inv_no">Supplier Inv. No.</label>
-                    <input type="text" class="form-control" id="machine_sup_inv_no" name="machine_sup_inv_no" placeholder="Supplier Inv. No.">
+                    <input type="text" class="form-control" id="machine_sup_inv_no" name="machine_sup_inv_no" placeholder="Supplier Inv. No." value="<? echo $invent->machine_sup_inv_no; ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="machine_sup_inv_date">Supplier Inv. Date</label>
-                    <input type="date" class="form-control" id="machine_sup_inv_date" name="machine_sup_inv_date" placeholder="Date" value="<? echo date("Y-m-d"); ?>">
+                    <input type="date" class="form-control" id="machine_sup_inv_date" name="machine_sup_inv_date" placeholder="Date" value="<? echo $invent->machine_sup_inv_date; ?>">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="machine_warranty_start_date">Warranty from Supplier ( Date Start)</label>
-                    <input type="date" class="form-control" id="machine_warranty_start_date" name="machine_warranty_start_date" value="<? echo date("Y-m-d"); ?>" placeholder="Warranty from Supplier ( Date Start)" onchange="cal_warranty();">
+                    <input type="date" class="form-control" id="machine_warranty_start_date" name="machine_warranty_start_date" placeholder="Warranty from Supplier ( Date Start)" onchange="cal_warranty();" value="<? echo $invent->machine_warranty_start_date; ?>">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="machine_warranty_stop_date">Warranty from Supplier ( Date Stop)</label>
-                    <input type="date" class="form-control" id="machine_warranty_stop_date" name="machine_warranty_stop_date" value="<? echo date("Y-m-d"); ?>" placeholder="Warranty from Supplier ( Date Stop)" onchange="cal_warranty();">
+                    <input type="date" class="form-control" id="machine_warranty_stop_date" name="machine_warranty_stop_date" placeholder="Warranty from Supplier ( Date Stop)" onchange="cal_warranty();" value="<? echo $invent->machine_warranty_stop_date; ?>">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="machine_warranty_year">Warranty from Supplier ( Year )</label>
-                    <input type="number" max="4" class="form-control" id="machine_warranty_year" name="machine_warranty_year" placeholder="Year" readonly>
+                    <input type="number" max="4" class="form-control" id="machine_warranty_year" name="machine_warranty_year" placeholder="Year" value="<? echo $invent->machine_warranty_year; ?>" readonly>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="machine_company_inv_no">Factory Inv No.</label>
-                    <input type="text" class="form-control" id="machine_company_inv_no" name="machine_company_inv_no" placeholder="Supplier Inv. No.">
+                    <input type="text" class="form-control" id="machine_company_inv_no" name="machine_company_inv_no" placeholder="Supplier Inv. No." value="<? echo $invent->machine_company_inv_no; ?>">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="machine_company_inv_date">Factory Inv Date</label>
-                    <input type="date" class="form-control" id="machine_company_inv_date" name="machine_company_inv_date" value="<? echo date("Y-m-d"); ?>" placeholder="Date">
+                    <input type="date" class="form-control" id="machine_company_inv_date" name="machine_company_inv_date" placeholder="Date" value="<? echo $invent->machine_company_inv_date; ?>">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="machine_warranty_comp_start_date">Warranty from Factory ( Date Start )</label>
-                    <input type="date" class="form-control" id="machine_warranty_comp_start_date" name="machine_warranty_comp_start_date" value="<? echo date("Y-m-d"); ?>" placeholder="Warranty from Company ( Date Start)" onchange="cal_warranty_company();">
+                    <input type="date" class="form-control" id="machine_warranty_comp_start_date" name="machine_warranty_comp_start_date" placeholder="Warranty from Company ( Date Start)" onchange="cal_warranty_company();" value="<? echo $invent->machine_warranty_comp_start_date; ?>">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="machine_warranty_comp_stop_date">Warranty from Factory ( Date Stop )</label>
-                    <input type="date" class="form-control" id="machine_warranty_comp_stop_date" name="machine_warranty_comp_stop_date" value="<? echo date("Y-m-d"); ?>" placeholder="Warranty from Company ( Date Stop )" onchange="cal_warranty_company();">
+                    <input type="date" class="form-control" id="machine_warranty_comp_stop_date" name="machine_warranty_comp_stop_date" placeholder="Warranty from Company ( Date Stop )" onchange="cal_warranty_company();" value="<? echo $invent->machine_warranty_comp_stop_date; ?>">
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="machine_warranty_comp_year">Warranty from Factory ( Year )</label>
-                    <input type="text" class="form-control" id="machine_warranty_comp_year" name="machine_warranty_comp_year" placeholder="Year" readonly>
+                    <input type="text" class="form-control" id="machine_warranty_comp_year" name="machine_warranty_comp_year" placeholder="Year" value="<? echo $invent->machine_warranty_comp_year; ?>" readonly>
                 </div>
+                <div class="form-group col-md-3">
+                    <label for="status_machine">Status <span class="text-danger">(Used or not.)</span></label>
+                    <input type="text" class="form-control" id="status_machine" name="status_machine" placeholder="Year" value="<? echo $invent->status_machine; ?>" readonly>
+                </div>
+                
             </div>
 
             <center>
             <hr>
-            <button type="submit" class="btn btn-primary">Save</button> &nbsp;&nbsp;
-            <button type="reset" class="btn btn-warning">Reset</button>
+            <input type="hidden" name="machine_id" value="<? echo $invent->machine_id; ?>">
+            <button type="submit" class="btn btn-primary">Edit</button> &nbsp;&nbsp;
+            <button type="reset" class="btn btn-warning">Reset</button> &nbsp;&nbsp;
+            <a href="<? echo base_url(); ?>member/machine" class="breadcrumb-link"><button type="button" class="btn btn-danger">Back</button></a>
             </center>
         </form>
         

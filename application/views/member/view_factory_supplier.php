@@ -13,13 +13,10 @@
     <? $this->load->view("member/script_css"); ?>
 
     <title>Factory Supplier | <? echo $data->nameweb; ?></title>
-
-    <!-- production version, optimized for size and speed -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
 </head>
@@ -51,7 +48,7 @@
                         <div class="card">
                             <div class="card-body">
                         <div class="table-responsive-lg">
-                        <table class="table">
+                        <table class="table table-striped" id="dataTable">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
@@ -117,6 +114,16 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
+
+    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+    </script>
 
 </body>
  

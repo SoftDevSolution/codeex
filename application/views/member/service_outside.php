@@ -14,6 +14,7 @@
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
 </head>
@@ -40,7 +41,7 @@
                         <div class="card">
                             <div class="card-body">
                         <div class="table-responsive-lg">
-                        <table class="table">
+                        <table class="table table-striped" id="dataTableServiceOutside">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
@@ -67,7 +68,7 @@
                                     <td><? echo $cus->svo_emp_receive; ?></td>
                                     <td>
                                         <center>
-                                            <button class="btn btn-sm btn-warning">จบงาน</button>
+                                            <a href="<? echo base_url(); ?>member/service_outside/closejob"><span class="text-warning"><i class="fas fa-sign-out-alt" title="จบงาน"></i></span></a>&nbsp;&nbsp;
                                             <a href="<? echo base_url(); ?>member/service_outside/edit_service_outside/<? echo $cus->svo_id; ?>"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                             &nbsp;
                                             <span class="text-danger" onclick="DeleteServiceOutside('<? echo $cus->svo_id; ?>');" style="cursor:pointer;"><i class="fas fa-trash"></i></span>
@@ -172,6 +173,16 @@
             })
      }
 </script>
+
+    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTableServiceOutside').DataTable();
+        });
+    </script>
 
 </body>
  

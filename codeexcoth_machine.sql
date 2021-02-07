@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 04, 2021 at 09:25 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Generation Time: Feb 07, 2021 at 10:02 AM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -52,7 +52,10 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (9, 'admin', 'logout', 'admin', '::1', '2021-01-31 11:03:39'),
 (10, 'admin', 'login', '', '::1', '2021-01-31 11:18:05'),
 (11, 'admin', 'login', '', '::1', '2021-01-31 16:10:18'),
-(12, 'admin', 'login', '', '::1', '2021-02-04 04:59:58');
+(12, 'admin', 'login', '', '::1', '2021-02-04 04:59:58'),
+(13, 'admin', 'logout', 'admin', '::1', '2021-02-05 17:15:24'),
+(14, 'admin', 'login', '', '::1', '2021-02-05 17:15:27'),
+(15, 'admin', 'login', '', '::1', '2021-02-07 04:48:49');
 
 -- --------------------------------------------------------
 
@@ -179,7 +182,7 @@ INSERT INTO `tbl_asset` (`asset_id`, `asset_desc`, `asset_guarantee`, `asset_con
 (9, 'ok ok test', 'ok ok test', 'ok ok test', 'ok ok test', 'ok ok test', 0, '', '', '', '', '', '', 100, '20', '80', '', '', '0', '', '', '', '', '', '', '', '', '', '', ''),
 (10, 'ok ok test', 'ok ok test', 'ok ok test', 'ok ok test', 'ok ok test', 0, '', '', '', '', '', '', 100, '20', '80', '', '', '0', '', '', '', '', '', '', '', '', '', '', ''),
 (11, 'Add New AssetAdd New Asset', 'Add New Asset', 'ok ok test', 'ok ok test', 'ok ok test', 100, '20', '20', 'ตัดออก', '', '', '', 100, '80', '20', '', '', '0', '20210130164241.jpg', '20210130164241.jpg', '', '20210130164241.png', '', '', '20210130164241.jpg', '', '', '', ''),
-(12, 'Add New AssetAdd', 'Add New Asset', 'ok ok test', 'ok ok test', 'ok ok test', 100, '20', '20', '', '', '', '', 100, '80', '20', '', '', '0', '20210130172751.jpg', '20210130172753.jpg', NULL, NULL, '20210130172755.png', NULL, '20210130172815.jpg', '20210130172817.jpg', '20210130172832.jpg', '20210130172845.jpg', '');
+(12, 'Add New AssetAdd', 'Add New Asset', 'ok ok test', 'ok ok test', 'ok ok test', 100, '20', '20', '', '', '', '', 100, '80', '20', '', '', '', '20210130172751.jpg', '20210130172753.jpg', '20210207051632.png', NULL, '20210130172755.png', NULL, '20210130172815.jpg', '20210130172817.jpg', '20210130172832.jpg', '20210130172845.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -411,11 +414,11 @@ CREATE TABLE `tbl_employees` (
 --
 
 INSERT INTO `tbl_employees` (`emp_id`, `emp_name`, `emp_type_user`, `emp_username`, `emp_password`, `emp_password_md5`, `emp_address`, `position_id`, `emp_tel`, `emp_mobile_phone`, `emp_personal_email`, `emp_company_email`, `emp_birth_date`, `emp_age`, `emp_pic_path`, `emp_work_start_date`, `emp_work_stop_date`, `emp_sarary_start`, `emp_sarary_now`, `emp_remark`, `emp_status`, `emp_blood_group`, `emp_gender`, `emp_height`, `emp_weight`, `company_id`) VALUES
-(1, 'Arkhet Saepu', '', 'admin', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210119050442.png', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78, 1),
-(2, 'Arkhet Saepu', '', 'phploso', 'MTIzNDU2', 'e10adc3949ba59abbe56e057f20f883e', '118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210119050827.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65, 1),
+(1, 'Arkhet Saepu', '', 'admin', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 5, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210206160655.jpg', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78, 1),
+(2, 'Arkhet Saepu', '', 'phploso', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210206160632.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65, 1),
 (4, 'นายสมชัย   มหานาม', '', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', '       118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210130161203.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89, 1),
-(6, 'นาบเลิศพันธุ์   สมัครใจ', '', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89, 1),
-(10, 'Arkhet Saepu', '', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '      118/2 Moo 4 Tambon Huaysai', 1, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210130160919.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60, 1);
+(6, 'นาบเลิศพันธุ์   สมัครใจ', '', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', '  118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89, 1),
+(10, 'Arkhet Saepu', '', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '            118/2 Moo 4 Tambon Huaysai', 5, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210206160504.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60, 1);
 
 -- --------------------------------------------------------
 
@@ -490,6 +493,8 @@ CREATE TABLE `tbl_machine` (
   `model_id` int(11) NOT NULL,
   `machine_serial_no` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `brand_id` int(11) NOT NULL,
+  `machine_price` int(11) NOT NULL,
+  `machine_stock` int(11) NOT NULL,
   `machine_sup_inv_no` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `machine_sup_inv_date` date NOT NULL,
   `machine_warranty_year` int(11) NOT NULL,
@@ -502,6 +507,13 @@ CREATE TABLE `tbl_machine` (
   `machine_warranty_comp_stop_date` date NOT NULL,
   `status_machine` varchar(10) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_machine`
+--
+
+INSERT INTO `tbl_machine` (`machine_id`, `machine_status`, `machine_type_id`, `model_id`, `machine_serial_no`, `brand_id`, `machine_price`, `machine_stock`, `machine_sup_inv_no`, `machine_sup_inv_date`, `machine_warranty_year`, `machine_warranty_start_date`, `machine_warranty_stop_date`, `machine_company_inv_no`, `machine_company_inv_date`, `machine_warranty_comp_year`, `machine_warranty_comp_start_date`, `machine_warranty_comp_stop_date`, `status_machine`) VALUES
+(2, 'qwertty', 3, 12, '23456gda4365640ER', 4, 1000, 1, '192', '2021-02-10', 5, '2021-02-07', '2026-02-07', '129', '2021-02-12', 4, '2021-02-07', '2025-02-07', 'active');
 
 -- --------------------------------------------------------
 
@@ -592,6 +604,7 @@ CREATE TABLE `tbl_model` (
 --
 
 INSERT INTO `tbl_model` (`model_id`, `model_name`) VALUES
+(2, 'bbbb'),
 (3, 'CM100'),
 (4, 'CM200'),
 (5, 'CM750'),
@@ -619,6 +632,7 @@ CREATE TABLE `tbl_position` (
 --
 
 INSERT INTO `tbl_position` (`position_id`, `position_name`) VALUES
+(1, 'Position 1'),
 (2, 'Purchase'),
 (3, 'Production'),
 (4, 'Engineer'),
@@ -663,7 +677,8 @@ CREATE TABLE `tbl_requisition` (
   `rqs_qty` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
   `rqs_contract` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `rqs_remark` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+  `rqs_remark` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `rqs_status` varchar(10) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -895,7 +910,7 @@ CREATE TABLE `tbl_visitor_supplier` (
 
 INSERT INTO `tbl_visitor_supplier` (`vs_id`, `vs_name`, `vs_address`, `vs_company`, `vs_position`, `vs_branch`, `vs_tel_1`, `vs_tel_2`, `vs_tel_main`, `vs_mobile_phone`, `vs_email`, `vs_email_personal`, `com_sup_id`) VALUES
 (1, 'Supplier01', 'Supplier01', 'Supplier01', 'Supplier01', 'Supplier01', '12341234', '123412', '341234', '44', '44', '44', 2),
-(2, 'Supplier02', 'Supplier02', 'Supplier02', 'Supplier02', 'Supplier02', '22222', '22222', '44', '0448811114', 'csxman69@gmail.com', 'csxman69@gmail.com', 2);
+(2, 'Supplier02', 'Supplier02', 'Supplier02', 'Supplier02', 'Supplier02', '22222', '22222', '44', '0448811114', 'csxman69@gmail.com', 'csxman69@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -1035,6 +1050,12 @@ ALTER TABLE `tbl_inventory`
   ADD PRIMARY KEY (`inv_id`);
 
 --
+-- Indexes for table `tbl_machine`
+--
+ALTER TABLE `tbl_machine`
+  ADD PRIMARY KEY (`machine_id`);
+
+--
 -- Indexes for table `tbl_machine_detail`
 --
 ALTER TABLE `tbl_machine_detail`
@@ -1150,7 +1171,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -1241,6 +1262,12 @@ ALTER TABLE `tbl_industrial_estate`
 --
 ALTER TABLE `tbl_inventory`
   MODIFY `inv_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_machine`
+--
+ALTER TABLE `tbl_machine`
+  MODIFY `machine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_machine_detail`
