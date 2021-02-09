@@ -81,6 +81,25 @@ class Visitor_supplier_model extends CI_Model {
                     return $query;
     }
 
+    public function _get_visitor_supplier_by_vs_name($vs_name)
+    {
+        // ดึงข้อมูลตามเงื่อนไข ไปใช้งาน
+        $query = $this->db->like("vs_name",$vs_name)
+                        ->or_like("vs_company",$vs_name)
+                        ->get("tbl_visitor_supplier")
+                        ->result();
+                    return $query;
+    }
+
+    public function _get_visitor_supplier_by_vs_company($vs_company)
+    {
+        // ดึงข้อมูลตามเงื่อนไข ไปใช้งาน
+        $query = $this->db->where("vs_name",$vs_company)
+                        ->get("tbl_visitor_supplier")
+                        ->result();
+                    return $query;
+    }
+
     public function _delete_visitor_supplier($vs_id)
     {
        

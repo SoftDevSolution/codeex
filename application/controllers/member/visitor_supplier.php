@@ -29,7 +29,7 @@ class visitor_supplier extends CI_Controller {
 		$this->load->model('Settingme','me');
 		$data['setting_web'] = $this->me->_getall();
 
-		// Load Model Machine
+		// Load Visitor_supplier_model
 		$this->load->model('Visitor_supplier_model','machine');
 
 		// ดึงข้อมูล Machine Type มาใช้งาน

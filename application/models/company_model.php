@@ -34,8 +34,6 @@ class Company_model extends CI_Model {
                     return $query;
     }
 
-
-
     public function _add_machine_company($company_name,$company_addr1,$company_addr2,$company_addr3,
     $company_city,$company_zip_code,$company_tel,$company_fax,$company_capital_investment,$company_email,
     $company_bussiness_group,$product_type,$company_status,$company_area,
@@ -344,6 +342,25 @@ class Company_model extends CI_Model {
                                         ->delete("tbl_machine");
                                     return $query_delete;
                 }
+    }
+
+    public function _add_invoice($rqs_id,$rtc_pn,$vs_name,$vs_company)
+    {
+        $datenow = date("Y-m-d H:i:s"); // เวลา
+        $add_invoice = $this->db->set("rqs_id",$rqs_id)
+                        ->set("rtc_pn",$rtc_pn)
+                        ->set("vs_name",$vs_name)
+                        ->set("vs_company",$vs_company)
+                        ->set("create_date",$datenow)
+                        ->insert("tbl_invoice");
+                    return $add_invoice;
+    }
+
+    public function _get_invoice()
+    {
+        $query = $this->db->order_by("id_invoice","DESC")
+                        ->get("tbl_invoice")->result();
+                    return $query;
     }
 
 

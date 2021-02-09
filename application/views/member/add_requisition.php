@@ -42,23 +42,35 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="rqs_date">Date <span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" id="rqs_date" name="rqs_date" required>
+                    <input type="date" class="form-control" id="rqs_date" name="rqs_date" value="<? echo date("Y-m-d"); ?>" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="emp_id">ดึง Employee ID มาใช้งาน <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="emp_id" name="emp_id" placeholder="Employee ID" required>
+                    <label for="emp_id">Employee <span class="text-danger">*</span></label>
+                    <select class="form-control" name="emp_id" id="emp_id">
+                    <? foreach ($query_emp as $eee) { ?>
+                        <option value="<? echo $eee->emp_id; ?>"><? echo $eee->emp_name; ?></option>
+                        <? } ?>
+                    </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="rqs_pn">P/N</label>
                     <input type="text" class="form-control" id="rqs_pn" name="rqs_pn" placeholder="P/N">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="rqs_name">ดึงจาก Visitor Customer <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="rqs_name" name="rqs_name" placeholder="Name" required>
+                    <label for="vs_id">Visitor Customer <span class="text-danger">*</span></label>
+                    <select class="form-control" name="vs_id" id="vs_id">
+                    <? foreach ($query_visit_customer as $bbb) { ?>
+                        <option value="<? echo $bbb->vs_id; ?>"><? echo $bbb->vs_name; ?></option>
+                        <? } ?>
+                    </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="company_id">ดึงจาก Factory Name</label>
-                    <input type="text" class="form-control" id="company_id" name="company_id" placeholder="Factory Name">
+                    <label for="company_id">Factory Name</label>
+                    <select class="form-control" name="company_id" id="company_id">
+                    <? foreach ($query_factory as $ccc) { ?>
+                        <option value="<? echo $ccc->company_id; ?>"><? echo $ccc->company_name; ?></option>
+                        <? } ?>
+                    </select>
                     
                 </div>
                 <div class="form-group col-md-12">
@@ -72,6 +84,21 @@
             <button type="submit" class="btn btn-primary">Save</button> &nbsp;&nbsp;
             <button type="reset" class="btn btn-warning">Reset</button>
             </center>
+        </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+        <form action="<? echo base_url(); ?>member/add_requisition" method="POST">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="rqs_date">Date <span class="text-danger">*</span></label>
+                    <input type="date" class="form-control" id="rqs_date" name="rqs_date" required>
+                </div>
         </form>
                             </div>
 

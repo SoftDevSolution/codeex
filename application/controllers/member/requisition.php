@@ -61,6 +61,19 @@ class Requisition extends CI_Controller {
 		$this->load->model('Settingme','me');
 		$data['setting_web'] = $this->me->_getall();
 
+		// ดึงข้อมูล employee มาแสดง
+		$this->load->model('Employee_model','emp');
+		$data['query_emp'] = $this->emp->_getAll();
+
+		// ดึงข้อมูล Visitor Customer มาแสดง
+		$this->load->model('Visitor_customer_model','visitor');
+		$data['query_visit_customer'] = $this->visitor->_get_visitor_customer_AllData();
+
+		// ดึงข้อมูล Factory Name มาแสดง
+		$this->load->model('Company_model','factory');
+		$data['query_factory'] = $this->factory->_get_company_AllData();
+
+
 		$this->load->view('member/add_requisition',$data);
 	}
 

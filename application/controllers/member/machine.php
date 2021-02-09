@@ -66,6 +66,77 @@ class Machine extends CI_Controller {
 		$this->load->model('Settingme','me');
 		$data['setting_web'] = $this->me->_getall();
 
+		// Load Model Machine
+		$this->load->model('Company_model','machine');
+
+		// แสดง Invoice
+		$data['query_invoice'] = $this->machine->_get_invoice();
+
+		$this->load->view('member/add_machine',$data);
+	}
+
+	public function data_add_invoice()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+ 		// Agent_Data
+		$username_member = $this->session->userdata('username_member');
+		$data['username_member'] = $this->user->_getmember($username_member);
+
+		// Load Model Machine
+		$this->load->model('Company_model','machine');
+		
+		// รับข้อมูลมาใช้งาน
+		$rqs_id = $this->input->post("rqs_id");
+		$rtc_pn = $this->input->post("rtc_pn");
+		$vs_name = $this->input->post("vs_name");
+		$vs_company = $this->input->post("vs_company");
+
+		if(empty($rqs_id) or empty($rtc_pn) or empty($vs_name) or empty($vs_company)){
+			// No data.
+			$this->session->set_flashdata('msg_error',' Not found data. Please try again.');
+					redirect('member/machine/add_machine');
+		} else {
+			// Add invoice
+			$query_insert = $this->machine->_add_invoice($rqs_id,$rtc_pn,$vs_name,$vs_company);
+				if($query_insert){
+					// Success
+					$this->session->set_flashdata('msg_ok',' Successfully. Saved Invoice data.');
+						redirect('member/machine/add_machine');
+				} else {
+					// error
+					$this->session->set_flashdata('msg_error',' Error! Please try again.');
+						redirect('member/machine/add_machine');
+				}
+
+		}
+	}
+
+	public function add_machine_from_supplier()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+ 		// Agent_Data
+		$username_member = $this->session->userdata('username_member');
+		$data['username_member'] = $this->user->_getmember($username_member);
+
+		// แสดงข้อมูล Member
+		$query_user = $this->user->_getmember($username_member);
+				foreach ($query_user as $user) {
+					$id_user = $user->id_user;
+					$fullname = $user->fullname;
+				}
+
+		// ค่าทั่วไปของเว็บ
+		$this->load->model('Settingme','me');
+		$data['setting_web'] = $this->me->_getall();
+
 		// ดึงข้อมูล Machine Model มาใช้งาน
 		$this->load->model('Machine_model_model','machine');
 		$data['query_machine_model'] = $this->machine->_get_machine_model_AllData();
@@ -78,7 +149,13 @@ class Machine extends CI_Controller {
 		$this->load->model('Machine_brand_model','brand');
 		$data['query_machine_brand'] = $this->brand->_get_machine_brand_AllData();
 
-		$this->load->view('member/add_machine',$data);
+		// ดึงข้อมูล Machine Brand มาใช้งาน
+		$this->load->model('Visitor_supplier_model','visit_sup');
+		$data['query_visit_sup'] = $this->visit_sup->_get_visitor_supplier_AllData();
+
+		
+
+		$this->load->view('member/add_machine_from_supplier',$data);
 	}
 
 	public function data_add_machine()
@@ -132,10 +209,58 @@ class Machine extends CI_Controller {
 
 				} else  if($update_data=="false") {
 					// false / error
-					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
+					$this->session->set_flashdata('msg_error',' Error! Please try again.');
 						redirect('member/machine');
 				}
 		}
+	}
+
+	public function get_visitor_supplier()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+		// Load Visitor_supplier_model
+		$this->load->model('Visitor_supplier_model','visitor_sup');
+
+		// รับข้อมูลมา
+		$vs_name = $this->input->post("query");
+
+		// ดึงข้อมูลมาแสดง
+		$query_visitor_sub = $this->visitor_sup->_get_visitor_supplier_by_vs_name($vs_name);
+			foreach($query_visitor_sub as $row)
+				{
+				echo '
+				<li class="list-group-item contsearch">
+				<a href="javascript:void(0)" class="gsearch" style="color:#333;text-decoration:none;">'.$row->vs_name.'</a>
+				</li>
+				';
+				}
+
+	}
+
+	public function get_vs_company_visitor_supplier()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+		// Load Visitor_supplier_model
+		$this->load->model('Visitor_supplier_model','visitor_sup');
+
+		// รับข้อมูลมา
+		$vs_company = $this->input->post("vs_company");
+
+		// ดึงข้อมูลมาแสดง
+		$query_visitor_sub = $this->visitor_sup->_get_visitor_supplier_by_vs_company($vs_company);
+			foreach($query_visitor_sub as $data)
+				{
+					echo $data->vs_company;
+				}
+
 	}
 
 	public function edit_machine()

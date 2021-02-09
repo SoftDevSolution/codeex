@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 07, 2021 at 10:02 AM
+-- Generation Time: Feb 09, 2021 at 07:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -55,7 +55,10 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (12, 'admin', 'login', '', '::1', '2021-02-04 04:59:58'),
 (13, 'admin', 'logout', 'admin', '::1', '2021-02-05 17:15:24'),
 (14, 'admin', 'login', '', '::1', '2021-02-05 17:15:27'),
-(15, 'admin', 'login', '', '::1', '2021-02-07 04:48:49');
+(15, 'admin', 'login', '', '::1', '2021-02-07 04:48:49'),
+(16, 'admin', 'login', '', '::1', '2021-02-07 11:09:59'),
+(17, 'admin', 'login', '', '::1', '2021-02-09 03:14:51'),
+(18, 'admin', 'login', '', '::1', '2021-02-09 17:17:47');
 
 -- --------------------------------------------------------
 
@@ -479,6 +482,29 @@ CREATE TABLE `tbl_inventory` (
   `inv_pic_path` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `inv_qty` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_invoice`
+--
+
+CREATE TABLE `tbl_invoice` (
+  `id_invoice` int(11) NOT NULL,
+  `rqs_id` varchar(100) NOT NULL,
+  `rtc_pn` varchar(100) NOT NULL,
+  `vs_name` varchar(100) NOT NULL,
+  `vs_company` varchar(100) NOT NULL,
+  `create_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_invoice`
+--
+
+INSERT INTO `tbl_invoice` (`id_invoice`, `rqs_id`, `rtc_pn`, `vs_name`, `vs_company`, `create_date`) VALUES
+(1, '123099', '5750000', 'Supplier01', 'Company01', '2021-02-09 19:07:04'),
+(2, '324234', 'FN0654353000', 'Supplier02', 'Company02', '2021-02-09 19:35:53');
 
 -- --------------------------------------------------------
 
@@ -909,8 +935,8 @@ CREATE TABLE `tbl_visitor_supplier` (
 --
 
 INSERT INTO `tbl_visitor_supplier` (`vs_id`, `vs_name`, `vs_address`, `vs_company`, `vs_position`, `vs_branch`, `vs_tel_1`, `vs_tel_2`, `vs_tel_main`, `vs_mobile_phone`, `vs_email`, `vs_email_personal`, `com_sup_id`) VALUES
-(1, 'Supplier01', 'Supplier01', 'Supplier01', 'Supplier01', 'Supplier01', '12341234', '123412', '341234', '44', '44', '44', 2),
-(2, 'Supplier02', 'Supplier02', 'Supplier02', 'Supplier02', 'Supplier02', '22222', '22222', '44', '0448811114', 'csxman69@gmail.com', 'csxman69@gmail.com', 1);
+(1, 'Supplier01', 'Supplier01', 'Company01', 'Supplier01', 'Supplier01', '12341234', '123412', '341234', '44', '44', '44', 2),
+(2, 'Supplier02', 'Supplier02', 'Company02', 'Supplier02', 'Supplier02', '22222', '22222', '44', '0448811114', 'csxman69@gmail.com', 'csxman69@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -1050,6 +1076,12 @@ ALTER TABLE `tbl_inventory`
   ADD PRIMARY KEY (`inv_id`);
 
 --
+-- Indexes for table `tbl_invoice`
+--
+ALTER TABLE `tbl_invoice`
+  ADD PRIMARY KEY (`id_invoice`);
+
+--
 -- Indexes for table `tbl_machine`
 --
 ALTER TABLE `tbl_machine`
@@ -1171,7 +1203,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -1262,6 +1294,12 @@ ALTER TABLE `tbl_industrial_estate`
 --
 ALTER TABLE `tbl_inventory`
   MODIFY `inv_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_invoice`
+--
+ALTER TABLE `tbl_invoice`
+  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_machine`
