@@ -11,7 +11,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Create Invoice |
+    <title>Refferal Invoice |
         <? echo $data->nameweb; ?>
     </title>
 
@@ -34,11 +34,11 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Create Invoice</h3>
+                            <h3 class="section-title">Create Refferal Invoice</h3>
                             <hr>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/machine" class="breadcrumb-link">Inventory</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Create Invoice</li>
+                                <li class="breadcrumb-item active" aria-current="page">Refferal Invoice</li>
                             </ol>
                         </div>
                         <div class="card">
@@ -95,6 +95,7 @@
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Reference ID</th>
+                                                <th scope="col">P/N</th>
                                                 <th scope="col">Visitor Supplier</th>
                                                 <th scope="col">Manage</th>
                                             </tr>
@@ -109,14 +110,19 @@
                                                     <? echo $ddd->rqs_id; ?>
                                                 </td>
                                                 <td>
+                                                    <? echo $ddd->rtc_pn; ?>
+                                                </td>
+                                                <td>
                                                     <? echo $ddd->vs_name; ?>
                                                 </td>
                                                 <td>
+                                                    <center>
                                                     <a href="<? echo base_url(); ?>member/machine/add_machine_from_supplier/<? echo $ddd->id_invoice; ?>"><button class="btn btn-sm btn-success"><i
                                                                 class="fas fa-plus-circle" title="Add invoice"></i>
                                                             Add
                                                             Inventory</button></a>
-                                                    <button class="btn btn-sm btn-danger">ลบ</button>
+                                                    <a href="<? echo base_url(); ?>member/machine/delete_invoice/<? echo $ddd->id_invoice; ?>" onclick="return confirm('ยืนยันการลบ? Inventory จะถูกลบออกด้วย หากคุณลบ?');"><button class="btn btn-sm btn-danger">remove</button></a>
+                                                    </center>
                                                 </td>
                                             </tr>
                                             <? } ?>
@@ -156,10 +162,10 @@
     <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
     <script>
-    // Call the dataTables jQuery plugin
-    $(document).ready(function() {
-        $('#dataTable').DataTable();
-    });
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
     </script>
 
     <script>

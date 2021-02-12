@@ -265,7 +265,7 @@ class Company_model extends CI_Model {
                         return $query;
     }
 
-    public function _add_new_machine($machine_type_id,$model_id,$machine_status,$machine_serial_no,$brand_id,$machine_price,$machine_stock,$machine_sup_inv_no,$machine_sup_inv_date,$machine_warranty_year,$machine_warranty_start_date,$machine_warranty_stop_date,$machine_company_inv_no,$machine_company_inv_date,$machine_warranty_comp_year,$machine_warranty_comp_start_date,$machine_warranty_comp_stop_date)
+    public function _add_new_machine($invoice_id,$machine_type_id,$model_id,$machine_status,$machine_serial_no,$brand_id,$machine_price,$machine_stock,$machine_sup_inv_no,$machine_sup_inv_date,$machine_warranty_year,$machine_warranty_start_date,$machine_warranty_stop_date,$machine_company_inv_no,$machine_company_inv_date,$machine_warranty_comp_year,$machine_warranty_comp_start_date,$machine_warranty_comp_stop_date)
 	{
         // Check
         $checking = $this->db->where("machine_serial_no",$machine_serial_no)
@@ -274,6 +274,7 @@ class Company_model extends CI_Model {
             if($checking==0){
                 // ไม่มีข้อมูล บันทึกข้อมูลได้
                 $query = $this->db->set("machine_type_id",$machine_type_id)
+                        ->set("invoice_id",$invoice_id)
                         ->set("model_id",$model_id)
                         ->set("machine_status",$machine_status)
                         ->set("machine_serial_no",$machine_serial_no)
@@ -379,6 +380,29 @@ class Company_model extends CI_Model {
                     return $query;
     }
 
+    public function _delete_invoice($id_invoice)
+    {
+        $query_inventory = $this->db->where("invoice_id",$id_invoice)
+                        ->get("tbl_machine")->result();
+            if($query_inventory=="" or empty($query_inventory)){
+                // ไม่มี inventory
+                $remove_invoice = $this->db->where("id_invoice",$id_invoice)
+                                ->delete("tbl_invoice");
+                           return $remove_invoice;
+            } else {
+                // มี inventory ให้ลบ inventory ก่อน
+                foreach ($query_inventory as $aaa) {
+                    $remove_inventory = $this->db->where("invoice_id",$aaa->invoice_id)
+                                ->delete("tbl_machine");
+                }
+
+                // ลบ invoice (ลบใบนำส่งสินค้า)
+                $remove_invoice = $this->db->where("id_invoice",$id_invoice)
+                                ->delete("tbl_invoice");
+                           return $remove_invoice;
+            }
+
+    }
 
 
 }

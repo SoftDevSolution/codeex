@@ -27,11 +27,11 @@
         </div>
         <div class="form-group col-md-4">
             <label for="machine_status">Machine Status</label>
-            <input type="text" class="form-control" id="machine_status" name="machine_status" placeholder="Machine Status">
+            <input type="text" class="form-control" id="machine_status" name="machine_status" placeholder="Machine Status" autocomplete="off">
         </div>
         <div class="form-group col-md-6">
             <label for="machine_serial_no">Machine S/N</label>
-            <input type="text" class="form-control" id="machine_serial_no" name="machine_serial_no" placeholder="Machine S/N">
+            <input type="text" class="form-control" id="machine_serial_no" name="machine_serial_no" placeholder="Machine S/N" autocomplete="off">
         </div>
         <div class="form-group col-md-6">
             <label for="brand_id">Brand</label>
@@ -56,7 +56,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="machine_sup_inv_no">Supplier Inv. No.</label>
-            <input type="text" class="form-control" id="machine_sup_inv_no" name="machine_sup_inv_no" placeholder="Supplier Inv. No.">
+            <input type="text" class="form-control" id="machine_sup_inv_no" name="machine_sup_inv_no" placeholder="Supplier Inv. No." autocomplete="off">
         </div>
         <div class="form-group col-md-6">
             <label for="machine_sup_inv_date">Supplier Inv. Date</label>
@@ -74,11 +74,11 @@
         </div>
         <div class="form-group col-md-4">
             <label for="machine_warranty_year">Warranty from Supplier ( Year )</label>
-            <input type="number" max="4" class="form-control" id="machine_warranty_year" name="machine_warranty_year" placeholder="Year" readonly>
+            <input type="number" max="4" class="form-control" id="machine_warranty_year" name="machine_warranty_year" placeholder="Year" autocomplete="off" readonly>
         </div>
         <div class="form-group col-md-6">
             <label for="machine_company_inv_no">Factory Inv No.</label>
-            <input type="text" class="form-control" id="machine_company_inv_no" name="machine_company_inv_no" placeholder="Supplier Inv. No.">
+            <input type="text" class="form-control" id="machine_company_inv_no" name="machine_company_inv_no" placeholder="Supplier Inv. No." autocomplete="off">
         </div>
         <div class="form-group col-md-6">
             <label for="machine_company_inv_date">Factory Inv Date</label>

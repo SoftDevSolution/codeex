@@ -187,6 +187,7 @@ class Machine extends CI_Controller {
 		// รับข้อมูลมาใช้งาน
 		$machine_type_id = $this->input->post("machine_type_id");
 		$model_id = $this->input->post("model_id");
+		$invoice_id = $this->input->post("invoice_id");
 		$machine_status = $this->input->post("machine_status");
 		$machine_serial_no = $this->input->post("machine_serial_no");
 		$brand_id = $this->input->post("brand_id");
@@ -211,7 +212,7 @@ class Machine extends CI_Controller {
 			
 		} else {
 			// ดำเนินการบันทึกข้อมูลได้
-			$update_data = $this->machine->_add_new_machine($machine_type_id,$model_id,$machine_status,$machine_serial_no,$brand_id,$machine_price,$machine_stock,$machine_sup_inv_no,$machine_sup_inv_date,$machine_warranty_year,$machine_warranty_start_date,$machine_warranty_stop_date,$machine_company_inv_no,$machine_company_inv_date,$machine_warranty_comp_year,$machine_warranty_comp_start_date,$machine_warranty_comp_stop_date);
+			$update_data = $this->machine->_add_new_machine($invoice_id,$machine_type_id,$model_id,$machine_status,$machine_serial_no,$brand_id,$machine_price,$machine_stock,$machine_sup_inv_no,$machine_sup_inv_date,$machine_warranty_year,$machine_warranty_start_date,$machine_warranty_stop_date,$machine_company_inv_no,$machine_company_inv_date,$machine_warranty_comp_year,$machine_warranty_comp_start_date,$machine_warranty_comp_stop_date);
 			
 				if($update_data=="same") {
 					// ซ้ำ
@@ -408,6 +409,44 @@ class Machine extends CI_Controller {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please try again.');
 						redirect('member/machine');
+				}
+
+		}
+		
+	}
+
+	public function delete_invoice()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+ 		// Agent_Data
+		$username_member = $this->session->userdata('username_member');
+		$data['username_member'] = $this->user->_getmember($username_member);
+
+		// รับข้อมูลมา
+		$id_invoice = $this->uri->segment(4);
+
+		// Load Company_model
+		$this->load->model('Company_model','company');
+
+		// ดำเนินการลบข้อมูล
+		if(empty($id_invoice) or $id_invoice==""){
+			// ไม่มีข้อมูลมาให้ดำเนินการ
+				$this->session->set_flashdata('msg_warning',' Data is exist. Please try again.');
+						redirect('member/machine/add_machine');
+		} else {
+			// ดำเนินการลบ
+			$remove = $this->company->_delete_invoice($id_invoice);
+				if($remove){
+					$this->session->set_flashdata('msg_ok',' Delete Successfully.');
+						redirect('member/machine/add_machine');
+				} else {
+					// false / error
+					$this->session->set_flashdata('msg_error',' Error! Please try again.');
+						redirect('member/machine/add_machine');
 				}
 
 		}

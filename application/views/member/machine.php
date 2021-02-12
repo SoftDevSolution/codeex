@@ -70,6 +70,7 @@
                                                 <th scope="col">Factory Inv No.</th>
                                                 <th scope="col">Warranty from Supplier (year)</th>
                                                 <th scope="col">Warranty from Factory (year)</th>
+                                                <th scope="col">Status</th>
                                                 <th scope="col">
                                                     <center>Manage</center>
                                                 </th>
@@ -114,6 +115,9 @@
                                             </td>
                                             <td>
                                                 <? echo $mach->machine_warranty_comp_year; ?>
+                                            </td>
+                                            <td>
+                                                <? echo $mach->status_machine; ?>
                                             </td>
                                             <td>
                                                 <center>
