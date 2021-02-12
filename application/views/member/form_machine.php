@@ -1,3 +1,7 @@
+<?
+    $datenow = date("Y-m-d");
+?>
+
 <div class="section-block" id="basicform">
     <h4 style="margin: 10px 20px;">Add New Inventory</h4>
 </div>
@@ -60,16 +64,16 @@
         </div>
         <div class="form-group col-md-6">
             <label for="machine_sup_inv_date">Supplier Inv. Date</label>
-            <input type="date" class="form-control" id="machine_sup_inv_date" name="machine_sup_inv_date" placeholder="Date" value="<? echo date(" Y-m-d"); ?>">
+            <input type="date" class="form-control" id="machine_sup_inv_date" name="machine_sup_inv_date" placeholder="Date" value="<? echo date("Y-m-d"); ?>">
         </div>
         <div class="form-group col-md-4">
             <label for="machine_warranty_start_date">Warranty from Supplier ( Date Start)</label>
-            <input type="date" class="form-control" id="machine_warranty_start_date" name="machine_warranty_start_date" value="<? echo date(" Y-m-d"); ?>" placeholder="Warranty from Supplier ( Date
+            <input type="date" class="form-control" id="machine_warranty_start_date" name="machine_warranty_start_date" value="<? echo date("Y-m-d"); ?>" placeholder="Warranty from Supplier ( Date
             Start)" onchange="cal_warranty();">
         </div>
         <div class="form-group col-md-4">
             <label for="machine_warranty_stop_date">Warranty from Supplier ( Date Stop)</label>
-            <input type="date" class="form-control" id="machine_warranty_stop_date" name="machine_warranty_stop_date" value="<? echo date(" Y-m-d"); ?>" placeholder="Warranty from Supplier ( Date
+            <input type="date" class="form-control" id="machine_warranty_stop_date" name="machine_warranty_stop_date" value="<? echo date("Y-m-d"); ?>" placeholder="Warranty from Supplier ( Date
             Stop)" onchange="cal_warranty();">
         </div>
         <div class="form-group col-md-4">
@@ -82,16 +86,16 @@
         </div>
         <div class="form-group col-md-6">
             <label for="machine_company_inv_date">Factory Inv Date</label>
-            <input type="date" class="form-control" id="machine_company_inv_date" name="machine_company_inv_date" value="<? echo date(" Y-m-d"); ?>" placeholder="Date">
+            <input type="date" class="form-control" id="machine_company_inv_date" name="machine_company_inv_date" value="<? echo date("Y-m-d"); ?>" placeholder="Date">
         </div>
         <div class="form-group col-md-4">
             <label for="machine_warranty_comp_start_date">Warranty from Factory ( Date Start )</label>
-            <input type="date" class="form-control" id="machine_warranty_comp_start_date" name="machine_warranty_comp_start_date" value="<? echo date(" Y-m-d"); ?>" placeholder="Warranty from Company
+            <input type="date" class="form-control" id="machine_warranty_comp_start_date" name="machine_warranty_comp_start_date" value="<? echo date("Y-m-d"); ?>" placeholder="Warranty from Company
             ( Date Start)" onchange="cal_warranty_company();">
         </div>
         <div class="form-group col-md-4">
             <label for="machine_warranty_comp_stop_date">Warranty from Factory ( Date Stop )</label>
-            <input type="date" class="form-control" id="machine_warranty_comp_stop_date" name="machine_warranty_comp_stop_date" value="<? echo date(" Y-m-d"); ?>" placeholder="Warranty from Company (
+            <input type="date" class="form-control" id="machine_warranty_comp_stop_date" name="machine_warranty_comp_stop_date" value="<? echo date("Y-m-d"); ?>" placeholder="Warranty from Company (
             Date Stop )" onchange="cal_warranty_company();">
         </div>
         <div class="form-group col-md-4">
