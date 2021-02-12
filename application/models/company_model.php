@@ -129,6 +129,21 @@ class Company_model extends CI_Model {
         
     }
 
+    public function _get_inventory_in_invoice($id_invoice)
+    {
+        $query = $this->db->where("invoice_id",$id_invoice)
+                    // ->join("tbl_invoice","tbl_machine.invoice_id = tbl_invoice.id_invoice")
+                    ->get("tbl_machine")->result();
+                return $query;
+    }
+
+    public function _count_inventory_in_invoice($id_invoice)
+    {
+        $count_data = $this->db->where("invoice_id",$id_invoice)
+                    // ->join("tbl_invoice","tbl_machine.invoice_id = tbl_invoice.id_invoice")
+                    ->count_all_results("tbl_machine");
+                return $count_data;
+    }
 
     public function _delete_company($company_id)
     {
@@ -291,7 +306,7 @@ class Company_model extends CI_Model {
         
     }
 
-    public function _edit_machine($machine_id,$machine_type_id,$model_id,$machine_status,$machine_serial_no,$brand_id,$machine_price,$machine_stock,$machine_sup_inv_no,$machine_sup_inv_date,$machine_warranty_year,$machine_warranty_start_date,$machine_warranty_stop_date,$machine_company_inv_no,$machine_company_inv_date,$machine_warranty_comp_year,$machine_warranty_comp_start_date,$machine_warranty_comp_stop_date)
+    public function _edit_machine($invoice_id,$machine_id,$machine_type_id,$model_id,$machine_status,$machine_serial_no,$brand_id,$machine_price,$machine_stock,$machine_sup_inv_no,$machine_sup_inv_date,$machine_warranty_year,$machine_warranty_start_date,$machine_warranty_stop_date,$machine_company_inv_no,$machine_company_inv_date,$machine_warranty_comp_year,$machine_warranty_comp_start_date,$machine_warranty_comp_stop_date)
 	{
         // Check
         $checking = $this->db->where("machine_id",$machine_id)
@@ -300,6 +315,7 @@ class Company_model extends CI_Model {
             if($checking>0){
                 // มีข้อมูล บันทึกข้อมูลได้
                 $query = $this->db->where("machine_id",$machine_id)
+                        ->set("invoice_id",$invoice_id)
                         ->set("machine_type_id",$machine_type_id)
                         ->set("model_id",$model_id)
                         ->set("machine_status",$machine_status)

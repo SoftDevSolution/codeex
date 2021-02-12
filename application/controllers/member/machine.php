@@ -153,9 +153,25 @@ class Machine extends CI_Controller {
 		$this->load->model('Visitor_supplier_model','visit_sup');
 		$data['query_visit_sup'] = $this->visit_sup->_get_visitor_supplier_AllData();
 
-		
+		// รับข้อมูลมา
+		$id_invoice = $this->uri->segment(4);
 
-		$this->load->view('member/add_machine_from_supplier',$data);
+		// Checking Data
+		if(empty($id_invoice) or $id_invoice==""){
+			// No data.
+			$this->session->set_flashdata('msg_error',' Not found data. Please try again.');
+					redirect('member/machine/add_machine');
+		} else {
+			// Add invoice
+			$this->load->model('Company_model','company');
+			$data['query_inventory'] = $this->company->_get_inventory_in_invoice($id_invoice);
+
+			// Count data
+			$data['count_inventory'] = $this->company->_count_inventory_in_invoice($id_invoice);
+			
+				$this->load->view('member/add_machine_from_supplier',$data);
+		}
+		
 	}
 
 	public function data_add_machine()
@@ -319,6 +335,7 @@ class Machine extends CI_Controller {
 		
 		// รับข้อมูลมาใช้งาน
 		$machine_id = $this->input->post("machine_id");
+		$invoice_id = $this->input->post("invoice_id");
 		$machine_type_id = $this->input->post("machine_type_id");
 		$model_id = $this->input->post("model_id");
 		$machine_status = $this->input->post("machine_status");
@@ -345,7 +362,7 @@ class Machine extends CI_Controller {
 			
 		} else {
 			// ดำเนินการบันทึกข้อมูลได้
-			$update_data = $this->machine->_edit_machine($machine_id,$machine_type_id,$model_id,$machine_status,$machine_serial_no,$brand_id,$machine_price,$machine_stock,$machine_sup_inv_no,$machine_sup_inv_date,$machine_warranty_year,$machine_warranty_start_date,$machine_warranty_stop_date,$machine_company_inv_no,$machine_company_inv_date,$machine_warranty_comp_year,$machine_warranty_comp_start_date,$machine_warranty_comp_stop_date);
+			$update_data = $this->machine->_edit_machine($invoice_id,$machine_id,$machine_type_id,$model_id,$machine_status,$machine_serial_no,$brand_id,$machine_price,$machine_stock,$machine_sup_inv_no,$machine_sup_inv_date,$machine_warranty_year,$machine_warranty_start_date,$machine_warranty_stop_date,$machine_company_inv_no,$machine_company_inv_date,$machine_warranty_comp_year,$machine_warranty_comp_start_date,$machine_warranty_comp_stop_date);
 			
 				if($update_data) {
 					// success

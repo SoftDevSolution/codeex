@@ -50,16 +50,16 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="rqs_id">Reference ID <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="rqs_id" name="rqs_id" placeholder="Reference ID" required>
+                                            <input type="text" class="form-control" id="rqs_id" name="rqs_id" placeholder="Reference ID" autocomplete="off" required>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="rtc_pn">P/N</label>
-                                            <input type="text" class="form-control" id="rtc_pn" name="rtc_pn" placeholder="P/N">
+                                            <input type="text" class="form-control" id="rtc_pn" name="rtc_pn" placeholder="P/N" autocomplete="off">
 
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="vs_name">Visitor Supplier <span class="text-danger">*</span></label>
-                                            <input type="text" name="vs_name" id="vs_name" class="form-control input-lg" placeholder="Search..." required />
+                                            <input type="text" name="vs_name" id="vs_name" class="form-control input-lg" placeholder="Search..." autocomplete="off" required />
                                             <ul class="list-group"></ul>
                                             <div id="localSearchSimple"></div>
                                         </div>
@@ -115,7 +115,7 @@
                                                     <a href="<? echo base_url(); ?>member/machine/add_machine_from_supplier/<? echo $ddd->id_invoice; ?>"><button class="btn btn-sm btn-success"><i
                                                                 class="fas fa-plus-circle" title="Add invoice"></i>
                                                             Add
-                                                            invoice</button></a>
+                                                            Inventory</button></a>
                                                     <button class="btn btn-sm btn-danger">ลบ</button>
                                                 </td>
                                             </tr>

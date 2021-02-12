@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 09, 2021 at 07:39 PM
+-- Generation Time: Feb 12, 2021 at 08:27 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -58,7 +58,9 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (15, 'admin', 'login', '', '::1', '2021-02-07 04:48:49'),
 (16, 'admin', 'login', '', '::1', '2021-02-07 11:09:59'),
 (17, 'admin', 'login', '', '::1', '2021-02-09 03:14:51'),
-(18, 'admin', 'login', '', '::1', '2021-02-09 17:17:47');
+(18, 'admin', 'login', '', '::1', '2021-02-09 17:17:47'),
+(19, 'admin', 'login', '', '::1', '2021-02-10 18:06:14'),
+(20, 'admin', 'login', '', '::1', '2021-02-11 23:40:48');
 
 -- --------------------------------------------------------
 
@@ -514,6 +516,7 @@ INSERT INTO `tbl_invoice` (`id_invoice`, `rqs_id`, `rtc_pn`, `vs_name`, `vs_comp
 
 CREATE TABLE `tbl_machine` (
   `machine_id` int(11) NOT NULL,
+  `invoice_id` int(11) NOT NULL DEFAULT 0,
   `machine_status` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `machine_type_id` int(11) NOT NULL,
   `model_id` int(11) NOT NULL,
@@ -538,8 +541,9 @@ CREATE TABLE `tbl_machine` (
 -- Dumping data for table `tbl_machine`
 --
 
-INSERT INTO `tbl_machine` (`machine_id`, `machine_status`, `machine_type_id`, `model_id`, `machine_serial_no`, `brand_id`, `machine_price`, `machine_stock`, `machine_sup_inv_no`, `machine_sup_inv_date`, `machine_warranty_year`, `machine_warranty_start_date`, `machine_warranty_stop_date`, `machine_company_inv_no`, `machine_company_inv_date`, `machine_warranty_comp_year`, `machine_warranty_comp_start_date`, `machine_warranty_comp_stop_date`, `status_machine`) VALUES
-(2, 'qwertty', 3, 12, '23456gda4365640ER', 4, 1000, 1, '192', '2021-02-10', 5, '2021-02-07', '2026-02-07', '129', '2021-02-12', 4, '2021-02-07', '2025-02-07', 'active');
+INSERT INTO `tbl_machine` (`machine_id`, `invoice_id`, `machine_status`, `machine_type_id`, `model_id`, `machine_serial_no`, `brand_id`, `machine_price`, `machine_stock`, `machine_sup_inv_no`, `machine_sup_inv_date`, `machine_warranty_year`, `machine_warranty_start_date`, `machine_warranty_stop_date`, `machine_company_inv_no`, `machine_company_inv_date`, `machine_warranty_comp_year`, `machine_warranty_comp_start_date`, `machine_warranty_comp_stop_date`, `status_machine`) VALUES
+(2, 2, 'qwertty', 3, 12, '23456gda4365640ER', 4, 1000, 1, '192', '2021-02-10', 5, '2021-02-07', '2026-02-07', '129', '2021-02-12', 4, '2021-02-07', '2025-02-07', 'active'),
+(3, 0, '123', 3, 10, 'TH00423434300999', 5, 50000, 1, 'A9099', '2021-02-12', 10, '2020-01-01', '2029-12-31', '222', '2021-02-11', 3, '2021-02-12', '2024-02-01', 'active');
 
 -- --------------------------------------------------------
 
@@ -1203,7 +1207,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -1305,7 +1309,7 @@ ALTER TABLE `tbl_invoice`
 -- AUTO_INCREMENT for table `tbl_machine`
 --
 ALTER TABLE `tbl_machine`
-  MODIFY `machine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `machine_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_machine_detail`
