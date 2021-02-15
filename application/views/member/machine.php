@@ -117,7 +117,13 @@
                                                 <? echo $mach->machine_warranty_comp_year; ?>
                                             </td>
                                             <td>
-                                                <? echo $mach->status_machine; ?>
+                                                <? if($mach->status_machine=="active"){ ?>
+                                                <span class="texyt-success">active</span>
+                                                <? } else if($mach->status_machine=="used"){ ?>
+                                                <span class="text-warning">used</span>
+                                                <?  } else { ?>
+                                                <span class="text-danger"><? echo $mach->status_machine; ?></span>
+                                                <? } ?>
                                             </td>
                                             <td>
                                                 <center>

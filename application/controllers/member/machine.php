@@ -217,17 +217,17 @@ class Machine extends CI_Controller {
 				if($update_data=="same") {
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning',' Data is exist. Please try again.');
-						redirect('member/machine');
+						redirect('member/machine/add_machine_from_supplier/'.$invoice_id);
 
 				} else if($update_data=="success") {
 					// success
 					$this->session->set_flashdata('msg_ok',' Successfully. Saved data.');
-						redirect('member/machine');
+						redirect('member/machine/add_machine_from_supplier/'.$invoice_id);
 
 				} else  if($update_data=="false") {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please try again.');
-						redirect('member/machine');
+						redirect('member/machine/add_machine_from_supplier/'.$invoice_id);
 				}
 		}
 	}
@@ -371,7 +371,7 @@ class Machine extends CI_Controller {
 						redirect('member/machine');
 				} else {
 					// false / error
-					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
+					$this->session->set_flashdata('msg_error',' Error! Please try again.');
 						redirect('member/machine');
 				}
 		}

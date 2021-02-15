@@ -190,10 +190,9 @@ class Factory_supplier extends CI_Controller {
 			$data['query_supplier'] = $this->employee->_get_visitor_supplier_AllData_ByCompanyID($company_id);
 			$data['count_supplier'] = $this->employee->_count_visitor_supplier_ById($company_id);
 			
-			//echo $data['query_supplier']."</BR>";	
-			//echo $data['count_supplier']."</BR>";	
-			//print_r($data['query_supplier'])."</BR>";	
-			//print_r($data['count_supplier'])."</BR>";
+			// Get Invoice
+			$this->load->model('Company_model','company');
+			$data['query_invoice'] = $this->company->_get_inventory_by_factory($company_id);
 						
 			$this->load->view('member/edit_factory_supplier',$data);
 

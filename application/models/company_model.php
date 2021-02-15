@@ -17,14 +17,12 @@ class Company_model extends CI_Model {
 
     public function _get_company_AllData()
     {
-         
         // ดึงข้อมูลทั้งหมด ไปใช้งาน
         $query = $this->db->order_by("company_id","DESC")
                         ->get("tbl_company")
                         ->result();
                     return $query;
     }
-
 
     public function _query_company($company_id)
     {
@@ -133,7 +131,24 @@ class Company_model extends CI_Model {
     {
         $query = $this->db->where("invoice_id",$id_invoice)
                     // ->join("tbl_invoice","tbl_machine.invoice_id = tbl_invoice.id_invoice")
+                    ->order_by("machine_id","DESC")
                     ->get("tbl_machine")->result();
+                return $query;
+    }
+
+    public function _get_inventory_by_factory($company_id)
+    {
+        // get company id
+        $query_company = $this->db->where("vs_id",$company_id)
+                        ->get("tbl_visitor_supplier")->result();
+                        foreach ($query_company as $key => $aaa) {
+                            $vs_name = $aaa->vs_name;
+                        }
+
+        $query = $this->db->where("vs_name",$vs_name)
+                    // ->join("tbl_invoice","tbl_machine.invoice_id = tbl_invoice.id_invoice")
+                    ->order_by("id_invoice","DESC")
+                    ->get("tbl_invoice")->result();
                 return $query;
     }
 
@@ -356,7 +371,8 @@ class Company_model extends CI_Model {
                 } else {
                     // มีข้อมูล ลบได้
                     $query_delete = $this->db->where("machine_id",$machine_id)
-                                        ->delete("tbl_machine");
+                                        ->set("status_machine","nonactive")
+                                        ->update("tbl_machine");
                                     return $query_delete;
                 }
     }
@@ -377,6 +393,14 @@ class Company_model extends CI_Model {
     {
         $query = $this->db->order_by("id_invoice","DESC")
                         ->get("tbl_invoice")->result();
+                    return $query;
+    }
+
+    public function _get_invoice_active()
+    {
+        $query = $this->db->where("status_machine","active")
+                        ->order_by("machine_id","DESC")
+                        ->get("tbl_machine")->result();
                     return $query;
     }
 
@@ -402,6 +426,42 @@ class Company_model extends CI_Model {
                            return $remove_invoice;
             }
 
+    }
+
+    public function _add_inventory_to_requisition($machine_id,$rqs_id,$username_member)
+    {
+        $save_date = date("Y-m-d H:i:s");
+        $add_inven_to_invoice = $this->db->set("machine_id",$machine_id)
+                            ->set("rqs_id",$rqs_id)
+                            ->set("user_create",$username_member)
+                            ->set("date_create",$save_date)
+                            ->set("save_date",$save_date)
+                            ->insert("tbl_add_inventory_to_invoice");
+            if($add_inven_to_invoice){
+                // Update machine_id
+                $update_machine_id = $this->db->set("status_machine","used")
+                                    ->where("machine_id",$machine_id)
+                                    ->update("tbl_machine");
+                            return $update_machine_id;
+            } else {
+                return false;
+            }
+    }
+
+    public function _return_requisition($id_inven_to_invoice)
+    {
+        $query = $this->db->where("id_inven_to_invoice",$id_inven_to_invoice)
+                    ->get("tbl_add_inventory_to_invoice")->result();
+                foreach ($query as $aaa) {
+                    // ดึงข้อมูล machine_id ออกมา update status กลับคืน เป็น active
+                    $update_status_machine_id = $this->db->where("machine_id",$aaa->machine_id)
+                                                ->set("status_machine","active")
+                                                ->update("tbl_machine");
+                }
+        // ลบ id_inven_to_invoice ออก
+        $remove_id_inven_to_invoice = $this->db->where("id_inven_to_invoice",$id_inven_to_invoice)
+                                            ->delete("tbl_add_inventory_to_invoice");
+                                return $remove_id_inven_to_invoice;
     }
 
 

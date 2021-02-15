@@ -41,6 +41,7 @@ class visitor_customer extends CI_Controller {
 		// ดึงข้อมูล Machine Type มาใช้งาน
 		$data['data_factory_customer'] = $this->comcus->_get_company_customer_AllData();
 
+		// แสดงจำนวน Factory customer
 		$data['count_factory_customer'] = $this->comcus->_count_company_customer();
 
 

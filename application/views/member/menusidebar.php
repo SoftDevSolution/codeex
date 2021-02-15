@@ -63,13 +63,13 @@
                         <div id="submenu-2" class="collapse submenu <? if($activemenu=="factory" or $activemenu=="add_factory" or $activemenu=="factory_supplier" or $activemenu=="factory_customer" ){ ?> show <? } else { } ?>">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory"><i class="fas fa-list-ul"></i> Factory Owner</a>
+                                    <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory"><i class="fas fa-list-ul"></i> Owner</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="factory_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory_supplier" href="<? echo base_url(); ?>member/factory_supplier"><i class="fas fa-list-ul"></i> Factory Supplier</a>
+                                    <a class="nav-link <? if($activemenu=="factory_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory_supplier" href="<? echo base_url(); ?>member/factory_supplier"><i class="fas fa-list-ul"></i> Supplier</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="factory_customer"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory_customer" href="<? echo base_url(); ?>member/factory_customer"><i class="fas fa-list-ul"></i> Factory Customer</a>
+                                    <a class="nav-link <? if($activemenu=="factory_customer"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory_customer" href="<? echo base_url(); ?>member/factory_customer"><i class="fas fa-list-ul"></i> Customer</a>
                                 </li>
                                 
                             </ul>
@@ -136,9 +136,9 @@
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="requisition" or $activemenu=="add_requisition" or $activemenu=="add_sub_requisition"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/requisition"><i class="fas fa-sticky-note"></i> Requisition</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="return_certificate" or $activemenu=="add_return_certificate" or $activemenu=="add_sub_return_certificate"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/return_certificate"><i class="fas fa-sticky-note"></i> Return Certificate</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="service_outside" or $activemenu=="add_service_outside"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/service_outside"><i class="fas fa-sticky-note"></i> Service Outside</a>
                     </li>

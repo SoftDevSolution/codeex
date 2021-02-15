@@ -180,9 +180,6 @@
             </div>
 
             <div class="form-row col-md-6">
-            
-
-               
 
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <label for="company_remark">Supplier</label>
@@ -235,7 +232,7 @@
                             <div class="card-body">
                                 <div class="table-responsive-lg">
                                 <? 
-                                    if(empty($count_area) or $count_area==0){
+                                    if(empty($query_invoice) or $query_invoice==""){
                                 ?>
                                     <div align="center" style="padding: 65px 20px;"> No Data. </div>
                                 <? } else { ?>
@@ -243,22 +240,22 @@
                                         <thead>
                                             <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Machine Type</th>
-                                            <th scope="col">Process</th>
+                                            <th scope="col">Reference ID</th>
+                                            <th scope="col">P/N</th>
+                                            <th scope="col"><center>Process</center></th>
                                             </tr>
                                         </thead>
                                         <tbody id="showmydata">
                                 <? 
-                                    foreach ($data_area as $key => $area) {
+                                    foreach ($query_invoice as $key => $invoice) {
                                         
                                 ?>
                                             <tr>
                                             <th scope="row"><? echo $key+1; ?></th>
-                                            <td><? echo $area->area_name; ?></td>
+                                            <td><? echo $invoice->rqs_id; ?></td>
+                                            <td><? echo $invoice->rtc_pn; ?></td>
                                             <td>
-                                            <a href="<? echo base_url(); ?>member/config_area/edit_area/<? echo $area->id_area; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
-                                            &nbsp;
-                                            <a href="<? echo base_url(); ?>member/config_area/delete_area/<? echo $area->id_area; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                            <a href="<? echo base_url(); ?>member/machine/add_machine_from_supplier/<? echo $invoice->id_invoice; ?>" class="text-dark"><center><i class="fas fa-edit"></i></center></a>
                                             </td>
                                             </tr>
                                 <? } ?>
@@ -270,11 +267,6 @@
                             </div>
                             
 
-                        </div>
-                        <div class="form-group col-md-12">
-                            <center>    
-                                <button type="button" class="btn btn-primary"><a href="<? echo base_url(); ?>member/inventory" class="text-white">Add ใบนำส่ง</a></button> 
-                            </center>
                         </div>
                     </div>
             

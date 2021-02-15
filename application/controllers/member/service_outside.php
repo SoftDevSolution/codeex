@@ -69,7 +69,50 @@ class Service_outside extends CI_Controller {
 		$this->load->model('Settingme','me');
 		$data['setting_web'] = $this->me->_getall();
 
+		// tbl_requisition
+		$this->load->model('Requisition_model','requisition');
+		$data['query_requisition'] = $this->requisition->_get_all_active();
+
+		// GET Employee
+		$this->load->model('Employee_model','employee');
+		$data['query_employee'] = $this->employee->_getAll();
+
 		$this->load->view('member/add_service_outside',$data);
+	}
+
+	public function query_requisition()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+ 		// Agent_Data
+		$username_member = $this->session->userdata('username_member');
+		$data['username_member'] = $this->user->_getmember($username_member);
+
+		$rqs_id = $this->input->post("svo_requisition_no");
+
+		$this->load->model('Requisition_model','requisition');
+		$query = $this->requisition->_get_requisition_by_id($rqs_id);
+				foreach ($query as $aaa) { }
+				$vs_id = $aaa->vs_id;
+				$company_id = $aaa->company_id;
+				$emp_id = $aaa->emp_id;
+				$rqs_status = $aaa->rqs_status;
+				$rqs_pn = $aaa->rqs_pn;
+
+			if($query){
+			$get_visitor = $this->requisition->_get_visitor_customer($vs_id);
+				foreach ($get_visitor as $bbb) { }
+			$get_company = $this->db->where("com_cus_id",$company_id)->get("tbl_company_customer")->result();
+				foreach ($get_company as $ccc) { }
+			$get_emp = $this->db->where("emp_id",$emp_id)->get("tbl_employees")->result();
+				foreach ($get_emp as $ddd) { }
+
+					echo $bbb->vs_name."/".$ccc->com_cus_name."/".$ccc->com_cus_id."/".$ddd->emp_name."/".$emp_id;
+
+			} else { echo "No data."; }
 	}
 
 	public function add_data_service_outside()

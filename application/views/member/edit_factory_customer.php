@@ -14,12 +14,10 @@
 
     <title>Edit Factory Customer Data</title>
 
-    <!-- production version, optimized for size and speed -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 </head>
 
@@ -230,38 +228,61 @@
                     </div>
 
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <label for="company_remark">Inventory</label>
+                    <label for="company_remark">Inventory</label> <hr>
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive-lg">
                                 <? 
-                                    if(empty($count_area) or $count_area==0){
+                                    if(empty($query_requisition) or $query_requisition==""){
                                 ?>
-                                    <div align="center" style="padding: 65px 20px;"> No Data. </div>
+                                    <div align="center" class="empty_data"> No Data. </div>
                                 <? } else { ?>
-                                    <table class="table table-striped">
+                                    <table class="table table-striped" id="dataTableInventory">
                                         <thead>
                                             <tr>
                                             <th scope="col">#</th>
+                                            <th scope="col">Serial No.</th>
                                             <th scope="col">Machine Type</th>
-                                            <th scope="col">Process</th>
+                                            <th scope="col">Brand</th>
                                             </tr>
                                         </thead>
                                         <tbody id="showmydata">
                                 <? 
-                                    foreach ($data_area as $key => $area) {
-                                        
+                                    foreach ($query_requisition as $key => $rqs) {
+
+                                    if($rqs->rqs_id){
+                                        $query = $this->db->where("rqs_id",$rqs->rqs_id)
+                                                    ->get("tbl_add_inventory_to_invoice")
+                                                    ->result();
+                                            foreach ($query as $key => $bbb) {
+                                    
                                 ?>
-                                            <tr>
+                                            <tr id="">
                                             <th scope="row"><? echo $key+1; ?></th>
-                                            <td><? echo $area->area_name; ?></td>
-                                            <td>
-                                            <a href="<? echo base_url(); ?>member/config_area/edit_area/<? echo $area->id_area; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
-                                            &nbsp;
-                                            <a href="<? echo base_url(); ?>member/config_area/delete_area/<? echo $area->id_area; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
-                                            </td>
+                                                <? $query_machine = $this->db->where("machine_id",$bbb->machine_id)->get("tbl_machine")->result(); 
+                                                    foreach ($query_machine as $ccc) { ?>
+                                                <td><? echo $ccc->machine_serial_no; ?></td>
+                                                <td>
+        <? 
+            $query_machine_type = $this->db->where("machine_type_id",$ccc->machine_type_id)
+                                    ->get("tbl_machine_type")->result();
+                            foreach ($query_machine_type as $aaa) {
+                                $machine_type_name = $aaa->machine_type_name;
+                            }
+        ?>
+                                                <? echo $machine_type_name; ?></td>
+                                                <td>
+        <?
+            $query_brand = $this->db->where("brand_id",$ccc->brand_id)
+                                    ->get("tbl_brand")->result();
+                            foreach ($query_brand as $bbb) {
+                                $brand_name = $bbb->brand_name;
+                            }
+        ?>
+                                                <? echo $brand_name; ?></td>
+                                                <? } ?>
                                             </tr>
-                                <? } ?>
+                                <? } } else {  } } ?>
 
                                         </tbody>
                                     </table>
@@ -308,6 +329,16 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
+
+    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script>
+    // Call the dataTables jQuery plugin
+    $(document).ready(function() {
+        $('#dataTableInventory').DataTable();
+    });
+    </script>
 
 <script>
     function IsNumeric(e,display) {

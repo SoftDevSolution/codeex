@@ -31,7 +31,7 @@ class Factory_customer extends CI_Controller {
 		$this->load->model('Settingme','me');
 		$data['setting_web'] = $this->me->_getall();
 
-		// ดึงข้อมูล Machine Type มาใช้งาน
+		// ดึงข้อมูล Factory Customer มาใช้งาน
 		$data['data_factory_customer'] = $this->customer->_get_company_customer_AllData();
 
 		$data['count_factory_customer'] = $this->customer->_count_company_customer();
@@ -163,8 +163,6 @@ class Factory_customer extends CI_Controller {
 		// รับข้อมูลมาใช้งาน
 		$company_id = $this->uri->segment(4);
 
-		//echo $company_id."</BR>";
-
 		// Check Data
 		if($company_id=="" or empty($company_id)){
 			$this->session->set_flashdata('msg_warning',' ไม่พบข้อมูลที่คุณต้องการ');
@@ -192,10 +190,10 @@ class Factory_customer extends CI_Controller {
 			$data['query_customer'] = $this->employee->_get_visitor_customer_AllData_ByCompanyID($company_id);
 			$data['count_customer'] = $this->employee->_count_visitor_customer_ById($company_id);
 			
-			//echo $data['query_customer']."</BR>";	
-			//echo $data['count_customer']."</BR>";	
-			//print_r($data['query_customer'])."</BR>";	
-			//print_r($data['count_customer'])."</BR>";
+			// แสดงข้อมูล inventory
+			$this->load->model('Requisition_model','requisition');
+			$data['query_requisition'] =  $this->requisition->_get_requisition_by_company_id($company_id);
+
 			$this->load->view('member/edit_factory_customer',$data);
 
 		}
