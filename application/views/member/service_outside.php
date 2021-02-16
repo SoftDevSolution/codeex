@@ -49,7 +49,7 @@
                             <th scope="col">Date</th>
                             <th scope="col">Company Name</th>
                             <th scope="col">Machine S/N</th>
-                            <th scope="col">Technician Name</th>
+                            <th scope="col">Customer Name</th>
                             <th scope="col">คนรับงาน</th>
                             <th scope="col"><center>Manage</center> </th>
                             </tr>
@@ -60,15 +60,15 @@
                                 ?>
                                     <tr id="row_<? echo $cus->svo_id; ?>">
                                     <th scope="row"><? echo $cus->svo_id; ?></th>                                    
-                                    <td><? echo $cus->svo_revision_no; ?></td>
-                                    <td><? echo $cus->svo_date; ?></td>
+                                    <td><? echo $cus->svo_requisition_no; ?></td>
+                                    <td><? echo $cus->svo_get_date; ?></td>
                                     <td><? echo $cus->svo_machine_sn; ?></td>
                                     <td><? echo $cus->svo_company_name; ?></td>
-                                    <td><? echo $cus->svo_technician_name; ?></td>
+                                    <td><? echo $cus->svo_customer_name; ?></td>
                                     <td><? echo $cus->svo_emp_receive; ?></td>
                                     <td>
                                         <center>
-                                            <a href="<? echo base_url(); ?>member/service_outside/closejob"><span class="text-warning"><i class="fas fa-sign-out-alt" title="จบงาน"></i></span></a>&nbsp;&nbsp;
+                                            <a href="<? echo base_url(); ?>member/service_outside/closejob"><button class="btn btn-sm btn-warning">จบงาน</button></a>&nbsp;&nbsp;
                                             <a href="<? echo base_url(); ?>member/service_outside/edit_service_outside/<? echo $cus->svo_id; ?>"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
                                             &nbsp;
                                             <span class="text-danger" onclick="DeleteServiceOutside('<? echo $cus->svo_id; ?>');" style="cursor:pointer;"><i class="fas fa-trash"></i></span>
