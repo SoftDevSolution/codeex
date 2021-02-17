@@ -1,9 +1,7 @@
-<?
-    foreach ($setting_web as $data) {  }
-?>
 <!doctype html>
 <html lang="en">
 
+ 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,14 +9,17 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Requisition | <? echo $data->nameweb; ?></title>
+    <title>Add Service Outside</title>
+
+    <!-- production version, optimized for size and speed -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
-    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
     <? $this->load->view("member/time_to_datethai_en"); ?>
+
 
 </head>
 
@@ -28,8 +29,6 @@
         <? $this->load->view("member/navbar"); ?>
         
         <? $this->load->view("member/menusidebar"); ?>
-
-        <? $this->load->view("member/flashsweet"); ?>
         
         <div class="dashboard-wrapper">
             <div class="container-fluid  dashboard-content">
@@ -39,13 +38,19 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Requisition &nbsp;
-                            <a href="<? echo base_url(); ?>member/requisition/add_requisition"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Create New Requisition</button></a>
-                            </h3>
+                            <h3 class="section-title"><i class="fas fa-database"></i> Create Service Outside</h3>
+                            <hr>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/service_outside" class="breadcrumb-link">Service Outside</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add Service Outside</li>
+                        </ol>
                         </div>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
-                        <div class="table-responsive-lg">
+    <h4 class="text-primary"><i class="fas fa-list-ul"></i> &nbsp;Select Requisition</h4>
+                <div class="table-responsive-lg">
                         <? if(empty($query_requisition) or $query_requisition==""){  ?>
                         <div class="empty_data">
                             <center>
@@ -63,7 +68,7 @@
                             <th scope="col">P/N</th>
                             <th scope="col">Visitor Customer</th>
                             <th scope="col">Factory Name</th>
-                            <th scope="col">Total</th>
+                            <th scope="col"><center>Total</center></th>
                             <th scope="col">Status</th>
                             <th scope="col"><center>Manage</center> </th>
                             </tr>
@@ -107,36 +112,19 @@
                             
                             ?></td>
                             <td>
+                            <center>
                             <?
                             $count_inventory = $this->db->where("rqs_id",$req->rqs_id)->count_all_results("tbl_add_inventory_to_invoice");
                                     echo $count_inventory;
                             ?>
+                            </center>
                             </td>
+                            <td><? echo $req->rqs_status; ?></td>
                             <td>
-                                <? if($req->rqs_status=="active"){ ?>
-                                <span class="texyt-success">active</span>
-                                <? } else if($req->rqs_status=="cancel"){ ?>
-                                <span class="text-danger">cancel</span>
-                                <?  } else { ?>
-                                <span class="text-danger"><? echo $req->rqs_status; ?></span>
-                                <? } ?>
-                            
+                                <center>
+                                    <a href="<? echo base_url(); ?>member/service_outside/create_service_outside/<? echo $req->rqs_id; ?>"><span class="text-dark"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Select Requisition No. <? echo $req->rqs_id; ?></button></span></a>
+                                </center>
                             </td>
-                                <? 
-                                    if($req->rqs_status == "active"){
-                                ?>
-                                <td>
-                                    <center>
-                                        <a href="<? echo base_url(); ?>member/requisition/add_inventory/<? echo $req->rqs_id; ?>"><span class="text-dark"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add inventory</button></span></a>
-                                        &nbsp;
-                                        <a href="<? echo base_url(); ?>member/requisition/edit_requisition/<? echo $req->rqs_id; ?>"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                        &nbsp;
-                                        <a href="<? echo base_url(); ?>member/requisition/remove_requisition/<? echo $req->rqs_id; ?>" onclick="return confirm('Confirm to delete?');"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
-                                    </center>
-                                </td>
-                                <? 
-                                    }
-                                ?>
                             </tr>
                             <? } ?>
                         </tbody>
@@ -144,7 +132,6 @@
                         <? } ?>
                         </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
@@ -167,24 +154,6 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
-
-    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-
-    <script>
-        // Call the dataTables jQuery plugin
-        $(document).ready(function() {
-            $('#dataTableRequisition').DataTable();
-        });
-
-        function IsNumeric(e, display) {
-            var specialKeys = new Array();
-            var keyCode = e.which ? e.which : e.keyCode
-            var ret = ((keyCode >= 46 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-            document.getElementById(display).style.display = ret ? "none" : "inline";
-            return ret;
-        }
-    </script>
 
 </body>
  

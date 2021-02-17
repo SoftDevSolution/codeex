@@ -123,8 +123,8 @@
                                                 <th scope="col">Brand</th>
                                                 <th scope="col">Supplier Inv. No.</th>
                                                 <th scope="col">Factory Inv No.</th>
-                                                <th scope="col">Warranty from Supplier (year)</th>
-                                                <th scope="col">Warranty from Factory (year)</th>
+                                                <th scope="col">Warranty from Supplier (Days)</th>
+                                                <th scope="col">Warranty from Factory (Days)</th>
                                                 <th scope="col">
                                                     <center>Manage</center>
                                                 </th>

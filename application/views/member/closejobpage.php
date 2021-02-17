@@ -1,7 +1,7 @@
 <?
     foreach ($setting_web as $data) {  }
     foreach ($query_requisition as $requisition) {  }
-    $rqs_id = $this->uri->segment(4);
+    $svo_id = $this->uri->segment(4);
 ?>
 <!doctype html>
 <html lang="en">
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
     <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-    <title>Add Inventory to Requisition</title>
+    <title>Confirm to Complete Service Outside</title>
 
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
@@ -44,14 +44,14 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title"><i class="fas fa-database"></i> &nbsp;Add Inventory to Requisition</h3>
+                            <h3 class="section-title"><i class="fas fa-database"></i> &nbsp;Confirm to Complete Service Outside</h3>
                             <hr>
                         </div>
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-body">
-        <h4 class="text-primary"> <i class="fas fa-database"></i> &nbsp;Requisition Data &nbsp;&nbsp;<a href="<? echo base_url(); ?>member/requisition/edit_requisition/<? echo $rqs_id; ?>"><i class="far fa-edit"></i></a> </h4> <hr>
+        <h4 class="text-primary"> <i class="fas fa-database"></i> &nbsp;Requisition Data</h4> <hr>
             <div class="form-row">
                 <div class="form-group col-md-3">
                     Date : <span class="text-primary"><? echo set_mytime($requisition->rqs_date); ?></span>
@@ -111,75 +111,7 @@
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 <div class="card">
     <div class="card-body">
-    <h4 class="text-success"><i class="fas fa-plus-circle"></i> Add Inventory</h4> <hr>
-        
-        <div class="table-responsive-lg">
-        <?
-            if($query_inventory=="" or empty($query_inventory)) {
-        ?>
-        <div align="center" class="empty_data">
-            No inventory  data.
-        </div>
-        <?
-            } else {
-        ?>
-        <table class="table table-striped" id="dataTable">
-        <thead class="thead-dark">
-            <tr>
-            <th scope="col">Add</th>
-            <th scope="col">Serial Number</th>
-            <th scope="col">Type</th>
-            <th scope="col">Model</th>
-            <th scope="col">Brand</th>
-            <th scope="col">Price</th>
-            <th scope="col">Stock</th>
-            </tr>
-        </thead>
-        <tbody>
-        <? foreach ($query_inventory as $inven) { 
-            $count_machine = $this->db->where("machine_id",$inven->machine_id)
-                                ->where("rqs_id",$rqs_id)
-                                ->count_all_results("tbl_add_inventory_to_invoice");
-            ?>
-            <tr id="invenory_<? echo $inven->machine_id; ?>" <? if($count_machine>0){ ?>style="display: none;"<? } else {  } ?>>
-            <th scope="row">
-            <a href="<? echo base_url(); ?>member/requisition/add_data_inventory/<? echo $inven->machine_id; ?>/<? echo $rqs_id; ?>"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add Inventory</button></a>
-
-            </th>
-            <td><? echo $inven->machine_serial_no; ?></td>
-            <td><? $query_type = $this->db->where("machine_type_id",$inven->machine_type_id)->get("tbl_machine_type")->result();
-                foreach ($query_type as $ttt) {
-                    echo $ttt->machine_type_name;
-                }
-            ?></td>
-            <td><? $query_model = $this->db->where("model_id",$inven->model_id)->get("tbl_model")->result();
-                foreach ($query_model as $mod) {
-                    echo $mod->model_name;
-                }
-            ?></td>
-            <td><? $query_brand = $this->db->where("brand_id",$inven->brand_id)->get("tbl_brand")->result();
-                foreach ($query_brand as $bbb) {
-                    echo $bbb->brand_name;
-                }
-            ?></td>
-            <td><? echo $inven->machine_price; ?></td>
-            <td><? echo $inven->machine_stock; ?></td>
-            </tr>
-        <? } ?>
-        </tbody>
-        </table>
-        <? } ?>
-        </div>
-
-    </div>
-
-</div>
-</div>
-
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-<div class="card">
-    <div class="card-body">
-    <h4 class="text-primary"><i class="fas fa-list-ul"></i> &nbsp; Inventory List</h4> <hr>
+    <h4 class="text-primary"><i class="fas fa-undo"></i> &nbsp; Return Inventory</h4> <hr>
         
         <div class="table-responsive-lg" id="tabler_add_invenory">
         <table class="table table-striped">
@@ -219,13 +151,22 @@
                 }
             ?></td>
             <td>
-            <a href="<? echo base_url(); ?>member/requisition/update_status_inventory/<? echo $invoices->id_inven_to_invoice; ?>/<? echo $rqs_id; ?>" onclick="return confirm('Confirm to remove this?');"><button class="btn btn-sm btn-danger"><i class="fas fa-minus-circle"></i> Remove Inventory</button></a>
+            <a href="<? echo base_url(); ?>member/service_outside/update_status_inventory/<? echo $invoices->id_inven_to_invoice; ?>/<? echo $svo_id; ?>" onclick="return confirm('Confirm to return this inventory?');"><button class="btn btn-sm btn-danger"><i class="fas fa-minus-circle"></i> Return Inventory</button></a>
             </td>
             </tr>
         <? } ?>
         <? } ?>
         </tbody>
         </table>
+
+        <div style="margin: 60px 40px;">
+            <center>
+            <br>
+                <a href="<? echo base_url(); ?>member/service_outside/completejobnow/<? echo $svo_id; ?>" onclick="return confirm(' Confirm to complete your job?');"><button class="btn btn-lg btn-success"><h2 class="text-white"><i class="fas fa-sign-out-alt"></i>&nbsp;Complete job.</h2></button></a>
+            </center>
+        </div>
+
+
         </div>
 
     </div>
@@ -263,99 +204,6 @@
             $('#dataTable').DataTable();
         });
     </script>
-<!-- 
-    <script>
-    $(document).ready(function() {
-        $('#vs_name').keyup(function() {
-            var query = $('#vs_name').val();
-            $('#detail').html('');
-            $('.list-group').css('display', 'block');
-            if (query.length > 0) {
-                $.ajax({
-                    url: "<? echo base_url(); ?>member/machine/get_visitor_supplier",
-                    method: "POST",
-                    data: {
-                        query: query
-                    },
-                    success: function(data) {
-                        $('.list-group').html(data);
-                    }
-                })
-            }
-            if (query.length == 0) {
-                $('.list-group').css('display', 'none');
-            }
-        });
-
-        $(document).on('click', '.gsearch', function() {
-            var vs_company = $(this).text();
-            $('#vs_name').val(vs_company);
-            $('.list-group').css('display', 'none');
-            $.ajax({
-                url: "<? echo base_url(); ?>member/machine/get_vs_company_visitor_supplier",
-                method: "POST",
-                data: {
-                    vs_company: vs_company
-                },
-                success: function(data) {
-                    $('#vs_company').val(data);
-                }
-            })
-        });
-    });
-
-    function Add_inventory(machine_id,rqs_id) { 
-        console.log("machine_id = "+machine_id);
-        console.log("rqs_id = "+rqs_id);
-
-        $("#invenory_"+machine_id).fadeOut();
-        $("#btn_invent_"+machine_id).attr("disabled","true");
-
-        if(machine_id=="" || rqs_id==""){
-            alert("No data.");
-            return false;
-        } else {
-            // ดำเนินการเพิ่ม inventory
-            $.ajax({
-                type: 'post',
-                url: '<? echo base_url(); ?>member/requisition/add_data_inventory',
-                data: {
-                    machine_id : machine_id,
-                    rqs_id : rqs_id
-                },
-                success: function (response) {
-                    console.log(response);
-                    var url_refresh = "<? echo base_url(); ?>member/requisition/add_inventory/"+rqs_id;
-                    $("#tabler_add_invenory").fadeIn().html("<center>Invoice has been edit. Please refresh for update data. <a href='"+url_refresh+"'><button class='btn btn-sm btn-success'> <i class='fas fa-sync-alt'></i> Refresh </button></a></center>");
-                }
-            });
-            
-        }
-
-     }
-
-    function Remove_inventory(id_inven_to_invoice) { 
-        if(id_inven_to_invoice==""){
-            alert("No data.");
-            return false;
-        } else {
-            // ดำเนินการเพิ่ม inventory
-            $.ajax({
-                type: 'post',
-                url: '<? echo base_url(); ?>member/requisition/update_status_inventory',
-                data: {
-                    id_inven_to_invoice : id_inven_to_invoice
-                },
-                success: function (response) {
-                    console.log("remove : "+response);
-                    $("#remove_inven_in_invoice_"+id_inven_to_invoice).fadeOut();
-                    
-                }
-            });
-            
-        }
-    }
-    </script> -->
 
 </body>
  

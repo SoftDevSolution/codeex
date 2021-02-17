@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 15, 2021 at 04:58 PM
+-- Generation Time: Feb 17, 2021 at 08:29 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -64,7 +64,12 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (21, 'admin', 'login', '', '::1', '2021-02-12 15:06:49'),
 (22, 'admin', 'login', '', '::1', '2021-02-13 15:44:36'),
 (23, 'admin', 'login', '', '::1', '2021-02-14 14:21:58'),
-(24, 'admin', 'login', '', '::1', '2021-02-15 05:33:46');
+(24, 'admin', 'login', '', '::1', '2021-02-15 05:33:46'),
+(25, 'admin', 'login', '', '::1', '2021-02-15 18:05:18'),
+(26, 'admin', 'login', '', '::1', '2021-02-17 15:11:34'),
+(27, 'admin', 'login', '', '::1', '2021-02-17 17:38:52'),
+(28, 'admin', 'logout', 'admin', '::1', '2021-02-17 18:53:48'),
+(29, 'admin', 'login', '', '::1', '2021-02-17 18:53:51');
 
 -- --------------------------------------------------------
 
@@ -140,9 +145,9 @@ CREATE TABLE `tbl_add_inventory_to_invoice` (
 
 INSERT INTO `tbl_add_inventory_to_invoice` (`id_inven_to_invoice`, `machine_id`, `rqs_id`, `user_create`, `date_create`, `save_date`) VALUES
 (8, 8, 2, 'admin', '2021-02-15', '2021-02-15 09:16:30'),
-(10, 5, 2, 'admin', '2021-02-15', '2021-02-15 09:16:33'),
-(12, 2, 1, 'admin', '2021-02-15', '2021-02-15 10:28:56'),
-(14, 4, 1, 'admin', '2021-02-15', '2021-02-15 10:30:23');
+(18, 7, 1, 'admin', '2021-02-17', '2021-02-17 15:33:34'),
+(20, 6, 1, 'admin', '2021-02-17', '2021-02-17 18:33:58'),
+(23, 4, 1, 'admin', '2021-02-17', '2021-02-17 19:57:38');
 
 -- --------------------------------------------------------
 
@@ -572,11 +577,11 @@ CREATE TABLE `tbl_machine` (
 --
 
 INSERT INTO `tbl_machine` (`machine_id`, `invoice_id`, `machine_status`, `machine_type_id`, `model_id`, `machine_serial_no`, `brand_id`, `machine_price`, `machine_stock`, `machine_sup_inv_no`, `machine_sup_inv_date`, `machine_warranty_year`, `machine_warranty_start_date`, `machine_warranty_stop_date`, `machine_company_inv_no`, `machine_company_inv_date`, `machine_warranty_comp_year`, `machine_warranty_comp_start_date`, `machine_warranty_comp_stop_date`, `status_machine`) VALUES
-(2, 2, 'qwertty', 3, 12, '23456gda4365640ER', 4, 1000, 1, '192', '2021-02-10', 5, '2021-02-07', '2026-02-07', '129', '2021-02-12', 4, '2021-02-07', '2025-02-07', 'used'),
+(2, 2, 'qwertty', 3, 12, '23456gda4365640ER', 4, 1000, 1, '192', '2021-02-10', 5, '2021-02-07', '2026-02-07', '129', '2021-02-12', 4, '2021-02-07', '2025-02-07', 'active'),
 (4, 1, 'zzz', 3, 8, 'AT5990', 5, 1000, 2, 'AT9999', '2021-02-12', 10, '2021-02-12', '2030-02-13', 'AF9999', '2021-02-12', 10, '2021-02-12', '2030-05-12', 'used'),
-(5, 1, 'okok', 1, 3, 'AF9999', 5, 1000, 1, 'AFT9999', '2021-02-12', 1, '2021-02-12', '2021-02-28', 'AG9999', '2021-02-12', 1, '2021-02-12', '2021-02-28', 'used'),
-(6, 1, 'Add me me', 2, 9, '123455', 5, 1000, 3, 'POP009', '2021-02-12', 1, '2021-02-12', '2021-02-13', 'POPP009988', '2021-02-12', 1, '2021-02-12', '2021-02-13', 'active'),
-(7, 5, '23123123123123', 3, 12, '1231231231232312070pououiooiuouio', 5, 2000, 10, '435345', '2021-02-12', 1, '2021-02-12', '2021-03-03', '43534535', '2021-02-12', 1, '2021-02-12', '2021-03-03', 'active'),
+(5, 1, 'okok', 1, 3, 'AF9999', 5, 1000, 1, 'AFT9999', '2021-02-12', 1, '2021-02-12', '2021-02-28', 'AG9999', '2021-02-12', 1, '2021-02-12', '2021-02-28', 'active'),
+(6, 1, 'Add me me', 2, 9, '123455', 5, 1000, 3, 'POP009', '2021-02-12', 1, '2021-02-12', '2021-02-13', 'POPP009988', '2021-02-12', 1, '2021-02-12', '2021-02-13', 'used'),
+(7, 5, '23123123123123', 3, 12, '1231231231232312070pououiooiuouio', 5, 2000, 10, '435345', '2021-02-12', 1, '2021-02-12', '2021-03-03', '43534535', '2021-02-12', 1, '2021-02-12', '2021-03-03', 'used'),
 (8, 5, '756 7567', 2, 8, '657567567', 5, 100, 20, '56756756756767', '2021-02-12', 1, '2021-02-12', '2021-02-19', 'sasdasdasd', '2021-02-12', 1, '2021-02-12', '2021-02-19', 'used');
 
 -- --------------------------------------------------------
@@ -752,8 +757,8 @@ CREATE TABLE `tbl_requisition` (
 --
 
 INSERT INTO `tbl_requisition` (`rqs_id`, `rqs_date`, `emp_id`, `rqs_pn`, `vs_id`, `company_id`, `rqs_remark`, `rqs_status`, `create_user`, `create_date`, `update_user`, `update_date`) VALUES
-(1, '2021-02-14', 2, '898', '2', 2, '', 'active', 'admin', '2021-02-14 17:15:31', 'admin', '2021-02-15 10:09:23'),
-(2, '2021-02-15', 4, '456', '1', 1, '', 'active', 'admin', '2021-02-14 17:16:38', 'admin', '2021-02-15 10:08:18');
+(1, '2021-02-14', 2, '898', '2', 2, '', 'active', 'admin', '2021-02-14 17:15:31', 'admin', '2021-02-17 18:34:45'),
+(2, '2021-02-15', 4, '456', '1', 1, '', 'used', 'admin', '2021-02-14 17:16:38', 'admin', '2021-02-15 10:08:18');
 
 -- --------------------------------------------------------
 
@@ -782,10 +787,10 @@ CREATE TABLE `tbl_service_outside` (
   `svo_requisition_no` int(11) DEFAULT 0,
   `svo_get_date` date DEFAULT current_timestamp(),
   `svo_date_working` date NOT NULL,
-  `svo_company_name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `svo_machine_model` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `svo_machine_sn` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `svo_customer_name` int(11) DEFAULT 0,
+  `svo_company_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `svo_company_id` int(11) DEFAULT 0,
+  `svo_customer_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `svo_customer_id` int(11) DEFAULT 0,
   `svo_emp_receive` int(11) DEFAULT 0,
   `svo_emp_id_1` int(11) DEFAULT 0,
   `svo_emp_id_2` int(11) DEFAULT 0,
@@ -793,10 +798,9 @@ CREATE TABLE `tbl_service_outside` (
   `svo_license_plate_1` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `svo_license_plate_2` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `svo_license_plate_3` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `svo_case_break_down` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `svo_detail` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `svo_remark` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `svo_company_id` int(11) DEFAULT 0,
+  `svo_case_break_down` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `svo_conclusion` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `svo_remark` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
   `svo_pic_path_1` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `svo_pic_path_2` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `svo_pic_path_3` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -811,14 +815,9 @@ CREATE TABLE `tbl_service_outside` (
 -- Dumping data for table `tbl_service_outside`
 --
 
-INSERT INTO `tbl_service_outside` (`svo_id`, `svo_requisition_no`, `svo_get_date`, `svo_date_working`, `svo_company_name`, `svo_machine_model`, `svo_machine_sn`, `svo_customer_name`, `svo_emp_receive`, `svo_emp_id_1`, `svo_emp_id_2`, `svo_emp_id_3`, `svo_license_plate_1`, `svo_license_plate_2`, `svo_license_plate_3`, `svo_case_break_down`, `svo_detail`, `svo_remark`, `svo_company_id`, `svo_pic_path_1`, `svo_pic_path_2`, `svo_pic_path_3`, `svo_province`, `svo_zipcode`, `svo_status`, `user_create`, `create_date`) VALUES
-(1, 2, '2021-01-01', '0000-00-00', '4', '5', '6', 7, 8, 9, 10, 11, '14', '15', '16', '21', '22', '23', 24, '25', '26', '27', '', '', '', '', '0000-00-00 00:00:00'),
-(2, 2, '2021-01-01', '0000-00-00', '4', '5', '6', 7, 8, 9, 10, 11, '14', '15', '16', '21', '22', '23', 24, '25', '26', '27', '', '', '', '', '0000-00-00 00:00:00'),
-(3, 2, '2021-01-01', '0000-00-00', '4', '5', '6', 7, 8, 9, 10, 11, '14', '15', '16', '21', '22', '23', 24, '25', '26', '27', '', '', '', '', '0000-00-00 00:00:00'),
-(4, 2, '2021-01-01', '0000-00-00', '4', '5', '6', 7, 8, 9, 10, 11, '14', '15', '16', '21', '22', '23', 24, '25', '26', '27', '', '', '', '', '0000-00-00 00:00:00'),
-(5, 2, '2021-01-01', '0000-00-00', '4', '5', '6', 7, 8, 9, 10, 11, '14', '15', '16', '21', '22', '23', 24, '25', '26', '27', '', '', '', '', '0000-00-00 00:00:00'),
-(6, 11, '2021-01-27', '0000-00-00', '11', '11', '11', 1, 1, 1, 1, 11, '11', '', '', 'bbb', '11', '1111', 0, '', '', '', '', '', '', '', '0000-00-00 00:00:00'),
-(7, 11, '2021-01-27', '0000-00-00', '11', '11', '11', 1, 1, 1, 1, 11, '11', '', '', 'bbb', '11', '1111', 0, '', '', '', '', '', '', '', '0000-00-00 00:00:00');
+INSERT INTO `tbl_service_outside` (`svo_id`, `svo_requisition_no`, `svo_get_date`, `svo_date_working`, `svo_company_name`, `svo_company_id`, `svo_customer_name`, `svo_customer_id`, `svo_emp_receive`, `svo_emp_id_1`, `svo_emp_id_2`, `svo_emp_id_3`, `svo_license_plate_1`, `svo_license_plate_2`, `svo_license_plate_3`, `svo_case_break_down`, `svo_conclusion`, `svo_remark`, `svo_pic_path_1`, `svo_pic_path_2`, `svo_pic_path_3`, `svo_province`, `svo_zipcode`, `svo_status`, `user_create`, `create_date`) VALUES
+(1, 2, '2021-02-17', '2021-02-17', 'Beverage-Coffee', 1, '444', 1, 10, 6, 4, 6, 'ผล 1836', '', '', 'ไม่รู้ว่ามาจากอะไร อยู๋ๆ มันก็เสีย', 'ต้องลองไล่ code ดูครับ', '', '20210217192352_1.jpg', '', '', '', '10500', 'complete', 'admin', '2021-02-17 19:23:52'),
+(2, 2, '2021-02-17', '2021-02-28', 'Beverage-Coffee', 1, '444', 1, 10, 2, 6, 4, 'ผล 1836', '', '', 'ไม่รู้ ไม่รู้ ไม่รู้ ไม่รู้ ', 'ไม่รู้ ไม่รู้ ไม่รู้ ไม่รู้ ไม่รู้ ', '', '20210217202518_1.jpg', '20210217202518_2.jpg', '', '', '', 'active', 'admin', '2021-02-17 20:25:18');
 
 -- --------------------------------------------------------
 
@@ -1255,7 +1254,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -1279,7 +1278,7 @@ ALTER TABLE `stat_today`
 -- AUTO_INCREMENT for table `tbl_add_inventory_to_invoice`
 --
 ALTER TABLE `tbl_add_inventory_to_invoice`
-  MODIFY `id_inven_to_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_inven_to_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tbl_area`
@@ -1417,7 +1416,7 @@ ALTER TABLE `tbl_return_certificate`
 -- AUTO_INCREMENT for table `tbl_service_outside`
 --
 ALTER TABLE `tbl_service_outside`
-  MODIFY `svo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `svo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_sub_inventory`

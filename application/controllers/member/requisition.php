@@ -287,8 +287,22 @@ class Requisition extends CI_Controller {
 
 		// get inventory
 		$this->load->model('Requisition_model','requisition');
+		
+		//echo $rqs_id."</br>";
+		//1  2-7-6
+		$query_machine = $this->requisition->_get_all_inventory_to_invoice($rqs_id);
+			foreach ($query_machine as $machine) {
+				$machine_id = $machine->machine_id;
+				//echo $machine_id."</br>";
+				 $update_data = $this->requisition->_edit_machine_status($machine_id);			
+			}
+
+		$update_requisition = $this->requisition->_edit_requisition_status($rqs_id,$username_member);
+
 		$remove_requisition = $this->requisition->_remove_requisition($rqs_id);
 
+		redirect('member/requisition');
+		//$this->load->view('member/requisition',$data);
 
 	}
 
@@ -351,16 +365,20 @@ class Requisition extends CI_Controller {
 				}
 
 		// รับข้อมูลมาใช้งาน
-		$machine_id = $this->input->post("machine_id");
-		$rqs_id = $this->input->post("rqs_id");
+		$machine_id = $this->uri->segment(4);
+		$requisition_id = $this->uri->segment(5);
 
 		// ดึงข้อมูล inventory มาแสดง
 		$this->load->model('Company_model',"company");
-		$add_inventory = $this->company->_add_inventory_to_requisition($machine_id,$rqs_id,$username_member);
+		$add_inventory = $this->company->_add_inventory_to_requisition($machine_id,$requisition_id,$username_member);
 				if($add_inventory){
-					echo "success";
+					// success
+					$this->session->set_flashdata('msg_ok',' Successfully. Remove success.');
+						redirect('member/requisition/add_inventory/'.$requisition_id);
 				} else {
-					echo "false";
+					// false / error
+					$this->session->set_flashdata('msg_error',' Error! Please try again.');
+						redirect('member/requisition/add_inventory/'.$requisition_id);
 				}
 
 	}
@@ -377,22 +395,27 @@ class Requisition extends CI_Controller {
 		$data['username_member'] = $this->user->_getmember($username_member);
 
 		// แสดงข้อมูล Member
-		$query_user = $this->user->_getmember($username_member);
-				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
-				}
+		// $query_user = $this->user->_getmember($username_member);
+		// 		foreach ($query_user as $user) {
+		// 			$id_user = $user->id_user;
+		// 			$fullname = $user->fullname;
+		// 		}
 
 		// รับข้อมูลมาใช้งาน
-		$id_inven_to_invoice = $this->input->post("id_inven_to_invoice");
+		$id_inven_to_invoice = $this->uri->segment(4);
+		$requisition_id = $this->uri->segment(5);
 
 		// ดึงข้อมูล inventory มาแสดง
 		$this->load->model('Company_model',"company");
 		$update_requisition = $this->company->_return_requisition($id_inven_to_invoice);
 				if($update_requisition){
-					echo "success";
+					// success
+					$this->session->set_flashdata('msg_ok',' Successfully. Remove success.');
+						redirect('member/requisition/add_inventory/'.$requisition_id);
 				} else {
-					echo "false";
+					// false / error
+					$this->session->set_flashdata('msg_error',' Error! Please try again.');
+						redirect('member/requisition/add_inventory/'.$requisition_id);
 				}
 	}
 

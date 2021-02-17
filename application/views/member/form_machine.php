@@ -77,8 +77,8 @@
             Stop)" onchange="cal_warranty();">
         </div>
         <div class="form-group col-md-4">
-            <label for="machine_warranty_year">Warranty from Supplier ( Year )</label>
-            <input type="number" max="4" class="form-control" id="machine_warranty_year" name="machine_warranty_year" placeholder="Year" autocomplete="off" readonly>
+            <label for="machine_warranty_year">Warranty from Supplier ( Days )</label>
+            <input type="number" max="4" class="form-control" id="machine_warranty_year" name="machine_warranty_year" placeholder="Days" autocomplete="off" readonly>
         </div>
         <div class="form-group col-md-6">
             <label for="machine_company_inv_no">Factory Inv No.</label>
@@ -99,8 +99,8 @@
             Date Stop )" onchange="cal_warranty_company();">
         </div>
         <div class="form-group col-md-4">
-            <label for="machine_warranty_comp_year">Warranty from Factory ( Year )</label>
-            <input type="text" class="form-control" id="machine_warranty_comp_year" name="machine_warranty_comp_year" placeholder="Year" readonly>
+            <label for="machine_warranty_comp_year">Warranty from Factory ( Days )</label>
+            <input type="text" class="form-control" id="machine_warranty_comp_year" name="machine_warranty_comp_year" placeholder="Days" readonly>
         </div>
     </div>
 
@@ -114,25 +114,23 @@
 
 <script>
 function cal_warranty() {
-    console.log("Run cal_warranty.");
     if ($('#machine_warranty_start_date').val() != "" && $('#machine_warranty_stop_date').val() != "") {
         var dateStart = new Date($("#machine_warranty_start_date").val());
         var dateEnd = new Date($("#machine_warranty_stop_date").val())
         var timeDiff = Math.abs(dateEnd.getTime() - dateStart.getTime());
 
-        var diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24 * 365.25));
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
         $("#machine_warranty_year").val(diffDays);
     }
 }
 
 function cal_warranty_company() {
-    console.log("Run cal_warranty.");
     if ($('#machine_warranty_comp_start_date').val() != "" && $('#machine_warranty_comp_stop_date').val() != "") {
         var dateStart = new Date($("#machine_warranty_comp_start_date").val());
         var dateEnd = new Date($("#machine_warranty_comp_stop_date").val())
         var timeDiff = Math.abs(dateEnd.getTime() - dateStart.getTime());
 
-        var diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24 * 365.25));
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
         $("#machine_warranty_comp_year").val(diffDays);
     }
 }

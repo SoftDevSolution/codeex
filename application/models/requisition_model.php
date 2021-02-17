@@ -75,12 +75,7 @@ class Requisition_model extends CI_Model {
                         return $update_data;
 	}
 
-	public function _remove_requisition($rqs_id)
-	{
-		// ค้นหา requisition_id 
-
-		// Update 
-	}
+	
 
 	public function _get_inventory_in_invoice($rqs_id)
 	{
@@ -102,6 +97,56 @@ class Requisition_model extends CI_Model {
 		$query = $this->db->where("vs_id",$vs_id)
 					->get("tbl_visitor_customer")->result();
 				return $query;
+	}
+
+
+	public function _edit_machine_status($machine_id)
+    {
+        $query = $this->db->where("machine_id",$machine_id)
+                    ->set("status_machine","active")
+                    ->update("tbl_machine");
+
+                if($query){
+                    return "success";
+                } else {
+                    return "false";
+                }
+    }
+
+	public function _edit_requisition_status($rqs_id,$update_user)
+    {
+		$save_date = date("Y-m-d H:i:s");
+		
+        $query = $this->db->where("rqs_id",$rqs_id)
+                    ->set("rqs_status","cancel")
+					->set("update_date",$save_date)
+					->set("update_user",$update_user)
+                    ->update("tbl_requisition");
+
+                if($query){
+                    return "success";
+                } else {
+                    return "false";
+                }
+    }
+
+	public function _get_all_inventory_to_invoice($rqs_id)
+	{
+		$query = $this->db->where("rqs_id",$rqs_id)
+					->get("tbl_add_inventory_to_invoice")->result();
+				return $query;
+	}
+
+	public function _remove_requisition($rqs_id)
+	{
+		// ค้นหา requisition_id 
+			$delete = $this->db->where("rqs_id",$rqs_id)
+						->delete("tbl_add_inventory_to_invoice");
+					return $delete;
+					
+
+
+		// Update 
 	}
 
 
