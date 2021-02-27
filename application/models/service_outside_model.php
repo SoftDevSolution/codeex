@@ -8,6 +8,11 @@ class Service_outside_model extends CI_Model {
 
 	}
 
+	// Status service outside
+	// 1. active  พร้อมใช้งาน
+	// 2. complete  สำเร็จ
+	// 3. cancle  ยกเลิกรายการ
+
 	public function _getAll()
 	{
 		// ดึงข้อมูล employee ส่งไปใช้งาน
@@ -98,66 +103,60 @@ class Service_outside_model extends CI_Model {
 						return $member_info;
 	}
 
-	public function _editServiceOutside($svo_id,
-                                $svo_revision_no,
-                                $svo_date,
-                                $svo_company_name,
-                                $svo_machine_model,
-                                $svo_machine_sn,
-                                $svo_technician_name,
-                                $svo_emp_receive,
-                                $svo_emp_id_1,
-                                $svo_emp_id_2,
-                                $svo_emp_id_3,
-                                $svo_emp_id_4,
-                                $svo_emp_id_5,
-                                $svo_license_plate_1,
-                                $svo_license_plate_2,
-                                $svo_license_plate_3,
-                                $svo_license_plate_4,
-                                $svo_license_plate_5,
-                                $svo_active_type,
-                                $svo_status,
-                                $svo_case_break_down,
-                                $svo_detail,
-                                $svo_remark,
-                                $company_id,
-                                $svo_pic_path_1,
-                                $svo_pic_path_2,
-                                $svo_pic_path_3,
-                                $svo_pic_path_4,
-                                $svo_pic_path_5)
+	public function _count_serviceOutside_by_id($svo_id)
+	{
+		$count_results = $this->db->where('svo_id',$svo_id)
+							->count_all_results('tbl_service_outside');
+						return $count_results;
+	}
+
+	public function _editServiceOutside($svo_id,$svo_requisition_no,
+									$svo_get_date,
+									$svo_date_working,
+									$svo_company_name,
+									$svo_company_id,
+									$svo_customer_name,
+									$svo_customer_id,
+									$svo_emp_receive,
+									$svo_emp_id_1,
+									$svo_emp_id_2,
+									$svo_emp_id_3,
+									$svo_license_plate_1,
+									$svo_license_plate_2,
+									$svo_license_plate_3,
+									$svo_status,
+									$svo_case_break_down,
+									$svo_conclusion,
+									$svo_province,
+									$svo_zipcode,
+									$svo_remark,
+									$username_member)
 	{
 		// ดึงข้อมูลสมาชิกส่งไปใช้
+        $create_date = date("Y-m-d H:i:s");
 		$update_customer = $this->db->where('svo_id',$svo_id)
-                                        ->set('svo_revision_no',$svo_revision_no)
-                                        ->set('svo_date',$svo_date)
-                                        ->set('svo_company_name',$svo_company_name)
-                                        ->set('svo_machine_model',$svo_machine_model)
-                                        ->set('svo_machine_sn',$svo_machine_sn)
-                                        ->set('svo_technician_name',$svo_technician_name)
-                                        ->set('svo_emp_receive',$svo_emp_receive)
-                                        ->set('svo_emp_id_1',$svo_emp_id_1)
-                                        ->set('svo_emp_id_2',$svo_emp_id_2)
-                                        ->set('svo_emp_id_3',$svo_emp_id_3)
-                                        ->set('svo_emp_id_4',$svo_emp_id_4)
-                                        ->set('svo_emp_id_5',$svo_emp_id_5)
-                                        ->set('svo_license_plate_1',$svo_license_plate_1)
-                                        ->set('svo_license_plate_2',$svo_license_plate_2)
-                                        ->set('svo_license_plate_3',$svo_license_plate_3)
-                                        ->set('svo_license_plate_4',$svo_license_plate_4)
-                                        ->set('svo_license_plate_5',$svo_license_plate_5)
-                                        ->set('svo_active_type',$svo_active_type)
-                                        ->set('svo_status',$svo_status)
-                                        ->set('svo_case_break_down',$svo_case_break_down)
-                                        ->set('svo_detail',$svo_detail)
-                                        ->set('svo_remark',$svo_remark)
-                                        ->set('company_id',$company_id)
-                                        ->set('svo_pic_path_1',$svo_pic_path_1)
-                                        ->set('svo_pic_path_2',$svo_pic_path_2)
-                                        ->set('svo_pic_path_3',$svo_pic_path_3)
-                                        ->set('svo_pic_path_4',$svo_pic_path_4)
-                                        ->set('svo_pic_path_5',$svo_pic_path_5)
+                                    ->set('svo_requisition_no',$svo_requisition_no)
+                                    ->set('svo_get_date',$svo_get_date)
+                                    ->set('svo_date_working',$svo_date_working)
+                                    ->set('svo_company_name',$svo_company_name)
+                                    ->set('svo_company_id',$svo_company_id)
+                                    ->set('svo_customer_name',$svo_customer_name)
+                                    ->set('svo_customer_id',$svo_customer_id)
+                                    ->set('svo_emp_receive',$svo_emp_receive)
+                                    ->set('svo_emp_id_1',$svo_emp_id_1)
+                                    ->set('svo_emp_id_2',$svo_emp_id_2)
+                                    ->set('svo_emp_id_3',$svo_emp_id_3)
+                                    ->set('svo_license_plate_1',$svo_license_plate_1)
+                                    ->set('svo_license_plate_2',$svo_license_plate_2)
+                                    ->set('svo_license_plate_3',$svo_license_plate_3)
+                                    ->set('svo_status',$svo_status)
+                                    ->set('svo_case_break_down',$svo_case_break_down)
+                                    ->set('svo_conclusion',$svo_conclusion)
+                                    ->set('svo_province',$svo_province)
+                                    ->set('svo_zipcode',$svo_zipcode)
+                                    ->set('svo_remark',$svo_remark)
+                                    ->set('user_create',$username_member)
+                                    ->set('create_date',$create_date)
 							->update('tbl_service_outside');
 				if($update_customer){
 					return "success";
@@ -166,18 +165,45 @@ class Service_outside_model extends CI_Model {
 				}
 	}
 
-	public function _delete_ServiceOutside($svo_id)
+	public function _delete_ServiceOutside($svo_id,$username)
 	{
 		$query = $this->db->where("svo_id",$svo_id)
 					->get("tbl_service_outside")->result();
 			foreach ($query as $aaa) {
-				$delete_photo = $aaa->cus_pic_path;
+				$svo_requisition_no = $aaa->svo_requisition_no; // id ใบเบิก
 			}
-			unlink("theme/photoserviceoutside/".$delete_photo);
-			unlink("theme/photoserviceoutsidethumbnail/".$delete_photo);
+		
+			// ดำเนินการ ยกเลิกการใช้งาน ใบคืน
+			$query_requisition  =$this->db->where("rqs_id",$svo_requisition_no)
+								->set("rqs_status","active")
+								->update("tbl_requisition");
+								
+		// 	foreach ($query as $aaa) {
+		// 		$delete_photo_1 = $aaa->svo_pic_path_1;
+		// 		$delete_photo_2 = $aaa->svo_pic_path_2;
+		// 		$delete_photo_3 = $aaa->svo_pic_path_3;
+
+		// 	if(empty($delete_photo_1)){  } else {
+		// 		unlink("theme/photoserviceoutside/".$delete_photo_1);
+		// 		unlink("theme/photoserviceoutsidethumbnail/".$delete_photo_1);
+		// 	}
+
+		// 	if(empty($delete_photo_2)){  } else {
+		// 		unlink("theme/photoserviceoutside/".$delete_photo_2);
+		// 		unlink("theme/photoserviceoutsidethumbnail/".$delete_photo_2);
+		// 	}
+
+		// 	if(empty($delete_photo_3)){  } else {
+		// 		unlink("theme/photoserviceoutside/".$delete_photo_3);
+		// 		unlink("theme/photoserviceoutsidethumbnail/".$delete_photo_3);
+		// 	}
+
+		// 	}
 		
 			$delete = $this->db->where("svo_id",$svo_id)
-						->delete("tbl_service_outside");
+						->set("svo_status","cancle")
+						->set("user_create",$username)
+						->update("tbl_service_outside");
 					return $delete;
 	}
 

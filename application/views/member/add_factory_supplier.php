@@ -9,7 +9,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Add Factory Supplier</title>
+    <title>Add Company Supplier</title>
 </head>
 
 <body>
@@ -27,11 +27,11 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add Factory Supplier</h3>
+                            <h3 class="section-title">Add Company Supplier</h3>
                             <hr>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/factory_supplier" class="breadcrumb-link">Factory Supplier</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add Factory Supplier</li>
+                            <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/factory_supplier" class="breadcrumb-link">Company Supplier</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add Company Supplier</li>
                         </ol>
                         </div>
 
@@ -45,7 +45,7 @@
 
         <form action="<? echo base_url(); ?>member/factory_supplier/data_add_new_factory_supplier" method="POST"   enctype="multipart/form-data">
             <div class="form-group">
-                <label for="company_name">Factory Supplier Name <span class="text-danger">*</span></label>
+                <label for="company_name">Company Supplier Name <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="company_name"  name="company_name"  placeholder="Factory Supplier Name" required>
             </div>
             <div class="form-row">

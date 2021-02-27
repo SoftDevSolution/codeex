@@ -59,7 +59,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory" or $activemenu=="factory_supplier" or $activemenu=="factory_customer" ){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-building"></i> Factory Setup</a>
+                        <a class="nav-link <? if($activemenu=="factory" or $activemenu=="add_factory" or $activemenu=="factory_supplier" or $activemenu=="factory_customer" ){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/factory" href="<? echo base_url(); ?>member/factory" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-building"></i> Company Setup</a>
                         <div id="submenu-2" class="collapse submenu <? if($activemenu=="factory" or $activemenu=="add_factory" or $activemenu=="factory_supplier" or $activemenu=="factory_customer" ){ ?> show <? } else { } ?>">
                             <ul class="nav flex-column">
                                 <li class="nav-item">

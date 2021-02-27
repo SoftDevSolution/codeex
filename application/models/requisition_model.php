@@ -6,8 +6,13 @@ class Requisition_model extends CI_Model {
 
 		parent::__construct();
 
-
 	}
+
+	// Status Requisition
+	// 1. active  พร้อมใช้งาน
+	// 2. used  กำลังใช้งาน
+	// 3. complete  สำเร็จ
+	// 4. cancle  ยกเลิกรายการ
 
 	public function _get_all()
 	{

@@ -12,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Factory Owner | <? echo $data->nameweb; ?></title>
+    <title>Company Owner | <? echo $data->nameweb; ?></title>
 
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
@@ -36,9 +36,9 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Factory Owner (<? echo number_format($count_company,0); ?>)
+                            <h3 class="section-title">Company Owner (<? echo number_format($count_company,0); ?>)
                               &nbsp;
-                            <a href="<? echo base_url(); ?>member/factory/add_factory"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Factorty</button></a>
+                            <a href="<? echo base_url(); ?>member/factory/add_factory"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Company</button></a>
                             </h3>
                         </div>
 
@@ -60,7 +60,7 @@
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Factories Name</th>
+                            <th scope="col">Company Name</th>
                             <th scope="col">Phone </th>
                             <th scope="col">Email </th>
                             <th scope="col">Address 1</th>

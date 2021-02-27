@@ -12,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Factory Customer | <? echo $data->nameweb; ?></title>
+    <title>Company Customer | <? echo $data->nameweb; ?></title>
 
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
@@ -37,8 +37,8 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Factory Customer (<? echo number_format($count_factory_customer,0); ?> Factory)&nbsp;
-                            <a href="<? echo base_url(); ?>member/factory_customer/add_factory_customer"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Factory Customer</button></a>
+                            <h3 class="section-title">Company Customer (<? echo number_format($count_factory_customer,0); ?> Factory)&nbsp;
+                            <a href="<? echo base_url(); ?>member/factory_customer/add_factory_customer"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Company Customer</button></a>
                             </h3>
                         </div>
 
@@ -53,7 +53,7 @@
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Factory Customer</th>
+                            <th scope="col">Company Customer</th>
                             <th scope="col">Phone </th>
                             <th scope="col">Email </th>
                             <th scope="col">Address 1</th>

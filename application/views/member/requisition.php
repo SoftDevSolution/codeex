@@ -114,11 +114,11 @@
                             </td>
                             <td>
                                 <? if($req->rqs_status=="active"){ ?>
-                                <span class="texyt-success">active</span>
+                                <span class="texyt-default">active</span>
                                 <? } else if($req->rqs_status=="cancel"){ ?>
                                 <span class="text-danger">cancel</span>
                                 <?  } else { ?>
-                                <span class="text-danger"><? echo $req->rqs_status; ?></span>
+                                <span class="text-success"><? echo $req->rqs_status; ?></span>
                                 <? } ?>
                             
                             </td>

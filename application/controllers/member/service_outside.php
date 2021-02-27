@@ -293,14 +293,39 @@ class Service_outside extends CI_Controller {
 		$data['setting_web'] = $this->me->_getall();
 		
 		// รับค่ามา
-		$asset_id = $this->uri->segment(4);
+		$svo_id = $this->uri->segment(4); // id service outside
 
+		// เช็คก่อนว่า มีข้อมูลหรือไม่
+		$count_service_outside = $this->db->where("svo_id",$svo_id)->count_all_results("tbl_service_outside");
+			if($count_service_outside==0){
+				// ไม่มีข้อมูล
+				$this->session->set_flashdata('msg_warning',' No data.');
+						redirect('member/service_outside');
+			} else { 
+		// มีข้อมูล ดำเนินการใช้ข้อมูลได้
+		// ดึงข้อมูล service outside มาใช้งาน
+		$query_service_outside = $this->db->where("svo_id",$svo_id)->get("tbl_service_outside")->result();
+			foreach ($query_service_outside as $aaa) {
+				$svo_requisition_no = $aaa->svo_requisition_no;  // id ใบเบิก requisition
+			}
+		
+		$data['query_service_outside'] = $query_service_outside;
 		// ดึงค่ามาใช้งาน
 		// Load Service_outside_model
+		$this->load->model('Requisition_model','requisition');
 		$this->load->model('Service_outside_model','service_outside');
-		$data['query_service_outside'] = $this->service_outside->_getmember_by_id($asset_id);
+		$data['query_requisition'] = $this->requisition->_get_requisition_by_id($svo_requisition_no);
+
+		// แสดงรายการข้อมูล query_invent_in_invoice
+		$data['query_invent_in_invoice'] = $this->requisition->_get_inventory_in_invoice($svo_requisition_no);
+
+		// GET Employee
+		$this->load->model('Employee_model','employee');
+		$data['query_employee'] = $this->employee->_getAll();
 
 		$this->load->view('member/edit_service_outside',$data);
+
+		}
 	}
 
 	public function edit_data_service_outside()
@@ -309,116 +334,166 @@ class Service_outside extends CI_Controller {
 		$this->load->library('session','database');
 		$this->load->model('User_model','user');
 		$this->checkMember_isvalidated();
+
+ 		// Agent_Data
+		$username_member = $this->session->userdata('username_member');
+		$data['username_member'] = $this->user->_getmember($username_member);
 		
 		// Load Service_outside_model
 		$this->load->model('Service_outside_model','service_outside');
 
 		// รับข้อมูลมา
 		$svo_id = $this->input->post("svo_id");
-		$svo_revision_no = $this->input->post("svo_revision_no");
-		$svo_date = $this->input->post("svo_date");
+		$svo_requisition_no = $this->input->post("svo_requisition_no");
+		$svo_get_date = $this->input->post("svo_get_date");
+		$svo_date_working = $this->input->post("svo_date_working");
 		$svo_company_name = $this->input->post("svo_company_name");
-		$svo_machine_model = $this->input->post("svo_machine_model");
-		$svo_machine_sn = $this->input->post("svo_machine_sn");
-		$svo_technician_name = $this->input->post("svo_technician_name");
+		$svo_company_id = $this->input->post("svo_company_id");
+		$svo_customer_name = $this->input->post("svo_customer_name");
+		$svo_customer_id = $this->input->post("svo_customer_id");
 		$svo_emp_receive = $this->input->post("svo_emp_receive");
+
 		$svo_emp_id_1 = $this->input->post("svo_emp_id_1");
 		$svo_emp_id_2 = $this->input->post("svo_emp_id_2");
 		$svo_emp_id_3 = $this->input->post("svo_emp_id_3");
-		$svo_emp_id_4 = $this->input->post("svo_emp_id_4");
-		$svo_emp_id_5 = $this->input->post("svo_emp_id_5");
+
 		$svo_license_plate_1 = $this->input->post("svo_license_plate_1");
 		$svo_license_plate_2 = $this->input->post("svo_license_plate_2");
 		$svo_license_plate_3 = $this->input->post("svo_license_plate_3");
-		$svo_license_plate_4 = $this->input->post("svo_license_plate_4");
-		$svo_license_plate_5 = $this->input->post("svo_license_plate_5");
-		$svo_active_type = $this->input->post("svo_active_type");
+
 		$svo_status = $this->input->post("svo_status");
 		$svo_case_break_down = $this->input->post("svo_case_break_down");
-		$svo_detail = $this->input->post("svo_detail");
+		$svo_conclusion = $this->input->post("svo_conclusion");
+		$svo_province = $this->input->post("svo_province");
+		$svo_zipcode = $this->input->post("svo_zipcode");
 		$svo_remark = $this->input->post("svo_remark");
-		$company_id = $this->input->post("company_id");
 		
 
-		//echo $svo_id."</BR>";
-		//echo $svo_revision_no."</BR>";
+		// เก็บรูป
+		// ตรวจสอบว่า Upload ภาพมาหรือไม่
+		if(!empty($_FILES['svo_pic_path_1']['tmp_name'])){
+			// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
+			$tempFile = $_FILES['svo_pic_path_1']['tmp_name'];
+			$tempFilename = $_FILES['svo_pic_path_1']['name'];
+			$extension_lastname = strrchr( $tempFilename , '.' );
+			$targetPath = 'theme/photoserviceoutside/' . '/';  // แหล่งที่เก็บรูปภาพ
+			$namephoto = date("YmdHis").$extension_lastname;
+			//$data[$key] = $value;
 
-			// วนลูปเก็บรูป
-			for ($x = 1; $x <= 5; $x++) {
-				$str_img_path="svo_pic_path_".$x ;
-				//echo $str_img_path."</BR>";
+			$targetFile =  str_replace('//','/',$targetPath).$namephoto;
 
-				// ตรสจสอบว่า Upload ภาพมาหรือไม่
-				if(!empty($_FILES[$str_img_path]['tmp_name'])){
-					// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
-					$tempFile = $_FILES[$str_img_path]['tmp_name'];
-					$tempFilename = $_FILES[$str_img_path]['name'];
-					$extension_lastname = strrchr( $tempFilename , '.' );
-					$targetPath = 'theme/photoserviceoutside/' . '/';  // แหล่งที่เก็บรูปภาพ
-					$namephoto[$x] = date("YmdHis").$extension_lastname;
-					//$data[$key] = $value;
+				// สร้างไฟล์ thumnail
+				$images = $_FILES['svo_pic_path_1']['tmp_name'];
+				$width = 500; //*** Fix Width & Heigh (Autu caculate) ***//
+				$size=GetimageSize($images);
+				$height=round($width*$size[1]/$size[0]);
+				$images_orig = ImageCreateFromJPEG($images);
+				$photoX = ImagesX($images_orig);
+				$photoY = ImagesY($images_orig);
+				$images_fin = ImageCreateTrueColor($width, $height);
+				ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+				ImageJPEG($images_fin,"theme/photoserviceoutsidethumbnail/".$namephoto);
+				ImageDestroy($images_orig);
+				ImageDestroy($images_fin);
 
-					$targetFile =  str_replace('//','/',$targetPath).$namephoto[$x];
+				move_uploaded_file($tempFile,$targetFile);
 
-						// สร้างไฟล์ thumnail
-						$images = $_FILES[$str_img_path]['tmp_name'];
-						$width = 500; //*** Fix Width & Heigh (Autu caculate) ***//
-						$size=GetimageSize($images);
-						$height=round($width*$size[1]/$size[0]);
-						$images_orig = ImageCreateFromJPEG($images);
-						$photoX = ImagesX($images_orig);
-						$photoY = ImagesY($images_orig);
-						$images_fin = ImageCreateTrueColor($width, $height);
-						ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
-						ImageJPEG($images_fin,"theme/photoserviceoutsidethumbnail/".$namephoto[$x]);
-						ImageDestroy($images_orig);
-						ImageDestroy($images_fin);
+				// Update database
+				$update_photo = $this->db->where("svo_id",$svo_id)->set("svo_pic_path_1",$namephoto)->update("tbl_service_outside");
+		} else {
+			// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
+		}
 
-						//echo $namephoto[$x]."</BR>";
+		// ตรวจสอบว่า Upload ภาพมาหรือไม่
+		if(!empty($_FILES['svo_pic_path_2']['tmp_name'])){
+			// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
+			$tempFile = $_FILES['svo_pic_path_2']['tmp_name'];
+			$tempFilename = $_FILES['svo_pic_path_2']['name'];
+			$extension_lastname = strrchr( $tempFilename , '.' );
+			$targetPath = 'theme/photoserviceoutside/' . '/';  // แหล่งที่เก็บรูปภาพ
+			$namephoto = date("YmdHis").$extension_lastname;
+			//$data[$key] = $value;
 
-						move_uploaded_file($tempFile,$targetFile);
-				} else {
-					// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
-					$namephoto[$x] = "";
-				}
+			$targetFile =  str_replace('//','/',$targetPath).$namephoto;
 
-			}
+				// สร้างไฟล์ thumnail
+				$images = $_FILES['svo_pic_path_2']['tmp_name'];
+				$width = 500; //*** Fix Width & Heigh (Autu caculate) ***//
+				$size=GetimageSize($images);
+				$height=round($width*$size[1]/$size[0]);
+				$images_orig = ImageCreateFromJPEG($images);
+				$photoX = ImagesX($images_orig);
+				$photoY = ImagesY($images_orig);
+				$images_fin = ImageCreateTrueColor($width, $height);
+				ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+				ImageJPEG($images_fin,"theme/photoserviceoutsidethumbnail/".$namephoto);
+				ImageDestroy($images_orig);
+				ImageDestroy($images_fin);
 
+				move_uploaded_file($tempFile,$targetFile);
 
-		/*if(empty($asset_id)){
-			$this->session->set_flashdata('msg_warning',' Not found data. Please try again.');
-						redirect('member/service_outside/edit_service_outside');
-		} else {*/
+				// Update database
+				$update_photo = $this->db->where("svo_id",$svo_id)->set("svo_pic_path_2",$namephoto)->update("tbl_service_outside");
+		} else {
+			// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
+		}
+
+		// ตรวจสอบว่า Upload ภาพมาหรือไม่
+		if(!empty($_FILES['svo_pic_path_3']['tmp_name'])){
+			// หากมีไฟล์ภาพมา ให้บันทึกไฟล์ภาพ
+			$tempFile = $_FILES['svo_pic_path_3']['tmp_name'];
+			$tempFilename = $_FILES['svo_pic_path_3']['name'];
+			$extension_lastname = strrchr( $tempFilename , '.' );
+			$targetPath = 'theme/photoserviceoutside/' . '/';  // แหล่งที่เก็บรูปภาพ
+			$namephoto = date("YmdHis").$extension_lastname;
+			//$data[$key] = $value;
+
+			$targetFile =  str_replace('//','/',$targetPath).$namephoto;
+
+				// สร้างไฟล์ thumnail
+				$images = $_FILES['svo_pic_path_3']['tmp_name'];
+				$width = 500; //*** Fix Width & Heigh (Autu caculate) ***//
+				$size=GetimageSize($images);
+				$height=round($width*$size[1]/$size[0]);
+				$images_orig = ImageCreateFromJPEG($images);
+				$photoX = ImagesX($images_orig);
+				$photoY = ImagesY($images_orig);
+				$images_fin = ImageCreateTrueColor($width, $height);
+				ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+				ImageJPEG($images_fin,"theme/photoserviceoutsidethumbnail/".$namephoto);
+				ImageDestroy($images_orig);
+				ImageDestroy($images_fin);
+
+				move_uploaded_file($tempFile,$targetFile);
+
+				// Update database
+				$update_photo = $this->db->where("svo_id",$svo_id)->set("svo_pic_path_3",$namephoto)->update("tbl_service_outside");
+		} else {
+			// ไม่มีไฟล์ภาพ ไม่ต้องบันทึก
+		}
+
 			// ดำเนินการบันทึกข้อมูล
-			$edit_service_outside = $this->service_outside->_editServiceOutside($svo_id,
-																		$svo_revision_no,
-																		$svo_date,
-																		$svo_company_name,
-																		$svo_machine_model,
-																		$svo_machine_sn,
-																		$svo_technician_name,
-																		$svo_emp_receive,
-																		$svo_emp_id_1,
-																		$svo_emp_id_2,
-																		$svo_emp_id_3,
-																		$svo_emp_id_4,
-																		$svo_emp_id_5,
-																		$svo_license_plate_1,
-																		$svo_license_plate_2,
-																		$svo_license_plate_3,
-																		$svo_license_plate_4,
-																		$svo_license_plate_5,
-																		$svo_active_type,
-																		$svo_status,
-																		$svo_case_break_down,
-																		$svo_detail,
-																		$svo_remark,
-																		$company_id,
-																		$namephoto[1],
-																		$namephoto[2],
-																		$namephoto[3],
-																		$namephoto[4],
-																		$namephoto[5]);
+			$edit_service_outside = $this->service_outside->_editServiceOutside($svo_id,$svo_requisition_no,
+									$svo_get_date,
+									$svo_date_working,
+									$svo_company_name,
+									$svo_company_id,
+									$svo_customer_name,
+									$svo_customer_id,
+									$svo_emp_receive,
+									$svo_emp_id_1,
+									$svo_emp_id_2,
+									$svo_emp_id_3,
+									$svo_license_plate_1,
+									$svo_license_plate_2,
+									$svo_license_plate_3,
+									$svo_status,
+									$svo_case_break_down,
+									$svo_conclusion,
+									$svo_province,
+									$svo_zipcode,
+									$svo_remark,
+									$username_member);
 				if($edit_service_outside=="same"){
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning','Data is exist. Please try again.');
@@ -447,24 +522,38 @@ class Service_outside extends CI_Controller {
 		$this->load->model('User_model','user');
 		$this->checkMember_isvalidated();
 
+ 		// Agent_Data
+		$username_member = $this->session->userdata('username_member');
+		$data['username_member'] = $this->user->_getmember($username_member);
+
 		// Load Service_outside_model
 		$this->load->model('Service_outside_model','service_outside');
 
 		// รับข้อมูลมา
-		$asset_id = $this->input->post("asset_id");
+		$svo_id = $this->input->post("my_svo_id");
 
 		// เช็คว่ามีข้อมูลมาหรือไม่
-		/*if(empty($asset_id) or $asset_id==""){
+		if(empty($svo_id) or $svo_id==""){
 			echo "empty";
-		} else {*/
+		} else {
+			// เช็คว่ามีข้อมูลหรือไม่
+			$check_count = $this->service_outside->_count_serviceOutside_by_id($svo_id);
+
+				if($check_count==0){
+					// No data.
+					echo "empty";
+				} else {
+
 			// มีข้อมูล ดำเนินการลบ Customers
-			$delete_service_outside = $this->service_outside->_delete_ServiceOutside($asset_id);
+			$delete_service_outside = $this->service_outside->_delete_ServiceOutside($svo_id,$username_member);
 				if($delete_service_outside){
 					echo "success";
 				} else {
 					echo "error";
 				}
-		//}
+				
+			}
+		}
 
 		
 	}

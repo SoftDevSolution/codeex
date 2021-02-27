@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 17, 2021 at 08:29 PM
+-- Generation Time: Feb 27, 2021 at 11:36 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -69,7 +69,9 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (26, 'admin', 'login', '', '::1', '2021-02-17 15:11:34'),
 (27, 'admin', 'login', '', '::1', '2021-02-17 17:38:52'),
 (28, 'admin', 'logout', 'admin', '::1', '2021-02-17 18:53:48'),
-(29, 'admin', 'login', '', '::1', '2021-02-17 18:53:51');
+(29, 'admin', 'login', '', '::1', '2021-02-17 18:53:51'),
+(30, 'admin', 'login', '', '::1', '2021-02-27 14:11:42'),
+(31, 'admin', 'login', '', '::1', '2021-02-27 17:38:12');
 
 -- --------------------------------------------------------
 
@@ -147,7 +149,7 @@ INSERT INTO `tbl_add_inventory_to_invoice` (`id_inven_to_invoice`, `machine_id`,
 (8, 8, 2, 'admin', '2021-02-15', '2021-02-15 09:16:30'),
 (18, 7, 1, 'admin', '2021-02-17', '2021-02-17 15:33:34'),
 (20, 6, 1, 'admin', '2021-02-17', '2021-02-17 18:33:58'),
-(23, 4, 1, 'admin', '2021-02-17', '2021-02-17 19:57:38');
+(24, 4, 1, 'admin', '2021-02-27', '2021-02-27 14:28:01');
 
 -- --------------------------------------------------------
 
@@ -757,8 +759,8 @@ CREATE TABLE `tbl_requisition` (
 --
 
 INSERT INTO `tbl_requisition` (`rqs_id`, `rqs_date`, `emp_id`, `rqs_pn`, `vs_id`, `company_id`, `rqs_remark`, `rqs_status`, `create_user`, `create_date`, `update_user`, `update_date`) VALUES
-(1, '2021-02-14', 2, '898', '2', 2, '', 'active', 'admin', '2021-02-14 17:15:31', 'admin', '2021-02-17 18:34:45'),
-(2, '2021-02-15', 4, '456', '1', 1, '', 'used', 'admin', '2021-02-14 17:16:38', 'admin', '2021-02-15 10:08:18');
+(1, '2021-02-14', 2, '898', '2', 2, '', 'complete', 'admin', '2021-02-14 17:15:31', 'admin', '2021-02-27 14:27:49'),
+(2, '2021-02-15', 4, '456', '1', 1, '', 'active', 'admin', '2021-02-14 17:16:38', 'admin', '2021-02-15 10:08:18');
 
 -- --------------------------------------------------------
 
@@ -816,8 +818,8 @@ CREATE TABLE `tbl_service_outside` (
 --
 
 INSERT INTO `tbl_service_outside` (`svo_id`, `svo_requisition_no`, `svo_get_date`, `svo_date_working`, `svo_company_name`, `svo_company_id`, `svo_customer_name`, `svo_customer_id`, `svo_emp_receive`, `svo_emp_id_1`, `svo_emp_id_2`, `svo_emp_id_3`, `svo_license_plate_1`, `svo_license_plate_2`, `svo_license_plate_3`, `svo_case_break_down`, `svo_conclusion`, `svo_remark`, `svo_pic_path_1`, `svo_pic_path_2`, `svo_pic_path_3`, `svo_province`, `svo_zipcode`, `svo_status`, `user_create`, `create_date`) VALUES
-(1, 2, '2021-02-17', '2021-02-17', 'Beverage-Coffee', 1, '444', 1, 10, 6, 4, 6, 'ผล 1836', '', '', 'ไม่รู้ว่ามาจากอะไร อยู๋ๆ มันก็เสีย', 'ต้องลองไล่ code ดูครับ', '', '20210217192352_1.jpg', '', '', '', '10500', 'complete', 'admin', '2021-02-17 19:23:52'),
-(2, 2, '2021-02-17', '2021-02-28', 'Beverage-Coffee', 1, '444', 1, 10, 2, 6, 4, 'ผล 1836', '', '', 'ไม่รู้ ไม่รู้ ไม่รู้ ไม่รู้ ', 'ไม่รู้ ไม่รู้ ไม่รู้ ไม่รู้ ไม่รู้ ', '', '20210217202518_1.jpg', '20210217202518_2.jpg', '', '', '', 'active', 'admin', '2021-02-17 20:25:18');
+(1, 1, '2021-02-17', '2021-02-17', 'Beverage-Coffee', 1, '444', 1, 10, 6, 4, 6, 'ผล 1836', '', '', 'ไม่รู้ว่ามาจากอะไร อยู๋ๆ มันก็เสีย', 'ต้องลองไล่ code ดูครับ', '', '20210217192352_1.jpg', '', '', '', '10500', 'complete', 'admin', '2021-02-17 19:23:52'),
+(2, 2, '2021-02-27', '2021-02-27', 'Beverage-Coffee', 1, '444', 1, 10, 2, 6, 4, 'ผล 1836', '', '', ' น่าจะเกิดจากภาวะโลกร้อน ', 'ไม่รู้ ไม่รู้ ไม่รู้ ไม่รู้ ไม่รู้ ', '', '20210217202518_1.jpg', '20210217202518_2.jpg', '20210227222951.jpg', 'มหาสารคาม', '10400', 'complete', 'admin', '2021-02-27 22:30:28');
 
 -- --------------------------------------------------------
 
@@ -1254,7 +1256,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -1278,7 +1280,7 @@ ALTER TABLE `stat_today`
 -- AUTO_INCREMENT for table `tbl_add_inventory_to_invoice`
 --
 ALTER TABLE `tbl_add_inventory_to_invoice`
-  MODIFY `id_inven_to_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_inven_to_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tbl_area`
@@ -1416,7 +1418,7 @@ ALTER TABLE `tbl_return_certificate`
 -- AUTO_INCREMENT for table `tbl_service_outside`
 --
 ALTER TABLE `tbl_service_outside`
-  MODIFY `svo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `svo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_sub_inventory`

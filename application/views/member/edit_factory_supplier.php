@@ -12,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Edit Factory Supplier Data</title>
+    <title>Edit Company Supplier Data</title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -38,11 +38,11 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Edit Factory Supplier Data</h3>
+                            <h3 class="section-title">Edit Company Supplier Data</h3>
                             <hr>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/factory_supplier" class="breadcrumb-link">Factory Supplier Data</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Edit Factory Supplier Data</li>
+                                <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/factory_supplier" class="breadcrumb-link">Company Supplier Data</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit Company Supplier Data</li>
                             </ol>
                         </div>
                         <div class="col-xl-12 col-12">
@@ -63,7 +63,7 @@
         <div class="row">     
             <div class="form-row  col-md-6">
                 <div class="form-group col-md-12">
-                    <label for="company_name">Factory Supplier Name <span class="text-danger">*</span></label>
+                    <label for="company_name">Company Supplier Name <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Factory Name" value="<? echo $mach->com_sup_name; ?>" required>
                 </div>
                 <div class="form-group col-md-12">

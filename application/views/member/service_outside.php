@@ -77,15 +77,15 @@
                                                 echo $emp_name;
                                     ?>
                                     </td>
-                                    <td>
+                                    <td id="results_<? echo $cus->svo_id; ?>">
                                     <? if($cus->svo_status=="complete"){  ?>
                                         <center> <span class="text-success">complete</span> </center>
                                     <? } else if($cus->svo_status=="active"){ ?>
                                         <center>
-                                            <a href="<? echo base_url(); ?>member/service_outside/closejob/<? echo $cus->svo_id; ?>"><button class="btn btn-sm btn-warning">Complete job</button></a>&nbsp;&nbsp;
-                                            <a href="<? echo base_url(); ?>member/service_outside/edit_service_outside/<? echo $cus->svo_id; ?>"><span class="text-dark"><i class="fas fa-edit"></i></span></a>
-                                            &nbsp;
-                                            <span class="text-danger" onclick="DeleteServiceOutside('<? echo $cus->svo_id; ?>');" style="cursor:pointer;"><i class="fas fa-trash"></i></span>
+                                            <a href="<? echo base_url(); ?>member/service_outside/closejob/<? echo $cus->svo_id; ?>"><span class="text-success"><i class="fas fa-calendar-check" title="Close job."></i> Close job</span></a>&nbsp;&nbsp;|&nbsp;
+                                            <a href="<? echo base_url(); ?>member/service_outside/edit_service_outside/<? echo $cus->svo_id; ?>"><span class="text-dark"><i class="fas fa-edit"></i> Edit</span></a>
+                                            &nbsp;|&nbsp;
+                                            <span class="text-danger" onclick="DeleteServiceOutside(<? echo $cus->svo_id; ?>);" style="cursor:pointer;"><i class="fas fa-trash"></i> Remove</span>
                                         </center>
                                     <? } else if($cus->svo_status=="cancle"){ ?>
                                         <center> <span class="text-danger">cancle</span> </center>
@@ -122,7 +122,7 @@
     <? $this->load->view("member/script_js"); ?>
 
     <script>
-    function DeleteServiceOutside(svo_id) { 
+    function DeleteServiceOutside(my_svo_id) { 
         
             const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -152,12 +152,12 @@
                         type: 'post',
                         url: '<? echo base_url(); ?>member/service_outside/data_delete_service_outside',
                         data: {
-                            svo_id : svo_id
+                            my_svo_id : my_svo_id
                         },
                         success: function (response) {
                             console.log(response);
                             if(response=="success"){ 
-                                $("#row_"+svo_id).fadeOut();
+                                $("#results_"+my_svo_id).html("<center><span class='text-danger'> cancle </span></center>");
                             } else if(response=="empty"){
                                 Swal.fire({
                                     icon: 'warning',
@@ -181,7 +181,7 @@
             ) {
                 swalWithBootstrapButtons.fire(
                 'Cancelled',
-                'Thank! we keeped your data.',
+                'Thank! cancle remove your data.',
                 'warning'
                 )
                 console.log("Cancle");

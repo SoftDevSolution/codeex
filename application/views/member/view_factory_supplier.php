@@ -12,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Factory Supplier | <? echo $data->nameweb; ?></title>
+    <title>Company Supplier | <? echo $data->nameweb; ?></title>
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
@@ -36,8 +36,8 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Factory Supplier (<? echo number_format($count_factory_supplier,0); ?> Factory)&nbsp;
-                            <a href="<? echo base_url(); ?>member/factory_supplier/add_factory_supplier"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Factory Supplier</button></a>
+                            <h3 class="section-title">Company Supplier (<? echo number_format($count_factory_supplier,0); ?> Factory)&nbsp;
+                            <a href="<? echo base_url(); ?>member/factory_supplier/add_factory_supplier"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add New Company Supplier</button></a>
                             </h3>
                         </div>
 
@@ -52,7 +52,7 @@
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Factory Supplier</th>
+                            <th scope="col">Company Supplier</th>
                             <th scope="col">Phone </th>
                             <th scope="col">Email </th>
                             <th scope="col">Address 1</th>

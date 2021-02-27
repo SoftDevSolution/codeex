@@ -9,7 +9,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Add Factory Owner</title>
+    <title>Add Company Owner</title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -35,11 +35,11 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add Factory Owner</h3>
+                            <h3 class="section-title">Add Company Owner</h3>
                             <hr>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/factory" class="breadcrumb-link">Factory Owner</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Add Factory Owner</li>
+                                <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/factory" class="breadcrumb-link">Company Owner</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Add Company Owner</li>
                             </ol>
                         </div>
                         <div class="col-xl-12 col-12">
@@ -54,7 +54,7 @@
         <!-- <form action="<? echo base_url(); ?>member/add_new_factory" method="POST"> -->
         <form action="<? echo base_url(); ?>member/factory/add_new_factory" method="POST">
             <div class="form-group">
-                <label for="company_name">Factory Name <span class="text-danger">*</span></label>
+                <label for="company_name">Company Name <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Factory Name" required>
             </div>
             <div class="form-row">
