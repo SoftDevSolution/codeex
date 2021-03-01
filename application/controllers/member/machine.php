@@ -258,6 +258,32 @@ class Machine extends CI_Controller {
 
 	}
 
+	public function get_machine_id()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+		// Load Visitor_supplier_model
+		$this->load->model('Machine_model','machine');
+
+		// รับข้อมูลมา
+		$machine_id = $this->input->post("query");
+
+		// ดึงข้อมูลมาแสดง
+		$query_visitor_sub = $this->machine->_query_machine_id($machine_id);
+			foreach($query_visitor_sub as $row)
+				{
+				echo '
+				<li class="list-group-item contsearch">
+				<a href="javascript:void(0)" class="gsearch" style="color:#333;text-decoration:none;">'.$row->machine_id.'</a>
+				</li>
+				';
+				}
+
+	}
+
 	public function get_vs_company_visitor_supplier()
 	{
 		// Load All

@@ -191,23 +191,14 @@ class Config_machine_model extends CI_Controller {
 			// return -> success , false , same , error
 			
 			//echo $update_data;
-				if($update_data=="same") {
-					// ซ้ำ
-					$this->session->set_flashdata('msg_warning',' Same Data. Please try again.');
-						redirect('member/config_machine_model');
-
-				} else if($update_data=="success") {
+				if($update_data) {
 					// success
 					$this->session->set_flashdata('msg_ok',' Edit Data Success.');
 						redirect('member/config_machine_model');
 
-				} else  if($update_data=="false") {
+				} else {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
-						redirect('member/config_machine_model');
-				} else {
-					// Error
-					$this->session->set_flashdata('msg_error',' Error! Please try again.');
 						redirect('member/config_machine_model');
 				}
 

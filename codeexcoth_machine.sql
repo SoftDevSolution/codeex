@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2021 at 11:36 PM
+-- Generation Time: Mar 01, 2021 at 01:22 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -71,7 +71,8 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (28, 'admin', 'logout', 'admin', '::1', '2021-02-17 18:53:48'),
 (29, 'admin', 'login', '', '::1', '2021-02-17 18:53:51'),
 (30, 'admin', 'login', '', '::1', '2021-02-27 14:11:42'),
-(31, 'admin', 'login', '', '::1', '2021-02-27 17:38:12');
+(31, 'admin', 'login', '', '::1', '2021-02-27 17:38:12'),
+(32, 'admin', 'login', '', '::1', '2021-02-28 14:34:24');
 
 -- --------------------------------------------------------
 
@@ -690,6 +691,33 @@ INSERT INTO `tbl_model` (`model_id`, `model_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_notification`
+--
+
+CREATE TABLE `tbl_notification` (
+  `notification_id` int(11) NOT NULL,
+  `machine_id` int(11) NOT NULL DEFAULT 0,
+  `messages` text NOT NULL,
+  `date_notify` date NOT NULL,
+  `user_notification` varchar(200) NOT NULL,
+  `create_user` varchar(100) NOT NULL,
+  `save_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_notification`
+--
+
+INSERT INTO `tbl_notification` (`notification_id`, `machine_id`, `messages`, `date_notify`, `user_notification`, `create_user`, `save_date`) VALUES
+(1, 2, 'Check detail for Machine ID', '2021-03-01', 'admin,phploso', 'admin', '2021-03-01 01:17:44'),
+(2, 2, 'Check detail for Machine ID', '2021-03-06', 'admin,phploso', 'admin', '2021-03-01 01:17:44'),
+(3, 2, 'Check detail for Machine ID', '2021-03-11', 'admin,phploso', 'admin', '2021-03-01 01:17:44'),
+(4, 2, 'Check detail for Machine ID', '2021-03-16', 'admin,phploso', 'admin', '2021-03-01 01:17:44'),
+(5, 2, 'Check detail for Machine ID', '2021-03-21', '', 'admin', '2021-03-01 01:17:44');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_position`
 --
 
@@ -1165,6 +1193,12 @@ ALTER TABLE `tbl_model`
   ADD PRIMARY KEY (`model_id`);
 
 --
+-- Indexes for table `tbl_notification`
+--
+ALTER TABLE `tbl_notification`
+  ADD PRIMARY KEY (`notification_id`);
+
+--
 -- Indexes for table `tbl_position`
 --
 ALTER TABLE `tbl_position`
@@ -1256,7 +1290,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -1389,6 +1423,12 @@ ALTER TABLE `tbl_machine_type`
 --
 ALTER TABLE `tbl_model`
   MODIFY `model_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `tbl_notification`
+--
+ALTER TABLE `tbl_notification`
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_position`

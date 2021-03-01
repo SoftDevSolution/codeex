@@ -8,45 +8,60 @@ class Notification_model extends CI_Model {
 
 
     }
-    
-    public function _count_machine_position()
+
+    public function _getAll()
     {
-        $count = $this->db->count_all("tbl_position");
+         
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $query = $this->db->order_by("notification_id","DESC")
+                        ->get("tbl_notification")
+                        ->result();
+                    return $query;
+    }
+
+    public function _get_notify_by_username($username)
+    {
+         
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $query = $this->db->like("user_notification", $username ,"BOTH")
+                        ->order_by("notification_id","DESC")
+                        ->get("tbl_notification")
+                        ->result();
+                    return $query;
+    }
+
+    public function _get_notify_all_user()
+    {
+         
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $query = $this->db->where("user_notification", "")
+                        ->order_by("notification_id","DESC")
+                        ->get("tbl_notification")
+                        ->result();
+                    return $query;
+    }
+    
+    public function _count_notification()
+    {
+        $count = $this->db->count_all("tbl_notification");
                     return $count;
     }
 
-	public function _add_machine_position($position_name)
+	public function _add_notification($machine_id,$the_frequency,$messages,$user_notification,$username_member)
 	{
-        // Check
-        $checking = $this->db->where("position_name",$position_name)
-                        ->count_all_results("tbl_position");
-
-            if($checking==0){
-                // ไม่มีข้อมูล บันทึกข้อมูลได้
-                $query = $this->db->set("position_name",$position_name)
-                        ->insert("tbl_position");
+        $datenow = date("Y-m-d H:i:s");
+        $query = $this->db->set("machine_id",$machine_id)
+                        ->set("date_notify",$the_frequency)
+                        ->set("messages",$messages)
+                        ->set("user_notification",$user_notification)
+                        ->set("create_user",$username_member)
+                        ->set("save_date",$datenow)
+                        ->insert("tbl_notification");
                     if($query){
                         return "success";
                     } else {
                         return "false";
                     }
-            } else {
-                // ซ้ำ แจ้งกลับไป
-                return "same";
-                
-            }
-
-        
-    }
-    
-    public function _get_machine_position_AllData()
-    {
-         
-        // ดึงข้อมูลทั้งหมด ไปใช้งาน
-        $query = $this->db->order_by("position_id","DESC")
-                        ->get("tbl_position")
-                        ->result();
-                    return $query;
     }
 
     public function _delete_machine_position($position_id)

@@ -77,6 +77,15 @@ class Machine_model extends CI_Model {
                     return $query;
     }
 
+    public function _query_machine_id($machine_id)
+    {
+        $query = $this->db->where("machine_id",$machine_id)
+                        ->or_where("machine_serial_no",$machine_id)
+                        ->get("tbl_machine")
+                        ->result();
+                    return $query;
+    }
+
 	public function _edit_machine_brand($brand_id,$brand_name)
 	{
         // Check

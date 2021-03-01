@@ -45,6 +45,13 @@ class Dashboard extends CI_Controller {
 		$data['count_customer'] = $this->customer->_count_customer();
 		$data['count_employee'] = $this->employee->_count_employee();
 
+		// Notification แจ้งเตือน
+		$this->load->model('Notification_model','notification');
+		// $data['count_notification'] = $this->notification->_count_notification_by_username($username_member);
+		$data['query_notification'] = $this->notification->_get_notify_by_username($username_member);
+		$data['query_all_notification'] = $this->notification->_get_notify_all_user();
+		
+
 		$this->load->view('member/dashboard',$data);
 	}
 

@@ -77,43 +77,14 @@ class Machine_model_model extends CI_Model {
 
 	public function _edit_machine_model($model_id,$model_name)
 	{
-        // Check
-        $checking = $this->db->where("model_id",$model_id)
-                        ->count_all_results("tbl_model");
-
-            if($checking>0){
-                // ไม่มีข้อมูล บันทึกข้อมูลได้
-
-                // เช็คว่าข้อมูลซ้ำเดิมหรือไม่
-                $check_same = $this->db->where("model_name",$model_name)
-                                ->count_all_results("tbl_model");
-                    if($check_same>0){
-                        // ซ้ำ
-                        return "same";
-                    } else {
-                        // แก้ไขได้
-                        $query = $this->db->where("model_id",$model_id)
-                                ->set("model_name",$model_name)
-                                ->update("tbl_model");
-
-                            if($query){
-                                return "success";
-                            } else {
-                                return "false";
-                            }
-
-                    }
-
-            } else {
-                // Error
-                return "error";
-                
-            }
-
-        
+        $query = $this->db->where("model_id",$model_id)
+                        ->set("model_name",$model_name)
+                        ->update("tbl_model");
+                if($query){
+                    return "success";
+                } else {
+                    return "false";
+                }
     }
-
-
-
 
 }

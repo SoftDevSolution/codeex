@@ -187,25 +187,14 @@ class Config_machine_type extends CI_Controller {
 		} else {
 			// ดำเนินการบันทึกข้อมูลได้
 			$update_data = $this->machine->_edit_machine_type($machine_type_id,$machine_type_name);
-			// return -> success , false , same , error
-			
-				if($update_data=="same") {
-					// ซ้ำ
-					$this->session->set_flashdata('msg_warning',' Same Data. Please try again.');
-						redirect('member/config_machine_type');
-
-				} else if($update_data=="success") {
+			// return -> success , false
+				if($update_data) {
 					// success
 					$this->session->set_flashdata('msg_ok',' Edit Data Success.');
 						redirect('member/config_machine_type');
-
-				} else  if($update_data=="false") {
+				} else {
 					// false / error
 					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
-						redirect('member/config_machine_type');
-				} else {
-					// Error
-					$this->session->set_flashdata('msg_error',' Error! Please try again.');
 						redirect('member/config_machine_type');
 				}
 

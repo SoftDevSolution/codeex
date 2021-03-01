@@ -113,9 +113,9 @@
                         <a class="nav-link <? if($activemenu=="assets" or $activemenu=="add_asset"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/assets"><i class="fas fa-box-open"></i> Assets</a>
                     </li>
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="borrow_asset" or $activemenu=="borrow_asset"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/borrow_asset"><i class="fas fa-box-open"></i> Borrow Asset</a>
-                    </li>
+                    </li> -->
                     
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="notification" or $activemenu=="notification"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/notification"><i class="fas fa-box-open"></i> Notification</a>

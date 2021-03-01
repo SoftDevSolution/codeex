@@ -26,6 +26,54 @@
                 <!-- pagehader  -->
                 <!-- ============================================================== -->
                 <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="section-block" id="basicform">
+                            <h3 class="section-title"><i class="far fa-bell"></i> Notifications (2)</h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                        <div class="table-responsive-lg">
+                        <table class="table table-hover">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Machine ID</th>
+                            <th scope="col">Messages</th>
+                            <th scope="col"><center>Manage</center></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?  foreach ($query_notification as $notify) {  ?>
+                            <tr>
+                            <th scope="row">#<? echo $notify->notification_id; ?></th>
+                            <td><? echo $notify->machine_id ?></td>
+                            <td><? echo $notify->messages ?></td>
+                            <td>
+                                <center>
+                                    <a href="<? echo base_url(); ?>member/read_notification"><span class="text-success"><i class="fas fa-eye"></i> Readed</span></a>
+                                </center>
+                            </td>
+                            </tr>
+                            <? } ?>
+                            <?  foreach ($query_all_notification as $key => $notify) {  ?>
+                            <tr>
+                            <th scope="row">#<? echo $notify->notification_id; ?></th>
+                            <td><? echo $notify->machine_id ?></td>
+                            <td><? echo $notify->messages ?></td>
+                            <td>
+                                <center>
+                                    <a href="<? echo base_url(); ?>member/read_notification"><span class="text-success"><i class="fas fa-eye"></i> Readed</span></a>
+                                </center>
+                            </td>
+                            </tr>
+                            <? } ?>
+                        </tbody>
+                        </table>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="card border-3 border-top border-top-primary">
                             <div class="card-body">
@@ -116,64 +164,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="section-block" id="basicform">
-                            <h3 class="section-title"><i class="far fa-bell"></i> Notifications (2)</h3>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                        <div class="table-responsive-lg">
-                        <table class="table table-hover">
-                        <thead>
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Messages</th>
-                            <th scope="col"><center>Manage</center></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <th scope="row">1</th>
-                            <td>Mark Mark Mark Mark Mark MessagesMark Mark Mark Mark Mark MessagesMark Mark Mark Mark Mark MessagesMark Mark Mark Mark Mark MessagesMark Mark Mark Mark Mark Messages</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/read_notification"><span class="text-success"><i class="fas fa-eye"></i> Readed</span></a>
-                                </center>
-                            </td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2</th>
-                            <td>Mark Mark Mark Mark Mark Messages</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/read_notification"><span class="text-success"><i class="fas fa-eye"></i> Readed</span></a>
-                                </center>
-                            </td>
-                            </tr>
-                            <tr>
-                            <th scope="row">3</th>
-                            <td>Mark Mark Mark Mark Mark Messages</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/read_notification"><span class="text-success"><i class="fas fa-eye"></i> Readed</span></a>
-                                </center>
-                            </td>
-                            </tr>
-                            <tr>
-                            <th scope="row">4</th>
-                            <td>Mark Mark Mark Mark Mark Messages</td>
-                            <td>
-                                <center>
-                                    <a href="<? echo base_url(); ?>member/read_notification"><span class="text-success"><i class="fas fa-eye"></i> Readed</span></a>
-                                </center>
-                            </td>
-                            </tr>
-                        </tbody>
-                        </table>
-                        </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
 
             </div>

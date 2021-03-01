@@ -79,39 +79,16 @@ class Machine_type_model extends CI_Model {
 
 	public function _edit_machine_type($machine_type_id,$machine_type_name)
 	{
-        // Check
-        $checking = $this->db->where("machine_type_id",$machine_type_id)
-                        ->count_all_results("tbl_machine_type");
+        // แก้ไขได้
+        $query = $this->db->where("machine_type_id",$machine_type_id)
+                ->set("machine_type_name",$machine_type_name)
+                ->update("tbl_machine_type");
 
-            if($checking>0){
-                // ไม่มีข้อมูล บันทึกข้อมูลได้
-
-                // เช็คว่าข้อมูลซ้ำเดิมหรือไม่
-                $check_same = $this->db->where("machine_type_name",$machine_type_name)
-                                ->count_all_results("tbl_machine_type");
-                    if($check_same>0){
-                        // ซ้ำ
-                        return "same";
-                    } else {
-                        // แก้ไขได้
-                        $query = $this->db->where("machine_type_id",$machine_type_id)
-                                ->set("machine_type_name",$machine_type_name)
-                                ->update("tbl_machine_type");
-
-                            if($query){
-                                return "success";
-                            } else {
-                                return "false";
-                            }
-
-                    }
-
-            } else {
-                // Error
-                return "error";
-                
-            }
-
+                if($query){
+                    return "success";
+                } else {
+                    return "false";
+                }
         
     }
 

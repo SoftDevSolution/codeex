@@ -79,40 +79,15 @@ class Machine_brand_model extends CI_Model {
 
 	public function _edit_machine_brand($brand_id,$brand_name)
 	{
-        // Check
-        $checking = $this->db->where("brand_id",$brand_id)
-                        ->count_all_results("tbl_brand");
+        $query = $this->db->where("brand_id",$brand_id)
+                    ->set("brand_name",$brand_name)
+                    ->update("tbl_brand");
 
-            if($checking>0){
-                // ไม่มีข้อมูล บันทึกข้อมูลได้
-
-                // เช็คว่าข้อมูลซ้ำเดิมหรือไม่
-                $check_same = $this->db->where("brand_name",$brand_name)
-                                ->count_all_results("tbl_brand");
-                    if($check_same>0){
-                        // ซ้ำ
-                        return "same";
-                    } else {
-                        // แก้ไขได้
-                        $query = $this->db->where("brand_id",$brand_id)
-                                ->set("brand_name",$brand_name)
-                                ->update("tbl_brand");
-
-                            if($query){
-                                return "success";
-                            } else {
-                                return "false";
-                            }
-
-                    }
-
-            } else {
-                // Error
-                return "error";
-                
-            }
-
-        
+                if($query){
+                    return "success";
+                } else {
+                    return "false";
+                }
     }
 
 
