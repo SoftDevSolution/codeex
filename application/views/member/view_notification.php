@@ -21,9 +21,15 @@
         <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
         <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
         <link rel="stylesheet" href="<? echo base_url(); ?>theme/css/input_tags.css">
+        <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
         <? $this->load->view("member/time_to_datethai_en"); ?>
         
+<style>
+    .spanspot {
+        cursor : pointer;
+    }
+</style>
 
 </head>
 
@@ -59,7 +65,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form action="<? echo base_url(); ?>member/notification/data_add_notification" method="POST" enctype="multipart/form-data">
+                                <form action="<? echo base_url(); ?>member/notification/data_add_notification" method="POST">
                                     <div class="form-row">
                                     <div class="form-group col-sm-12 col-md-12 col-lg-12 col-12">
                                             <label for="machine_id">Machine ID <span class="text-danger">*</span></label>
@@ -96,8 +102,8 @@
                                             <textarea class="form-control" name="messages" id="messages" cols="30" rows="5" required></textarea>
                                         </div>
                                         <div class="form-group col-sm-12 col-md-12 col-lg-12 col-12">
-                                            <label for="user_notification">Users Notification <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control tagsinput" id="user_notification" name="user_notification" placeholder="All User" autocomplete="off" required>
+                                            <label for="user_notification">Users Notification</label>
+                                            <input type="text" class="form-control tagsinput" id="user_notification" name="user_notification" placeholder="All User" autocomplete="off">
                                             <ul class="list-group2"></ul>
                                             <p class="text-primary">If empty data.It mean send this notification to all users.</p>
                                         </div>
@@ -105,7 +111,7 @@
 
                                     <center>
                                     <hr>
-                                    <button type="submit" class="btn btn-primary">Save</button> &nbsp;&nbsp;
+                                    <button type="submit" class="btn btn-primary">Create Notification</button> &nbsp;&nbsp;
                                     <button type="reset" class="btn btn-warning">Reset</button>
                                     </center>
                                 </form>
@@ -119,7 +125,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive-lg">
-                                    <table class="table table-striped">
+                                    <table class="table table-striped" id="dataTable">
                                         <thead>
                                             <tr>
                                             <th scope="col">#</th>
@@ -134,15 +140,15 @@
                                             foreach ($data_notification as $key => $notify) {
                                                 
                                                 ?>
-                                                            <tr>
+                                                            <tr id="row_<? echo $notify->notification_id; ?>">
                                                             <th scope="row"><? echo $key+1; ?></th>
                                                             <td>#<? echo $notify->machine_id; ?></td>
                                                             <td><? echo set_mytime($notify->date_notify); ?></td>
                                                             <td><? if(empty($notify->user_notification)){ echo "All users"; } else { echo $notify->user_notification; } ?></td>
                                                             <td>
-                                                            <a href="<? echo base_url(); ?>member/config_machine_position/edit_machine_position/<? echo $notify->notification_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
+                                                            <a href="<? echo base_url(); ?>member/notification/edit_notification/<? echo $notify->notification_id; ?>" class="text-dark"><i class="fas fa-edit"></i></a>
                                                             &nbsp;
-                                                            <a href="<? echo base_url(); ?>member/config_machine_position/delete_machine_position/<? echo $notify->notification_id; ?>" class="text-danger" onclick="return confirm('Comfirm Delete?');"><i class="fas fa-trash"></i></a>
+                                                            <span class="text-danger spanspot" onclick="DeleteNotification(<? echo $notify->notification_id; ?>);"><i class="fas fa-trash"></i></span>
                                                             </td>
                                                             </tr>
                                                 <? } ?>
@@ -242,6 +248,84 @@
 
     </script>
     <script src="<? echo base_url() ?>theme/js/tags.js"></script>
+
+    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+    </script>
+
+<script>
+    function DeleteNotification(notification_id) { 
+            const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "Do you want to delete this notification?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+            }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                'Deleted!',
+                'Your data has been deleted.',
+                'success'
+                )
+                
+                    $.ajax({
+                        type: 'post',
+                        url: '<? echo base_url(); ?>member/notification/delete_notification/',
+                        data: {
+                            notification_id : notification_id
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            if(response=="success"){ 
+                                $("#row_"+notification_id).fadeOut();
+                            } else if(response=="empty"){
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Empty Data.',
+                                    text: 'Please try again!'
+                                })
+                            } else if(response=="error"){
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error...',
+                                    text: 'Something went wrong!'
+                                })
+                            }
+                            
+                        }
+                        });
+
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                'Cancelled',
+                'Thank! we keeped your data.',
+                'warning'
+                )
+                console.log("Cancle");
+            }
+            })
+     }
+</script>
 
 </body>
  

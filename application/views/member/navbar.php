@@ -1,7 +1,9 @@
 <? foreach ($username_member as $user) {  } ?>
 <div class="dashboard-header">
     <nav class="navbar navbar-expand-lg bg-white fixed-top">
-        <a class="navbar-brand" href="<? echo base_url(); ?>member">CODEEX.co.th</a>
+        <a class="navbar-brand" href="<? echo base_url(); ?>member">
+        <img class="img-fluid" style="max-height: 50px;" src="<? echo base_url(); ?>theme/images/logo_codeex.png" alt="LOGO">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 01, 2021 at 01:22 AM
+-- Generation Time: Mar 02, 2021 at 05:42 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -72,7 +72,11 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (29, 'admin', 'login', '', '::1', '2021-02-17 18:53:51'),
 (30, 'admin', 'login', '', '::1', '2021-02-27 14:11:42'),
 (31, 'admin', 'login', '', '::1', '2021-02-27 17:38:12'),
-(32, 'admin', 'login', '', '::1', '2021-02-28 14:34:24');
+(32, 'admin', 'login', '', '::1', '2021-02-28 14:34:24'),
+(33, 'admin', 'login', '', '::1', '2021-03-01 09:30:13'),
+(34, 'admin', 'login', '', '::1', '2021-03-02 08:40:30'),
+(35, 'admin', 'logout', 'admin', '::1', '2021-03-02 17:18:50'),
+(36, 'admin', 'login', '', '::1', '2021-03-02 17:20:19');
 
 -- --------------------------------------------------------
 
@@ -456,11 +460,11 @@ CREATE TABLE `tbl_employees` (
 --
 
 INSERT INTO `tbl_employees` (`emp_id`, `emp_name`, `emp_type_user`, `emp_username`, `emp_password`, `emp_password_md5`, `emp_address`, `position_id`, `emp_tel`, `emp_mobile_phone`, `emp_personal_email`, `emp_company_email`, `emp_birth_date`, `emp_age`, `emp_pic_path`, `emp_work_start_date`, `emp_work_stop_date`, `emp_sarary_start`, `emp_sarary_now`, `emp_remark`, `emp_status`, `emp_blood_group`, `emp_gender`, `emp_height`, `emp_weight`, `company_id`) VALUES
-(1, 'Arkhet Saepu', '', 'admin', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 5, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210206160655.jpg', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78, 1),
-(2, 'นายสมศักดิ์  ใจมหา', '', 'phploso', '', 'd41d8cd98f00b204e9800998ecf8427e', '    118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210206160632.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65, 1),
-(4, 'นายสมชัย   มหานาม', '', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', '       118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210130161203.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89, 1),
-(6, 'นาบเลิศพันธุ์   สมัครใจ', '', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', '  118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89, 1),
-(10, 'Arkhet Saepu', '', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '            118/2 Moo 4 Tambon Huaysai', 5, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210206160504.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60, 1);
+(1, 'Arkhet Saepu', '1', 'admin', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 5, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210206160655.jpg', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78, 1),
+(2, 'นายสมศักดิ์  ใจมหา', '1', 'phploso', '', 'd41d8cd98f00b204e9800998ecf8427e', '    118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210206160632.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65, 1),
+(4, 'นายสมชัย   มหานาม', '2', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', '       118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210130161203.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89, 1),
+(6, 'นาบเลิศพันธุ์   สมัครใจ', '2', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', '  118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89, 1),
+(10, 'Arkhet Saepu', '2', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '            118/2 Moo 4 Tambon Huaysai', 5, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210206160504.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60, 1);
 
 -- --------------------------------------------------------
 
@@ -701,6 +705,7 @@ CREATE TABLE `tbl_notification` (
   `date_notify` date NOT NULL,
   `user_notification` varchar(200) NOT NULL,
   `create_user` varchar(100) NOT NULL,
+  `status_notification` int(11) NOT NULL DEFAULT 0,
   `save_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -708,12 +713,14 @@ CREATE TABLE `tbl_notification` (
 -- Dumping data for table `tbl_notification`
 --
 
-INSERT INTO `tbl_notification` (`notification_id`, `machine_id`, `messages`, `date_notify`, `user_notification`, `create_user`, `save_date`) VALUES
-(1, 2, 'Check detail for Machine ID', '2021-03-01', 'admin,phploso', 'admin', '2021-03-01 01:17:44'),
-(2, 2, 'Check detail for Machine ID', '2021-03-06', 'admin,phploso', 'admin', '2021-03-01 01:17:44'),
-(3, 2, 'Check detail for Machine ID', '2021-03-11', 'admin,phploso', 'admin', '2021-03-01 01:17:44'),
-(4, 2, 'Check detail for Machine ID', '2021-03-16', 'admin,phploso', 'admin', '2021-03-01 01:17:44'),
-(5, 2, 'Check detail for Machine ID', '2021-03-21', '', 'admin', '2021-03-01 01:17:44');
+INSERT INTO `tbl_notification` (`notification_id`, `machine_id`, `messages`, `date_notify`, `user_notification`, `create_user`, `status_notification`, `save_date`) VALUES
+(4, 2, 'Check detail for Machine ID', '2021-03-16', 'admin,phploso', 'admin', 0, '2021-03-01 01:17:44'),
+(5, 2, 'Check detail for Machine ID', '2021-03-21', '', 'admin', 0, '2021-03-01 01:17:44'),
+(6, 2, 'แจ้ง ดูการเชื่อมต่อ WiFi ของ TV รุ่น SONY เพิ่งเปลี่ยนตัวแปลงสัญญาณเข้าไป', '2021-03-02', 'phploso', 'admin', 0, '2021-03-02 08:42:00'),
+(7, 2, 'แจ้ง ดูการเชื่อมต่อ WiFi ของ TV รุ่น SONY เพิ่งเปลี่ยนตัวแปลงสัญญาณเข้าไป', '2021-03-05', 'phploso', 'admin', 0, '2021-03-02 09:05:41'),
+(8, 2, 'แจ้ง ดูการเชื่อมต่อ WiFi ของ TV รุ่น SONY เพิ่งเปลี่ยนตัวแปลงสัญญาณเข้าไป', '2021-03-08', 'phploso', 'admin', 0, '2021-03-02 08:42:00'),
+(9, 4, 'ระวัง เรื่องความร้อนเข้าเครื่อง', '2021-03-02', '', 'admin', 1, '2021-03-02 08:45:03'),
+(10, 4, 'ระวัง เรื่องความร้อนเข้าเครื่อง', '2021-03-12', '', 'admin', 1, '2021-03-02 09:05:57');
 
 -- --------------------------------------------------------
 
@@ -1290,7 +1297,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -1428,7 +1435,7 @@ ALTER TABLE `tbl_model`
 -- AUTO_INCREMENT for table `tbl_notification`
 --
 ALTER TABLE `tbl_notification`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_position`

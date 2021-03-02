@@ -49,7 +49,11 @@
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card ">
-            <div class="card-header text-center"><span class="splash-description"><? echo $data->nameweb; ?>
+            <div class="card-header text-center">
+                <span class="splash-description">
+                <center>
+                    <img class="img-fluid" src="<? echo base_url(); ?>theme/images/logo_codeex.png" alt="LOGO">
+                </center>
             </span></div>
             <div class="card-body">
 

@@ -36,6 +36,119 @@ class Notification extends CI_Controller {
 		$this->load->view('member/view_notification',$data);
 	}
 
+	public function edit_notification()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+ 		// Agent_Data
+		$username_member = $this->session->userdata('username_member');
+		$data['username_member'] = $this->user->_getmember($username_member);
+
+		// ค่าทั่วไปของเว็บ
+		$this->load->model('Settingme','me');
+		$data['setting_web'] = $this->me->_getall();
+
+		// รับข้อมูลมาใช้งาน
+		$notification_id = $this->uri->segment(4);
+
+		// Check ว่ามีข้อมูลมาหรือไม่
+		if($notification_id=="" or empty($notification_id)){
+
+			// ไม่มีข้อมูล
+			$this->session->set_flashdata('msg_warning',' No data. Please try again.');
+					redirect('member/notification');
+
+		} else {
+
+			// มีข้อมูล ดำเนินการต่อ
+			$data['query_notification'] = $this->notification->_query_notification_by_id($notification_id);
+
+			$this->load->view('member/edit_notification',$data);
+
+		}
+
+	}
+
+	public function data_edit_notification()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+ 		// Agent_Data
+		$username_member = $this->session->userdata('username_member');
+
+		// รับข้อมูลมาใช้งาน
+		$notification_id = $this->input->post("notification_id");
+		$machine_id = $this->input->post("machine_id");
+		$messages = $this->input->post("messages");
+		$user_notification = $this->input->post("user_notification");
+
+		// ตรวจสอบข้อมูลว่ากรอกมาแล้วหรือยัง
+		if(empty($machine_id)){
+
+			$this->session->set_flashdata('msg_warning',' กรุณากรอกข้อมูลให้ครบถ้วน');
+					redirect('member/notification');
+			
+		} else {
+			// ดำเนินการแก้ไขข้อมูลได้
+			$update_data = $this->notification->_edit_notification($notification_id,$machine_id,$messages,$user_notification,$username_member);
+			
+				if($update_data) {
+					// success
+					$this->session->set_flashdata('msg_ok',' แก้ไขข้อมูลเรียบร้อย');
+						redirect('member/notification');
+
+				} else {
+					// false / error
+					$this->session->set_flashdata('msg_error',' Error! Please contact admin.');
+						redirect('member/notification');
+				}
+
+		}
+	}
+
+	public function delete_notification()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+ 		// Agent_Data
+		$username_member = $this->session->userdata('username_member');
+		$data['username_member'] = $this->user->_getmember($username_member);
+
+		// ค่าทั่วไปของเว็บ
+		$this->load->model('Settingme','me');
+		$data['setting_web'] = $this->me->_getall();
+
+		// รับข้อมูลมาใช้งาน
+		$notification_id = $this->input->post("notification_id");
+
+		// Check ว่ามีข้อมูลมาหรือไม่
+		if($notification_id=="" or empty($notification_id)){
+
+			// ไม่มีข้อมูล
+			echo "empty";
+
+		} else {
+
+			// มีข้อมูล ดำเนินการ ลบข้อมูลได้
+			$remove_notification = $this->notification->_delete_notification($notification_id);
+				if($remove_notification){
+					echo "success";
+				} else {
+					echo "error";
+				}
+
+		}
+	}
+
 	public function get_user()
 	{
 		// Load All

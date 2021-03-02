@@ -9,8 +9,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <? $this->load->view("member/script_css"); ?>
+    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
     <title>Welcome to Dashboard Notification | <? echo $data->nameweb; ?></title>
+
+<style>
+    .spanspot {
+        cursor : pointer;
+    }
+</style>
+
 </head>
 
 <body>
@@ -33,7 +41,7 @@
                         <div class="card">
                             <div class="card-body">
                         <div class="table-responsive-lg">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="dataTable">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
@@ -48,11 +56,23 @@
                             <th scope="row">#<? echo $notify->notification_id; ?></th>
                             <td><? echo $notify->machine_id ?></td>
                             <td><? echo $notify->messages ?></td>
+                            <? if($notify->status_notification==0){ ?>
                             <td>
+                                <div id="row_<? echo $notify->notification_id; ?>">
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/read_notification"><span class="text-success"><i class="fas fa-eye"></i> Readed</span></a>
+                                    <span class="text-success spanspot" onclick="Readed(<? echo $notify->notification_id; ?>);"> <button class="btn btn-sm btn-success"><i class="fab fa-readme"></i> Readed</button> </span>
                                 </center>
+                                </div>
                             </td>
+                            <?  } else { ?>
+                            <td>
+                                <div id="row_<? echo $notify->notification_id; ?>">
+                                <center>
+                                    <span class="text-success"><i class="fas fa-check-circle"></i></span>
+                                </center>
+                                </div>
+                            </td>
+                            <? }  ?>
                             </tr>
                             <? } ?>
                             <?  foreach ($query_all_notification as $key => $notify) {  ?>
@@ -60,12 +80,25 @@
                             <th scope="row">#<? echo $notify->notification_id; ?></th>
                             <td><? echo $notify->machine_id ?></td>
                             <td><? echo $notify->messages ?></td>
+                            <? if($notify->status_notification==0){ ?>
                             <td>
+                                <div id="row_<? echo $notify->notification_id; ?>">
                                 <center>
-                                    <a href="<? echo base_url(); ?>member/read_notification"><span class="text-success"><i class="fas fa-eye"></i> Readed</span></a>
+                                    <span class="text-success spanspot" onclick="Readed(<? echo $notify->notification_id; ?>);"> <button class="btn btn-sm btn-success"><i class="fab fa-readme"></i> Readed</button> </span>
                                 </center>
+                                </div>
                             </td>
                             </tr>
+                            <?  } else { ?>
+                            <td>
+                                <div id="row_<? echo $notify->notification_id; ?>">
+                                <center>
+                                    <span class="text-success"><i class="fas fa-check-circle"></i></span>
+                                </center>
+                                </div>
+                            </td>
+                            <? } ?>
+
                             <? } ?>
                         </tbody>
                         </table>
@@ -185,6 +218,49 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <? $this->load->view("member/script_js"); ?>
+    
+
+<script>
+    function Readed(notification_id) {
+        console.log("notification_id");
+            $.ajax({
+                type: 'post',
+                url: '<? echo base_url(); ?>member/notification/delete_notification/',
+                data: {
+                    notification_id : notification_id
+                },
+                success: function (response) {
+                    console.log(response);
+                    if(response=="success"){ 
+                        $("#row_"+notification_id).html(" <center><span class='text-success'><i class='fas fa-check-circle'></i></span></center> ");
+                    } else if(response=="empty"){
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Empty Data.',
+                            text: 'Please try again!'
+                        })
+                    } else if(response=="error"){
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error...',
+                            text: 'Something went wrong!'
+                        })
+                    }
+                    
+                }
+            });
+     }
+</script>
+
+    <script src="<? echo base_url(); ?>theme/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="<? echo base_url(); ?>theme/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+    </script>
 
 </body>
  

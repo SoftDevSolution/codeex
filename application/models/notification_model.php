@@ -21,10 +21,10 @@ class Notification_model extends CI_Model {
 
     public function _get_notify_by_username($username)
     {
-         
         // ดึงข้อมูลทั้งหมด ไปใช้งาน
         $query = $this->db->like("user_notification", $username ,"BOTH")
                         ->order_by("notification_id","DESC")
+                        ->order_by("status_notification","ASC")
                         ->get("tbl_notification")
                         ->result();
                     return $query;
@@ -36,6 +36,7 @@ class Notification_model extends CI_Model {
         // ดึงข้อมูลทั้งหมด ไปใช้งาน
         $query = $this->db->where("user_notification", "")
                         ->order_by("notification_id","DESC")
+                        ->order_by("status_notification","ASC")
                         ->get("tbl_notification")
                         ->result();
                     return $query;
@@ -55,6 +56,7 @@ class Notification_model extends CI_Model {
                         ->set("messages",$messages)
                         ->set("user_notification",$user_notification)
                         ->set("create_user",$username_member)
+                        ->set("status_notification",0)
                         ->set("save_date",$datenow)
                         ->insert("tbl_notification");
                     if($query){
@@ -64,18 +66,36 @@ class Notification_model extends CI_Model {
                     }
     }
 
-    public function _delete_machine_position($position_id)
+	public function _edit_notification($notification_id,$machine_id,$messages,$user_notification,$username_member)
+	{
+        $datenow = date("Y-m-d H:i:s");
+        $query = $this->db->where("notification_id",$notification_id)
+                        ->set("machine_id",$machine_id)
+                        ->set("messages",$messages)
+                        ->set("user_notification",$user_notification)
+                        ->set("create_user",$username_member)
+                        ->set("save_date",$datenow)
+                        ->update("tbl_notification");
+                    if($query){
+                        return "success";
+                    } else {
+                        return "false";
+                    }
+    }
+
+    public function _delete_notification($notification_id)
     {
         // ตรวจสอบว่ามีข้อมูลหรือไม่
-        $checking = $this->db->where("position_id",$position_id)
-                        ->count_all_results("tbl_position");
+        $checking = $this->db->where("notification_id",$notification_id)
+                        ->count_all_results("tbl_notification");
                 if($checking==0){
                     // ไม่พบข้อมูล
                     return "empty";
                 } else {
                     // มีข้อมูล ลบได้
-                    $query_delete = $this->db->where("position_id",$position_id)
-                                        ->delete("tbl_position");
+                    $query_delete = $this->db->where("notification_id",$notification_id)
+                                        ->set("status_notification",1)
+                                        ->update("tbl_notification");
                                 if($query_delete){
                                     return "true";
                                 } else {
@@ -84,10 +104,10 @@ class Notification_model extends CI_Model {
                 }
     }
 
-    public function _query_machine_position($position_id)
+    public function _query_notification_by_id($notification_id)
     {
-        $query = $this->db->where("position_id",$position_id)
-                        ->get("tbl_position")
+        $query = $this->db->where("notification_id",$notification_id)
+                        ->get("tbl_notification")
                         ->result();
                     return $query;
     }
