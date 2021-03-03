@@ -331,7 +331,7 @@ class Employees extends CI_Controller {
 
 				} else if($update_data=="success") {
 					// success
-					$this->session->set_flashdata('msg_ok','Successfull. Data has been saved.');
+					$this->session->set_flashdata('msg_ok','Successfull. Data has been edit.');
 						redirect('member/employees');
 
 				} else  if($update_data=="false") {

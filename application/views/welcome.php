@@ -20,6 +20,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;400&display=swap" rel="stylesheet">
 
+    <link rel="shortcut icon" href="<? echo base_url(); ?>theme/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="<? echo base_url(); ?>theme/images/favicon.ico" type="image/x-icon">
+
     <style>
     html,
     body {

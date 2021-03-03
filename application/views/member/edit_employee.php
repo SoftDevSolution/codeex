@@ -172,8 +172,8 @@
             <center>
             <hr>
             <input type="hidden" name="emp_id" value="<? echo $emp->emp_id; ?>">
-            <button type="submit" class="btn btn-primary">Edit</button> &nbsp;&nbsp;
-            <button type="reset" class="btn btn-warning">Reset</button>
+            <button type="submit" class="btn btn-primary">Save</button> &nbsp;&nbsp;
+            <a href="<? echo base_url(); ?>member/employees"><button type="button" class="btn btn-warning">Back</button></a>
             </center>
         </form>
                             </div>

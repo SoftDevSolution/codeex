@@ -92,8 +92,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="company_capital_investment">Capital Investment</label>
-                    <input type="number" class="form-control" id="company_capital_investment" name="company_capital_investment" placeholder="Capital Investment" onkeypress="return IsNumeric(event,'investment');">
-                    <span id="investment" style="color: Red; display: none">* Please enter number (0 - 9)</span>
+                    <input type="number" class="form-control" id="company_capital_investment" name="company_capital_investment" placeholder="Capital Investment">
                 </div>
 
                 <div class="form-group col-md-6">
@@ -125,9 +124,9 @@
                     <label for="company_status">Status</label>
                     <select class="form-control" name="company_status" id="company_status">
                         <option value="">-- Select --</option>
-                        <option value="Customer">Customer</option>
-                        <option value="Suspect">Suspect</option>
-                        <option value="Propect">Propect</option>
+                        <? foreach ($query_user_status as $user_status) {?>
+                        <option value="<? echo $user_status->user_status_id; ?>"><? echo $user_status->user_status_name; ?></option>
+                        <? } ?>
                     </select>
                 </div>
                 <div class="form-group col-md-6">

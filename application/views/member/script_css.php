@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="<? echo base_url(); ?>theme/assets/vendor/jvectormap/jquery-jvectormap-2.0.2.css">
 <link rel="stylesheet" href="<? echo base_url(); ?>theme/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
 
+<link rel="shortcut icon" href="<? echo base_url(); ?>theme/images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="<? echo base_url(); ?>theme/images/favicon.ico" type="image/x-icon">
 <style>
     .empty_data {
         padding : 60px 10px;

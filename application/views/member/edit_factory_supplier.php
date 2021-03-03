@@ -75,7 +75,7 @@
                     <textarea class="form-control" name="company_addr2" id="company_addr2" placeholder="Address 2" ><? echo htmlspecialchars($mach->com_sup_addr2); ?></textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="company_city">Address 3</label>
+                    <label for="company_addr3">Address 3</label>
                     <textarea class="form-control" name="company_addr3" id="company_addr3" placeholder="Address 3" ><? echo htmlspecialchars($mach->com_sup_addr3); ?></textarea>
                 </div>
                 <div class="form-group col-md-4">
@@ -195,19 +195,19 @@
                                         <thead>
                                             <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Supplier Name</th>
+                                            <th scope="col">Contact Name</th>
                                             <th scope="col">Mobile Phone</th>
                                             </tr>
                                         </thead>
                                         <tbody id="showmydata">
                                 <? 
-                                    foreach ($query_supplier as $key => $area) {
+                                    foreach ($query_supplier as $key => $visit_supp) {
                                         
                                 ?>
                                             <tr>
-                                            <th scope="row"><? echo $area->vs_id; ?></th>
-                                            <td><? echo $area->vs_name; ?></td>
-                                            <td><? echo $area->vs_mobile_phone; ?></td>
+                                            <th scope="row"><? echo $visit_supp->vs_id; ?></th>
+                                            <td><a href="<? echo base_url(); ?>member/visitor_supplier/edit_visitor_supplier/<? echo $visit_supp->vs_id; ?>"><? echo $visit_supp->vs_name; ?>&nbsp; <i class="fas fa-edit"></i></a></td>
+                                            <td><? echo $visit_supp->vs_mobile_phone; ?></td>
                                             </tr>
                                 <? } ?>
 

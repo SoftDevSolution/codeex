@@ -26,10 +26,13 @@
                         <a class="nav-link" href="<? echo base_url(); ?>member/company" href="<? echo base_url(); ?>member/company" data-toggle="collapse" aria-expanded="false" data-target="#mydatabase" aria-controls="mydatabase"><i class="fas fa-building"></i> Setup Database</a>
                     <? } ?>
 
-                        <div id="mydatabase" class="collapse submenu <? if($activemenu=="config_machine_type" or $activemenu=="config_machine_model" or $activemenu=="config_machine_brand"  or $activemenu=="config_user_position" or $activemenu=="config_user_type" or $activemenu=="config_area" or $activemenu=="config_factory_group" or $activemenu=="config_product_type" or $activemenu=="config_industrial_estate"){ ?>show<? } ?>">
+                        <div id="mydatabase" class="collapse submenu <? if($activemenu=="config_machine_type" or $activemenu=="config_machine_model" or $activemenu=="config_machine_brand"  or $activemenu=="config_user_position" or $activemenu=="config_user_type" or $activemenu=="config_user_status" or $activemenu=="config_area" or $activemenu=="config_factory_group" or $activemenu=="config_product_type" or $activemenu=="config_industrial_estate"){ ?>show<? } ?>">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a class="nav-link <? if($activemenu=="config_user_type"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/config_user_type"><i class="fas fa-list-ul"></i> User Type</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link <? if($activemenu=="config_user_status"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/config_user_status"><i class="fas fa-list-ul"></i> User Status</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link <? if($activemenu=="config_area"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/config_area"><i class="fas fa-list-ul"></i> Area Config</a>
@@ -77,7 +80,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="employees" or $activemenu=="add_employees" 
-                        or $activemenu=="visitor_supplier" or $activemenu=="visitor_customer" ){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/employees"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-building"></i> Personal Setup</a>
+                        or $activemenu=="visitor_supplier" or $activemenu=="visitor_customer" ){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/employees"  data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-building"></i> Contact Detail</a>
                         <div id="submenu-3" class="collapse submenu <? if($activemenu=="employees" or $activemenu=="add_employees" 
                         or $activemenu=="visitor_supplier" or $activemenu=="visitor_customer" ){ ?> show <? } else { } ?>">
                             <ul class="nav flex-column">
@@ -85,10 +88,10 @@
                                     <a class="nav-link <? if($activemenu=="employees" or $activemenu=="add_employees"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/employees" ><i class="fas fa-list-ul"></i> Employees</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="visitor_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/visitor_supplier" ><i class="fas fa-list-ul"></i> Visitor Supplier</a>
+                                    <a class="nav-link <? if($activemenu=="visitor_supplier"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/visitor_supplier" ><i class="fas fa-list-ul"></i> Supplier Contact</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="visitor_customer"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/visitor_customer" ><i class="fas fa-list-ul"></i> Visitor Customer</a>
+                                    <a class="nav-link <? if($activemenu=="visitor_customer"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/visitor_customer" ><i class="fas fa-list-ul"></i> Customer Contact</a>
                                 </li>
                                 
                             </ul>

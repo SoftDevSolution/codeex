@@ -72,6 +72,10 @@ class Factory_supplier extends CI_Controller {
 		$this->load->model('Area_model','area');
 		$data['query_area'] = $this->area->_getAll();
 
+		// ดึงข้อมูล User Status มาใช้งาน
+		$this->load->model('Employee_model','employee');
+		$data['query_user_status'] = $this->employee->_get_user_status();
+
 		// ดึงข้อมูล Industrial Estate มาใช้งาน
 		$this->load->model('Industrial_estate_model','estate');
 		$data['query_industrial_estate'] = $this->estate->_getAll();
@@ -182,13 +186,17 @@ class Factory_supplier extends CI_Controller {
 			$this->load->model('Area_model','area');
 			$data['query_area'] = $this->area->_getAll();
 
+			// ดึงข้อมูล User Status มาใช้งาน
+			$this->load->model('Employee_model','employee');
+			$data['query_user_status'] = $this->employee->_get_user_status();
+
 			// ดึงข้อมูล Industrial Estate มาใช้งาน
 			$this->load->model('Industrial_estate_model','estate');
 			$data['query_industrial_estate'] = $this->estate->_getAll();
 
-			$this->load->model('Visitor_supplier_model','employee');
-			$data['query_supplier'] = $this->employee->_get_visitor_supplier_AllData_ByCompanyID($company_id);
-			$data['count_supplier'] = $this->employee->_count_visitor_supplier_ById($company_id);
+			$this->load->model('Visitor_supplier_model','visit_sup');
+			$data['query_supplier'] = $this->visit_sup->_get_visitor_supplier_AllData_ByCompanyID($company_id);
+			$data['count_supplier'] = $this->visit_sup->_count_visitor_supplier_ById($company_id);
 			
 			// Get Invoice
 			$this->load->model('Company_model','company');

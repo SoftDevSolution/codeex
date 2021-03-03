@@ -156,6 +156,12 @@ class Employee_model extends CI_Model {
                     return $count;
     }
 
+    public function _count_user_status()
+    {
+        $count = $this->db->count_all("tbl_user_status");
+                    return $count;
+    }
+
 	public function _add_user_type($user_type_name)
 	{
         // Check
@@ -204,6 +210,55 @@ class Employee_model extends CI_Model {
 
         
 	}
+
+	public function _edit_user_status($user_status_id,$user_status_name)
+	{
+        // Check
+        $checking = $this->db->where("user_status_name",$user_status_name)
+                        ->count_all_results("tbl_user_status");
+
+            if($checking==0){
+                // ไม่มีข้อมูล บันทึกข้อมูลได้
+				$query = $this->db->where("user_status_id",$user_status_id)
+						->set("user_status_name",$user_status_name)
+                        ->update("tbl_user_status");
+                    if($query){
+                        return "success";
+                    } else {
+                        return "false";
+                    }
+            } else {
+                // ซ้ำ แจ้งกลับไป
+                return "same";
+                
+            }
+
+        
+	}
+
+	public function _add_user_status($user_status_name)
+	{
+        // Check
+        $checking = $this->db->where("user_status_name",$user_status_name)
+                        ->count_all_results("tbl_user_status");
+
+            if($checking==0){
+                // ไม่มีข้อมูล บันทึกข้อมูลได้
+                $query = $this->db->set("user_status_name",$user_status_name)
+                        ->insert("tbl_user_status");
+                    if($query){
+                        return "success";
+                    } else {
+                        return "false";
+                    }
+            } else {
+                // ซ้ำ แจ้งกลับไป
+                return "same";
+                
+            }
+
+        
+	} 
     
     public function _get_user_type()
     {
@@ -211,6 +266,16 @@ class Employee_model extends CI_Model {
         // ดึงข้อมูลทั้งหมด ไปใช้งาน
         $query = $this->db->order_by("user_type_id","ASC")
                         ->get("tbl_user_type")
+                        ->result();
+                    return $query;
+    }
+
+    public function _get_user_status()
+    {
+         
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $query = $this->db->order_by("user_status_id","ASC")
+                        ->get("tbl_user_status")
                         ->result();
                     return $query;
     }
@@ -235,6 +300,26 @@ class Employee_model extends CI_Model {
                 }
     }
 
+    public function _delete_user_status($user_status_id)
+    {
+        // ตรวจสอบว่ามีข้อมูลหรือไม่
+        $checking = $this->db->where("user_status_id",$user_status_id)
+                        ->count_all_results("tbl_user_status");
+                if($checking==0){
+                    // ไม่พบข้อมูล
+                    return "empty";
+                } else {
+                    // มีข้อมูล ลบได้
+                    $query_delete = $this->db->where("user_status_id",$user_status_id)
+                                        ->delete("tbl_user_status");
+                                if($query_delete){
+                                    return "true";
+                                } else {
+                                    return "false";
+                                }
+                }
+    }
+
     public function _get_user_type_from_id($user_type_id)
     {
         $query = $this->db->where("user_type_id",$user_type_id)
@@ -243,6 +328,13 @@ class Employee_model extends CI_Model {
                     return $query;
 	}
 
+    public function _get_user_status_from_id($user_status_id)
+    {
+        $query = $this->db->where("user_status_id",$user_status_id)
+                        ->get("tbl_user_status")
+                        ->result();
+                    return $query;
+	}
 
     public function _getAll_position()
     {

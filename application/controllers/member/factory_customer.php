@@ -68,9 +68,17 @@ class Factory_customer extends CI_Controller {
 		$this->load->model('Product_type_model','products');
 		$data['query_product_type'] = $this->products->_get_product_type();
 
+		// ดึงข้อมูล User Status มาใช้งาน
+		$this->load->model('Employee_model','employee');
+		$data['query_user_status'] = $this->employee->_get_user_status();
+
 		// ดึงข้อมูล Area มาใช้งาน
 		$this->load->model('Area_model','area');
 		$data['query_area'] = $this->area->_getAll();
+
+		// ดึงข้อมูล User Status มาใช้งาน
+		$this->load->model('Employee_model','employee');
+		$data['query_user_status'] = $this->employee->_get_user_status();
 
 		// ดึงข้อมูล Industrial Estate มาใช้งาน
 		$this->load->model('Industrial_estate_model','estate');
@@ -182,13 +190,17 @@ class Factory_customer extends CI_Controller {
 			$this->load->model('Area_model','area');
 			$data['query_area'] = $this->area->_getAll();
 
+			// ดึงข้อมูล User Status มาใช้งาน
+			$this->load->model('Employee_model','employee');
+			$data['query_user_status'] = $this->employee->_get_user_status();
+
 			// ดึงข้อมูล Industrial Estate มาใช้งาน
 			$this->load->model('Industrial_estate_model','estate');
             $data['query_industrial_estate'] = $this->estate->_getAll();
             
-            $this->load->model('Visitor_customer_model','employee');
-			$data['query_customer'] = $this->employee->_get_visitor_customer_AllData_ByCompanyID($company_id);
-			$data['count_customer'] = $this->employee->_count_visitor_customer_ById($company_id);
+            $this->load->model('Visitor_customer_model','visit_cus');
+			$data['query_customer'] = $this->visit_cus->_get_visitor_customer_AllData_ByCompanyID($company_id);
+			$data['count_customer'] = $this->visit_cus->_count_visitor_customer_ById($company_id);
 			
 			// แสดงข้อมูล inventory
 			$this->load->model('Requisition_model','requisition');

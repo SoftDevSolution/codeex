@@ -13,7 +13,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Config Visitor Supplier</title>
+    <title>Config Supplier Contact</title>
 
     <!-- production version, optimized for size and speed -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -39,7 +39,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Edit New Visitor Supplier</h3>
+                            <h3 class="section-title">Edit New Supplier Contact</h3>
                             <hr>
                         </div>
                     </div>

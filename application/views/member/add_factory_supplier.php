@@ -58,7 +58,7 @@
                     <textarea class="form-control" name="company_addr2" id="company_addr2" placeholder="Address 2"></textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="company_city">Address 3</label>
+                    <label for="company_addr3">Address 3</label>
                     <textarea class="form-control" name="company_addr3" id="company_addr3" placeholder="Address 3"></textarea>
                 </div>
                 <div class="form-group col-md-4">
@@ -114,9 +114,9 @@
                     <label for="company_status">Status</label>
                     <select class="form-control" name="company_status" id="company_status">
                         <option value="">-- Select --</option>
-                        <option value="Customer">Customer</option>
-                        <option value="Suspect">Suspect</option>
-                        <option value="Propect">Propect</option>
+                        <? foreach ($query_user_status as $user_status) {?>
+                        <option value="<? echo $user_status->user_status_id; ?>"><? echo $user_status->user_status_name; ?></option>
+                        <? } ?>
                     </select>
                 </div>
                 <div class="form-group col-md-6">

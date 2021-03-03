@@ -128,9 +128,9 @@
                     <label for="company_status">Status</label>
                     <select class="form-control" name="company_status" id="company_status">
                         <option value="">-- Select --</option>
-                        <option value="Customer" <? if($mach->company_status=="Customer"){ echo "selected"; } else {  } ?>>Customer</option>
-                        <option value="Suspect" <? if($mach->company_status=="Suspect"){ echo "selected"; } else {  } ?>>Suspect</option>
-                        <option value="Propect" <? if($mach->company_status=="Propect"){ echo "selected"; } else {  } ?>>Propect</option>
+                        <? foreach ($query_user_status as $user_status) {?>
+                        <option value="<? echo $user_status->user_status_id; ?>" <? if($mach->company_status==$user_status->user_status_id){ echo "selected"; } else {  } ?>><? echo $user_status->user_status_name; ?></option>
+                        <? } ?>
                     </select>
                 </div>
                 <div class="form-group col-md-6">

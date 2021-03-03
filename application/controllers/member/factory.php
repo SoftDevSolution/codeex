@@ -75,6 +75,10 @@ class Factory extends CI_Controller {
 		$this->load->model('Area_model','area');
 		$data['query_area'] = $this->area->_getAll();
 
+		// ดึงข้อมูล User Status มาใช้งาน
+		$this->load->model('Employee_model','employee');
+		$data['query_user_status'] = $this->employee->_get_user_status();
+
 		// ดึงข้อมูล Industrial Estate มาใช้งาน
 		$this->load->model('Industrial_estate_model','estate');
 		$data['query_industrial_estate'] = $this->estate->_getAll();
@@ -193,6 +197,10 @@ class Factory extends CI_Controller {
 			// ดึงข้อมูล Area มาใช้งาน
 			$this->load->model('Area_model','area');
 			$data['query_area'] = $this->area->_getAll();
+
+			// ดึงข้อมูล User Status มาใช้งาน
+			$this->load->model('Employee_model','employee');
+			$data['query_user_status'] = $this->employee->_get_user_status();
 
 			// ดึงข้อมูล Industrial Estate มาใช้งาน
 			$this->load->model('Industrial_estate_model','estate');

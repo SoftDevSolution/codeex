@@ -12,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Visitor | <? echo $data->nameweb; ?></title>
+    <title>Supplier Contact | <? echo $data->nameweb; ?></title>
 
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
@@ -38,11 +38,11 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">Add New Visitor Supplier (<? echo number_format($count_visitor_supplier,0); ?> Types)</h3>
+                            <h3 class="section-title">Add New Supplier Contact (<? echo number_format($count_visitor_supplier,0); ?> Types)</h3>
                             <hr>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<? echo base_url(); ?>member/machine" class="breadcrumb-link">Machine</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Add New Visitor Supplier</li>
+                            <li class="breadcrumb-item active" aria-current="page">Add New Supplier Contact</li>
                         </ol>
                         </div>
                     </div>
