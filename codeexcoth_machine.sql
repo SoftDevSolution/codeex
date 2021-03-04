@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 02, 2021 at 05:42 PM
+-- Generation Time: Mar 04, 2021 at 03:06 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -76,7 +76,14 @@ INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`
 (33, 'admin', 'login', '', '::1', '2021-03-01 09:30:13'),
 (34, 'admin', 'login', '', '::1', '2021-03-02 08:40:30'),
 (35, 'admin', 'logout', 'admin', '::1', '2021-03-02 17:18:50'),
-(36, 'admin', 'login', '', '::1', '2021-03-02 17:20:19');
+(36, 'admin', 'login', '', '::1', '2021-03-02 17:20:19'),
+(37, 'admin', 'login', '1', '::1', '2021-03-03 03:13:47'),
+(38, 'admin', 'logout', 'admin', '::1', '2021-03-03 03:13:58'),
+(39, 'admin', 'login', '1', '::1', '2021-03-03 03:16:16'),
+(40, 'admin', 'logout', 'admin', '::1', '2021-03-03 03:16:20'),
+(41, 'admin', 'login', '1', '::1', '2021-03-03 08:34:05'),
+(42, 'admin', 'login', '1', '::1', '2021-03-03 17:52:48'),
+(43, 'admin', 'logout', 'admin', '::1', '2021-03-04 03:06:39');
 
 -- --------------------------------------------------------
 
@@ -314,7 +321,7 @@ CREATE TABLE `tbl_company` (
 --
 
 INSERT INTO `tbl_company` (`company_id`, `company_name`, `company_addr1`, `company_addr2`, `company_addr3`, `company_city`, `company_zip_code`, `company_tel`, `company_fax`, `company_email`, `company_capital_investment`, `company_bussiness_group`, `company_product_type`, `company_status`, `company_remark`, `company_area`, `company_indust`, `company_www`, `company_facebook`, `company_distance_office`, `company_googlemap_link`) VALUES
-(3, 'CodeEx', 'CodeEx', 'CodeEx', 'CodeEx', 'Cati', 67900, '0983334400', '', 'CodeEx', '', '2', '1', 'Customer', '', '1', '3', '', '', 45, '');
+(3, 'CodeEx', 'CodeEx', 'CodeEx', 'CodeEx', 'Cati', 67900, '0983334400', '', 'CodeEx', '', '2', '1', '1', '', '1', '3', '', '', 45, '');
 
 -- --------------------------------------------------------
 
@@ -351,9 +358,9 @@ CREATE TABLE `tbl_company_customer` (
 --
 
 INSERT INTO `tbl_company_customer` (`com_cus_id`, `com_cus_name`, `com_cus_addr1`, `com_cus_addr2`, `com_cus_addr3`, `com_cus_city`, `com_cus_zipcode`, `com_cus_tel`, `com_cus_fax`, `com_cus_email`, `com_cus_cap_invest`, `com_cus_group_bussiness`, `com_cus_product_type`, `com_cus_status`, `com_cus_remark`, `com_cus_area`, `com_cus_indust`, `com_cus_www`, `com_cus_facebook`, `com_cus_distance_office`, `com_cus_googlemap_link`) VALUES
-(1, 'Beverage-Coffee', 'Chiangmai', '377 Moo 8 Tambon MaeSong', '', 'Tasongyang', 0, '0989956879', '', 'ppp@z.com', 'aaaa', '', '2', '', '', '', '2', 'https://google.com', 'https://facebook.com', '0', 'https://google.com'),
-(2, 'Car Industry', 'Phuget', '', '', '', 0, '0998887761', '0978889900', 'saha@z.com', '30000000', '3', '6', 'Propect', '', '3', '2', '', '', '0', ''),
-(3, 'Customer Factory', '150 ม.4 ต.บ้านเป้า', '150 ม.4 ต.บ้านเป้า', 'ประตูฝั่งตาชั่งอ้อย', 'อ.เกษตรสมบูรณ์', 0, '123456', 'CodeEx', 'csxman69@gmail.com', 'CodeEx', '2', '6', 'Suspect', '', '4', '4', '', '', '0', '');
+(1, 'Beverage-Coffee', 'Chiangmai', '377 Moo 8 Tambon MaeSong', '', 'Tasongyang', 0, '0989956879', '', 'ppp@z.com', 'aaaa', '', '2', '2', '', '', '2', 'https://google.com', 'https://facebook.com', '0', 'https://google.com'),
+(2, 'Car Industry', 'Phuget', '', '', '', 0, '0998887761', '0978889900', 'saha@z.com', '30000000', '3', '6', '2', '', '3', '2', '', '', '0', ''),
+(3, 'Customer Factory', '150 ม.4 ต.บ้านเป้า', '150 ม.4 ต.บ้านเป้า', 'ประตูฝั่งตาชั่งอ้อย', 'อ.เกษตรสมบูรณ์', 0, '123456', 'CodeEx', 'csxman69@gmail.com', 'CodeEx', '2', '6', '1', '', '4', '4', '', '', '0', '');
 
 -- --------------------------------------------------------
 
@@ -464,7 +471,7 @@ INSERT INTO `tbl_employees` (`emp_id`, `emp_name`, `emp_type_user`, `emp_usernam
 (2, 'นายสมศักดิ์  ใจมหา', '1', 'phploso', '', 'd41d8cd98f00b204e9800998ecf8427e', '    118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210206160632.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65, 1),
 (4, 'นายสมชัย   มหานาม', '2', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', '       118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210130161203.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89, 1),
 (6, 'นาบเลิศพันธุ์   สมัครใจ', '2', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', '  118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89, 1),
-(10, 'Arkhet Saepu', '2', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '            118/2 Moo 4 Tambon Huaysai', 5, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210206160504.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60, 1);
+(10, 'Arkhet Saepu', '2', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '              118/2 Moo 4 Tambon Huaysai', 5, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210206160504.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60, 1);
 
 -- --------------------------------------------------------
 
@@ -944,6 +951,26 @@ INSERT INTO `tbl_supplier` (`supplier_id`, `supplier_name`, `supplier_posion`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_user_status`
+--
+
+CREATE TABLE `tbl_user_status` (
+  `user_status_id` int(11) NOT NULL,
+  `user_status_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tbl_user_status`
+--
+
+INSERT INTO `tbl_user_status` (`user_status_id`, `user_status_name`) VALUES
+(1, 'Customer'),
+(2, 'Suspect'),
+(3, 'Propect');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_user_type`
 --
 
@@ -1260,6 +1287,12 @@ ALTER TABLE `tbl_supplier`
   ADD PRIMARY KEY (`supplier_id`);
 
 --
+-- Indexes for table `tbl_user_status`
+--
+ALTER TABLE `tbl_user_status`
+  ADD PRIMARY KEY (`user_status_id`);
+
+--
 -- Indexes for table `tbl_user_type`
 --
 ALTER TABLE `tbl_user_type`
@@ -1297,7 +1330,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -1490,6 +1523,12 @@ ALTER TABLE `tbl_sub_return_certificate`
 --
 ALTER TABLE `tbl_supplier`
   MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tbl_user_status`
+--
+ALTER TABLE `tbl_user_status`
+  MODIFY `user_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_user_type`
