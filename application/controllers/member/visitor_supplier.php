@@ -61,7 +61,6 @@ class visitor_supplier extends CI_Controller {
 		//$vs_id  = $this->input->post("vs_id ");
 		$vs_name = $this->input->post("vs_name");
 		$vs_address = $this->input->post("vs_address");
-		$vs_company = $this->input->post("vs_company");
 		$vs_position = $this->input->post("vs_position");
 		$vs_branch = $this->input->post("vs_branch");
 		$vs_tel_1 = $this->input->post("vs_tel_1");
@@ -83,7 +82,6 @@ class visitor_supplier extends CI_Controller {
 			// ดำเนินการบันทึกข้อมูลได้
 			$update_data = $this->machine->_add_visitor_supplier($vs_name,
 														$vs_address,
-														$vs_company,
 														$vs_position,
 														$vs_branch,
 														$vs_tel_1,
@@ -216,7 +214,6 @@ class visitor_supplier extends CI_Controller {
 		$vs_id = $this->input->post('vs_id');
 		$vs_name = $this->input->post('vs_name');
 		$vs_address = $this->input->post('vs_address');
-		$vs_company = $this->input->post('vs_company');
 		$vs_position = $this->input->post('vs_position');
 		$vs_branch = $this->input->post('vs_branch');
 		$vs_tel_1 = $this->input->post('vs_tel_1');
@@ -242,7 +239,6 @@ class visitor_supplier extends CI_Controller {
 			$update_data = $this->machine->_edit_visitor_supplier($vs_id,
 														$vs_name,
 														$vs_address,
-														$vs_company,
 														$vs_position,
 														$vs_branch,
 														$vs_tel_1,

@@ -19,7 +19,7 @@ class Dologin extends CI_Controller {
 			// Check Type User
 			$query_user = $this->employee->_get_by_username($username);
 				foreach ($query_user as $user) {
-					$emp_type_user = $user->emp_type_user;
+					$emp_type_user = $user->emp_type_user; // 1 = admin , 2 = employee
 				}
 				if($query_user){
 					// มีข้อมูล ดำเนินการ check login
@@ -43,11 +43,13 @@ class Dologin extends CI_Controller {
 				
 					} else {
 						$this->session->set_flashdata('msg_error','Username or Password is wrong!');
-						redirect('welcome');
+						redirect('member/login');
 					}
 					
 				} else {
-
+					// No user
+					$this->session->set_flashdata('msg_error','Username or Password is wrong!');
+						redirect('member/login');
 				}
 
 	}

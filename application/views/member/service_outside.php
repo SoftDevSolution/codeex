@@ -54,6 +54,7 @@
                             <th scope="col">Company Name</th>
                             <th scope="col">Customer Name</th>
                             <th scope="col">คนรับงาน</th>
+                            <th scope="col">Last update</th>
                             <th scope="col"><center>Manage</center> </th>
                             </tr>
                         </thead>
@@ -77,6 +78,10 @@
                                                 echo $emp_name;
                                     ?>
                                     </td>
+                                    <td>
+                                    user update : <? echo $cus->user_update; ?><br>
+                                    date update : <? echo set_mytime($cus->update_date); ?>
+                                    </td>
                                     <td id="results_<? echo $cus->svo_id; ?>">
                                     <? if($cus->svo_status=="complete"){  ?>
                                         <center> <span class="text-success">complete</span> </center>
@@ -95,6 +100,7 @@
                                     <? } ?>
                         </tbody>
                         </table>
+
                         </div>
                             </div>
                             

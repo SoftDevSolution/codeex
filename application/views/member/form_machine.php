@@ -33,11 +33,11 @@
             <label for="machine_status">Machine Status</label>
             <input type="text" class="form-control" id="machine_status" name="machine_status" placeholder="Machine Status" autocomplete="off">
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="machine_serial_no">Machine S/N</label>
             <input type="text" class="form-control" id="machine_serial_no" name="machine_serial_no" placeholder="Machine S/N" autocomplete="off">
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="brand_id">Brand</label>
             <select class="form-control" name="brand_id" id="brand_id">
                 <option value="">-- Select --</option>
@@ -48,15 +48,12 @@
                 <? } ?>
             </select>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="machine_price">Price</label>
-            <input type="number" class="form-control" id="machine_price" name="machine_price" placeholder="Price" value="0" onkeypress="return IsNumeric(event,'price');">
+            <input type="number" min="0" class="form-control" id="machine_price" name="machine_price" placeholder="Price" value="0" onkeypress="return IsNumeric(event,'price');">
             <span id="price" style="color: Red; display: none">* Please enter number (0 - 9)</span>
-        </div>
-        <div class="form-group col-md-6">
-            <label for="machine_stock">Quantity</label>
-            <input type="number" class="form-control" id="machine_stock" name="machine_stock" placeholder="Quantity" value="0" onkeypress="return IsNumeric(event,'stock');">
-            <span id="stock" style="color: Red; display: none">* Please enter number (0 - 9)</span>
+
+            <input type="hidden" class="form-control" id="machine_stock" name="machine_stock" placeholder="Quantity" value="1">
         </div>
         <div class="form-group col-md-6">
             <label for="machine_sup_inv_no">Supplier Inv. No.</label>

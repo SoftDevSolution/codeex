@@ -31,8 +31,8 @@ class Dashboard extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -50,6 +50,8 @@ class Dashboard extends CI_Controller {
 		// $data['count_notification'] = $this->notification->_count_notification_by_username($username_member);
 		$data['query_notification'] = $this->notification->_get_notify_by_username($username_member);
 		$data['query_all_notification'] = $this->notification->_get_notify_all_user();
+		$data['count_notification'] = $this->notification->_count_notification($username_member);
+		$data['count_not_read_notification'] = $this->notification->_count_not_read_notification($username_member);
 		
 
 		$this->load->view('member/dashboard',$data);

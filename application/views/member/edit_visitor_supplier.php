@@ -63,11 +63,16 @@
                                             <label for="vs_address">ที่อยู่ปัจจุบัน</label>
                                             <input type="text" class="form-control" id="vs_address" name="vs_address" value="<? echo $mach->vs_address; ?>"  placeholder="ที่อยู่ปัจจุบัน" >
                                         </div>
-                                        <div class="form-group col-12">
-                                            <label for="vs_company">ชื่อบริษัทลูกค้า</label>
-                                            <input type="text" class="form-control" id="vs_company" name="vs_company" value="<? echo $mach->vs_company; ?>"  placeholder="ชื่อบริษัทลูกค้า" >
+                                        <div class="form-group col-md-12">
+                                                <label for="com_sup_id">ชื่อบริษัทลูกค้า</label>
+                                                <select class="form-control" name="com_sup_id" id="com_sup_id">
+                                                        <option value="">--Select--</option>
+                                                        <? foreach ($data_factory_supplier as $factory) { ?>
+                                                        <option value="<? echo $factory->com_sup_id; ?>" <? if($factory->com_sup_id==$mach->com_sup_id){ echo "selected"; } else {  } ?>><? echo $factory->com_sup_name; ?></option>
+                                                        <? } ?>
+                                                </select>
+                                            
                                         </div>
-
                                         <div class="form-group col-12">
                                             <label for="vs_position">ตำแหน่ง</label>
                                             <input type="text" class="form-control" id="vs_position" name="vs_position" value="<? echo $mach->vs_position; ?>"  placeholder="ตำแหน่ง" >
@@ -100,17 +105,6 @@
                                             <label for="vs_email_personal">Personel Email</label>
                                             <input type="text" class="form-control" id="vs_email_personal" name="vs_email_personal" value="<? echo $mach->vs_email_personal; ?>"  placeholder="Personel Email" >
                                         </div>
-                                        <div class="form-group col-md-12">
-                                                <label for="com_sup_id">Company Supplier</label>
-                                                <select class="form-control" name="com_sup_id" id="com_sup_id">
-                                                        <option value="">--Select--</option>
-                                                        <? foreach ($data_factory_supplier as $factory) { ?>
-                                                        <option value="<? echo $factory->com_sup_id; ?>" <? if($factory->com_sup_id==$mach->com_sup_id){ echo "selected"; } else {  } ?>><? echo $factory->com_sup_name; ?></option>
-                                                        <? } ?>
-                                                </select>
-                                            
-                                        </div>
-                                   
 
                                             </div>
                                     <center>

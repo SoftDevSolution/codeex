@@ -21,8 +21,11 @@ class Notification_model extends CI_Model {
 
     public function _get_notify_by_username($username)
     {
+        $datenow = date("Y-m-d H:i:s");
+        $notify_date_before = date("Y-m-d H:i:s",strtotime("+3 days",strtotime($datenow)));
         // ดึงข้อมูลทั้งหมด ไปใช้งาน
         $query = $this->db->like("user_notification", $username ,"BOTH")
+                        ->where("date_notify <",$notify_date_before)
                         ->order_by("notification_id","DESC")
                         ->order_by("status_notification","ASC")
                         ->get("tbl_notification")
@@ -32,9 +35,11 @@ class Notification_model extends CI_Model {
 
     public function _get_notify_all_user()
     {
-         
+        $datenow = date("Y-m-d H:i:s");
+        $notify_date_before = date("Y-m-d H:i:s",strtotime("+3 days",strtotime($datenow)));
         // ดึงข้อมูลทั้งหมด ไปใช้งาน
         $query = $this->db->where("user_notification", "")
+                        ->where("date_notify <",$notify_date_before)
                         ->order_by("notification_id","DESC")
                         ->order_by("status_notification","ASC")
                         ->get("tbl_notification")
@@ -42,10 +47,52 @@ class Notification_model extends CI_Model {
                     return $query;
     }
     
-    public function _count_notification()
+    public function _count_notification($username)
     {
-        $count = $this->db->count_all("tbl_notification");
-                    return $count;
+        $datenow = date("Y-m-d H:i:s");
+        $notify_date_before_username = date("Y-m-d H:i:s",strtotime("+3 days",strtotime($datenow)));
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $count_on_user = $this->db->like("user_notification", $username ,"BOTH")
+                        ->where("date_notify <",$notify_date_before_username)
+                        ->order_by("notification_id","DESC")
+                        ->order_by("status_notification","ASC")
+                        ->count_all_results("tbl_notification");
+
+        $notify_date_before_allUser = date("Y-m-d H:i:s",strtotime("+3 days",strtotime($datenow)));
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $count_all_user = $this->db->where("user_notification", "")
+                        ->where("date_notify <",$notify_date_before_allUser)
+                        ->order_by("notification_id","DESC")
+                        ->order_by("status_notification","ASC")
+                        ->count_all_results("tbl_notification");
+
+        $count_all = $count_on_user+$count_all_user;
+                    return $count_all;
+    }
+
+    public function _count_not_read_notification($username)
+    {
+        $datenow = date("Y-m-d H:i:s");
+        $notify_date_before_username = date("Y-m-d H:i:s",strtotime("+3 days",strtotime($datenow)));
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $count_on_user = $this->db->like("user_notification", $username ,"BOTH")
+                        ->where("date_notify <",$notify_date_before_username)
+                        ->where("status_notification",0)
+                        ->order_by("notification_id","DESC")
+                        ->order_by("status_notification","DESC")
+                        ->count_all_results("tbl_notification");
+
+        $notify_date_before_allUser = date("Y-m-d H:i:s",strtotime("+3 days",strtotime($datenow)));
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $count_all_user = $this->db->where("user_notification", "")
+                        ->where("date_notify <",$notify_date_before_allUser)
+                        ->where("status_notification",0)
+                        ->order_by("notification_id","DESC")
+                        ->order_by("status_notification","DESC")
+                        ->count_all_results("tbl_notification");
+
+        $count_all = $count_on_user+$count_all_user;
+                    return $count_all;
     }
 
 	public function _add_notification($machine_id,$the_frequency,$messages,$user_notification,$username_member)

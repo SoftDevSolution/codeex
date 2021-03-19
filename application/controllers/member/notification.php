@@ -30,7 +30,6 @@ class Notification extends CI_Controller {
 		$this->load->model('Settingme','me');
 		$data['setting_web'] = $this->me->_getall();
 
-		$data['count_notification'] = $this->notification->_count_notification();
 		$data['data_notification'] = $this->notification->_getAll();
 
 		$this->load->view('member/view_notification',$data);

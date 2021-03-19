@@ -12,7 +12,7 @@
 
     <? $this->load->view("member/script_css"); ?>
 
-    <title>Config User Status | <? echo $data->nameweb; ?></title>
+    <title>Config Factory Status | <? echo $data->nameweb; ?></title>
 
     <!-- Sweet Alert -->
     <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title">User Status (<? echo number_format($count_user_status,0); ?>)</h3>
+                            <h3 class="section-title">Factory Status (<? echo number_format($count_user_status,0); ?>)</h3>
                         </div>
                     </div>
 
@@ -57,7 +57,7 @@
                                         <thead>
                                             <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">User Type</th>
+                                            <th scope="col">Factory  Type</th>
                                             <th scope="col">Process</th>
                                             </tr>
                                         </thead>
@@ -92,7 +92,7 @@
                                 <form action="<? echo base_url(); ?>member/config_user_status/data_add_user_status" method="POST">
                                     <div class="form-row">
                                         <div class="form-group col-12">
-                                            <label for="user_status_name">Add New User Status</label>
+                                            <label for="user_status_name">Add New Factory Status</label>
                                             <input type="text" class="form-control" id="user_status_name" name="user_status_name" placeholder="User Status" required>
                                         </div>
                                     </div>

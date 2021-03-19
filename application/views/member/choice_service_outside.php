@@ -65,7 +65,7 @@
                             <th scope="col">No.</th>
                             <th scope="col">Date</th>
                             <th scope="col">Employee</th>
-                            <th scope="col">P/N</th>
+                            <th scope="col">S/N</th>
                             <th scope="col">Visitor Customer</th>
                             <th scope="col">Factory Name</th>
                             <th scope="col"><center>Total</center></th>
@@ -89,7 +89,14 @@
                             
                             ?>
                             </td>
-                            <td><? echo $req->rqs_pn; ?></td>
+                            <td>
+                            <? $query_model_id = $this->db->where("model_id",$req->model_id)
+                                            ->get("tbl_model")->result();
+                                    foreach ($query_model_id as $model) {
+                                        echo $model->model_name;
+                                    }
+                            ?>
+                            </td>
                             <td>
                             <? // แสดง Visitor Customer
                             $query_emp = $this->db->where("vs_id",$req->vs_id)

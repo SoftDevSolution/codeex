@@ -58,14 +58,19 @@
 
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="vs_name">Visitor Supplier <span class="text-danger">*</span></label>
-                                            <input type="text" name="vs_name" id="vs_name" class="form-control input-lg" placeholder="Search..." autocomplete="off" required />
-                                            <ul class="list-group"></ul>
-                                            <div id="localSearchSimple"></div>
+                                            <label for="com_sup_id">ชื่อบริษัทลูกค้า <span class="text-danger">*</span></label>
+                                            <select  class="form-control" name="com_sup_id" id="com_sup_id">
+                                                <? foreach ($query_supplier as $sup) { ?>
+                                                <option value="<? echo $sup->com_sup_id; ?>"><? echo $sup->com_sup_name; ?></option>
+                                                <? } ?>
+                                            </select>
+
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="vs_company">Factory Supplier <span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="vs_company" name="vs_company" required readonly>
+                                            <label for="vs_id">Supplier Contact <span class="text-danger">*</span></label>
+                                            <select class="form-control" id="vs_id" name="vs_id" required>
+                                                <option value="">--Select--</option>
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-12">
                                             <center>
@@ -96,7 +101,7 @@
                                                 <th scope="col">#</th>
                                                 <th scope="col">Reference ID</th>
                                                 <th scope="col">P/N</th>
-                                                <th scope="col">Visitor Supplier</th>
+                                                <th scope="col">Supplier Contact</th>
                                                 <th scope="col">Manage</th>
                                             </tr>
                                         </thead>
@@ -180,8 +185,8 @@
 
     <script>
     $(document).ready(function() {
-        $('#vs_name').keyup(function() {
-            var query = $('#vs_name').val();
+        $('#com_sup_id').change(function() {
+            var query = $('#com_sup_id').val();
             $('#detail').html('');
             $('.list-group').css('display', 'block');
             if (query.length > 0) {
@@ -192,7 +197,7 @@
                         query: query
                     },
                     success: function(data) {
-                        $('.list-group').html(data);
+                        $('#vs_id').html(data);
                     }
                 })
             }
@@ -201,21 +206,6 @@
             }
         });
 
-        $(document).on('click', '.gsearch', function() {
-            var vs_company = $(this).text();
-            $('#vs_name').val(vs_company);
-            $('.list-group').css('display', 'none');
-            $.ajax({
-                url: "<? echo base_url(); ?>member/machine/get_vs_company_visitor_supplier",
-                method: "POST",
-                data: {
-                    vs_company: vs_company
-                },
-                success: function(data) {
-                    $('#vs_company').val(data);
-                }
-            })
-        });
     });
     </script>
 

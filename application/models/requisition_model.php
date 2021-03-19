@@ -10,7 +10,7 @@ class Requisition_model extends CI_Model {
 
 	// Status Requisition
 	// 1. active  พร้อมใช้งาน
-	// 2. used  กำลังใช้งาน
+	// 2. used  กำลังใช้งาน2
 	// 3. complete  สำเร็จ
 	// 4. cancle  ยกเลิกรายการ
 
@@ -43,15 +43,16 @@ class Requisition_model extends CI_Model {
 				return $query;
 	}
 
-	public function _add_new_requisition($rqs_date,$emp_id,$rqs_pn,$vs_id,$company_id,$rqs_remark,$rqs_status,$username_member)
+	public function _add_new_requisition($rqs_date,$emp_id,$vs_id,$company_id,$machine_serial_no,$model_id,$rqs_remark,$rqs_status,$username_member)
 	{
         // ดำเนินการ อัพเดทข้อมูล
 			$save_date = date("Y-m-d H:i:s");
 			$insert_data = $this->db->set("rqs_date",$rqs_date)
 							->set("emp_id",$emp_id)
-							->set("rqs_pn",$rqs_pn)
 							->set("vs_id",$vs_id)
 							->set("company_id",$company_id)
+							->set("machine_serial_no",$machine_serial_no)
+							->set("model_id",$model_id)
 							->set("rqs_remark",$rqs_remark)
 							->set("rqs_status",$rqs_status)
 							->set("create_user",$username_member)
@@ -62,19 +63,20 @@ class Requisition_model extends CI_Model {
                         return $insert_data;
 	}
 
-	public function _edit_requisition($rqs_id,$rqs_date,$emp_id,$rqs_pn,$vs_id,$company_id,$rqs_remark,$rqs_status,$update_user)
+	public function _edit_requisition($rqs_id,$rqs_date,$emp_id,$vs_id,$company_id,$machine_serial_no,$model_id,$rqs_remark,$rqs_status,$username_member)
 	{
         // ดำเนินการ อัพเดทข้อมูล
 			$save_date = date("Y-m-d H:i:s");
 			$update_data = $this->db->where("rqs_id",$rqs_id)
 							->set("rqs_date",$rqs_date)
 							->set("emp_id",$emp_id)
-							->set("rqs_pn",$rqs_pn)
 							->set("vs_id",$vs_id)
 							->set("company_id",$company_id)
+							->set("machine_serial_no",$machine_serial_no)
+							->set("model_id",$model_id)
 							->set("rqs_remark",$rqs_remark)
 							->set("rqs_status",$rqs_status)
-							->set("update_user",$update_user)
+							->set("update_user",$username_member)
 							->set("update_date",$save_date)
 							->update("tbl_requisition");
                         return $update_data;

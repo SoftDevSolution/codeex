@@ -11,6 +11,11 @@
     <? $this->load->view("member/script_css"); ?>
     <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+    <!-- Sweet Alert -->
+    <script src="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
+    <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+
     <title>Welcome to Dashboard Notification | <? echo $data->nameweb; ?></title>
 
 <style>
@@ -18,6 +23,8 @@
         cursor : pointer;
     }
 </style>
+
+<? $this->load->view("member/time_to_datethai_en"); ?>
 
 </head>
 
@@ -30,13 +37,10 @@
         
         <div class="dashboard-wrapper">
             <div class="container-fluid  dashboard-content">
-                <!-- ============================================================== -->
-                <!-- pagehader  -->
-                <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="section-block" id="basicform">
-                            <h3 class="section-title"><i class="far fa-bell"></i> Notifications (2)</h3>
+                            <h3 class="section-title"><i class="far fa-bell"></i> Notifications (<? echo number_format($count_notification,0); ?>)</h3>
                         </div>
                         <div class="card">
                             <div class="card-body">
@@ -44,8 +48,9 @@
                         <table class="table table-hover" id="dataTable">
                         <thead>
                             <tr>
-                            <th scope="col">#</th>
+                            <th scope="col"># ID</th>
                             <th scope="col">Machine ID</th>
+                            <th scope="col">Date Notify</th>
                             <th scope="col">Messages</th>
                             <th scope="col"><center>Manage</center></th>
                             </tr>
@@ -54,7 +59,8 @@
                             <?  foreach ($query_notification as $notify) {  ?>
                             <tr>
                             <th scope="row">#<? echo $notify->notification_id; ?></th>
-                            <td><? echo $notify->machine_id ?></td>
+                            <td><? echo $notify->machine_id; ?></td>
+                            <td><? echo set_mytime($notify->date_notify); ?></td>
                             <td><? echo $notify->messages ?></td>
                             <? if($notify->status_notification==0){ ?>
                             <td>
@@ -79,6 +85,7 @@
                             <tr>
                             <th scope="row">#<? echo $notify->notification_id; ?></th>
                             <td><? echo $notify->machine_id ?></td>
+                            <td><? echo set_mytime($notify->date_notify); ?></td>
                             <td><? echo $notify->messages ?></td>
                             <? if($notify->status_notification==0){ ?>
                             <td>
@@ -259,7 +266,18 @@
         // Call the dataTables jQuery plugin
         $(document).ready(function() {
             $('#dataTable').DataTable();
+            Alert_Notify();
         });
+
+        <? if($count_not_read_notification==0){  } else { ?>
+        function Alert_Notify() { 
+            <? if($count_notification==1){ ?>
+            Swal.fire('You have <? echo number_format($count_not_read_notification,0); ?> notifiation.');
+            <?  } else {  ?>
+            Swal.fire('You have <? echo number_format($count_not_read_notification,0); ?> notifiations.');
+            <? } ?>
+         }
+        <? } ?>
     </script>
 
 </body>

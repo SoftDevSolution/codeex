@@ -44,19 +44,28 @@
                             <div class="card-body">
         <form action="<? echo base_url(); ?>member/employees/data_edit_employee" method="POST" enctype="multipart/form-data">
             <div class="form-row">
-                <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
+                    <label for="company_id">Company Name <span class="text-danger">*</span></label>
+                    <select class="form-control" name="company_id" id="company_id" required>
+                    <? foreach ($company_data as $com) {
+                    ?>
+                        <option value="<? echo $com->company_id; ?>" <? if($emp->company_id==$com->company_id){ echo "selected"; } else {  } ?>><? echo $com->company_name; ?></option>
+                    <? } ?>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
                     <label for="emp_name">Fullname <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="emp_name" name="emp_name" placeholder="Fullname" value="<? echo $emp->emp_name; ?>" required>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <label for="emp_username">Username <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="emp_username" name="emp_username" placeholder="Username" value="<? echo $emp->emp_username; ?>" readonly>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <label for="emp_password">Old Password</label>
                     <input type="text" class="form-control" value="<? echo base64_decode($emp->emp_password);?>" disabled>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <label for="emp_password">Set New Password</label>
                     <input type="text" class="form-control" id="emp_password" name="emp_password" placeholder="Password">
                 </div>

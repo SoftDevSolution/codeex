@@ -29,8 +29,8 @@ class Assets extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -62,8 +62,8 @@ class Assets extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ

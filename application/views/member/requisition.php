@@ -60,7 +60,8 @@
                             <th scope="col">No.</th>
                             <th scope="col">Date</th>
                             <th scope="col">Employee</th>
-                            <th scope="col">P/N</th>
+                            <th scope="col">S/N</th>
+                            <th scope="col">Model</th>
                             <th scope="col">Visitor Customer</th>
                             <th scope="col">Factory Name</th>
                             <th scope="col">Total</th>
@@ -70,8 +71,8 @@
                         </thead>
                         <tbody>
                             <? foreach ($query_requisition as $key => $req) { ?>
-                            <tr>
-                            <th scope="row"><center>No. <? echo $req->rqs_id; ?></center></th>
+                            <tr id="row_<? echo $key+1; ?>">
+                            <td scope="row"><center>No. <? echo $req->rqs_id; ?></center></td>
                             <td><? echo set_mytime($req->rqs_date); ?></td>
                             <td>
                             <? // แสดง Employee
@@ -84,7 +85,14 @@
                             
                             ?>
                             </td>
-                            <td><? echo $req->rqs_pn; ?></td>
+                            <td><? echo $req->machine_serial_no; ?></td>
+                            <td>
+                            <? $query_model_id = $this->db->where("model_id",$req->model_id)->get("tbl_model")->result();  
+                            foreach ($query_model_id as $mm) {
+                                echo $mm->model_name;
+                            }
+                        ?>
+                            </td>
                             <td>
                             <? // แสดง Visitor Customer
                             $query_emp = $this->db->where("vs_id",$req->vs_id)
@@ -122,10 +130,10 @@
                                 <? } ?>
                             
                             </td>
+                                <td>
                                 <? 
                                     if($req->rqs_status == "active"){
                                 ?>
-                                <td>
                                     <center>
                                         <a href="<? echo base_url(); ?>member/requisition/add_inventory/<? echo $req->rqs_id; ?>"><span class="text-dark"><button class="btn btn-sm btn-success"><i class="fas fa-plus-circle"></i> Add inventory</button></span></a>
                                         &nbsp;
@@ -133,10 +141,9 @@
                                         &nbsp;
                                         <a href="<? echo base_url(); ?>member/requisition/remove_requisition/<? echo $req->rqs_id; ?>" onclick="return confirm('Confirm to delete?');"><span class="text-danger"><i class="fas fa-trash"></i></span></a>
                                     </center>
+                                <? } else { echo " - "; } ?>
                                 </td>
-                                <? 
-                                    }
-                                ?>
+                                
                             </tr>
                             <? } ?>
                         </tbody>

@@ -24,6 +24,15 @@ class Company_model extends CI_Model {
                     return $query;
     }
 
+    public function _get_all_visitor_supplier()
+    {
+        // ดึงข้อมูลทั้งหมด ไปใช้งาน
+        $query = $this->db->order_by("vs_id","DESC")
+                        ->get("tbl_visitor_supplier")
+                        ->result();
+                    return $query;
+    }
+
     public function _query_company($company_id)
     {
         $query = $this->db->where("company_id",$company_id)
@@ -377,13 +386,21 @@ class Company_model extends CI_Model {
                 }
     }
 
-    public function _add_invoice($rqs_id,$rtc_pn,$vs_name,$vs_company)
+    public function _add_invoice($rqs_id,$rtc_pn,$vs_id,$com_sup_id)
     {
+        // ดึงข้อมูล vs_name มาใช้งาน
+        $query_vs_id  = $this->db->where("vs_id",$vs_id)
+                        ->get("tbl_visitor_supplier")->result();
+                foreach ($query_vs_id as $vs) {
+                    $vs_name = $vs->vs_name;
+                }
+
         $datenow = date("Y-m-d H:i:s"); // เวลา
         $add_invoice = $this->db->set("rqs_id",$rqs_id)
                         ->set("rtc_pn",$rtc_pn)
+                        ->set("vs_id",$vs_id)
                         ->set("vs_name",$vs_name)
-                        ->set("vs_company",$vs_company)
+                        ->set("com_sup_id",$com_sup_id)
                         ->set("create_date",$datenow)
                         ->insert("tbl_invoice");
                     return $add_invoice;
@@ -448,11 +465,40 @@ class Company_model extends CI_Model {
             }
     }
 
-    public function _return_requisition($id_inven_to_invoice)
+    public function _return_requisition($id_inven_to_invoice,$svo_id)
     {
         $query = $this->db->where("id_inven_to_invoice",$id_inven_to_invoice)
                     ->get("tbl_add_inventory_to_invoice")->result();
                 foreach ($query as $aaa) {
+                    $rqs_id = $aaa->rqs_id; // ดึง ID ใบเบิก ออกมาใช้งาน
+
+                    // ลบเงินออกจาก Service Outside ก่อน
+                    $decreate_cost = $this->db->where("machine_id",$aaa->machine_id)
+                                        ->get("tbl_machine")->result();
+                        foreach ($decreate_cost as $cost) {
+                            $get_price = $cost->machine_price;  // ได้เงินออกมา เอาไปลบออกจาก Service Outside
+                        }
+                        // เอาค่ามา คำนวณใหม่
+                        $query_service_outside_by_id = $this->db->where("svo_id",$svo_id)
+                                                    ->get("tbl_service_outside")->result();
+                                foreach ($query_service_outside_by_id as $bbb) {
+                                    $total_price = $bbb->total_price;
+                                    $vat = $bbb->vat;
+                                    $labor_cost = $bbb->labor_cost;
+                                    $traveling_expenses = $bbb->traveling_expenses;
+                                    $accommodation_cost = $bbb->accommodation_cost;
+                                }
+                                $new_total_price = $total_price-$get_price;
+                                $new_vat = ($new_total_price*$vat)/100;
+
+                                $new_total_all_cost = $new_total_price + $new_vat + $labor_cost + $traveling_expenses + $accommodation_cost;
+
+                        // ดำเนินการ คืนเงิน
+                        $update_service_outside = $this->db->where("svo_id",$svo_id)
+                                                ->set("total_price",$new_total_price)
+                                                ->set("total_all_cost",$new_total_all_cost)
+                                                ->update("tbl_service_outside");
+
                     // ดึงข้อมูล machine_id ออกมา update status กลับคืน เป็น active
                     $update_status_machine_id = $this->db->where("machine_id",$aaa->machine_id)
                                                 ->set("status_machine","active")

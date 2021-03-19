@@ -126,6 +126,7 @@
                                                 <? } ?>
                                             </td>
                                             <td>
+                                                <? if($mach->status_machine=="active"){ ?>
                                                 <center>
                                                     <a href="<? echo base_url(); ?>member/machine/edit_machine/<? echo $mach->machine_id; ?>"><span class="text-dark"><i
                                                                 class="fas fa-edit"></i></span></a>
@@ -133,6 +134,9 @@
                                                     <a href="<? echo base_url(); ?>member/machine/remove_machine/<? echo $mach->machine_id; ?>" onclick="return confirm('Verify to Delete?');"><span
                                                             class="text-danger"><i class="fas fa-trash"></i></span></a>
                                                 </center>
+                                                <? } else { ?>
+                                                    <center> - </center>
+                                                <? } ?>
                                             </td>
                                             </tr>
                                             <? } ?>

@@ -5,9 +5,10 @@
     $rqs_id = $this->uri->segment(4);
 
     // หากไม่มีค่า ให้ กลับไปที่ ./member/service_outside
-    if(empty($rqs_id) or $rqs_id=="" or $query_requisition=="" or empty($query_requisition)){
+    if(empty($rqs_id) or $rqs_id==""){
         
         redirect(base_url().'member/service_outside');
+        // echo "No data";
         
     } else { }
 ?>
@@ -70,39 +71,51 @@
                 </span>
                 </div>
                 <div class="form-group col-md-3">
-                P/N : <span class="text-primary"><? echo $requisition->rqs_pn; ?></span>
+                ชื่อบริษัทลูกค้า : <span class="text-primary">
+                <? $query_company = $this->db->where("com_cus_id",$requisition->company_id)->get("tbl_company_customer")->result(); 
+                    foreach ($query_company as $company) {
+                        $my_customer_company =  $company->com_cus_name;
+                    }
+                        echo $my_customer_company;
+                ?>
+                </span>
                 </div>
                 <div class="form-group col-md-3">
-                Visitor Customer : <span class="text-primary">
+                Customer Contact: <span class="text-primary">
                 <? $query_visitor_customer = $this->db->where("vs_id",$requisition->vs_id)
                                             ->get("tbl_visitor_customer")->result();
                         foreach ($query_visitor_customer as $visitor) {
-                            echo $visitor->vs_name;
                             $my_vs_name = $visitor->vs_name;
-                            $my_vs_id = $visitor->vs_id;
+                        }
+                            echo $my_vs_name;
+                 ?>
+                </span>
+                </div>
+                <div class="form-group col-md-3">
+                S/N : <span class="text-primary">
+                <? echo $requisition->machine_serial_no; ?>
+                </span>
+                </div>
+                <div class="form-group col-md-3">
+                Machine Model : <span class="text-primary">
+                <? echo $requisition->model_id; ?>
+                <? $query_model_id = $this->db->where("model_id",$requisition->model_id)
+                                            ->get("tbl_model")->result();
+                        foreach ($query_model_id as $model) {
+                            echo $model->model_name;
                         }
                  ?>
                 </span>
                 </div>
-                <div class="form-group col-md-4">
-                Factory Name : <span class="text-primary">
-                <? 
-                $query_factory_customer = $this->db->where("com_cus_id",$requisition->company_id)
-                                        ->get("tbl_company_customer")->result();
-                foreach ($query_factory_customer as $factory_cus) { ?>
-                <? echo $factory_cus->com_cus_name; ?>
-                <? } ?>
-                </span>
-                </div>
-                <div class="form-group col-md-4">
-                User Created : <span class="text-primary"><? echo $requisition->create_user; ?>
-                 (on <? echo set_mytime($requisition->create_date); ?>)
-                </span>
-                </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                 User Update : <span class="text-primary"><? echo $requisition->update_user; ?>
                  (on <? echo set_mytime($requisition->update_date); ?>)
                  </span>
+                </div>
+                <div class="form-group col-md-3">
+                User Created : <span class="text-primary"><? echo $requisition->create_user; ?>
+                 (on <? echo set_mytime($requisition->create_date); ?>)
+                </span>
                 </div>
                 <div class="form-group col-md-12">
                 Note/Remark : <span class="text-primary"><? echo $requisition->rqs_remark; ?></span>
@@ -127,6 +140,8 @@
             <th scope="col">Type</th>
             <th scope="col">Model</th>
             <th scope="col">Brand</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
             </tr>
         </thead>
         <tbody>
@@ -154,6 +169,8 @@
                     echo $bbb->brand_name;
                 }
             ?></td>
+            <td><center><? echo number_format($invo->machine_stock,0); ?></center></td>
+            <td><? echo number_format($invo->machine_price,0); ?></td>
             </tr>
         <? } ?>
         <? } ?>
@@ -174,25 +191,25 @@
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="svo_requisition_no">Requisition No. แนบใบเบิก(เลขที่) <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="svo_requisition_no" value="<? echo $rqs_id; ?>" required readonly>
+                    <input type="text" class="form-control" name="svo_requisition_no" value="<? echo $requisition->rqs_id; ?>" required readonly>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="svo_get_date">Date วันที่รับแจ้ง <span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" id="svo_get_date" name="svo_get_date" placeholder="Date" value="<? echo date("Y-m-d"); ?>" required>
+                    <input type="date" class="form-control" id="svo_get_date" name="svo_get_date" placeholder="Date" value="<? echo $service->svo_get_date; ?>" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="svo_date_working">Date วันที่ทำงาน <span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" id="svo_date_working" name="svo_date_working" placeholder="Date" value="<? echo date("Y-m-d"); ?>" required>
+                    <input type="date" class="form-control" id="svo_date_working" name="svo_date_working" placeholder="Date" value="<? echo $service->svo_date_working; ?>" required>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="svo_company_name">Company Name (บริษัทผู้ให้บริการ) <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="svo_company_name" name="svo_company_name" placeholder="Company Name" value="<? echo $factory_cus->com_cus_name; ?>" required readonly>
-                    <input type="hidden" name="svo_company_id" id="svo_company_id" value="<? echo $factory_cus->com_cus_id; ?>">
+                    <label for="svo_company_name">Company Name (ชื่อบริษัทลูกค้า) <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="svo_company_name" name="svo_company_name" placeholder="Company Name" value="<? echo $my_customer_company; ?>" required readonly>
+                    <input type="hidden" name="svo_company_id" id="svo_company_id" value="<? echo $service->svo_company_id; ?>" >
                 </div>
                 <div class="form-group col-md-4">
                     <label for="svo_customer_name">ลูกค้าที่ติดต่อ <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="svo_customer_name" name="svo_customer_name" placeholder="Customer Name" value="<? echo $my_vs_name; ?>" required readonly>
-                    <input type="hidden" class="form-control" id="svo_customer_id" name="svo_customer_id" value="<? echo $my_vs_id; ?>" readonly>
+                    <input type="hidden" class="form-control" id="svo_customer_id" name="svo_customer_id" value="<? echo $service->svo_customer_id; ?>" readonly>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="svo_emp_receive">คนรับงาน <span class="text-danger">*</span></label>
@@ -289,9 +306,42 @@
                     <input type="text" class="form-control" id="svo_zipcode" name="svo_zipcode" value="<? echo $service->svo_zipcode; ?>" onkeypress="return IsNumeric(event,'zipcode');">
                     <span id="zipcode" style="color: Red; display: none">* Please enter number (0 - 9)</span>
                 </div>
+                
                 <div class="form-group col-md-12">
-                    <label for="svo_remark">Note/Remark</label>
-                    <textarea class="form-control" name="svo_remark" id="svo_remark" placeholder="Note/Remark"></textarea>
+                    <div class="row">
+                    <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
+                            <label for="svo_remark">Note/Remark</label>
+                            <textarea class="form-control" name="svo_remark" id="svo_remark" placeholder="Note/Remark"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row col-md-6">
+                        <div class="form-group col-md-12">
+                            <label for="total_price">รวมเงิน    (บาท)&nbsp;</label>
+                            <div><input type="number" min="0" class="form-control" id="total_price" name="total_price" value="<? echo $service->total_price; ?>" readonly></div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="vat">VAT (%)  &nbsp;</label>
+                            <div><input type="number" min="0" class="form-control" id="vat" name="vat" value="<? echo $service->vat; ?>" onchange="Cal_total_price();"></div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="labor_cost">ค่าแรง  &nbsp;</label>
+                            <input type="number" class="form-control" id="labor_cost" name="labor_cost" value="<? echo $service->labor_cost; ?>" onchange="Cal_total_price();">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="traveling_expenses">ค่าเดินทาง  &nbsp;</label>
+                            <input type="number" class="form-control" id="traveling_expenses" name="traveling_expenses" value="<? echo $service->traveling_expenses; ?>" onchange="Cal_total_price();">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="accommodation_cost">ค่าที่พัก  &nbsp;</label>
+                            <input type="number" class="form-control" id="accommodation_cost" name="accommodation_cost" value="<? echo $service->accommodation_cost; ?>" onchange="Cal_total_price();">
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="total_all_cost">รวมทั้งสิ้น  (บาท)&nbsp;</label>
+                            <input type="number" min="0" class="form-control" id="total_all_cost" name="total_all_cost" value="<? echo $service->total_all_cost; ?>" readonly>
+                        </div>
+                    </div>
+                    </div>
                 </div>
             </div>
 
@@ -337,6 +387,19 @@
         $(document).ready(function() {
             $('#dataTable').DataTable();
         });
+
+        function Cal_total_price() {
+
+            var total_price = $("#total_price").val();
+            var vat = $("#vat").val();
+            var labor_cost = $("#labor_cost").val();
+            var traveling_expenses = $("#traveling_expenses").val();
+            var accommodation_cost = $("#accommodation_cost").val();
+
+            var total_all_cost = Number(total_price) + Number((total_price*(vat/100))) + Number(labor_cost) + Number(traveling_expenses) + Number(accommodation_cost) ;
+
+            $("#total_all_cost").val(total_all_cost);
+         }
     </script>
 
     <script>

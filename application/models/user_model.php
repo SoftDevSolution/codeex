@@ -10,16 +10,16 @@ class User_model extends CI_Model {
 
 	public function _loginmember($username,$password)
 	{
-		$result = $this->db->where('username',$username)
-				 ->where('passwordmd5',md5($password))
-				 ->count_all_results('user');
+		$result = $this->db->where('emp_username',$username)
+				 ->where('emp_password_md5',md5($password))
+				 ->count_all_results('tbl_employees');
 				 return $result > 0 ? TRUE : FALSE;
 	}
 
 	public function _getAllmember()
 	{
 		// ดุงข้อมูลสมาชิกส่งไปใช้
-		$memberget = $this->db->order_by("id_user","DESC")->get('user')->result();
+		$memberget = $this->db->order_by("emp_id","DESC")->get('tbl_employees')->result();
 			
 		return $memberget;
 	}	
@@ -27,22 +27,22 @@ class User_model extends CI_Model {
 	public function _datamember($username)
 	{
 		// ดึงข้อมูลสมาชิกส่งไปใช้
-		$memberget = $this->db->get_where('user',array('username' => $username))->result();
+		$memberget = $this->db->get_where('tbl_employees',array('emp_username' => $username))->result();
 			
 		return $memberget;
 	}
 
 	public function _getmember($username)
 	{
-		$member_info = $this->db->where('username',$username)
-							->get('user')->result();
+		$member_info = $this->db->where('emp_username',$username)
+							->get('tbl_employees')->result();
 						return $member_info;
 	}
 
 	public function _getmember_by_id($id_member)
 	{
-		$member_info = $this->db->where('id_member',$id_member)
-							->get('user')->result();
+		$member_info = $this->db->where('emp_id',$id_member)
+							->get('tbl_employees')->result();
 						return $member_info;
 	}
 

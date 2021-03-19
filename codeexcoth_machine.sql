@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 04, 2021 at 03:06 AM
+-- Generation Time: Mar 19, 2021 at 08:31 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.30
 
@@ -41,49 +41,17 @@ CREATE TABLE `log_login_logout` (
 --
 
 INSERT INTO `log_login_logout` (`id_log`, `username`, `type_log`, `type_process`, `ip_address`, `date_process`) VALUES
-(1, 'admin', 'logout', 'admin', '::1', '2021-01-26 15:11:56'),
-(2, 'admin', 'login', '0', '::1', '2021-01-26 15:12:45'),
-(3, 'admin', 'login', '0', '::1', '2021-01-26 16:42:24'),
-(4, 'admin', 'login', '0', '::1', '2021-01-27 02:38:39'),
-(5, 'admin', 'login', '0', '::1', '2021-01-27 15:28:32'),
-(6, 'admin', 'logout', 'admin', '::1', '2021-01-30 14:23:53'),
-(7, 'admin', 'login', '0', '::1', '2021-01-30 14:23:57'),
-(8, 'admin', 'login', '0', '::1', '2021-01-31 04:09:32'),
-(9, 'admin', 'logout', 'admin', '::1', '2021-01-31 11:03:39'),
-(10, 'admin', 'login', '', '::1', '2021-01-31 11:18:05'),
-(11, 'admin', 'login', '', '::1', '2021-01-31 16:10:18'),
-(12, 'admin', 'login', '', '::1', '2021-02-04 04:59:58'),
-(13, 'admin', 'logout', 'admin', '::1', '2021-02-05 17:15:24'),
-(14, 'admin', 'login', '', '::1', '2021-02-05 17:15:27'),
-(15, 'admin', 'login', '', '::1', '2021-02-07 04:48:49'),
-(16, 'admin', 'login', '', '::1', '2021-02-07 11:09:59'),
-(17, 'admin', 'login', '', '::1', '2021-02-09 03:14:51'),
-(18, 'admin', 'login', '', '::1', '2021-02-09 17:17:47'),
-(19, 'admin', 'login', '', '::1', '2021-02-10 18:06:14'),
-(20, 'admin', 'login', '', '::1', '2021-02-11 23:40:48'),
-(21, 'admin', 'login', '', '::1', '2021-02-12 15:06:49'),
-(22, 'admin', 'login', '', '::1', '2021-02-13 15:44:36'),
-(23, 'admin', 'login', '', '::1', '2021-02-14 14:21:58'),
-(24, 'admin', 'login', '', '::1', '2021-02-15 05:33:46'),
-(25, 'admin', 'login', '', '::1', '2021-02-15 18:05:18'),
-(26, 'admin', 'login', '', '::1', '2021-02-17 15:11:34'),
-(27, 'admin', 'login', '', '::1', '2021-02-17 17:38:52'),
-(28, 'admin', 'logout', 'admin', '::1', '2021-02-17 18:53:48'),
-(29, 'admin', 'login', '', '::1', '2021-02-17 18:53:51'),
-(30, 'admin', 'login', '', '::1', '2021-02-27 14:11:42'),
-(31, 'admin', 'login', '', '::1', '2021-02-27 17:38:12'),
-(32, 'admin', 'login', '', '::1', '2021-02-28 14:34:24'),
-(33, 'admin', 'login', '', '::1', '2021-03-01 09:30:13'),
-(34, 'admin', 'login', '', '::1', '2021-03-02 08:40:30'),
-(35, 'admin', 'logout', 'admin', '::1', '2021-03-02 17:18:50'),
-(36, 'admin', 'login', '', '::1', '2021-03-02 17:20:19'),
-(37, 'admin', 'login', '1', '::1', '2021-03-03 03:13:47'),
-(38, 'admin', 'logout', 'admin', '::1', '2021-03-03 03:13:58'),
-(39, 'admin', 'login', '1', '::1', '2021-03-03 03:16:16'),
-(40, 'admin', 'logout', 'admin', '::1', '2021-03-03 03:16:20'),
-(41, 'admin', 'login', '1', '::1', '2021-03-03 08:34:05'),
-(42, 'admin', 'login', '1', '::1', '2021-03-03 17:52:48'),
-(43, 'admin', 'logout', 'admin', '::1', '2021-03-04 03:06:39');
+(1, 'admin', 'login', '1', '::1', '2021-03-07 03:21:30'),
+(2, 'admin', 'login', '1', '::1', '2021-03-07 05:24:24'),
+(3, 'admin', 'login', '1', '::1', '2021-03-08 16:16:17'),
+(4, 'admin', 'login', '1', '::1', '2021-03-09 14:57:15'),
+(5, 'admin', 'login', '1', '::1', '2021-03-09 17:20:04'),
+(6, 'admin', 'login', '1', '::1', '2021-03-11 03:47:33'),
+(7, 'admin', 'login', '1', '::1', '2021-03-11 20:00:53'),
+(8, 'admin', 'login', '1', '::1', '2021-03-18 05:06:09'),
+(9, 'admin', 'login', '1', '::1', '2021-03-19 07:27:12'),
+(10, 'admin', 'login', '1', '::1', '2021-03-19 07:27:50'),
+(11, 'admin', 'login', '1', '::1', '2021-03-19 19:25:19');
 
 -- --------------------------------------------------------
 
@@ -158,10 +126,11 @@ CREATE TABLE `tbl_add_inventory_to_invoice` (
 --
 
 INSERT INTO `tbl_add_inventory_to_invoice` (`id_inven_to_invoice`, `machine_id`, `rqs_id`, `user_create`, `date_create`, `save_date`) VALUES
-(8, 8, 2, 'admin', '2021-02-15', '2021-02-15 09:16:30'),
-(18, 7, 1, 'admin', '2021-02-17', '2021-02-17 15:33:34'),
-(20, 6, 1, 'admin', '2021-02-17', '2021-02-17 18:33:58'),
-(24, 4, 1, 'admin', '2021-02-27', '2021-02-27 14:28:01');
+(2, 2, 1, 'phploso', '2021-03-04', '2021-03-04 18:33:46'),
+(4, 5, 1, 'phploso', '2021-03-04', '2021-03-04 19:12:07'),
+(5, 6, 1, 'phploso', '2021-03-04', '2021-03-04 19:12:09'),
+(14, 8, 3, 'admin', '2021-03-19', '2021-03-19 19:45:07'),
+(16, 7, 2, 'admin', '2021-03-19', '2021-03-19 19:45:30');
 
 -- --------------------------------------------------------
 
@@ -321,7 +290,8 @@ CREATE TABLE `tbl_company` (
 --
 
 INSERT INTO `tbl_company` (`company_id`, `company_name`, `company_addr1`, `company_addr2`, `company_addr3`, `company_city`, `company_zip_code`, `company_tel`, `company_fax`, `company_email`, `company_capital_investment`, `company_bussiness_group`, `company_product_type`, `company_status`, `company_remark`, `company_area`, `company_indust`, `company_www`, `company_facebook`, `company_distance_office`, `company_googlemap_link`) VALUES
-(3, 'CodeEx', 'CodeEx', 'CodeEx', 'CodeEx', 'Cati', 67900, '0983334400', '', 'CodeEx', '', '2', '1', '1', '', '1', '3', '', '', 45, '');
+(3, 'CodeEx', 'CodeEx', 'CodeEx', 'CodeEx', 'Cati', 67900, '0983334400', '', 'CodeEx', '', '2', '1', '1', '', '1', '3', '', '', 45, ''),
+(4, 'Vision', '', '', '', '', 10000, '', '', '', '', '', '', '', '', '', '', '', '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -358,9 +328,9 @@ CREATE TABLE `tbl_company_customer` (
 --
 
 INSERT INTO `tbl_company_customer` (`com_cus_id`, `com_cus_name`, `com_cus_addr1`, `com_cus_addr2`, `com_cus_addr3`, `com_cus_city`, `com_cus_zipcode`, `com_cus_tel`, `com_cus_fax`, `com_cus_email`, `com_cus_cap_invest`, `com_cus_group_bussiness`, `com_cus_product_type`, `com_cus_status`, `com_cus_remark`, `com_cus_area`, `com_cus_indust`, `com_cus_www`, `com_cus_facebook`, `com_cus_distance_office`, `com_cus_googlemap_link`) VALUES
-(1, 'Beverage-Coffee', 'Chiangmai', '377 Moo 8 Tambon MaeSong', '', 'Tasongyang', 0, '0989956879', '', 'ppp@z.com', 'aaaa', '', '2', '2', '', '', '2', 'https://google.com', 'https://facebook.com', '0', 'https://google.com'),
-(2, 'Car Industry', 'Phuget', '', '', '', 0, '0998887761', '0978889900', 'saha@z.com', '30000000', '3', '6', '2', '', '3', '2', '', '', '0', ''),
-(3, 'Customer Factory', '150 ม.4 ต.บ้านเป้า', '150 ม.4 ต.บ้านเป้า', 'ประตูฝั่งตาชั่งอ้อย', 'อ.เกษตรสมบูรณ์', 0, '123456', 'CodeEx', 'csxman69@gmail.com', 'CodeEx', '2', '6', '1', '', '4', '4', '', '', '0', '');
+(1, 'CUS-Beverage-Coffeex', 'Chiangmai', '377 Moo 8 Tambon MaeSong', '', 'Tasongyang', 0, '0989956879', '', 'ppp@z.com', 'aaaa', '', '2', '2', '', '', '2', 'https://google.com', 'https://facebook.com', '0', 'https://google.com'),
+(2, 'CUS-Car Industry', 'Phuget', '', '', '', 0, '0998887761', '0978889900', 'saha@z.com', '30000000', '3', '6', '2', '', '3', '2', '', '', '0', ''),
+(3, 'CUS-Customer Factory', '150 ม.4 ต.บ้านเป้า', '150 ม.4 ต.บ้านเป้า', 'ประตูฝั่งตาชั่งอ้อย', 'อ.เกษตรสมบูรณ์', 0, '123456', 'CodeEx', 'csxman69@gmail.com', 'CodeEx', '2', '6', '1', '', '4', '4', '', '', '0', '');
 
 -- --------------------------------------------------------
 
@@ -467,11 +437,11 @@ CREATE TABLE `tbl_employees` (
 --
 
 INSERT INTO `tbl_employees` (`emp_id`, `emp_name`, `emp_type_user`, `emp_username`, `emp_password`, `emp_password_md5`, `emp_address`, `position_id`, `emp_tel`, `emp_mobile_phone`, `emp_personal_email`, `emp_company_email`, `emp_birth_date`, `emp_age`, `emp_pic_path`, `emp_work_start_date`, `emp_work_stop_date`, `emp_sarary_start`, `emp_sarary_now`, `emp_remark`, `emp_status`, `emp_blood_group`, `emp_gender`, `emp_height`, `emp_weight`, `company_id`) VALUES
-(1, 'Arkhet Saepu', '1', 'admin', '', 'd41d8cd98f00b204e9800998ecf8427e', ' 118/2 Moo 4 Tambon Huaysai', 5, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210206160655.jpg', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78, 1),
-(2, 'นายสมศักดิ์  ใจมหา', '1', 'phploso', '', 'd41d8cd98f00b204e9800998ecf8427e', '    118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210206160632.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65, 1),
-(4, 'นายสมชัย   มหานาม', '2', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', '       118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210130161203.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89, 1),
-(6, 'นาบเลิศพันธุ์   สมัครใจ', '2', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', '  118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89, 1),
-(10, 'Arkhet Saepu', '2', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '              118/2 Moo 4 Tambon Huaysai', 5, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210206160504.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60, 1);
+(1, 'Arkhet Saepu', '1', 'admin', '', 'd41d8cd98f00b204e9800998ecf8427e', '   118/2 Moo 4 Tambon Huaysai', 5, '0989989876', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2020-12-31', 30, '20210206160655.jpg', '2021-01-05', '0001-01-01', 7000, 15000, '', 'Single', 'A', 'Man', 189, 78, 3),
+(2, 'นายสมศักดิ์  ใจมหา', '1', 'phploso', '', 'd41d8cd98f00b204e9800998ecf8427e', '    118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '06864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210206160632.png', '2020-12-31', '0000-00-00', 5000, 8000, '', 'Married', 'O', 'Man', 167, 65, 3),
+(4, 'นายสมชัย   มหานาม', '2', 'somchai', '', 'd41d8cd98f00b204e9800998ecf8427e', '          118/2 Moo 4 Tambon Huaysai', 1, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210130161203.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Single', 'O', 'Man', 189, 89, 4),
+(6, 'นาบเลิศพันธุ์   สมัครใจ', '2', 'lertpan', '', 'd41d8cd98f00b204e9800998ecf8427e', '  118/2 Moo 4 Tambon Huaysai', 5, '0989989000', '0984445567', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-06', 30, '20210127114935.jpg', '2020-12-31', '0000-00-00', 8000, 15000, '', 'Married', 'AB', 'Man', 189, 89, 4),
+(10, 'Arkhet Saepu', '2', 'popupwqeqwe', '', 'd41d8cd98f00b204e9800998ecf8427e', '              118/2 Moo 4 Tambon Huaysai', 5, '', '+66864473731', 'phploso@hotmail.com', 'phploso@hotmail.com', '2021-01-26', 30, '20210206160504.jpg', '2021-01-27', '2021-01-13', 4000, 50000, '', 'Married', 'B', 'Women', 100, 60, 4);
 
 -- --------------------------------------------------------
 
@@ -543,8 +513,9 @@ CREATE TABLE `tbl_invoice` (
   `id_invoice` int(11) NOT NULL,
   `rqs_id` varchar(100) NOT NULL,
   `rtc_pn` varchar(100) NOT NULL,
+  `vs_id` int(11) NOT NULL DEFAULT 0,
   `vs_name` varchar(100) NOT NULL,
-  `vs_company` varchar(100) NOT NULL,
+  `com_sup_id` int(11) NOT NULL DEFAULT 0,
   `create_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -552,10 +523,10 @@ CREATE TABLE `tbl_invoice` (
 -- Dumping data for table `tbl_invoice`
 --
 
-INSERT INTO `tbl_invoice` (`id_invoice`, `rqs_id`, `rtc_pn`, `vs_name`, `vs_company`, `create_date`) VALUES
-(1, '123099', '5750000', 'Supplier01', 'Company01', '2021-02-09 19:07:04'),
-(2, '324234', 'FN0654353000', 'Supplier02', 'Company02', '2021-02-09 19:35:53'),
-(5, 'asasdasdda', 'asdasddasddasd', 'Supplier01', 'Company01', '2021-02-12 11:04:26');
+INSERT INTO `tbl_invoice` (`id_invoice`, `rqs_id`, `rtc_pn`, `vs_id`, `vs_name`, `com_sup_id`, `create_date`) VALUES
+(1, 'aaaaa', 'bbbbb', 1, 'Supplier01', 1, '2021-03-04 18:30:57'),
+(2, 'vvvvv', 'tttt', 2, 'Supplier02', 2, '2021-03-04 18:31:05'),
+(4, '2342344344234', 'TH00012312AAA', 3, 'Mr.Tester System 1', 2, '2021-03-19 17:50:29');
 
 -- --------------------------------------------------------
 
@@ -591,12 +562,12 @@ CREATE TABLE `tbl_machine` (
 --
 
 INSERT INTO `tbl_machine` (`machine_id`, `invoice_id`, `machine_status`, `machine_type_id`, `model_id`, `machine_serial_no`, `brand_id`, `machine_price`, `machine_stock`, `machine_sup_inv_no`, `machine_sup_inv_date`, `machine_warranty_year`, `machine_warranty_start_date`, `machine_warranty_stop_date`, `machine_company_inv_no`, `machine_company_inv_date`, `machine_warranty_comp_year`, `machine_warranty_comp_start_date`, `machine_warranty_comp_stop_date`, `status_machine`) VALUES
-(2, 2, 'qwertty', 3, 12, '23456gda4365640ER', 4, 1000, 1, '192', '2021-02-10', 5, '2021-02-07', '2026-02-07', '129', '2021-02-12', 4, '2021-02-07', '2025-02-07', 'active'),
-(4, 1, 'zzz', 3, 8, 'AT5990', 5, 1000, 2, 'AT9999', '2021-02-12', 10, '2021-02-12', '2030-02-13', 'AF9999', '2021-02-12', 10, '2021-02-12', '2030-05-12', 'used'),
-(5, 1, 'okok', 1, 3, 'AF9999', 5, 1000, 1, 'AFT9999', '2021-02-12', 1, '2021-02-12', '2021-02-28', 'AG9999', '2021-02-12', 1, '2021-02-12', '2021-02-28', 'active'),
-(6, 1, 'Add me me', 2, 9, '123455', 5, 1000, 3, 'POP009', '2021-02-12', 1, '2021-02-12', '2021-02-13', 'POPP009988', '2021-02-12', 1, '2021-02-12', '2021-02-13', 'used'),
-(7, 5, '23123123123123', 3, 12, '1231231231232312070pououiooiuouio', 5, 2000, 10, '435345', '2021-02-12', 1, '2021-02-12', '2021-03-03', '43534535', '2021-02-12', 1, '2021-02-12', '2021-03-03', 'used'),
-(8, 5, '756 7567', 2, 8, '657567567', 5, 100, 20, '56756756756767', '2021-02-12', 1, '2021-02-12', '2021-02-19', 'sasdasdasd', '2021-02-12', 1, '2021-02-12', '2021-02-19', 'used');
+(2, 1, 'qwertty', 3, 12, '23456gda4365640ER', 4, 1000, 1, '192', '2021-02-10', 5, '2021-02-07', '2026-02-07', '129', '2021-02-12', 4, '2021-02-07', '2025-02-07', 'used'),
+(4, 1, 'zzz', 3, 8, 'AT5990', 5, 1000, 1, 'AT9999', '2021-02-12', 10, '2021-02-12', '2030-02-13', 'AF9999', '2021-02-12', 10, '2021-02-12', '2030-05-12', 'active'),
+(5, 1, 'okok', 1, 3, 'AF9999', 5, 1000, 1, 'AFT9999', '2021-02-12', 1, '2021-02-12', '2021-02-28', 'AG9999', '2021-02-12', 1, '2021-02-12', '2021-02-28', 'used'),
+(6, 1, 'Add me me', 2, 9, '123455', 5, 1000, 1, 'POP009', '2021-02-12', 1, '2021-02-12', '2021-02-13', 'POPP009988', '2021-02-12', 1, '2021-02-12', '2021-02-13', 'used'),
+(7, 1, '23123123123123', 3, 12, '1231231231232312070pououiooiuouio', 5, 2000, 1, '435345', '2021-02-12', 1, '2021-02-12', '2021-03-03', '43534535', '2021-02-12', 1, '2021-02-12', '2021-03-03', 'used'),
+(8, 1, '756 7567', 2, 8, '657567567', 5, 100, 1, '56756756756767', '2021-02-12', 1, '2021-02-12', '2021-02-19', 'sasdasdasd', '2021-02-12', 1, '2021-02-12', '2021-02-19', 'used');
 
 -- --------------------------------------------------------
 
@@ -721,13 +692,14 @@ CREATE TABLE `tbl_notification` (
 --
 
 INSERT INTO `tbl_notification` (`notification_id`, `machine_id`, `messages`, `date_notify`, `user_notification`, `create_user`, `status_notification`, `save_date`) VALUES
-(4, 2, 'Check detail for Machine ID', '2021-03-16', 'admin,phploso', 'admin', 0, '2021-03-01 01:17:44'),
-(5, 2, 'Check detail for Machine ID', '2021-03-21', '', 'admin', 0, '2021-03-01 01:17:44'),
-(6, 2, 'แจ้ง ดูการเชื่อมต่อ WiFi ของ TV รุ่น SONY เพิ่งเปลี่ยนตัวแปลงสัญญาณเข้าไป', '2021-03-02', 'phploso', 'admin', 0, '2021-03-02 08:42:00'),
-(7, 2, 'แจ้ง ดูการเชื่อมต่อ WiFi ของ TV รุ่น SONY เพิ่งเปลี่ยนตัวแปลงสัญญาณเข้าไป', '2021-03-05', 'phploso', 'admin', 0, '2021-03-02 09:05:41'),
-(8, 2, 'แจ้ง ดูการเชื่อมต่อ WiFi ของ TV รุ่น SONY เพิ่งเปลี่ยนตัวแปลงสัญญาณเข้าไป', '2021-03-08', 'phploso', 'admin', 0, '2021-03-02 08:42:00'),
-(9, 4, 'ระวัง เรื่องความร้อนเข้าเครื่อง', '2021-03-02', '', 'admin', 1, '2021-03-02 08:45:03'),
-(10, 4, 'ระวัง เรื่องความร้อนเข้าเครื่อง', '2021-03-12', '', 'admin', 1, '2021-03-02 09:05:57');
+(1, 4, 'เช็คอุปกรณ์', '2021-03-05', '', 'admin', 1, '2021-03-04 19:41:13'),
+(2, 4, 'เช็คอุปกรณ์', '2021-03-10', '', 'admin', 1, '2021-03-04 19:41:13'),
+(3, 4, 'เช็คอุปกรณ์  ทั้งหมดเลยนะ', '2021-03-15', 'aaaaaabbbzz', 'admin', 0, '2021-03-04 19:44:18'),
+(4, 4, 'เสนอราคาให้ลูกค้า', '2021-03-05', 'admin', 'admin', 1, '2021-03-05 05:32:31'),
+(5, 4, 'เสนอราคาให้ลูกค้า', '2021-03-10', 'admin', 'admin', 1, '2021-03-05 05:32:31'),
+(6, 4, 'เสนอราคาให้ลูกค้า', '2021-03-15', 'admin', 'admin', 1, '2021-03-05 05:32:31'),
+(7, 4, 'เสนอราคาให้ลูกค้า', '2021-03-20', 'admin', 'admin', 1, '2021-03-05 05:32:31'),
+(8, 4, 'เสนอราคาให้ลูกค้า', '2021-03-25', 'admin', 'admin', 0, '2021-03-05 05:32:31');
 
 -- --------------------------------------------------------
 
@@ -785,7 +757,8 @@ CREATE TABLE `tbl_requisition` (
   `rqs_id` int(11) NOT NULL,
   `rqs_date` date NOT NULL,
   `emp_id` int(11) NOT NULL,
-  `rqs_pn` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `machine_serial_no` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `model_id` int(11) NOT NULL DEFAULT 0,
   `vs_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT 'Visitor Customer ID',
   `company_id` int(11) NOT NULL,
   `rqs_remark` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
@@ -800,9 +773,10 @@ CREATE TABLE `tbl_requisition` (
 -- Dumping data for table `tbl_requisition`
 --
 
-INSERT INTO `tbl_requisition` (`rqs_id`, `rqs_date`, `emp_id`, `rqs_pn`, `vs_id`, `company_id`, `rqs_remark`, `rqs_status`, `create_user`, `create_date`, `update_user`, `update_date`) VALUES
-(1, '2021-02-14', 2, '898', '2', 2, '', 'complete', 'admin', '2021-02-14 17:15:31', 'admin', '2021-02-27 14:27:49'),
-(2, '2021-02-15', 4, '456', '1', 1, '', 'active', 'admin', '2021-02-14 17:16:38', 'admin', '2021-02-15 10:08:18');
+INSERT INTO `tbl_requisition` (`rqs_id`, `rqs_date`, `emp_id`, `machine_serial_no`, `model_id`, `vs_id`, `company_id`, `rqs_remark`, `rqs_status`, `create_user`, `create_date`, `update_user`, `update_date`) VALUES
+(1, '2021-03-04', 10, '333', 0, '2', 3, '', 'used', 'phploso', '2021-03-04 18:32:26', '', '2021-03-04 18:32:26'),
+(2, '2021-03-05', 10, '1231231231232312070pououiooiuouio', 12, '2', 1, '', 'active', 'admin', '2021-03-05 05:08:44', 'admin', '2021-03-19 19:36:10'),
+(3, '2021-03-19', 10, 'AT5990', 8, '2', 3, '', 'used', 'admin', '2021-03-19 18:39:53', 'admin', '2021-03-19 19:35:03');
 
 -- --------------------------------------------------------
 
@@ -836,9 +810,9 @@ CREATE TABLE `tbl_service_outside` (
   `svo_customer_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `svo_customer_id` int(11) DEFAULT 0,
   `svo_emp_receive` int(11) DEFAULT 0,
-  `svo_emp_id_1` int(11) DEFAULT 0,
-  `svo_emp_id_2` int(11) DEFAULT 0,
-  `svo_emp_id_3` int(11) DEFAULT 0,
+  `svo_emp_id_1` varchar(20) COLLATE utf8_unicode_ci DEFAULT '0',
+  `svo_emp_id_2` varchar(20) COLLATE utf8_unicode_ci DEFAULT '0',
+  `svo_emp_id_3` varchar(20) COLLATE utf8_unicode_ci DEFAULT '0',
   `svo_license_plate_1` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `svo_license_plate_2` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `svo_license_plate_3` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -850,18 +824,28 @@ CREATE TABLE `tbl_service_outside` (
   `svo_pic_path_3` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `svo_province` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `svo_zipcode` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
-  `svo_status` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `svo_status` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'active',
+  `total_price` double NOT NULL DEFAULT 0,
+  `vat` double NOT NULL DEFAULT 0,
+  `labor_cost` double NOT NULL DEFAULT 0,
+  `traveling_expenses` double NOT NULL DEFAULT 0,
+  `accommodation_cost` double NOT NULL DEFAULT 0,
+  `total_all_cost` double NOT NULL DEFAULT 0,
+  `user_update` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `update_date` datetime NOT NULL DEFAULT current_timestamp(),
   `user_create` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `create_date` datetime NOT NULL
+  `create_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `tbl_service_outside`
 --
 
-INSERT INTO `tbl_service_outside` (`svo_id`, `svo_requisition_no`, `svo_get_date`, `svo_date_working`, `svo_company_name`, `svo_company_id`, `svo_customer_name`, `svo_customer_id`, `svo_emp_receive`, `svo_emp_id_1`, `svo_emp_id_2`, `svo_emp_id_3`, `svo_license_plate_1`, `svo_license_plate_2`, `svo_license_plate_3`, `svo_case_break_down`, `svo_conclusion`, `svo_remark`, `svo_pic_path_1`, `svo_pic_path_2`, `svo_pic_path_3`, `svo_province`, `svo_zipcode`, `svo_status`, `user_create`, `create_date`) VALUES
-(1, 1, '2021-02-17', '2021-02-17', 'Beverage-Coffee', 1, '444', 1, 10, 6, 4, 6, 'ผล 1836', '', '', 'ไม่รู้ว่ามาจากอะไร อยู๋ๆ มันก็เสีย', 'ต้องลองไล่ code ดูครับ', '', '20210217192352_1.jpg', '', '', '', '10500', 'complete', 'admin', '2021-02-17 19:23:52'),
-(2, 2, '2021-02-27', '2021-02-27', 'Beverage-Coffee', 1, '444', 1, 10, 2, 6, 4, 'ผล 1836', '', '', ' น่าจะเกิดจากภาวะโลกร้อน ', 'ไม่รู้ ไม่รู้ ไม่รู้ ไม่รู้ ไม่รู้ ', '', '20210217202518_1.jpg', '20210217202518_2.jpg', '20210227222951.jpg', 'มหาสารคาม', '10400', 'complete', 'admin', '2021-02-27 22:30:28');
+INSERT INTO `tbl_service_outside` (`svo_id`, `svo_requisition_no`, `svo_get_date`, `svo_date_working`, `svo_company_name`, `svo_company_id`, `svo_customer_name`, `svo_customer_id`, `svo_emp_receive`, `svo_emp_id_1`, `svo_emp_id_2`, `svo_emp_id_3`, `svo_license_plate_1`, `svo_license_plate_2`, `svo_license_plate_3`, `svo_case_break_down`, `svo_conclusion`, `svo_remark`, `svo_pic_path_1`, `svo_pic_path_2`, `svo_pic_path_3`, `svo_province`, `svo_zipcode`, `svo_status`, `total_price`, `vat`, `labor_cost`, `traveling_expenses`, `accommodation_cost`, `total_all_cost`, `user_update`, `update_date`, `user_create`, `create_date`) VALUES
+(1, 1, '2021-03-04', '2021-03-04', 'Customer Factory', 3, 'นายคัสสสสส', 2, 10, '10', '10', '', 'ผล 1836', 'กข 1234', '', '   qqqq   ', 'wwww', '', '20210304183740.jpg', '20210304183703_2.jpg', '20210304183755.jpg', 'Tak', '63150', 'cancle', 3000, 9, 994, 996, 996, 6256, 'phploso', '2021-03-04 18:38:18', 'phploso', '2021-03-04 18:37:03'),
+(2, 1, '2021-03-04', '2021-03-04', 'Customer Factory', 3, 'นายคัสสสสส', 2, 6, '10', '6', '', 'ผล 1836', 'กข 1234', '', '', '', '', '20210304183936_1.jpg', '', '', 'Tak', '63150', 'cancle', -3400, 7, 500, 500, 600, -2038, 'phploso', '2021-03-04 18:39:36', 'phploso', '2021-03-04 18:39:36'),
+(3, 1, '2021-03-04', '2021-03-04', 'Customer Factory', 3, 'นายคัสสสสส', 2, 10, '6', '4', '', 'ผล 1836', 'กข 1234', '', 'aaaaa', 'wwww', '', '', '', '', 'Tak', '63150', 'complete', 3000, 7, 1000, 1000, 1000, 6210, 'phploso', '2021-03-04 19:13:46', 'phploso', '2021-03-04 19:13:46'),
+(4, 3, '2021-03-15', '2021-03-20', 'CUS-Customer Factory', 3, 'นายคัสสสสส', 2, 10, '6', '4', '2', '', '', '', '        ', '', '', '', '', '', '', '', 'active', 100, 7, 1000, 1000, 1000, 3107, 'admin', '2021-03-19 20:28:25', 'admin', '2021-03-19 20:07:00');
 
 -- --------------------------------------------------------
 
@@ -997,7 +981,6 @@ CREATE TABLE `tbl_visitor_customer` (
   `vs_id` int(11) NOT NULL,
   `vs_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `vs_address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `vs_company` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `vs_position` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `vs_branch` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `vs_tel_1` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -1013,9 +996,9 @@ CREATE TABLE `tbl_visitor_customer` (
 -- Dumping data for table `tbl_visitor_customer`
 --
 
-INSERT INTO `tbl_visitor_customer` (`vs_id`, `vs_name`, `vs_address`, `vs_company`, `vs_position`, `vs_branch`, `vs_tel_1`, `vs_tel_2`, `vs_tel_main`, `vs_mobile_phone`, `vs_email`, `vs_email_personal`, `com_cus_id`) VALUES
-(1, '444', '44', '44', '44', '44', '44', '44', '44', '44', '44', '44', 3),
-(2, 'นายคัสสสสส', 'cus', 'cus', 'cus', 'cus', '44', '13124', '44', '0651636553', 'csxman69@gmail.com', 'csxman69@gmail.com', 2);
+INSERT INTO `tbl_visitor_customer` (`vs_id`, `vs_name`, `vs_address`, `vs_position`, `vs_branch`, `vs_tel_1`, `vs_tel_2`, `vs_tel_main`, `vs_mobile_phone`, `vs_email`, `vs_email_personal`, `com_cus_id`) VALUES
+(1, '444', '44', '44', '44', '44', '44', '44', '44', '44', '44', 2),
+(2, 'นายคัสสสสส', 'cus', 'cus', 'cus', '44', '13124', '44', '0651636553', 'csxman69@gmail.com', 'csxman69@gmail.com', 3);
 
 -- --------------------------------------------------------
 
@@ -1027,7 +1010,6 @@ CREATE TABLE `tbl_visitor_supplier` (
   `vs_id` int(11) NOT NULL,
   `vs_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `vs_address` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `vs_company` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `vs_position` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `vs_branch` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `vs_tel_1` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -1043,9 +1025,11 @@ CREATE TABLE `tbl_visitor_supplier` (
 -- Dumping data for table `tbl_visitor_supplier`
 --
 
-INSERT INTO `tbl_visitor_supplier` (`vs_id`, `vs_name`, `vs_address`, `vs_company`, `vs_position`, `vs_branch`, `vs_tel_1`, `vs_tel_2`, `vs_tel_main`, `vs_mobile_phone`, `vs_email`, `vs_email_personal`, `com_sup_id`) VALUES
-(1, 'Supplier01', 'Supplier01', 'Company01', 'Supplier01', 'Supplier01', '12341234', '123412', '341234', '44', '44', '44', 2),
-(2, 'Supplier02', 'Supplier02', 'Company02', 'Supplier02', 'Supplier02', '22222', '22222', '44', '0448811114', 'csxman69@gmail.com', 'csxman69@gmail.com', 1);
+INSERT INTO `tbl_visitor_supplier` (`vs_id`, `vs_name`, `vs_address`, `vs_position`, `vs_branch`, `vs_tel_1`, `vs_tel_2`, `vs_tel_main`, `vs_mobile_phone`, `vs_email`, `vs_email_personal`, `com_sup_id`) VALUES
+(1, 'Supplier01', 'Supplier01', 'Supplier01', 'Supplier01', '12341234', '123412', '341234', '44', '44', '44', 1),
+(2, 'Supplier02', 'Supplier02', 'Supplier02', 'Supplier02', '22222', '22222', '44', '0448811114', 'csxman69@gmail.com', 'csxman69@gmail.com', 2),
+(3, 'Mr.Tester System 1', '', '', '', '', '', '', '', '', '', 2),
+(4, 'Mr.Tester System 2', '', 'supervisor', '', '', '', '', '', '', '', 2);
 
 -- --------------------------------------------------------
 
@@ -1330,7 +1314,7 @@ ALTER TABLE `user_online`
 -- AUTO_INCREMENT for table `log_login_logout`
 --
 ALTER TABLE `log_login_logout`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `setting_web`
@@ -1354,7 +1338,7 @@ ALTER TABLE `stat_today`
 -- AUTO_INCREMENT for table `tbl_add_inventory_to_invoice`
 --
 ALTER TABLE `tbl_add_inventory_to_invoice`
-  MODIFY `id_inven_to_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_inven_to_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tbl_area`
@@ -1384,7 +1368,7 @@ ALTER TABLE `tbl_brand`
 -- AUTO_INCREMENT for table `tbl_company`
 --
 ALTER TABLE `tbl_company`
-  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `company_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_company_customer`
@@ -1432,7 +1416,7 @@ ALTER TABLE `tbl_inventory`
 -- AUTO_INCREMENT for table `tbl_invoice`
 --
 ALTER TABLE `tbl_invoice`
-  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_machine`
@@ -1468,7 +1452,7 @@ ALTER TABLE `tbl_model`
 -- AUTO_INCREMENT for table `tbl_notification`
 --
 ALTER TABLE `tbl_notification`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_position`
@@ -1486,7 +1470,7 @@ ALTER TABLE `tbl_product_type`
 -- AUTO_INCREMENT for table `tbl_requisition`
 --
 ALTER TABLE `tbl_requisition`
-  MODIFY `rqs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `rqs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_return_certificate`
@@ -1498,7 +1482,7 @@ ALTER TABLE `tbl_return_certificate`
 -- AUTO_INCREMENT for table `tbl_service_outside`
 --
 ALTER TABLE `tbl_service_outside`
-  MODIFY `svo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `svo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_sub_inventory`
@@ -1546,7 +1530,7 @@ ALTER TABLE `tbl_visitor_customer`
 -- AUTO_INCREMENT for table `tbl_visitor_supplier`
 --
 ALTER TABLE `tbl_visitor_supplier`
-  MODIFY `vs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `vs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`

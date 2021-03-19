@@ -57,6 +57,7 @@
                         <thead>
                             <tr>
                             <th scope="col">#</th>
+                            <th scope="col"><center>Company Name</center></th>
                             <th scope="col">Employee Name</th>
                             <th scope="col">Position</th>
                             <th scope="col">Mobile Phone</th>
@@ -72,6 +73,15 @@
                         <?  foreach ($query_employee as $key => $emp) { ?>
                             <tr id="row_<? echo $emp->emp_id; ?>">
                             <th scope="row"><? echo $key+1; ?>.</th>
+                            <td>
+                                <center>
+                                <? $query_company = $this->db->where("company_id",$emp->company_id)->get("tbl_company")->result(); 
+                                foreach ($query_company as $com) {
+                                   echo $com->company_name;
+                                }
+                                ?>
+                                </center>
+                            </td>
                             <td><? echo $emp->emp_name; ?>
                             <br>(<? echo $emp->emp_username; ?>)
                             </td>

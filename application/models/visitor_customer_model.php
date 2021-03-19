@@ -24,7 +24,6 @@ class Visitor_customer_model extends CI_Model {
 
 	public function _add_visitor_customer($vs_name,
                                     $vs_address,
-                                    $vs_company,
                                     $vs_position,
                                     $vs_branch,
                                     $vs_tel_1,
@@ -39,7 +38,6 @@ class Visitor_customer_model extends CI_Model {
                 // ไม่มีข้อมูล บันทึกข้อมูลได้
                 $query = $this->db->set("vs_name",$vs_name)
                                     ->set("vs_address",$vs_address)
-                                    ->set("vs_company",$vs_company)
                                     ->set("vs_position",$vs_position)
                                     ->set("vs_branch",$vs_branch)
                                     ->set("vs_tel_1",$vs_tel_1)
@@ -76,6 +74,7 @@ class Visitor_customer_model extends CI_Model {
          
         // ดึงข้อมูลทั้งหมด ไปใช้งาน
         $query = $this->db->order_by("vs_id","DESC")
+                        ->join("tbl_company_customer","tbl_visitor_customer.com_cus_id = tbl_company_customer.com_cus_id" , "BOTH")
                         ->get("tbl_visitor_customer")
                         ->result();
                     return $query;
@@ -106,7 +105,6 @@ class Visitor_customer_model extends CI_Model {
 	public function _edit_visitor_customer($vs_id,
                                 $vs_name,
                                 $vs_address,
-                                $vs_company,
                                 $vs_position,
                                 $vs_branch,
                                 $vs_tel_1,
@@ -123,7 +121,6 @@ class Visitor_customer_model extends CI_Model {
                         $query = $this->db->where("vs_id",$vs_id)
                                 ->set("vs_name",$vs_name)
                                 ->set("vs_address",$vs_address)
-                                ->set("vs_company",$vs_company)
                                 ->set("vs_position",$vs_position)
                                 ->set("vs_branch",$vs_branch)
                                 ->set("vs_tel_1",$vs_tel_1)

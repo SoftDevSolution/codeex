@@ -40,7 +40,16 @@
                             <div class="card-body">
         <form action="<? echo base_url(); ?>member/employees/data_add_employee" method="POST" enctype="multipart/form-data">
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-3">
+                    <label for="company_id">Company Name <span class="text-danger">*</span></label>
+                    <select class="form-control" name="company_id" id="company_id" required>
+                    <? foreach ($company_data as $com) {
+                    ?>
+                        <option value="<? echo $com->company_id; ?>"><? echo $com->company_name; ?></option>
+                    <? } ?>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
                     <label for="emp_name">Fullname <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="emp_name" name="emp_name" placeholder="Fullname" required>
                 </div>
@@ -59,11 +68,10 @@
                 <div class="form-group col-md-4">
                     <label for="position_id">Position</label>
                     <select class="form-control" name="position_id" id="position_id">
-                        <option value="">-- Select --</option>
-                        <option value="1">position_id1</option>
-                        <option value="2">position_id2</option>
-                        <option value="3">position_id3</option>
-                        <option value="4">position_id4</option>
+                        <? foreach ($emp_status as $key => $emp_position) {
+                        ?>
+                            <option value="<? echo $emp_position->position_id; ?>"><? echo $emp_position->position_name; ?></option>
+                        <? } ?>
                     </select>
                 </div>
                 

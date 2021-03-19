@@ -2,6 +2,7 @@
     foreach ($setting_web as $data) {  }
     $id_invoice = $this->uri->segment(4);
     $query_invoice = $this->db->where("id_invoice",$id_invoice)
+                        ->join("tbl_company_supplier","tbl_invoice.com_sup_id = tbl_company_supplier.com_sup_id" , "BOTH")
                         ->get("tbl_invoice")->result();
             foreach ($query_invoice as $aaa) {
                 
@@ -67,15 +68,15 @@
                                         </span>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="vs_name">Visitor Supplier : </label>
+                                        <label for="vs_name">Supplier Contact : </label>
                                         <span class="text-primary">
                                             <? echo $aaa->vs_name; ?>
                                         </span>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="vs_company">Factory Supplier : </label>
+                                        <label for="vs_company">ชื่อบริษัทลูกค้า : </label>
                                         <span class="text-primary">
-                                            <? echo $aaa->vs_company; ?>
+                                            <? echo $aaa->com_sup_name; ?>
                                         </span>
                                     </div>
 

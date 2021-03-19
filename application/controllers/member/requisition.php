@@ -28,8 +28,8 @@ class Requisition extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -57,8 +57,8 @@ class Requisition extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -98,27 +98,28 @@ class Requisition extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// รับค่าใบเบิกมา
 		$rqs_date = $this->input->post("rqs_date");
 		$emp_id = $this->input->post("emp_id");
-		$rqs_pn = $this->input->post("rqs_pn");
 		$vs_id = $this->input->post("vs_id");
 		$company_id = $this->input->post("company_id");
+		$machine_serial_no = $this->input->post("machine_serial_no");
+		$model_id = $this->input->post("model_id");
 		$rqs_remark = $this->input->post("rqs_remark");
 		$rqs_status = "active";
 		
 
-		if(empty($rqs_date) or empty($emp_id) or empty($vs_id)){
+		if(empty($rqs_date) or empty($emp_id) or empty($vs_id) or empty($machine_serial_no) or empty($model_id)){
 			$this->session->set_flashdata('msg_error',' Not found data. Please try again.');
 					redirect('member/requisition');
 		} else {
 			// ดำเนินการ อัพเดทข้อมูล
 			$this->load->model('Requisition_model','requisition');
-			$insert_data = $this->requisition->_add_new_requisition($rqs_date,$emp_id,$rqs_pn,$vs_id,$company_id,$rqs_remark,$rqs_status,$username_member);
+			$insert_data = $this->requisition->_add_new_requisition($rqs_date,$emp_id,$vs_id,$company_id,$machine_serial_no,$model_id,$rqs_remark,$rqs_status,$username_member);
 
 				if($insert_data){
 					// success
@@ -148,8 +149,8 @@ class Requisition extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -173,8 +174,8 @@ class Requisition extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -184,14 +185,6 @@ class Requisition extends CI_Controller {
 		// ดึงข้อมูล employee มาแสดง
 		$this->load->model('Employee_model','emp');
 		$data['query_emp'] = $this->emp->_getAll();
-
-		// ดึงข้อมูล Visitor Customer มาแสดง
-		$this->load->model('Visitor_customer_model','visitor');
-		$data['query_visit_customer'] = $this->visitor->_get_visitor_customer_AllData();
-
-		// ดึงข้อมูล Facetory Customer มาใช้งาน
-		$this->load->model('Company_customer_model','customer');
-		$data['query_factory_customer'] = $this->customer->_get_company_customer_AllData();
 
 		// รับข้อมูลมาใช้งาน
 		$rqs_id = $this->uri->segment(4);
@@ -203,6 +196,14 @@ class Requisition extends CI_Controller {
 			// ดึงข้อมูล Requisition มาแสดง
 			$this->load->model('Requisition_model','requisition');
 			$data['query_requisition'] = $this->requisition->_get_requisition_by_id($rqs_id);
+
+			// ดึงข้อมูล Visitor Customer มาแสดง
+			$this->load->model('Visitor_customer_model','visitor');
+			$data['query_visit_customer'] = $this->visitor->_get_visitor_customer_AllData();
+
+			// ดึงข้อมูล Facetory Customer มาใช้งาน
+			$this->load->model('Company_customer_model','company');
+			$data['query_company_customer'] = $this->company->_get_company_customer_AllData();
 
 			$this->load->view('member/edit_requisition',$data);
 		}
@@ -223,19 +224,20 @@ class Requisition extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// รับค่าใบเบิกมา
 		$rqs_id = $this->input->post("rqs_id");
 		$rqs_date = $this->input->post("rqs_date");
 		$emp_id = $this->input->post("emp_id");
-		$rqs_pn = $this->input->post("rqs_pn");
 		$vs_id = $this->input->post("vs_id");
 		$company_id = $this->input->post("company_id");
+		$machine_serial_no = $this->input->post("machine_serial_no");
+		$model_id = $this->input->post("model_id");
 		$rqs_remark = $this->input->post("rqs_remark");
-		$rqs_status = $this->input->post("rqs_status");
+		$rqs_status = "active";
 		
 
 		if(empty($rqs_date) or empty($rqs_id) or empty($emp_id) or empty($vs_id)){
@@ -244,7 +246,7 @@ class Requisition extends CI_Controller {
 		} else {
 			// ดำเนินการ อัพเดทข้อมูล
 			$this->load->model('Requisition_model','requisition');
-			$insert_data = $this->requisition->_edit_requisition($rqs_id,$rqs_date,$emp_id,$rqs_pn,$vs_id,$company_id,$rqs_remark,$rqs_status,$username_member);
+			$insert_data = $this->requisition->_edit_requisition($rqs_id,$rqs_date,$emp_id,$vs_id,$company_id,$machine_serial_no,$model_id,$rqs_remark,$rqs_status,$username_member);
 
 				if($insert_data){
 					// success
@@ -274,8 +276,8 @@ class Requisition extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -320,8 +322,8 @@ class Requisition extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -360,8 +362,8 @@ class Requisition extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// รับข้อมูลมาใช้งาน
@@ -373,7 +375,7 @@ class Requisition extends CI_Controller {
 		$add_inventory = $this->company->_add_inventory_to_requisition($machine_id,$requisition_id,$username_member);
 				if($add_inventory){
 					// success
-					$this->session->set_flashdata('msg_ok',' Successfully. Remove success.');
+					$this->session->set_flashdata('msg_ok',' Add inventory successful.');
 						redirect('member/requisition/add_inventory/'.$requisition_id);
 				} else {
 					// false / error
@@ -407,7 +409,7 @@ class Requisition extends CI_Controller {
 
 		// ดึงข้อมูล inventory มาแสดง
 		$this->load->model('Company_model',"company");
-		$update_requisition = $this->company->_return_requisition($id_inven_to_invoice);
+		$update_requisition = $this->company->_return_requisition($id_inven_to_invoice,$requisition_id);
 				if($update_requisition){
 					// success
 					$this->session->set_flashdata('msg_ok',' Successfully. Remove success.');
@@ -417,6 +419,35 @@ class Requisition extends CI_Controller {
 					$this->session->set_flashdata('msg_error',' Error! Please try again.');
 						redirect('member/requisition/add_inventory/'.$requisition_id);
 				}
+	}
+
+	public function get_machine_data()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+		// Load Visitor_supplier_model
+		$this->load->model('Machine_model','machine');
+
+		// รับข้อมูลมา
+		$machine_serial_no = $this->input->post("query");
+
+		// ดึงข้อมูลมาแสดง
+		$query_machine_data = $this->machine->_query_machine_by_SN($machine_serial_no);
+
+			if(empty($query_machine_data) or $query_machine_data==""){
+				echo '<option value="">--Select--</option>';
+			} else {
+				foreach($query_machine_data as $row)
+					{
+					echo '
+					<option value="'.$row->model_id.'"> '.$row->model_name.' </option>
+					';
+					}
+			}
+
 	}
 
 }

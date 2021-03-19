@@ -27,8 +27,8 @@ class Machine extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -58,8 +58,8 @@ class Machine extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -71,6 +71,10 @@ class Machine extends CI_Controller {
 
 		// แสดง Invoice
 		$data['query_invoice'] = $this->machine->_get_invoice();
+
+		// แสดงข้อมูล Supplier Contact
+		$this->load->model('Company_supplier_model','supplier');
+		$data['query_supplier'] = $this->supplier->_get_company_supplier_AllData();
 
 		$this->load->view('member/add_machine',$data);
 	}
@@ -87,21 +91,21 @@ class Machine extends CI_Controller {
 		$data['username_member'] = $this->user->_getmember($username_member);
 
 		// Load Model Machine
-		$this->load->model('Company_model','machine');
+		$this->load->model('Company_model','company');
 		
 		// รับข้อมูลมาใช้งาน
 		$rqs_id = $this->input->post("rqs_id");
 		$rtc_pn = $this->input->post("rtc_pn");
-		$vs_name = $this->input->post("vs_name");
-		$vs_company = $this->input->post("vs_company");
+		$vs_id = $this->input->post("vs_id");
+		$com_sup_id = $this->input->post("com_sup_id");
 
-		if(empty($rqs_id) or empty($rtc_pn) or empty($vs_name) or empty($vs_company)){
+		if(empty($rqs_id) or empty($rtc_pn) or empty($com_sup_id)){
 			// No data.
 			$this->session->set_flashdata('msg_error',' Not found data. Please try again.');
 					redirect('member/machine/add_machine');
 		} else {
 			// Add invoice
-			$query_insert = $this->machine->_add_invoice($rqs_id,$rtc_pn,$vs_name,$vs_company);
+			$query_insert = $this->company->_add_invoice($rqs_id,$rtc_pn,$vs_id,$com_sup_id);
 				if($query_insert){
 					// Success
 					$this->session->set_flashdata('msg_ok',' Successfully. Saved Invoice data.');
@@ -129,8 +133,8 @@ class Machine extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -243,16 +247,14 @@ class Machine extends CI_Controller {
 		$this->load->model('Visitor_supplier_model','visitor_sup');
 
 		// รับข้อมูลมา
-		$vs_name = $this->input->post("query");
+		$com_sup_id = $this->input->post("query");
 
 		// ดึงข้อมูลมาแสดง
-		$query_visitor_sub = $this->visitor_sup->_get_visitor_supplier_by_vs_name($vs_name);
+		$query_visitor_sub = $this->visitor_sup->_get_visitor_supplier_by_com_sup_id($com_sup_id);
 			foreach($query_visitor_sub as $row)
 				{
 				echo '
-				<li class="list-group-item contsearch">
-				<a href="javascript:void(0)" class="gsearch" style="color:#333;text-decoration:none;">'.$row->vs_name.'</a>
-				</li>
+				<option value="'.$row->vs_id.'"> '.$row->vs_name.' </option>
 				';
 				}
 
@@ -301,7 +303,29 @@ class Machine extends CI_Controller {
 		$query_visitor_sub = $this->visitor_sup->_get_visitor_supplier_by_vs_company($vs_company);
 			foreach($query_visitor_sub as $data)
 				{
-					echo $data->vs_company;
+					echo $data->com_sup_name.",".$data->com_sup_id;
+				}
+
+	}
+
+	public function get_company_supplier_by_name()
+	{
+		// Load All
+		$this->load->library('session','database');
+		$this->load->model('User_model','user');
+		$this->checkMember_isvalidated();
+
+		// Load Visitor_supplier_model
+		$this->load->model('Visitor_supplier_model','visitor_sup');
+
+		// รับข้อมูลมา
+		$my_vs_name = $this->input->post("my_vs_name");
+
+		// ดึงข้อมูลมาแสดง
+		$query_visitor_sub = $this->visitor_sup->_get_company_supplier_by_name($my_vs_name);
+			foreach($query_visitor_sub as $data)
+				{
+					echo $data->vs_id;
 				}
 
 	}
@@ -320,8 +344,8 @@ class Machine extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ

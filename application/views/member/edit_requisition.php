@@ -1,6 +1,6 @@
 <?
     foreach ($setting_web as $data) {  }
-    foreach ($query_requisition as $requisition) {  }
+    foreach ($query_requisition as $ccc) {  }
 ?>
 <!doctype html>
 <html lang="en">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="<? echo base_url(); ?>theme/sweetalert/sweetalert2.min.css">
     <link href="<? echo base_url(); ?>theme/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-    <title>Edit Requisition | <? echo $data->nameweb; ?></title>
+    <title>Edit Requisition</title>
 </head>
 
 <body>
@@ -49,55 +49,63 @@
                             <div class="card-body">
         <form action="<? echo base_url(); ?>member/requisition/data_edit_requisition" method="POST">
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="rqs_date">Date <span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" id="rqs_date" name="rqs_date" value="<? echo $requisition->rqs_date; ?>" required>
+                    <input type="date" class="form-control" id="rqs_date" name="rqs_date" value="<? echo $ccc->rqs_date; ?>" required>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="emp_id">Employee <span class="text-danger">*</span></label>
                     <select class="form-control" name="emp_id" id="emp_id">
                     <? foreach ($query_emp as $eee) { ?>
-                        <option value="<? echo $eee->emp_id; ?>" <? if($requisition->emp_id==$eee->emp_id){ echo "selected"; } else { } ?>><? echo $eee->emp_name; ?></option>
+                        <option value="<? echo $eee->emp_id; ?>" <? if($eee->emp_id==$ccc->emp_id){ echo "selected"; } else {  } ?>><? echo $eee->emp_name; ?></option>
                         <? } ?>
                     </select>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="rqs_pn">P/N</label>
-                    <input type="text" class="form-control" id="rqs_pn" name="rqs_pn" placeholder="P/N" value="<? echo $requisition->rqs_pn; ?>">
+                <div class="form-group col-md-3">
+                    <label for="company_id">ชื่อบริษัทลูกค้า <span class="text-danger">*</span></label>
+                    <select class="form-control" name="company_id" id="company_id" required>
+                    <? foreach ($query_company_customer as $qc) { ?>
+                        <option value="<? echo $qc->com_cus_id; ?>" <? if($qc->com_cus_id==$ccc->company_id){ echo "selected"; } else {  } ?>><? echo $qc->com_cus_name; ?></option>
+                        <? } ?>
+                    </select>
+                    
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="vs_id">Visitor Customer <span class="text-danger">*</span></label>
+                <div class="form-group col-md-3">
+                    <label for="vs_id">Customer Contact <span class="text-danger">*</span></label>
                     <select class="form-control" name="vs_id" id="vs_id">
                     <? foreach ($query_visit_customer as $bbb) { ?>
-                        <option value="<? echo $bbb->vs_id; ?>" <? if($requisition->vs_id==$bbb->vs_id){ echo "selected"; } else { } ?>><? echo $bbb->vs_name; ?></option>
+                        <option value="<? echo $bbb->vs_id; ?>" <? if($bbb->vs_id==$ccc->vs_id){ echo "selected"; } else {  } ?>><? echo $bbb->vs_name; ?></option>
                         <? } ?>
                     </select>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="company_id">Factory Name</label>
-                    <select class="form-control" name="company_id" id="company_id">
-                    <? foreach ($query_factory_customer as $ccc) { ?>
-                        <option value="<? echo $ccc->com_cus_id; ?>" <? if($requisition->company_id==$ccc->com_cus_id){ echo "selected"; } else { } ?>><? echo $ccc->com_cus_name; ?></option>
-                        <? } ?>
-                    </select>
-                    
+                <div class="form-group col-md-6">
+                    <label for="machine_serial_no">S/N <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="machine_serial_no" name="machine_serial_no" placeholder="S/N" value="<? echo $ccc->machine_serial_no; ?>" required>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="rqs_status">Status</label>
-                    <input type="text" class="form-control" id="rqs_status" name="rqs_status" value="<? echo $requisition->rqs_status; ?>" readonly>
-                    
+                <div class="form-group col-md-6">
+                    <label for="model_id">Machine Model <span class="text-danger">*</span></label>
+                    <select class="form-control" id="model_id" name="model_id" required>
+                        <option value="<? echo $ccc->model_id; ?>">
+                        <? $query_model_id = $this->db->where("model_id",$ccc->model_id)->get("tbl_model")->result();  
+                            foreach ($query_model_id as $mm) {
+                                echo $mm->model_name;
+                            }
+                        ?>
+                        </option>
+                    </select>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="rqs_remark">Note/Remark</label>
-                    <textarea class="form-control" name="rqs_remark" id="rqs_remark" placeholder="Note/Remark"><? echo $requisition->rqs_remark; ?></textarea>
+                    <textarea class="form-control" name="rqs_remark" id="rqs_remark" placeholder="Note/Remark"><? echo $ccc->rqs_remark; ?></textarea>
                 </div>
             </div>
 
             <center>
             <hr>
-            <input type="hidden" name="rqs_id" value="<? echo $requisition->rqs_id; ?>">
-            <button type="submit" class="btn btn-primary">Edit Requisition</button> &nbsp;&nbsp;
-            <button type="reset" class="btn btn-warning">Reset</button>
+        <input type="hidden" name="rqs_id" id="rqs_id" value="<? echo $this->uri->segment(4); ?>">
+            <button type="submit" class="btn btn-primary">Save Data</button> &nbsp;&nbsp;
+            <button type="reset" class="btn btn-warning">Reset</button>&nbsp;&nbsp;
+            <a href="<? echo base_url(); ?>member/requisition"><button type="button" class="btn btn-danger">Back to Requisition </button></a>
             </center>
         </form>
                             </div>
@@ -138,42 +146,22 @@
 
     <script>
     $(document).ready(function() {
-        $('#vs_name').keyup(function() {
-            var query = $('#vs_name').val();
-            $('#detail').html('');
-            $('.list-group').css('display', 'block');
+        $('#machine_serial_no').keyup(function() {
+            var query = $('#machine_serial_no').val();
             if (query.length > 0) {
                 $.ajax({
-                    url: "<? echo base_url(); ?>member/machine/get_visitor_supplier",
+                    url: "<? echo base_url(); ?>member/requisition/get_machine_data",
                     method: "POST",
                     data: {
-                        query: query
+                        query : query
                     },
                     success: function(data) {
-                        $('.list-group').html(data);
+                        $('#model_id').html(data);
                     }
                 })
             }
-            if (query.length == 0) {
-                $('.list-group').css('display', 'none');
-            }
         });
 
-        $(document).on('click', '.gsearch', function() {
-            var vs_company = $(this).text();
-            $('#vs_name').val(vs_company);
-            $('.list-group').css('display', 'none');
-            $.ajax({
-                url: "<? echo base_url(); ?>member/machine/get_vs_company_visitor_supplier",
-                method: "POST",
-                data: {
-                    vs_company: vs_company
-                },
-                success: function(data) {
-                    $('#vs_company').val(data);
-                }
-            })
-        });
     });
     </script>
 

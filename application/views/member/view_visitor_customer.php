@@ -51,7 +51,7 @@
                         <? $this->load->view("member/flashsweet"); ?>
                     </div>
 
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
                         <div class="card">
                             <div class="card-body">
 
@@ -66,11 +66,16 @@
                                             <label for="vs_address">ที่อยู่ปัจจุบัน</label>
                                             <input type="text" class="form-control" id="vs_address" name="vs_address" placeholder="ที่อยู่ปัจจุบัน" >
                                         </div>
-                                        <div class="form-group col-12">
-                                            <label for="vs_company">ชื่อบริษัทลูกค้า</label>
-                                            <input type="text" class="form-control" id="vs_company" name="vs_company" placeholder="ชื่อบริษัทลูกค้า" >
+                                        <div class="form-group col-md-12">
+                                                <label for="com_cus_id">ชื่อบริษัทลูกค้า</label>
+                                                <select class="form-control" name="com_cus_id" id="com_cus_id">
+                                                        <option value="">--Select--</option>
+                                                        <? foreach ($data_factory_customer as $factory) { ?>
+                                                        <option value="<? echo $factory->com_cus_id; ?>"><? echo $factory->com_cus_name; ?></option>
+                                                        <? } ?>
+                                                </select>
+                                            
                                         </div>
-
                                         <div class="form-group col-12">
                                             <label for="vs_position">ตำแหน่ง</label>
                                             <input type="text" class="form-control" id="vs_position" name="vs_position" placeholder="ตำแหน่ง" >
@@ -103,17 +108,6 @@
                                             <label for="vs_email_personal">Personel Email</label>
                                             <input type="text" class="form-control" id="vs_email_personal" name="vs_email_personal" placeholder="Personel Email" >
                                         </div>
-
-                                        <div class="form-group col-md-12">
-                                                <label for="com_cus_id">Factory Customer</label>
-                                                <select class="form-control" name="com_cus_id" id="com_cus_id">
-                                                        <option value="">--Select--</option>
-                                                        <? foreach ($data_factory_customer as $factory) { ?>
-                                                        <option value="<? echo $factory->com_cus_id; ?>"><? echo $factory->com_cus_name; ?></option>
-                                                        <? } ?>
-                                                </select>
-                                            
-                                        </div>
                                    
                                     </div>
 
@@ -129,7 +123,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive-lg">
@@ -151,8 +145,8 @@
                                                 ?>
                                                             <tr>
                                                             <th scope="row"><? echo $mach->vs_id;; ?></th>
-                                                            <td><? echo $mach->vs_name; ?></td>
-                                                            <td><? echo $mach->vs_company; ?></td>
+                                                            <td><a href="<? echo base_url(); ?>member/visitor_customer/edit_visitor_customer/<? echo $mach->vs_id; ?>"><? echo $mach->vs_name; ?></a></td>
+                                                            <td><a href="<? echo base_url(); ?>member/visitor_customer/edit_visitor_customer/<? echo $mach->vs_id; ?>"><? echo $mach->com_cus_name; ?></a></td>
                                                             <td><? echo $mach->vs_tel_main; ?></td>
                                                             <td><? echo $mach->vs_email; ?></td>
                                                             <td>

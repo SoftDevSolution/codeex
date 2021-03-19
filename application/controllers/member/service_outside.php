@@ -28,8 +28,8 @@ class Service_outside extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -61,8 +61,8 @@ class Service_outside extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -90,8 +90,8 @@ class Service_outside extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -190,6 +190,14 @@ class Service_outside extends CI_Controller {
 		$svo_zipcode = $this->input->post("svo_zipcode");
 		$svo_remark = $this->input->post("svo_remark");
 
+		$total_price = $this->input->post("total_price");
+		$vat = $this->input->post("vat");
+		$labor_cost = $this->input->post("labor_cost");
+		$traveling_expenses = $this->input->post("traveling_expenses");
+		$accommodation_cost = $this->input->post("accommodation_cost");
+		$total_all_cost = $this->input->post("total_all_cost");
+
+
 		//echo $svo_company_name."</BR>";
 		//echo $svo_revision_no."</BR>";
 
@@ -257,7 +265,14 @@ class Service_outside extends CI_Controller {
 									$namephoto[1],
 									$namephoto[2],
 									$namephoto[3],
-									$username_member);
+									$username_member,
+									$total_price,
+									$vat,
+									$labor_cost,
+									$traveling_expenses,
+									$accommodation_cost,
+									$total_all_cost
+								);
 				if($add_service_outside=="same"){
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning','Data is exist. Please try again.');
@@ -367,6 +382,13 @@ class Service_outside extends CI_Controller {
 		$svo_province = $this->input->post("svo_province");
 		$svo_zipcode = $this->input->post("svo_zipcode");
 		$svo_remark = $this->input->post("svo_remark");
+
+		$total_price = $this->input->post("total_price");
+		$vat = $this->input->post("vat");
+		$labor_cost = $this->input->post("labor_cost");
+		$traveling_expenses = $this->input->post("traveling_expenses");
+		$accommodation_cost = $this->input->post("accommodation_cost");
+		$total_all_cost = $this->input->post("total_all_cost");
 		
 
 		// เก็บรูป
@@ -473,7 +495,8 @@ class Service_outside extends CI_Controller {
 		}
 
 			// ดำเนินการบันทึกข้อมูล
-			$edit_service_outside = $this->service_outside->_editServiceOutside($svo_id,$svo_requisition_no,
+			$edit_service_outside = $this->service_outside->_editServiceOutside($svo_id,
+									$svo_requisition_no,
 									$svo_get_date,
 									$svo_date_working,
 									$svo_company_name,
@@ -493,7 +516,13 @@ class Service_outside extends CI_Controller {
 									$svo_province,
 									$svo_zipcode,
 									$svo_remark,
-									$username_member);
+									$username_member,
+									$total_price,
+									$vat,
+									$labor_cost,
+									$traveling_expenses,
+									$accommodation_cost,
+									$total_all_cost);
 				if($edit_service_outside=="same"){
 					// ซ้ำ
 					$this->session->set_flashdata('msg_warning','Data is exist. Please try again.');
@@ -574,7 +603,7 @@ class Service_outside extends CI_Controller {
 		$data['setting_web'] = $this->me->_getall();
 		
 		// รับค่ามา
-		$svo_id = $this->uri->segment(4);
+		$svo_id = $this->uri->segment(4); // ID ของ Service Outside
 
 		// Load Service_outside_model
 		$this->load->model('Service_outside_model','service_outside');
@@ -627,20 +656,13 @@ class Service_outside extends CI_Controller {
 		// Load Service_outside_model
 		$this->load->model('Service_outside_model','service_outside');
 
-		// แสดงข้อมูล Member
-		// $query_user = $this->user->_getmember($username_member);
-		// 		foreach ($query_user as $user) {
-		// 			$id_user = $user->id_user;
-		// 			$fullname = $user->fullname;
-		// 		}
-
 		// รับข้อมูลมาใช้งาน
-		$id_inven_to_invoice = $this->uri->segment(4);
-		$svo_id = $this->uri->segment(5);
+		$id_inven_to_invoice = $this->uri->segment(4); // ID ของ invoice
+		$svo_id = $this->uri->segment(5);  // ID ของ Service Outside
 
 		// ดึงข้อมูล inventory มาแสดง
 		$this->load->model('Company_model',"company");
-		$update_requisition = $this->company->_return_requisition($id_inven_to_invoice);
+		$update_requisition = $this->company->_return_requisition($id_inven_to_invoice,$svo_id);
 				if($update_requisition){
 					// success
 					$this->session->set_flashdata('msg_ok',' Successfully. Return requisition success.');

@@ -67,10 +67,16 @@
                 </span>
                 </div>
                 <div class="form-group col-md-3">
-                P/N : <span class="text-primary"><? echo $requisition->rqs_pn; ?></span>
+                ชื่อบริษัทลูกค้า : <span class="text-primary">
+                <? $query_company = $this->db->where("com_cus_id",$requisition->company_id)->get("tbl_company_customer")->result(); 
+                    foreach ($query_company as $company) {
+                        echo $company->com_cus_name;
+                    }
+                ?>
+                </span>
                 </div>
                 <div class="form-group col-md-3">
-                Visitor Customer : <span class="text-primary">
+                Customer Contact: <span class="text-primary">
                 <? $query_visitor_customer = $this->db->where("vs_id",$requisition->vs_id)
                                             ->get("tbl_visitor_customer")->result();
                         foreach ($query_visitor_customer as $visitor) {
@@ -79,25 +85,31 @@
                  ?>
                 </span>
                 </div>
-                <div class="form-group col-md-4">
-                Factory Name : <span class="text-primary">
-                <? 
-                $query_factory_customer = $this->db->where("com_cus_id",$requisition->company_id)
-                                        ->get("tbl_company_customer")->result();
-                foreach ($query_factory_customer as $factory_cus) { ?>
-                <? echo $factory_cus->com_cus_name; ?>
-                <? } ?>
+                <div class="form-group col-md-3">
+                S/N : <span class="text-primary">
+                <? echo $requisition->machine_serial_no; ?>
                 </span>
                 </div>
-                <div class="form-group col-md-4">
-                User Created : <span class="text-primary"><? echo $requisition->create_user; ?>
-                 (on <? echo set_mytime($requisition->create_date); ?>)
+                <div class="form-group col-md-3">
+                Machine Model : <span class="text-primary">
+                <? echo $requisition->model_id; ?>
+                <? $query_model_id = $this->db->where("model_id",$requisition->model_id)
+                                            ->get("tbl_model")->result();
+                        foreach ($query_model_id as $model) {
+                            echo $model->model_name;
+                        }
+                 ?>
                 </span>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                 User Update : <span class="text-primary"><? echo $requisition->update_user; ?>
                  (on <? echo set_mytime($requisition->update_date); ?>)
                  </span>
+                </div>
+                <div class="form-group col-md-3">
+                User Created : <span class="text-primary"><? echo $requisition->create_user; ?>
+                 (on <? echo set_mytime($requisition->create_date); ?>)
+                </span>
                 </div>
                 <div class="form-group col-md-12">
                 Note/Remark : <span class="text-primary"><? echo $requisition->rqs_remark; ?></span>
@@ -107,6 +119,64 @@
 
                         </div>
                     </div>
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+<div class="card">
+    <div class="card-body">
+    <h4 class="text-primary"><i class="fas fa-list-ul"></i> &nbsp; Inventory List</h4> <hr>
+        
+        <div class="table-responsive-lg" id="tabler_add_invenory">
+        <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Serial Number</th>
+            <th scope="col">Type</th>
+            <th scope="col">Model</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+        <? foreach ($query_invent_in_invoice as $key => $invoices) { 
+            $get_machine_id = $invoices->machine_id;
+            $query_machine = $this->db->where("machine_id",$get_machine_id)
+                                ->get("tbl_machine")->result();
+            foreach ($query_machine as $invo) {
+            ?>
+            <tr id="remove_inven_in_invoice_<? echo $invoices->id_inven_to_invoice; ?>">
+            <td><? echo $key+1; ?>. </td>
+            <td><? echo $invo->machine_serial_no; ?></td>
+            <td><? $query_type = $this->db->where("machine_type_id",$invo->machine_type_id)->get("tbl_machine_type")->result();
+                foreach ($query_type as $ttt) {
+                    echo $ttt->machine_type_name;
+                }
+            ?></td>
+            <td><? $query_model = $this->db->where("model_id",$invo->model_id)->get("tbl_model")->result();
+                foreach ($query_model as $mod) {
+                    echo $mod->model_name;
+                }
+            ?></td>
+            <td><? $query_brand = $this->db->where("brand_id",$invo->brand_id)->get("tbl_brand")->result();
+                foreach ($query_brand as $bbb) {
+                    echo $bbb->brand_name;
+                }
+            ?></td>
+            <td>
+            <a href="<? echo base_url(); ?>member/requisition/update_status_inventory/<? echo $invoices->id_inven_to_invoice; ?>/<? echo $rqs_id; ?>" onclick="return confirm('Confirm to remove this?');"><button class="btn btn-sm btn-danger"><i class="fas fa-minus-circle"></i> Remove</button></a>
+            <a href="<? echo base_url(); ?>member/machine/edit_machine/<? echo $invoices->machine_id; ?>"><button class="btn btn-sm btn-success"><i class="fas fa-edit"></i> Edit</button></a>
+            </td>
+            </tr>
+        <? } ?>
+        <? } ?>
+        </tbody>
+        </table>
+        </div>
+
+    </div>
+
+</div>
+</div>
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 <div class="card">
@@ -169,63 +239,6 @@
         </tbody>
         </table>
         <? } ?>
-        </div>
-
-    </div>
-
-</div>
-</div>
-
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-<div class="card">
-    <div class="card-body">
-    <h4 class="text-primary"><i class="fas fa-list-ul"></i> &nbsp; Inventory List</h4> <hr>
-        
-        <div class="table-responsive-lg" id="tabler_add_invenory">
-        <table class="table table-striped">
-        <thead class="thead-dark">
-            <tr>
-            <th scope="col">#</th>
-            <th scope="col">Serial Number</th>
-            <th scope="col">Type</th>
-            <th scope="col">Model</th>
-            <th scope="col">Brand</th>
-            <th scope="col">Remove</th>
-            </tr>
-        </thead>
-        <tbody>
-        <? foreach ($query_invent_in_invoice as $key => $invoices) { 
-            $get_machine_id = $invoices->machine_id;
-            $query_machine = $this->db->where("machine_id",$get_machine_id)
-                                ->get("tbl_machine")->result();
-            foreach ($query_machine as $invo) {
-            ?>
-            <tr id="remove_inven_in_invoice_<? echo $invoices->id_inven_to_invoice; ?>">
-            <td><? echo $key+1; ?>. </td>
-            <td><? echo $invo->machine_serial_no; ?></td>
-            <td><? $query_type = $this->db->where("machine_type_id",$invo->machine_type_id)->get("tbl_machine_type")->result();
-                foreach ($query_type as $ttt) {
-                    echo $ttt->machine_type_name;
-                }
-            ?></td>
-            <td><? $query_model = $this->db->where("model_id",$invo->model_id)->get("tbl_model")->result();
-                foreach ($query_model as $mod) {
-                    echo $mod->model_name;
-                }
-            ?></td>
-            <td><? $query_brand = $this->db->where("brand_id",$invo->brand_id)->get("tbl_brand")->result();
-                foreach ($query_brand as $bbb) {
-                    echo $bbb->brand_name;
-                }
-            ?></td>
-            <td>
-            <a href="<? echo base_url(); ?>member/requisition/update_status_inventory/<? echo $invoices->id_inven_to_invoice; ?>/<? echo $rqs_id; ?>" onclick="return confirm('Confirm to remove this?');"><button class="btn btn-sm btn-danger"><i class="fas fa-minus-circle"></i> Remove Inventory</button></a>
-            </td>
-            </tr>
-        <? } ?>
-        <? } ?>
-        </tbody>
-        </table>
         </div>
 
     </div>

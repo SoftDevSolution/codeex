@@ -24,7 +24,6 @@ class Visitor_supplier_model extends CI_Model {
 
 	public function _add_visitor_supplier($vs_name,
                                     $vs_address,
-                                    $vs_company,
                                     $vs_position,
                                     $vs_branch,
                                     $vs_tel_1,
@@ -39,7 +38,6 @@ class Visitor_supplier_model extends CI_Model {
                 // ไม่มีข้อมูล บันทึกข้อมูลได้
                 $query = $this->db->set("vs_name",$vs_name)
                                     ->set("vs_address",$vs_address)
-                                    ->set("vs_company",$vs_company)
                                     ->set("vs_position",$vs_position)
                                     ->set("vs_branch",$vs_branch)
                                     ->set("vs_tel_1",$vs_tel_1)
@@ -76,6 +74,7 @@ class Visitor_supplier_model extends CI_Model {
          
         // ดึงข้อมูลทั้งหมด ไปใช้งาน
         $query = $this->db->order_by("vs_id","DESC")
+                        ->join("tbl_company_supplier","tbl_visitor_supplier.com_sup_id = tbl_company_supplier.com_sup_id" , "BOTH")
                         ->get("tbl_visitor_supplier")
                         ->result();
                     return $query;
@@ -85,16 +84,25 @@ class Visitor_supplier_model extends CI_Model {
     {
         // ดึงข้อมูลตามเงื่อนไข ไปใช้งาน
         $query = $this->db->like("vs_name",$vs_name)
-                        ->or_like("vs_company",$vs_name)
+                        ->join("tbl_company_supplier","tbl_visitor_supplier.com_sup_id = tbl_company_supplier.com_sup_id" , "BOTH")
                         ->get("tbl_visitor_supplier")
                         ->result();
                     return $query;
     }
 
-    public function _get_visitor_supplier_by_vs_company($vs_company)
+    public function _get_visitor_supplier_by_com_sup_id($com_sup_id)
     {
         // ดึงข้อมูลตามเงื่อนไข ไปใช้งาน
-        $query = $this->db->where("vs_name",$vs_company)
+        $query = $this->db->where("com_sup_id",$com_sup_id)
+                        ->order_by("vs_id","DESC")
+                        ->get("tbl_visitor_supplier")
+                        ->result();
+                    return $query;
+    }
+
+    public function _get_company_supplier_by_name($vs_name)
+    {
+        $query = $this->db->where("vs_name",$vs_name)
                         ->get("tbl_visitor_supplier")
                         ->result();
                     return $query;
@@ -125,7 +133,6 @@ class Visitor_supplier_model extends CI_Model {
 	public function _edit_visitor_supplier($vs_id,
                                 $vs_name,
                                 $vs_address,
-                                $vs_company,
                                 $vs_position,
                                 $vs_branch,
                                 $vs_tel_1,
@@ -142,7 +149,6 @@ class Visitor_supplier_model extends CI_Model {
                         $query = $this->db->where("vs_id",$vs_id)
                                 ->set("vs_name",$vs_name)
                                 ->set("vs_address",$vs_address)
-                                ->set("vs_company",$vs_company)
                                 ->set("vs_position",$vs_position)
                                 ->set("vs_branch",$vs_branch)
                                 ->set("vs_tel_1",$vs_tel_1)

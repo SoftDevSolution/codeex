@@ -207,8 +207,8 @@ class Factory extends CI_Controller {
 			$data['query_industrial_estate'] = $this->estate->_getAll();
 
 			$this->load->model('Employee_model','employee');
-			$data['query_employee'] = $this->employee->_getAll();
-			$data['count_employee'] = $this->employee->_countAll();
+			$data['query_employee'] = $this->employee->_get_emp_by_company_id($company_id);
+			$data['count_employee'] = $this->employee->_count_emp_by_company_id($company_id);
 			
 			$this->load->view('member/edit_factory',$data);
 

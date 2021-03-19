@@ -86,6 +86,16 @@ class Machine_model extends CI_Model {
                     return $query;
     }
 
+    public function _query_machine_by_SN($machine_serial_no)
+    {
+        $query = $this->db->where("machine_serial_no",$machine_serial_no)
+                        ->where("status_machine","active")
+                        ->join("tbl_model","tbl_model.model_id = tbl_machine.model_id","both")
+                        ->order_by("machine_id","DESC")
+                        ->get("tbl_machine")->result();
+                    return $query;
+    }
+
 	public function _edit_machine_brand($brand_id,$brand_name)
 	{
         // Check

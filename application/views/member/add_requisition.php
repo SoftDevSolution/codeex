@@ -45,11 +45,11 @@
                             <div class="card-body">
         <form action="<? echo base_url(); ?>member/requisition/data_add_requisition" method="POST">
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="rqs_date">Date <span class="text-danger">*</span></label>
                     <input type="date" class="form-control" id="rqs_date" name="rqs_date" value="<? echo date("Y-m-d"); ?>" required>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-3">
                     <label for="emp_id">Employee <span class="text-danger">*</span></label>
                     <select class="form-control" name="emp_id" id="emp_id">
                     <? foreach ($query_emp as $eee) { ?>
@@ -57,12 +57,17 @@
                         <? } ?>
                     </select>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="rqs_pn">P/N</label>
-                    <input type="text" class="form-control" id="rqs_pn" name="rqs_pn" placeholder="P/N">
+                <div class="form-group col-md-3">
+                    <label for="company_id">ชื่อบริษัทลูกค้า <span class="text-danger">*</span></label>
+                    <select class="form-control" name="company_id" id="company_id" required>
+                    <? foreach ($query_factory_customer as $ccc) { ?>
+                        <option value="<? echo $ccc->com_cus_id; ?>"><? echo $ccc->com_cus_name; ?></option>
+                        <? } ?>
+                    </select>
+                    
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="vs_id">Visitor Customer <span class="text-danger">*</span></label>
+                <div class="form-group col-md-3">
+                    <label for="vs_id">Customer Contact <span class="text-danger">*</span></label>
                     <select class="form-control" name="vs_id" id="vs_id">
                     <? foreach ($query_visit_customer as $bbb) { ?>
                         <option value="<? echo $bbb->vs_id; ?>"><? echo $bbb->vs_name; ?></option>
@@ -70,13 +75,14 @@
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="company_id">Factory Name</label>
-                    <select class="form-control" name="company_id" id="company_id">
-                    <? foreach ($query_factory_customer as $ccc) { ?>
-                        <option value="<? echo $ccc->com_cus_id; ?>"><? echo $ccc->com_cus_name; ?></option>
-                        <? } ?>
+                    <label for="machine_serial_no">S/N <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="machine_serial_no" name="machine_serial_no" placeholder="S/N" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="model_id">Machine Model <span class="text-danger">*</span></label>
+                    <select class="form-control" id="model_id" name="model_id" required>
+                        <option value="">--Select--</option>
                     </select>
-                    
                 </div>
                 <div class="form-group col-md-12">
                     <label for="rqs_remark">Note/Remark</label>
@@ -87,7 +93,8 @@
             <center>
             <hr>
             <button type="submit" class="btn btn-primary">Create New Requisition</button> &nbsp;&nbsp;
-            <button type="reset" class="btn btn-warning">Reset</button>
+            <button type="reset" class="btn btn-warning">Reset</button>&nbsp;&nbsp;
+            <a href="<? echo base_url(); ?>member/requisition"><button type="button" class="btn btn-danger">Back to Requisition </button></a>
             </center>
         </form>
                             </div>
@@ -128,42 +135,22 @@
 
     <script>
     $(document).ready(function() {
-        $('#vs_name').keyup(function() {
-            var query = $('#vs_name').val();
-            $('#detail').html('');
-            $('.list-group').css('display', 'block');
+        $('#machine_serial_no').keyup(function() {
+            var query = $('#machine_serial_no').val();
             if (query.length > 0) {
                 $.ajax({
-                    url: "<? echo base_url(); ?>member/machine/get_visitor_supplier",
+                    url: "<? echo base_url(); ?>member/requisition/get_machine_data",
                     method: "POST",
                     data: {
-                        query: query
+                        query : query
                     },
                     success: function(data) {
-                        $('.list-group').html(data);
+                        $('#model_id').html(data);
                     }
                 })
             }
-            if (query.length == 0) {
-                $('.list-group').css('display', 'none');
-            }
         });
 
-        $(document).on('click', '.gsearch', function() {
-            var vs_company = $(this).text();
-            $('#vs_name').val(vs_company);
-            $('.list-group').css('display', 'none');
-            $.ajax({
-                url: "<? echo base_url(); ?>member/machine/get_vs_company_visitor_supplier",
-                method: "POST",
-                data: {
-                    vs_company: vs_company
-                },
-                success: function(data) {
-                    $('#vs_company').val(data);
-                }
-            })
-        });
     });
     </script>
 

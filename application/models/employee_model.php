@@ -48,9 +48,9 @@ class Employee_model extends CI_Model {
     
 	public function _loginUser($username,$password)
 	{
-        $result = $this->db->where('username',$username)
-                    ->where('passwordmd5',md5($password))
-                    ->count_all_results('user');
+        $result = $this->db->where('emp_username',$username)
+                    ->where('emp_password_md5',md5($password))
+                    ->count_all_results('tbl_employees');
                     return $result > 0 ? TRUE : FALSE;
 	}
 
@@ -98,11 +98,12 @@ class Employee_model extends CI_Model {
 			}
 	}
 
-	public function _edit_employees($emp_id,$emp_name,$emp_username,$emp_password,$emp_address,
+	public function _edit_employees($emp_id,$company_id,$emp_name,$emp_username,$emp_password,$emp_address,
 			$position_id,$emp_tel,$emp_mobile_phone,$emp_personal_email,$emp_company_email,$emp_birth_date,$emp_age,$emp_work_start_date,$emp_work_stop_date,$emp_sarary_start,$emp_sarary_now,$emp_pic_path,$emp_remark,$emp_status,$emp_blood_group,$emp_gender,$emp_height,$emp_weight)
 	{
 				// บันทึกข้อมูล
 				$add_employee = $this->db->where("emp_id",$emp_id)
+							->set("company_id",$company_id)
 							->set("emp_name",$emp_name)
 							->set("emp_username",$emp_username)
 							->set("emp_password",base64_encode($emp_password))
@@ -423,6 +424,22 @@ class Employee_model extends CI_Model {
 
                     }
     }
+
+	public function _get_emp_by_company_id($company_id)
+	{
+		// ดึงข้อมูลสมาชิกส่งไปใช้
+		$get_employee = $this->db->where("company_id",$company_id)->order_by("emp_id","DESC")->get('tbl_employees')->result();
+			
+		return $get_employee;
+	}
+
+	public function _count_emp_by_company_id($company_id)
+	{
+		// ดึงข้อมูลสมาชิกส่งไปใช้
+		$get_employee = $this->db->where("company_id",$company_id)->order_by("emp_id","DESC")->count_all_results('tbl_employees');
+			
+		return $get_employee;
+	}
 
 	
 }

@@ -30,8 +30,8 @@ class Employees extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -58,13 +58,20 @@ class Employees extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
 		$this->load->model('Settingme','me');
 		$data['setting_web'] = $this->me->_getall();
+
+		// แสดง Position Employee
+		$data['emp_status'] = $this->employee->_getAll_position();
+
+		// แสดง company_id
+		$this->load->model('Company_model','company');
+		$data['company_data'] = $this->company->_get_company_AllData();
 
 		$this->load->view('member/add_employee',$data);
 	}
@@ -199,8 +206,8 @@ class Employees extends CI_Controller {
 		// แสดงข้อมูล Member
 		$query_user = $this->user->_getmember($username_member);
 				foreach ($query_user as $user) {
-					$id_user = $user->id_user;
-					$fullname = $user->fullname;
+					$emp_id = $user->emp_id;
+					$emp_name = $user->emp_name;
 				}
 
 		// ค่าทั่วไปของเว็บ
@@ -212,6 +219,10 @@ class Employees extends CI_Controller {
 
 		// ดึงข้อมูล emp_id ออกมาใช้งาน
 		$data['query_employee'] = $this->employee->_get_by_id($emp_id);
+
+		// แสดง company_id
+		$this->load->model('Company_model','company');
+		$data['company_data'] = $this->company->_get_company_AllData();
 
 		$this->load->view('member/edit_employee',$data);
 	}
@@ -228,6 +239,7 @@ class Employees extends CI_Controller {
 
 		// รับข้อมูลมาใช้งาน
 		$emp_id = $this->input->post("emp_id");
+		$company_id = $this->input->post("company_id");
 		$emp_name = $this->input->post("emp_name");
 		$emp_username = $this->input->post("emp_username");
 		$emp_password = $this->input->post("emp_password");
@@ -321,7 +333,7 @@ class Employees extends CI_Controller {
 			
 		} else {
 			// ดำเนินการบันทึกข้อมูลได้
-			$update_data = $this->employee->_edit_employees($emp_id,$emp_name,$emp_username,$emp_password,$emp_address,
+			$update_data = $this->employee->_edit_employees($emp_id,$company_id,$emp_name,$emp_username,$emp_password,$emp_address,
 			$position_id,$emp_tel,$emp_mobile_phone,$emp_personal_email,$emp_company_email,$emp_birth_date,$emp_age,$emp_work_start_date,$emp_work_stop_date,$emp_sarary_start,$emp_sarary_now,$namephoto,$emp_remark,$emp_status,$emp_blood_group,$emp_gender,$emp_height,$emp_weight);
 			
 				if($update_data=="same") {

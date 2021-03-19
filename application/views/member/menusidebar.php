@@ -19,11 +19,11 @@
                     <li class="nav-item">
                     <? if($activemenu=="config_machine_type" or $activemenu=="config_machine_model" or $activemenu=="config_machine_brand"  or $activemenu=="config_user_position" or $activemenu=="config_user_type" or $activemenu=="config_area" or $activemenu=="config_factory_group" or $activemenu=="config_product_type" or $activemenu=="config_industrial_estate"){ ?> 
 
-                    <a class="nav-link active" href="<? echo base_url(); ?>member/company" href="<? echo base_url(); ?>member/company" data-toggle="collapse" aria-expanded="true" data-target="#mydatabase" aria-controls="mydatabase"><i class="fas fa-building"></i> Setup Database</a>
+                    <a class="nav-link active" href="<? echo base_url(); ?>member/company" href="<? echo base_url(); ?>member/company" data-toggle="collapse" aria-expanded="true" data-target="#mydatabase" aria-controls="mydatabase"><i class="fas fa-building"></i> Setup Drop Down List</a>
 
                     <? } else { ?>
 
-                        <a class="nav-link" href="<? echo base_url(); ?>member/company" href="<? echo base_url(); ?>member/company" data-toggle="collapse" aria-expanded="false" data-target="#mydatabase" aria-controls="mydatabase"><i class="fas fa-building"></i> Setup Database</a>
+                        <a class="nav-link" href="<? echo base_url(); ?>member/company" href="<? echo base_url(); ?>member/company" data-toggle="collapse" aria-expanded="false" data-target="#mydatabase" aria-controls="mydatabase"><i class="fas fa-building"></i> Setup Drop Down List</a>
                     <? } ?>
 
                         <div id="mydatabase" class="collapse submenu <? if($activemenu=="config_machine_type" or $activemenu=="config_machine_model" or $activemenu=="config_machine_brand"  or $activemenu=="config_user_position" or $activemenu=="config_user_type" or $activemenu=="config_user_status" or $activemenu=="config_area" or $activemenu=="config_factory_group" or $activemenu=="config_product_type" or $activemenu=="config_industrial_estate"){ ?>show<? } ?>">
@@ -32,7 +32,7 @@
                                     <a class="nav-link <? if($activemenu=="config_user_type"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/config_user_type"><i class="fas fa-list-ul"></i> User Type</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link <? if($activemenu=="config_user_status"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/config_user_status"><i class="fas fa-list-ul"></i> User Status</a>
+                                    <a class="nav-link <? if($activemenu=="config_user_status"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/config_user_status"><i class="fas fa-list-ul"></i> Factory Status</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link <? if($activemenu=="config_area"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/config_area"><i class="fas fa-list-ul"></i> Area Config</a>
@@ -103,6 +103,15 @@
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="machine"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/machine" ><i class="fas fa-cog"></i> Inventory</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <? if($activemenu=="requisition" or $activemenu=="add_requisition" or $activemenu=="add_sub_requisition"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/requisition"><i class="fas fa-sticky-note"></i> Requisition</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link <? if($activemenu=="return_certificate" or $activemenu=="add_return_certificate" or $activemenu=="add_sub_return_certificate"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/return_certificate"><i class="fas fa-sticky-note"></i> Return Certificate</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link <? if($activemenu=="service_outside" or $activemenu=="add_service_outside"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/service_outside"><i class="fas fa-sticky-note"></i> Service Outside</a>
+                    </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="employees" or $activemenu=="add_employee"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/employees"><i class="fas fa-users"></i> Employees</a>
                     </li>
@@ -124,6 +133,10 @@
                         <a class="nav-link <? if($activemenu=="notification" or $activemenu=="notification"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/notification"><i class="fas fa-box-open"></i> Notification</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link <? if($activemenu=="backup" or $activemenu=="backup"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/backup"><i class="fas fa-box-open"></i> Backup Database</a>
+                    </li>
+
                     <!--
                     <li class="nav-item">
                         <a class="nav-link <? if($activemenu=="visitor" or $activemenu=="visitor"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/visitor"><i class="fas fa-box-open"></i> Visitor</a>
@@ -133,18 +146,6 @@
                         <a class="nav-link <? if($activemenu=="autocomplete" or $activemenu=="autocomplete"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/autocomplete"><i class="fas fa-box-open"></i> Autocomplete</a>
                     </li>
                     -->
-
-
-
-                    <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="requisition" or $activemenu=="add_requisition" or $activemenu=="add_sub_requisition"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/requisition"><i class="fas fa-sticky-note"></i> Requisition</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="return_certificate" or $activemenu=="add_return_certificate" or $activemenu=="add_sub_return_certificate"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/return_certificate"><i class="fas fa-sticky-note"></i> Return Certificate</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link <? if($activemenu=="service_outside" or $activemenu=="add_service_outside"){ ?> active <? } else { } ?>" href="<? echo base_url(); ?>member/service_outside"><i class="fas fa-sticky-note"></i> Service Outside</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<? echo base_url(); ?>member/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </li>

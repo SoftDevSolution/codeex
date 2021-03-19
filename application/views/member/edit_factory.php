@@ -220,7 +220,7 @@
 
                         <div class="form-group col-md-12">
                             <center>    
-                                <button type="button" class="btn btn-primary"><a href="<? echo base_url(); ?>member/employees" class="text-white">Add Employees</a></button> 
+                                <button type="button" class="btn btn-primary"><a href="<? echo base_url(); ?>member/employees/add_employee" class="text-white">Add Employees</a></button> 
                             </center>
                         </div>
                     </div>

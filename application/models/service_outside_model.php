@@ -44,7 +44,14 @@ class Service_outside_model extends CI_Model {
 									$svo_pic_path_1,
 									$svo_pic_path_2,
 									$svo_pic_path_3,
-                                    $user_create)
+                                    $user_create,
+									$total_price,
+									$vat,
+									$labor_cost,
+									$traveling_expenses,
+									$accommodation_cost,
+									$total_all_cost
+									)
 	{
         $create_date = date("Y-m-d H:i:s");
         $add_customer = $this->db->set('svo_requisition_no',$svo_requisition_no)
@@ -70,7 +77,15 @@ class Service_outside_model extends CI_Model {
                                     ->set('svo_pic_path_1',$svo_pic_path_1)
                                     ->set('svo_pic_path_2',$svo_pic_path_2)
                                     ->set('svo_pic_path_3',$svo_pic_path_3)
-                                    ->set('user_create',$user_create)
+                                    ->set('total_price',$total_price)
+                                    ->set('vat',$vat)
+                                    ->set('labor_cost',$labor_cost)
+                                    ->set('traveling_expenses',$traveling_expenses)
+                                    ->set('accommodation_cost',$accommodation_cost)
+                                    ->set('total_all_cost',$total_all_cost)
+                                    ->set('user_update',$user_create)
+                                    ->set('update_date',$create_date)
+									->set('user_create',$user_create)
                                     ->set('create_date',$create_date)
                             ->insert('tbl_service_outside');
                 if($add_customer){
@@ -110,7 +125,8 @@ class Service_outside_model extends CI_Model {
 						return $count_results;
 	}
 
-	public function _editServiceOutside($svo_id,$svo_requisition_no,
+	public function _editServiceOutside($svo_id,
+									$svo_requisition_no,
 									$svo_get_date,
 									$svo_date_working,
 									$svo_company_name,
@@ -130,7 +146,14 @@ class Service_outside_model extends CI_Model {
 									$svo_province,
 									$svo_zipcode,
 									$svo_remark,
-									$username_member)
+									$username_update,
+									$total_price,
+									$vat,
+									$labor_cost,
+									$traveling_expenses,
+									$accommodation_cost,
+									$total_all_cost
+									)
 	{
 		// ดึงข้อมูลสมาชิกส่งไปใช้
         $create_date = date("Y-m-d H:i:s");
@@ -155,8 +178,14 @@ class Service_outside_model extends CI_Model {
                                     ->set('svo_province',$svo_province)
                                     ->set('svo_zipcode',$svo_zipcode)
                                     ->set('svo_remark',$svo_remark)
-                                    ->set('user_create',$username_member)
-                                    ->set('create_date',$create_date)
+                                    ->set('total_price',$total_price)
+                                    ->set('vat',$vat)
+                                    ->set('labor_cost',$labor_cost)
+                                    ->set('traveling_expenses',$traveling_expenses)
+                                    ->set('accommodation_cost',$accommodation_cost)
+                                    ->set('total_all_cost',$total_all_cost)
+                                    ->set('user_update',$username_update)
+                                    ->set('update_date',$create_date)
 							->update('tbl_service_outside');
 				if($update_customer){
 					return "success";
